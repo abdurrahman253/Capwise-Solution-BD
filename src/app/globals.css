@@ -1,0 +1,237 @@
+@import "tailwindcss";
+
+/* ----------------------------------------
+   Capwise Light Theme
+----------------------------------------- */
+
+:root,
+[data-theme="light"] {
+  color-scheme: light;
+
+  --background: #f8fafc;
+  --foreground: #0f172a;
+
+  --surface: #ffffff;
+  --surface-muted: #eef4f5;
+
+  --brand: #0b1f33;
+  --brand-secondary: #123a56;
+  --brand-foreground: #ffffff;
+
+  --accent: #14b8a6;
+  --accent-strong: #0f766e;
+
+  --action: #0f766e;
+  --action-hover: #115e59;
+  --action-foreground: #ffffff;
+
+  --muted: #64748b;
+  --border: #d9e3e8;
+  --gold: #c79a3b;
+  --danger: #dc2626;
+  --focus: #14b8a6;
+
+  --card-shadow: 0 24px 70px rgba(11, 31, 51, 0.12);
+
+  --toastify-color-light: var(--surface);
+  --toastify-color-dark: var(--surface);
+  --toastify-text-color-light: var(--foreground);
+  --toastify-text-color-dark: var(--foreground);
+  --toastify-color-success: var(--accent-strong);
+  --toastify-color-error: var(--danger);
+}
+
+/* ----------------------------------------
+   Capwise Dark Theme
+----------------------------------------- */
+
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  --background: #06111f;
+  --foreground: #eaf2f7;
+
+  --surface: #0b1f33;
+  --surface-muted: #102a40;
+
+  --brand: #0b1f33;
+  --brand-secondary: #123a56;
+  --brand-foreground: #ffffff;
+
+  --accent: #2dd4bf;
+  --accent-strong: #5eead4;
+
+  --action: #2dd4bf;
+  --action-hover: #5eead4;
+  --action-foreground: #042f2e;
+
+  --muted: #9fb1bf;
+  --border: #1f4157;
+  --gold: #d6b15a;
+  --danger: #f87171;
+  --focus: #5eead4;
+
+  --card-shadow: 0 30px 90px rgba(0, 0, 0, 0.32);
+}
+
+/* ----------------------------------------
+   Tailwind Semantic Tokens
+----------------------------------------- */
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-surface: var(--surface);
+  --color-surface-muted: var(--surface-muted);
+
+  --color-brand: var(--brand);
+  --color-brand-secondary: var(--brand-secondary);
+  --color-brand-foreground: var(--brand-foreground);
+
+  --color-accent: var(--accent);
+  --color-accent-strong: var(--accent-strong);
+
+  --color-action: var(--action);
+  --color-action-hover: var(--action-hover);
+  --color-action-foreground: var(--action-foreground);
+
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-gold: var(--gold);
+  --color-danger: var(--danger);
+  --color-focus: var(--focus);
+
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-manrope);
+}
+
+/* ----------------------------------------
+   Global Foundation
+----------------------------------------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  min-width: 320px;
+  min-height: 100%;
+  scroll-behavior: smooth;
+  scrollbar-gutter: stable;
+  background: var(--background);
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  overflow-x: hidden;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-inter), Arial, Helvetica, sans-serif;
+  text-rendering: optimizeLegibility;
+  transition:
+    background-color 200ms ease,
+    color 200ms ease;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-manrope), Arial, Helvetica, sans-serif;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+img,
+picture,
+svg,
+canvas {
+  display: block;
+  max-width: 100%;
+}
+
+::selection {
+  background: var(--accent);
+  color: #042f2e;
+}
+
+:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 3px;
+}
+
+/* ----------------------------------------
+   Premium React-Toastify Styling
+----------------------------------------- */
+
+.Toastify__toast-container {
+  width: min(92vw, 24rem);
+}
+
+.Toastify__toast {
+  min-height: 4rem;
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  background: var(--surface);
+  color: var(--foreground);
+  box-shadow: var(--card-shadow);
+  font-family: var(--font-inter), Arial, sans-serif;
+}
+
+.Toastify__close-button {
+  color: var(--muted);
+}
+
+.Toastify__progress-bar--success {
+  background: var(--accent-strong);
+}
+
+.Toastify__progress-bar--error {
+  background: var(--danger);
+}
+
+/* ----------------------------------------
+   Reduced Motion Accessibility
+----------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
