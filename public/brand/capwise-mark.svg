@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 100" fill="none">
+  <title>Capwise Solution BD</title>
+  <path
+    d="M70 18A34 34 0 1 0 70 82"
+    stroke="#0B1F33"
+    stroke-width="10"
+    stroke-linecap="round"
+  />
+  <path
+    d="M29 51L42 64L73 32"
+    stroke="#14B8A6"
+    stroke-width="9"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+</svg>

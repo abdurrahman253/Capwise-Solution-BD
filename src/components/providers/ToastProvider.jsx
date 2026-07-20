@@ -1,16 +1,13 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import useMounted from "@/hooks/useMounted";
 import { useTheme } from "next-themes";
 import { ToastContainer } from "react-toastify";
 
 export default function ToastProvider() {
-  const [mounted, setMounted] = useState(false);
+  const mounted = useMounted();
   const { resolvedTheme } = useTheme();
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   if (!mounted) {
     return null;

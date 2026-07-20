@@ -1,16 +1,13 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import useMounted from "@/hooks/useMounted";
 import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 
 export default function ThemeToggle() {
-  const [mounted, setMounted] = useState(false);
+  const mounted = useMounted();
   const { resolvedTheme, setTheme } = useTheme();
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   const baseClasses =
     "inline-flex size-11 items-center justify-center rounded-full border border-border bg-surface text-foreground shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-accent hover:text-accent-strong focus-visible:outline-none";
