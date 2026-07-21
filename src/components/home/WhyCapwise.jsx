@@ -65,7 +65,7 @@ export default function WhyCapwise() {
       <div className="relative mx-auto max-w-[90rem] px-5 sm:px-6 lg:px-10">
         <div className="grid gap-16 lg:grid-cols-[0.78fr_1.22fr] lg:gap-20 xl:gap-32">
           <m.div
-            initial={{ opacity: 0, y: 28 }}
+            initial={{ y: 28 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.45 }}
             className="lg:sticky lg:top-36 lg:self-start"
@@ -121,7 +121,7 @@ export default function WhyCapwise() {
             {principles.map(({ number, title, description, icon: Icon }, index) => (
               <m.article
                 key={number}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.45 }}
                 transition={{ delay: index * 0.06 }}
@@ -156,7 +156,7 @@ export default function WhyCapwise() {
         </div>
 
         <m.div
-          initial={{ opacity: 0, y: 24 }}
+          initial={{ y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.5 }}
           className="mt-16 overflow-hidden rounded-[1.75rem] border border-border bg-background sm:mt-20"

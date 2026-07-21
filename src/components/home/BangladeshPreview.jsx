@@ -78,7 +78,7 @@ export default function BangladeshPreview() {
       <div className="relative mx-auto max-w-[90rem] px-5 sm:px-6 lg:px-10">
         <div className="grid gap-16 lg:grid-cols-[0.78fr_1.22fr] lg:gap-20 xl:gap-28">
           <m.div
-            initial={{ opacity: 0, y: 28 }}
+            initial={{ y: 28 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.35 }}
             className="lg:sticky lg:top-36 lg:self-start"
@@ -160,7 +160,7 @@ export default function BangladeshPreview() {
             {chapters.map(({ number, eyebrow, title, description, icon: Icon }, index) => (
               <m.article
                 key={number}
-                initial={{ opacity: 0, x: 28 }}
+                initial={{ x: 28 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, amount: 0.42 }}
                 transition={{ delay: index * 0.06 }}
@@ -206,7 +206,7 @@ export default function BangladeshPreview() {
             ))}
 
             <m.div
-              initial={{ opacity: 0 }}
+              initial={false}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               className="capwise-gateway-panel mt-10 flex items-start gap-4 rounded-2xl border px-5 py-5 sm:ml-20 sm:px-6"

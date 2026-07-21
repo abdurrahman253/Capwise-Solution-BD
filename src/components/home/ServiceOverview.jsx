@@ -107,7 +107,7 @@ export default function ServiceOverview() {
   const shouldReduceMotion = useReducedMotion();
 
   const reveal = (index = 0) => ({
-    initial: shouldReduceMotion ? false : { opacity: 0, y: 28 },
+    initial: shouldReduceMotion ? false : { y: 28 },
     whileInView: { opacity: 1, y: 0 },
     viewport: { once: true, amount: 0.22 },
     transition: {

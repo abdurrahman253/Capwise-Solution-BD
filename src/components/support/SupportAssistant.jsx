@@ -326,7 +326,7 @@ export default function SupportAssistant() {
         ) : (
           <m.div
             key="capwise-support-dock"
-            initial={shouldReduceMotion ? false : { opacity: 0, y: 18 }}
+            initial={shouldReduceMotion ? false : { y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 10 }}
             className="pointer-events-auto absolute bottom-4 right-4 flex items-end gap-2.5 sm:bottom-5 sm:right-5"

@@ -44,7 +44,7 @@ const entrance = {
 };
 
 const entranceItem = {
-  hidden: { opacity: 0, y: 22 },
+  hidden: { y: 22 },
   visible: {
     opacity: 1,
     y: 0,
@@ -186,7 +186,7 @@ export default function HomeHero() {
 
               <div className="relative min-h-[30rem] sm:min-h-[35rem] lg:min-h-[37rem]">
                 <m.figure
-                  initial={{ opacity: 0, scale: 0.97, y: 26 }}
+                  initial={{ scale: 0.97, y: 26 }}
                   animate={{ opacity: 1, scale: 1, y: 0 }}
                   transition={{
                     delay: 0.28,
@@ -222,7 +222,7 @@ export default function HomeHero() {
                 </m.figure>
 
                 <m.div
-                  initial={{ opacity: 0, x: -24, y: 12 }}
+                  initial={{ x: -24, y: 12 }}
                   animate={{ opacity: 1, x: 0, y: 0 }}
                   transition={{
                     delay: 0.62,
@@ -240,7 +240,7 @@ export default function HomeHero() {
                 </m.div>
 
                 <m.figure
-                  initial={{ opacity: 0, x: -28, y: 18 }}
+                  initial={{ x: -28, y: 18 }}
                   animate={{ opacity: 1, x: 0, y: 0 }}
                   transition={{
                     delay: 0.48,
@@ -305,7 +305,7 @@ export default function HomeHero() {
           {capabilityStrip.map(({ value, label }, index) => (
             <m.div
               key={value}
-              initial={{ opacity: 0, y: 14 }}
+              initial={{ y: 14 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.7 }}
               transition={{ delay: index * 0.06 }}

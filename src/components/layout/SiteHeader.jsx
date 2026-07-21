@@ -34,6 +34,8 @@ import ThemeToggle from "@/components/ui/ThemeToggle";
 const navLinkClasses =
   "relative inline-flex h-11 items-center whitespace-nowrap rounded-lg px-3 text-[0.83rem] font-semibold transition-colors hover:text-accent-strong focus-visible:outline-none";
 
+const HEADER_VERSION = "responsive-navigation-v7-20260722";
+
 export default function SiteHeader() {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -52,8 +54,11 @@ export default function SiteHeader() {
         Skip to content
       </a>
 
-      <header className="sticky top-0 z-50 border-b border-border/80 bg-surface/95 shadow-[0_10px_35px_rgba(11,31,51,0.06)] backdrop-blur-xl">
-        <div className="hidden bg-brand text-brand-foreground lg:block">
+      <header
+        data-header-version={HEADER_VERSION}
+        className="sticky top-0 z-50 border-b border-border/80 bg-surface/95 shadow-[0_10px_35px_rgba(11,31,51,0.06)] backdrop-blur-xl"
+      >
+        <div className="hidden bg-brand text-brand-foreground xl:block">
           <div className="mx-auto flex h-9 max-w-7xl items-center justify-between px-6">
             <p className="text-[0.69rem] font-semibold uppercase tracking-[0.14em] text-white/70">
               Practical compliance guidance for Bangladesh
@@ -84,12 +89,12 @@ export default function SiteHeader() {
           </div>
         </div>
 
-        <div className="mx-auto flex h-[4.75rem] max-w-7xl items-center gap-5 px-4 sm:px-6">
-          <BrandLogo className="mr-auto lg:mr-2" />
+        <div className="relative mx-auto flex h-[4.75rem] max-w-7xl items-center gap-5 px-4 sm:px-6">
+          <BrandLogo className="mr-auto xl:mr-2" />
 
           <nav
             aria-label="Primary navigation"
-            className="hidden flex-1 items-center justify-center gap-0.5 lg:flex"
+            className="hidden flex-1 items-center justify-center gap-0.5 xl:flex"
           >
             <Link
               href="/about"
@@ -104,7 +109,7 @@ export default function SiteHeader() {
               About
             </Link>
 
-            <Popover className="relative">
+            <Popover className="static">
               {({ open, close }) => (
                 <>
                   <PopoverButton
@@ -126,7 +131,10 @@ export default function SiteHeader() {
                     />
                   </PopoverButton>
 
-                  <PopoverPanel className="absolute left-1/2 top-[calc(100%+1rem)] w-[50rem] -translate-x-1/2 overflow-hidden rounded-2xl border border-border bg-surface shadow-[0_30px_80px_rgba(11,31,51,0.18)]">
+                  <PopoverPanel
+                    data-services-menu="desktop"
+                    className="absolute left-1/2 top-[calc(100%+0.75rem)] w-[calc(100%_-_2rem)] max-w-[58rem] -translate-x-1/2 overflow-hidden rounded-2xl border border-border bg-surface shadow-[0_30px_80px_rgba(11,31,51,0.18)]"
+                  >
                     <div className="grid grid-cols-[1.55fr_0.75fr]">
                       <div className="p-6">
                         <div className="mb-4 flex items-end justify-between gap-6 border-b border-border pb-4">
@@ -236,7 +244,7 @@ export default function SiteHeader() {
             <button
               type="button"
               onClick={() => setMobileMenuOpen(true)}
-              className="inline-flex size-11 items-center justify-center rounded-full border border-border bg-surface text-foreground transition hover:border-accent hover:text-accent-strong lg:hidden"
+              className="inline-flex size-11 items-center justify-center rounded-full border border-border bg-surface text-foreground transition hover:border-accent hover:text-accent-strong xl:hidden"
               aria-label="Open navigation menu"
               aria-expanded={mobileMenuOpen}
             >
@@ -249,7 +257,7 @@ export default function SiteHeader() {
       <Dialog
         open={mobileMenuOpen}
         onClose={setMobileMenuOpen}
-        className="relative z-[70] lg:hidden"
+        className="relative z-[70] xl:hidden"
       >
         <DialogBackdrop className="fixed inset-0 bg-brand/55 backdrop-blur-sm" />
 
