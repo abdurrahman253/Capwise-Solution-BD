@@ -1,245 +1,331 @@
-import {
-  ArrowRight,
-  ArrowUpRight,
-  BadgeCheck,
-  Building2,
-  Layers3,
-  MapPin,
-  ShieldCheck,
-} from "lucide-react";
+"use client";
+
+import { ArrowRight, ArrowUpRight, Check, MapPin } from "lucide-react";
+import { m, useReducedMotion } from "motion/react";
+import Image from "next/image";
 import Link from "next/link";
 
-const advisorySteps = [
+const HERO_VERSION = "legal-finance-editorial-v5-20260722";
+
+const capabilityStrip = [
   {
-    number: "01",
-    title: "Understand the situation",
-    description:
-      "We listen first, clarify the facts and identify what actually needs attention.",
+    value: "VAT & Tax",
+    label: "Registration, filing and ongoing compliance",
   },
   {
-    number: "02",
-    title: "Map the practical route",
-    description:
-      "You get clear priorities, responsibilities and a realistic path forward.",
+    value: "Corporate Legal",
+    label: "Business law and regulatory support",
   },
   {
-    number: "03",
-    title: "Coordinate the work",
-    description:
-      "Our specialists help move filings, reporting and advisory work ahead together.",
+    value: "Finance & Accounts",
+    label: "Reporting, controls and financial clarity",
+  },
+  {
+    value: "Business Advisory",
+    label: "Practical guidance for critical decisions",
   },
 ];
 
-const trustMarkers = [
-  {
-    value: "2022",
-    label: "Established in Dhaka",
-    icon: Building2,
-  },
-  {
-    value: "15+ years",
-    label: "Senior advisory experience",
-    icon: BadgeCheck,
-  },
-  {
-    value: "7 service areas",
-    label: "One coordinated relationship",
-    icon: Layers3,
-  },
-  {
-    value: "Bangladesh",
-    label: "Local regulatory context",
-    icon: MapPin,
-  },
+const serviceHighlights = [
+  "Tax & VAT",
+  "Corporate legal",
+  "Accounting & finance",
+  "Regulatory compliance",
 ];
+
+const entrance = {
+  hidden: {},
+  visible: {
+    transition: {
+      delayChildren: 0.08,
+      staggerChildren: 0.09,
+    },
+  },
+};
+
+const entranceItem = {
+  hidden: { opacity: 0, y: 22 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.72, ease: [0.22, 1, 0.36, 1] },
+  },
+};
 
 export default function HomeHero() {
+  const shouldReduceMotion = useReducedMotion();
+
   return (
     <>
       <section
+        data-hero-version={HERO_VERSION}
         aria-labelledby="home-hero-title"
-        className="relative isolate overflow-hidden border-b border-border bg-surface"
+        className="capwise-hero relative isolate overflow-hidden"
       >
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute -right-36 -top-52 -z-10 size-[34rem] rounded-full bg-accent/15 blur-3xl"
+          className="capwise-hero-grid pointer-events-none absolute inset-0 -z-20"
         />
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-y-0 left-[7%] -z-10 hidden w-px bg-border/55 xl:block"
+          className="capwise-hero-glow capwise-hero-glow-primary pointer-events-none absolute -right-40 -top-48 -z-10 size-[42rem] rounded-full blur-[120px]"
+        />
+        <div
+          aria-hidden="true"
+          className="capwise-hero-glow capwise-hero-glow-secondary pointer-events-none absolute -bottom-64 -left-48 -z-10 size-[36rem] rounded-full blur-[125px]"
         />
 
-        <div className="mx-auto grid max-w-7xl gap-14 px-5 py-16 sm:px-6 sm:py-20 lg:grid-cols-[1.08fr_0.92fr] lg:items-center lg:gap-16 lg:py-24 xl:gap-24 xl:py-28">
-          <div className="max-w-3xl">
-            <div className="mb-7 flex items-center gap-3">
-              <span aria-hidden="true" className="h-px w-9 bg-accent-strong" />
-              <p className="text-[0.7rem] font-bold uppercase tracking-[0.2em] text-accent-strong">
-                Wise choice for your finance
-              </p>
-            </div>
-
-            <h1
-              id="home-hero-title"
-              className="font-display text-[clamp(2.75rem,6vw,5.5rem)] font-semibold leading-[0.94] tracking-[-0.065em] text-foreground"
+        <div className="mx-auto max-w-[90rem] px-5 sm:px-6 lg:px-10">
+          <div className="grid min-h-[42rem] items-center gap-14 py-16 sm:py-20 lg:grid-cols-[0.98fr_1.02fr] lg:gap-16 lg:py-16 xl:min-h-[46rem] xl:gap-24">
+            <m.div
+              variants={entrance}
+              initial="hidden"
+              animate="visible"
+              className="relative z-10 max-w-[49rem]"
             >
-              Business in Bangladesh,
-              <span className="mt-2 block text-accent-strong">
-                made clearer.
-              </span>
-            </h1>
-
-            <p className="mt-7 max-w-2xl text-base leading-8 text-muted sm:mt-8 sm:text-lg">
-              From company formation to tax, VAT, accounting and regulatory
-              matters, Capwise coordinates the work so your team can move with
-              confidence.
-            </p>
-
-            <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
-              <Link
-                href="/contact"
-                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-action px-6 text-sm font-bold text-action-foreground shadow-sm transition hover:-translate-y-0.5 hover:bg-action-hover"
-              >
-                Book a Free Consultation
-                <ArrowUpRight aria-hidden="true" size={17} />
-              </Link>
-
-              <Link
-                href="/services"
-                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-border bg-surface px-6 text-sm font-bold text-foreground transition hover:border-accent hover:text-accent-strong"
-              >
-                Explore Our Services
-                <ArrowRight aria-hidden="true" size={17} />
-              </Link>
-            </div>
-
-            <div className="mt-9 flex items-center gap-3 border-t border-border pt-6 sm:max-w-xl">
-              <span className="inline-flex size-10 shrink-0 items-center justify-center rounded-full border border-border bg-surface-muted text-accent-strong">
-                <MapPin aria-hidden="true" size={17} />
-              </span>
-              <p className="text-sm leading-6 text-muted">
-                <span className="font-semibold text-foreground">
-                  Based in Banani, Dhaka.
-                </span>{" "}
-                Supporting local and foreign-owned businesses across
-                Bangladesh.
-              </p>
-            </div>
-          </div>
-
-          <div className="relative mx-auto w-full max-w-xl lg:max-w-none">
-            <div
-              aria-hidden="true"
-              className="absolute -bottom-5 -left-5 hidden size-28 border-b border-l border-accent/60 sm:block"
-            />
-            <div
-              aria-hidden="true"
-              className="absolute -right-6 -top-6 hidden size-24 rounded-full border border-accent/30 sm:block"
-            />
-
-            <article className="relative overflow-hidden rounded-[2rem] border border-brand-secondary bg-brand p-6 text-brand-foreground shadow-[0_30px_80px_rgba(11,31,51,0.22)] sm:p-8 lg:p-9">
-              <svg
-                aria-hidden="true"
-                viewBox="0 0 96 100"
-                fill="none"
-                className="pointer-events-none absolute -right-6 -top-8 size-44 opacity-[0.08]"
-              >
-                <path
-                  d="M70 18A34 34 0 1 0 70 82"
-                  stroke="currentColor"
-                  strokeWidth="10"
-                  strokeLinecap="round"
+              <m.div variants={entranceItem} className="mb-7 flex items-center gap-3">
+                <span
+                  aria-hidden="true"
+                  className="h-px w-10 bg-[color:var(--hero-gold)]"
                 />
-                <path
-                  d="M29 51L42 64L73 32"
-                  stroke="currentColor"
-                  strokeWidth="9"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-
-              <div className="relative">
-                <p className="text-[0.67rem] font-bold uppercase tracking-[0.2em] text-accent">
-                  The Capwise approach
+                <p className="capwise-hero-kicker text-[0.65rem] font-bold uppercase tracking-[0.22em] sm:text-[0.7rem]">
+                  Corporate advisory in Bangladesh
                 </p>
-                <h2 className="mt-4 max-w-md font-display text-3xl font-semibold leading-tight tracking-[-0.045em] text-white sm:text-[2.1rem]">
-                  Complex requirements. One coordinated path.
-                </h2>
+              </m.div>
 
-                <ol className="mt-8">
-                  {advisorySteps.map((step, index) => (
-                    <li
-                      key={step.number}
-                      className="relative grid grid-cols-[2.75rem_1fr] gap-4 pb-7 last:pb-0"
-                    >
-                      {index < advisorySteps.length - 1 ? (
-                        <span
-                          aria-hidden="true"
-                          className="absolute bottom-1 left-[1.35rem] top-11 w-px bg-white/15"
-                        />
-                      ) : null}
+              <h1
+                id="home-hero-title"
+                className="max-w-[13ch] font-display text-[clamp(3.15rem,5.65vw,6rem)] font-semibold leading-[0.93] tracking-[-0.066em]"
+              >
+                <m.span variants={entranceItem} className="capwise-hero-text-secondary block">
+                  Legal, tax &amp; finance.
+                </m.span>
+                <m.span variants={entranceItem} className="capwise-hero-accent mt-1 block">
+                  One clear path forward.
+                </m.span>
+              </h1>
 
-                      <span className="inline-flex size-11 items-center justify-center rounded-full border border-white/20 bg-white/[0.06] font-display text-xs font-bold text-accent">
-                        {step.number}
-                      </span>
+              <m.p
+                variants={entranceItem}
+                className="capwise-hero-text-muted mt-7 max-w-[42rem] text-base leading-8 sm:mt-8 sm:text-lg sm:leading-9"
+              >
+                Capwise supports companies with corporate legal, VAT and tax,
+                accounting, finance and regulatory compliance—coordinated
+                through one practical advisory team.
+              </m.p>
 
-                      <span className="pt-0.5">
-                        <span className="block font-display text-base font-bold text-white">
-                          {step.title}
-                        </span>
-                        <span className="mt-1.5 block text-sm leading-6 text-white/60">
-                          {step.description}
-                        </span>
-                      </span>
-                    </li>
-                  ))}
-                </ol>
+              <m.div
+                variants={entranceItem}
+                className="mt-8 flex flex-wrap gap-x-5 gap-y-3"
+                aria-label="Core advisory services"
+              >
+                {serviceHighlights.map((service) => (
+                  <span
+                    key={service}
+                    className="capwise-hero-service inline-flex items-center gap-2 text-xs font-semibold sm:text-sm"
+                  >
+                    <span className="inline-flex size-5 items-center justify-center rounded-full bg-accent/12 text-accent-strong">
+                      <Check aria-hidden="true" size={12} strokeWidth={2.4} />
+                    </span>
+                    {service}
+                  </span>
+                ))}
+              </m.div>
 
-                <div className="mt-8 flex items-start gap-3 border-t border-white/15 pt-6">
-                  <ShieldCheck
+              <m.div
+                variants={entranceItem}
+                className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center"
+              >
+                <Link
+                  href="/contact"
+                  className="group inline-flex min-h-13 items-center justify-between gap-7 rounded-[0.9rem] bg-action px-6 text-sm font-bold text-action-foreground shadow-[0_16px_42px_rgba(15,118,110,0.18)] transition duration-300 hover:-translate-y-1 hover:bg-action-hover sm:justify-center"
+                >
+                  Book a Free Consultation
+                  <ArrowUpRight
                     aria-hidden="true"
-                    size={20}
-                    className="mt-0.5 shrink-0 text-accent"
+                    size={17}
+                    className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
                   />
-                  <p className="text-sm leading-6 text-white/70">
-                    Practical guidance, clear responsibilities and one point of
-                    coordination from first conversation to next step.
+                </Link>
+
+                <Link
+                  href="/services"
+                  className="capwise-hero-secondary-button group inline-flex min-h-13 items-center justify-between gap-7 rounded-[0.9rem] border px-6 text-sm font-bold transition duration-300 hover:-translate-y-1 sm:justify-center"
+                >
+                  Explore Our Services
+                  <ArrowRight
+                    aria-hidden="true"
+                    size={17}
+                    className="transition-transform duration-300 group-hover:translate-x-1"
+                  />
+                </Link>
+              </m.div>
+
+              <m.div
+                variants={entranceItem}
+                className="capwise-hero-border mt-9 flex max-w-[42rem] items-start gap-3 border-t pt-5"
+              >
+                <span className="mt-0.5 inline-flex size-8 shrink-0 items-center justify-center rounded-full bg-accent/10 text-accent-strong">
+                  <MapPin aria-hidden="true" size={15} strokeWidth={1.9} />
+                </span>
+                <p className="capwise-hero-text-muted text-sm leading-6">
+                  <span className="capwise-hero-text-secondary font-semibold">
+                    Based in Banani, Dhaka.
+                  </span>{" "}
+                  Supporting local and foreign-owned businesses across
+                  Bangladesh.
+                </p>
+              </m.div>
+            </m.div>
+
+            <div className="relative mx-auto w-full max-w-[41rem] lg:mr-0">
+              <div
+                aria-hidden="true"
+                className="capwise-hero-visual-halo absolute inset-x-[10%] inset-y-[8%] -z-10 rounded-full blur-[75px]"
+              />
+
+              <div className="relative min-h-[30rem] sm:min-h-[35rem] lg:min-h-[37rem]">
+                <m.figure
+                  initial={{ opacity: 0, scale: 0.97, y: 26 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  transition={{
+                    delay: 0.28,
+                    duration: 0.9,
+                    ease: [0.22, 1, 0.36, 1],
+                  }}
+                  className="capwise-hero-finance-card absolute inset-y-0 right-0 w-[82%] overflow-hidden rounded-[2rem] border p-2 shadow-[var(--hero-shadow)] sm:w-[79%] sm:rounded-[2.4rem] sm:p-2.5"
+                >
+                  <div className="relative h-full min-h-[30rem] overflow-hidden rounded-[1.55rem] sm:min-h-[35rem] sm:rounded-[1.9rem] lg:min-h-[37rem]">
+                    <Image
+                      src="https://images.pexels.com/photos/20500268/pexels-photo-20500268.jpeg?auto=compress&cs=tinysrgb&w=1800"
+                      alt="Calculator placed on financial reports and business charts"
+                      fill
+                      priority
+                      quality={88}
+                      sizes="(min-width: 1024px) 34rem, 82vw"
+                      className="capwise-hero-photo object-cover"
+                      style={{ objectPosition: "center 51%" }}
+                    />
+                    <div
+                      aria-hidden="true"
+                      className="capwise-hero-photo-scrim absolute inset-0"
+                    />
+                    <figcaption className="absolute inset-x-0 bottom-0 p-6 text-white sm:p-7">
+                      <p className="text-[0.62rem] font-bold uppercase tracking-[0.2em] text-white/64">
+                        Finance &amp; compliance
+                      </p>
+                      <p className="mt-2 max-w-[17rem] font-display text-xl font-semibold leading-snug sm:text-2xl">
+                        Decision-ready numbers. Filing-ready records.
+                      </p>
+                    </figcaption>
+                  </div>
+                </m.figure>
+
+                <m.div
+                  initial={{ opacity: 0, x: -24, y: 12 }}
+                  animate={{ opacity: 1, x: 0, y: 0 }}
+                  transition={{
+                    delay: 0.62,
+                    duration: 0.78,
+                    ease: [0.22, 1, 0.36, 1],
+                  }}
+                  className="capwise-hero-focus-card absolute left-0 top-8 z-10 max-w-[12.5rem] rounded-2xl border px-4 py-4 shadow-[var(--hero-node-shadow)] backdrop-blur-xl sm:top-12 sm:max-w-[14rem] sm:px-5 sm:py-5"
+                >
+                  <p className="text-[0.58rem] font-bold uppercase tracking-[0.2em] text-[color:var(--hero-gold)]">
+                    Integrated support
                   </p>
-                </div>
+                  <p className="capwise-hero-text-secondary mt-2 font-display text-sm font-semibold leading-5 sm:text-base sm:leading-6">
+                    Legal insight with financial discipline.
+                  </p>
+                </m.div>
+
+                <m.figure
+                  initial={{ opacity: 0, x: -28, y: 18 }}
+                  animate={{ opacity: 1, x: 0, y: 0 }}
+                  transition={{
+                    delay: 0.48,
+                    duration: 0.85,
+                    ease: [0.22, 1, 0.36, 1],
+                  }}
+                  className="capwise-hero-legal-card absolute bottom-7 left-0 z-20 w-[55%] overflow-hidden rounded-[1.6rem] border p-1.5 shadow-[var(--hero-node-shadow)] sm:bottom-10 sm:w-[51%] sm:rounded-[1.9rem] sm:p-2"
+                >
+                  <div className="relative aspect-[4/3] overflow-hidden rounded-[1.25rem] sm:rounded-[1.45rem]">
+                    <Image
+                      src="https://images.pexels.com/photos/6077797/pexels-photo-6077797.jpeg?auto=compress&cs=tinysrgb&w=1400"
+                      alt="Balance scale beside a laptop representing corporate legal advice"
+                      fill
+                      quality={88}
+                      sizes="(min-width: 1024px) 20rem, 55vw"
+                      className="capwise-hero-photo object-cover"
+                      style={{ objectPosition: "62% center" }}
+                    />
+                    <div
+                      aria-hidden="true"
+                      className="absolute inset-0 bg-gradient-to-t from-[#061827]/70 via-transparent to-transparent"
+                    />
+                    <figcaption className="absolute inset-x-0 bottom-0 px-4 pb-4 text-xs font-bold text-white sm:px-5 sm:pb-5 sm:text-sm">
+                      Corporate legal &amp; regulatory
+                    </figcaption>
+                  </div>
+                </m.figure>
+
+                {!shouldReduceMotion ? (
+                  <m.span
+                    aria-hidden="true"
+                    animate={{ y: [0, -8, 0] }}
+                    transition={{ duration: 4.5, ease: "easeInOut", repeat: Infinity }}
+                    className="capwise-hero-seal absolute bottom-[11%] right-[-0.5rem] z-20 flex size-16 items-center justify-center rounded-full border text-center text-[0.5rem] font-bold uppercase leading-3 tracking-[0.13em] shadow-[var(--hero-node-shadow)] sm:right-[-0.75rem] sm:size-20 sm:text-[0.56rem]"
+                  >
+                    Clear
+                    <br />
+                    advice
+                  </m.span>
+                ) : (
+                  <span
+                    aria-hidden="true"
+                    className="capwise-hero-seal absolute bottom-[11%] right-[-0.5rem] z-20 flex size-16 items-center justify-center rounded-full border text-center text-[0.5rem] font-bold uppercase leading-3 tracking-[0.13em] shadow-[var(--hero-node-shadow)] sm:right-[-0.75rem] sm:size-20 sm:text-[0.56rem]"
+                  >
+                    Clear
+                    <br />
+                    advice
+                  </span>
+                )}
               </div>
-            </article>
+
+            </div>
           </div>
         </div>
       </section>
 
       <section
-        aria-label="Capwise at a glance"
-        className="border-b border-border bg-surface"
+        aria-label="Capwise advisory capabilities"
+        className="capwise-proof-strip border-b"
       >
-        <dl className="mx-auto grid max-w-7xl grid-cols-2 px-5 sm:px-6 lg:grid-cols-4">
-          {trustMarkers.map(({ value, label, icon: Icon }, index) => (
-            <div
+        <dl className="mx-auto grid max-w-[90rem] grid-cols-2 px-5 sm:px-6 lg:grid-cols-4 lg:px-10">
+          {capabilityStrip.map(({ value, label }, index) => (
+            <m.div
               key={value}
-              className={`flex min-h-32 items-start gap-3 py-7 sm:items-center sm:gap-4 lg:px-7 lg:py-8 ${
-                index % 2 === 1 ? "border-l border-border pl-5 sm:pl-7" : "pr-5"
-              } ${
-                index === 2 ? "border-t border-border lg:border-l lg:border-t-0" : ""
-              } ${
-                index === 3 ? "border-t border-border lg:border-t-0" : ""
-              }`}
+              initial={{ opacity: 0, y: 14 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.7 }}
+              transition={{ delay: index * 0.06 }}
+              className={`capwise-proof-border flex min-h-28 flex-col justify-center px-4 py-6 sm:px-6 lg:min-h-32 lg:px-8 ${
+                index % 2 === 1 ? "border-l" : ""
+              } ${index > 1 ? "border-t" : ""} ${
+                index > 0 ? "lg:border-l" : "lg:border-l-0"
+              } lg:border-t-0`}
             >
-              <span className="mt-1 inline-flex size-10 shrink-0 items-center justify-center rounded-xl bg-surface-muted text-accent-strong sm:mt-0">
-                <Icon aria-hidden="true" size={18} strokeWidth={1.8} />
-              </span>
-              <div>
-                <dt className="font-display text-lg font-bold tracking-[-0.035em] text-foreground sm:text-xl">
-                  {value}
-                </dt>
-                <dd className="mt-1 text-xs leading-5 text-muted sm:text-sm">
-                  {label}
-                </dd>
-              </div>
-            </div>
+              <dt className="flex items-center gap-2.5 font-display text-base font-semibold tracking-[-0.03em] sm:text-lg">
+                <span
+                  aria-hidden="true"
+                  className="size-1.5 rounded-full bg-[color:var(--hero-gold)]"
+                />
+                {value}
+              </dt>
+              <dd className="capwise-proof-muted mt-2 text-[0.68rem] leading-5 sm:text-xs">
+                {label}
+              </dd>
+            </m.div>
           ))}
         </dl>
       </section>

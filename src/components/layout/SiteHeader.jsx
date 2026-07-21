@@ -255,7 +255,10 @@ export default function SiteHeader() {
 
         <div className="fixed inset-0 overflow-hidden">
           <div className="flex min-h-full justify-end">
-            <DialogPanel className="flex min-h-full w-full max-w-md flex-col border-l border-border bg-surface shadow-2xl">
+            <DialogPanel
+              data-lenis-prevent
+              className="flex min-h-full w-full max-w-md flex-col border-l border-border bg-surface shadow-2xl"
+            >
               <div className="flex h-[4.75rem] items-center justify-between border-b border-border px-5 sm:px-6">
                 <DialogTitle as="div">
                   <BrandLogo />

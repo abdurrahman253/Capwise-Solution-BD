@@ -1,5 +1,5 @@
 import { Inter, Manrope } from "next/font/google";
-import "react-toastify/dist/ReactToastify.css";
+import "lenis/dist/lenis.css";
 import "./globals.css";
 
 import AppProviders from "@/components/providers/AppProviders";
