@@ -78,6 +78,7 @@ export const serviceGroups = [
 
 export const primaryNavigation = [
   { label: "About", href: "/about" },
+  { label: "Team", href: "/team" },
   { label: "Doing Business", href: "/business-in-bangladesh" },
   { label: "Industries", href: "/industries" },
   { label: "Resources", href: "/resources" },
