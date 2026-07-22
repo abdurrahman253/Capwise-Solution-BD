@@ -7,25 +7,6 @@ import Link from "next/link";
 
 const HERO_VERSION = "legal-finance-editorial-v5-20260722";
 
-const capabilityStrip = [
-  {
-    value: "VAT & Tax",
-    label: "Registration, filing and ongoing compliance",
-  },
-  {
-    value: "Corporate Legal",
-    label: "Business law and regulatory support",
-  },
-  {
-    value: "Finance & Accounts",
-    label: "Reporting, controls and financial clarity",
-  },
-  {
-    value: "Business Advisory",
-    label: "Practical guidance for critical decisions",
-  },
-];
-
 const serviceHighlights = [
   "Tax & VAT",
   "Corporate legal",
@@ -56,8 +37,7 @@ export default function HomeHero() {
   const shouldReduceMotion = useReducedMotion();
 
   return (
-    <>
-      <section
+    <section
         data-hero-version={HERO_VERSION}
         aria-labelledby="home-hero-title"
         className="capwise-hero relative isolate overflow-hidden"
@@ -295,40 +275,6 @@ export default function HomeHero() {
             </div>
           </div>
         </div>
-      </section>
-
-      <section
-        aria-label="Capwise advisory capabilities"
-        className="capwise-proof-strip border-b"
-      >
-        <dl className="mx-auto grid max-w-[90rem] grid-cols-2 px-5 sm:px-6 lg:grid-cols-4 lg:px-10">
-          {capabilityStrip.map(({ value, label }, index) => (
-            <m.div
-              key={value}
-              initial={{ y: 14 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.7 }}
-              transition={{ delay: index * 0.06 }}
-              className={`capwise-proof-border flex min-h-28 flex-col justify-center px-4 py-6 sm:px-6 lg:min-h-32 lg:px-8 ${
-                index % 2 === 1 ? "border-l" : ""
-              } ${index > 1 ? "border-t" : ""} ${
-                index > 0 ? "lg:border-l" : "lg:border-l-0"
-              } lg:border-t-0`}
-            >
-              <dt className="flex items-center gap-2.5 font-display text-base font-semibold tracking-[-0.03em] sm:text-lg">
-                <span
-                  aria-hidden="true"
-                  className="size-1.5 rounded-full bg-[color:var(--hero-gold)]"
-                />
-                {value}
-              </dt>
-              <dd className="capwise-proof-muted mt-2 text-[0.68rem] leading-5 sm:text-xs">
-                {label}
-              </dd>
-            </m.div>
-          ))}
-        </dl>
-      </section>
-    </>
+    </section>
   );
 }
