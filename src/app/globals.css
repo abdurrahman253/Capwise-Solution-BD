@@ -76,6 +76,18 @@
   --section-services-background: #f8fafc;
   --section-principles-background: #ffffff;
 
+  --industries-background: #edf5f3;
+  --industries-foreground: #0b1f33;
+  --industries-muted: rgba(11, 31, 51, 0.63);
+  --industries-secondary: rgba(11, 31, 51, 0.78);
+  --industries-faint: rgba(11, 31, 51, 0.32);
+  --industries-border: rgba(11, 31, 51, 0.13);
+  --industries-panel: rgba(255, 255, 255, 0.64);
+  --industries-panel-hover: rgba(255, 255, 255, 0.94);
+  --industries-accent: #0f766e;
+  --industries-accent-soft: rgba(15, 118, 110, 0.1);
+  --industries-shadow: 0 24px 65px rgba(11, 31, 51, 0.1);
+
   --assistant-background: rgba(255, 255, 255, 0.985);
   --assistant-footer: #f2f7f5;
   --assistant-foreground: #0f172a;
@@ -168,6 +180,18 @@
 
   --section-services-background: #06111f;
   --section-principles-background: #0b1f33;
+
+  --industries-background: #071a2c;
+  --industries-foreground: #ffffff;
+  --industries-muted: rgba(255, 255, 255, 0.62);
+  --industries-secondary: rgba(255, 255, 255, 0.78);
+  --industries-faint: rgba(255, 255, 255, 0.36);
+  --industries-border: rgba(255, 255, 255, 0.11);
+  --industries-panel: rgba(255, 255, 255, 0.045);
+  --industries-panel-hover: rgba(255, 255, 255, 0.075);
+  --industries-accent: #2dd4bf;
+  --industries-accent-soft: rgba(45, 212, 191, 0.1);
+  --industries-shadow: 0 28px 75px rgba(0, 0, 0, 0.22);
 
   --assistant-background: rgba(8, 29, 48, 0.985);
   --assistant-footer: #071a2c;
@@ -413,6 +437,67 @@ canvas {
 .capwise-section-principles {
   background: var(--section-principles-background);
   transition: background-color 240ms ease;
+}
+
+.capwise-industries {
+  background: var(--industries-background);
+  color: var(--industries-foreground);
+  transition:
+    background-color 240ms ease,
+    color 240ms ease;
+}
+
+.capwise-industries-accent {
+  color: var(--industries-accent);
+}
+
+.capwise-industries-muted {
+  color: var(--industries-muted);
+}
+
+.capwise-industries-faint {
+  color: var(--industries-faint);
+}
+
+.capwise-industries-link {
+  border-color: var(--industries-border);
+  color: var(--industries-secondary);
+}
+
+.capwise-industries-link:hover {
+  border-color: var(--industries-accent);
+  color: var(--industries-accent);
+}
+
+.capwise-industries-card {
+  border-color: var(--industries-border);
+  background: var(--industries-panel);
+}
+
+.capwise-industries-card:hover {
+  border-color: color-mix(in srgb, var(--industries-accent) 42%, transparent);
+  background: var(--industries-panel-hover);
+  box-shadow: var(--industries-shadow);
+}
+
+.capwise-industries-icon {
+  border-color: color-mix(in srgb, var(--industries-accent) 28%, transparent);
+  background: var(--industries-accent-soft);
+  color: var(--industries-accent);
+}
+
+.capwise-industries-card-footer,
+.capwise-industries-divider {
+  border-color: var(--industries-border);
+}
+
+.capwise-industries-card-footer {
+  color: var(--industries-secondary);
+}
+
+.capwise-industries-panel {
+  border-color: var(--industries-border);
+  background: var(--industries-panel);
 }
 
 .capwise-hero-secondary-button {
