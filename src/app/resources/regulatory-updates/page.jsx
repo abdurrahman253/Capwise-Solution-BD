@@ -189,7 +189,7 @@ export default function RegulatoryUpdatesPage() {
           </div>
         </section>
 
-        <section className="bg-brand py-14 text-brand-foreground sm:py-20 lg:py-24">
+        <section className="bg-brand py-14 text-white sm:py-20 lg:py-24">
           <div className="mx-auto grid max-w-[90rem] gap-8 px-4 sm:px-6 lg:grid-cols-[1fr_auto] lg:items-center lg:gap-14 lg:px-10">
             <div>
               <p className="inline-flex items-center gap-2 text-[0.6rem] font-bold uppercase tracking-[0.18em] text-accent">

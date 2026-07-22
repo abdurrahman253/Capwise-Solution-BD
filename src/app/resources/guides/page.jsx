@@ -75,7 +75,7 @@ export default function GuidesPage() {
                   id={guide.slug}
                   className={`group scroll-mt-32 relative overflow-hidden rounded-[1.55rem] border p-6 transition duration-300 hover:-translate-y-1 sm:p-8 ${
                     guide.featured
-                      ? "border-brand bg-brand text-brand-foreground shadow-[0_28px_80px_rgba(11,31,51,0.18)] xl:row-span-2"
+                      ? "border-brand bg-brand text-white shadow-[0_28px_80px_rgba(11,31,51,0.18)] xl:row-span-2"
                       : "capwise-resource-card"
                   }`}
                 >

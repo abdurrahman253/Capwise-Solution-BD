@@ -87,7 +87,7 @@ export default function TeamPage() {
                   id={member.slug}
                   className={`group scroll-mt-32 relative overflow-hidden rounded-[1.5rem] border p-6 transition duration-300 hover:-translate-y-1 sm:p-8 ${
                     member.featured
-                      ? "border-brand bg-brand text-brand-foreground shadow-[0_28px_80px_rgba(11,31,51,0.18)] md:col-span-2 xl:col-span-1 xl:row-span-2"
+                      ? "border-brand bg-brand text-white shadow-[0_28px_80px_rgba(11,31,51,0.18)] md:col-span-2 xl:col-span-1 xl:row-span-2"
                       : "border-border bg-background text-foreground hover:border-accent/35 hover:bg-surface hover:shadow-[0_22px_60px_rgba(11,31,51,0.09)]"
                   }`}
                 >
@@ -200,7 +200,7 @@ export default function TeamPage() {
           </div>
         </section>
 
-        <section className="bg-brand py-14 text-brand-foreground sm:py-20 lg:py-24">
+        <section className="bg-brand py-14 text-white sm:py-20 lg:py-24">
           <div className="mx-auto grid max-w-[90rem] gap-8 px-4 sm:px-6 lg:grid-cols-[1fr_auto] lg:items-center lg:gap-14 lg:px-10">
             <div>
               <p className="inline-flex items-center gap-2 text-[0.6rem] font-bold uppercase tracking-[0.18em] text-accent">

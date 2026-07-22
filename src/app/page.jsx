@@ -1,4 +1,7 @@
 import BangladeshPreview from "@/components/home/BangladeshPreview";
+import ClientEvidencePreview from "@/components/home/ClientEvidencePreview";
+import ConsultationCTA from "@/components/home/ConsultationCTA";
+import FaqPreview from "@/components/home/FaqPreview";
 import HomeHero from "@/components/home/HomeHero";
 import IndustriesOverview from "@/components/home/IndustriesOverview";
 import ResourcesPreview from "@/components/home/ResourcesPreview";
@@ -22,6 +25,9 @@ export default function HomePage() {
         <BangladeshPreview />
         <TeamPreview />
         <ResourcesPreview />
+        <ClientEvidencePreview />
+        <FaqPreview />
+        <ConsultationCTA />
       </main>
     </>
   );

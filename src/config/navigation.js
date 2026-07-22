@@ -82,4 +82,6 @@ export const primaryNavigation = [
   { label: "Doing Business", href: "/business-in-bangladesh" },
   { label: "Industries", href: "/industries" },
   { label: "Resources", href: "/resources" },
+  { label: "FAQ", href: "/faq" },
+  { label: "Evidence", href: "/testimonials" },
 ];

@@ -89,7 +89,7 @@ export default function TeamPreview() {
         <div className="mt-12 grid gap-4 lg:mt-16 lg:grid-cols-12 lg:gap-5">
           <m.article
             {...reveal(2)}
-            className="group relative overflow-hidden rounded-[1.5rem] bg-brand text-brand-foreground shadow-[0_28px_80px_rgba(11,31,51,0.18)] lg:col-span-5 lg:min-h-[37rem]"
+            className="group relative overflow-hidden rounded-[1.5rem] bg-brand text-white shadow-[0_28px_80px_rgba(11,31,51,0.18)] lg:col-span-5 lg:min-h-[37rem]"
           >
             <div
               aria-hidden="true"

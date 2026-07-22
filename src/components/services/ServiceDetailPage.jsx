@@ -235,7 +235,7 @@ export default function ServiceDetailPage({ service }) {
           </div>
         </section>
 
-        <section className="bg-brand py-14 text-brand-foreground sm:py-20 lg:py-28">
+        <section className="bg-brand py-14 text-white sm:py-20 lg:py-28">
           <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-10">
             <div className="grid gap-8 lg:grid-cols-[0.72fr_1.28fr] lg:gap-16">
               <div>
@@ -507,7 +507,7 @@ export default function ServiceDetailPage({ service }) {
           </div>
         </section>
 
-        <section className="bg-brand py-12 text-brand-foreground sm:py-16 lg:py-20">
+        <section className="bg-brand py-12 text-white sm:py-16 lg:py-20">
           <div className="mx-auto grid max-w-[90rem] gap-7 px-4 sm:px-6 lg:grid-cols-[1fr_auto] lg:items-center lg:gap-12 lg:px-10">
             <div>
               <Eyebrow light>Start with the business issue</Eyebrow>

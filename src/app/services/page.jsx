@@ -244,7 +244,7 @@ export default function ServicesPage() {
           </div>
         </section>
 
-        <section className="bg-brand py-12 text-brand-foreground sm:py-16 lg:py-20">
+        <section className="bg-brand py-12 text-white sm:py-16 lg:py-20">
           <div className="mx-auto grid max-w-[90rem] gap-7 px-4 sm:px-6 lg:grid-cols-[1fr_auto] lg:items-center lg:gap-12 lg:px-10">
             <div>
               <p className="text-[0.59rem] font-bold uppercase tracking-[0.2em] text-accent">

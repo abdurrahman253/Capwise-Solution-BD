@@ -3,6 +3,7 @@ import "lenis/dist/lenis.css";
 import "./globals.css";
 
 import AppProviders from "@/components/providers/AppProviders";
+import SiteFooter from "@/components/layout/SiteFooter";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -61,7 +62,10 @@ export default function RootLayout({ children }) {
       className={`${inter.variable} ${manrope.variable}`}
     >
       <body className="min-h-screen antialiased">
-        <AppProviders>{children}</AppProviders>
+        <AppProviders>
+          {children}
+          <SiteFooter />
+        </AppProviders>
       </body>
     </html>
   );

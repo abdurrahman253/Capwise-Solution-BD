@@ -58,7 +58,7 @@ export default function SiteHeader() {
         data-header-version={HEADER_VERSION}
         className="sticky top-0 z-50 border-b border-border/80 bg-surface/95 shadow-[0_10px_35px_rgba(11,31,51,0.06)] backdrop-blur-xl"
       >
-        <div className="hidden bg-brand text-brand-foreground xl:block">
+        <div className="hidden bg-brand text-white xl:block">
           <div className="mx-auto flex h-9 max-w-7xl items-center justify-between px-6">
             <p className="text-[0.69rem] font-semibold uppercase tracking-[0.14em] text-white/70">
               Practical compliance guidance for Bangladesh
@@ -183,7 +183,7 @@ export default function SiteHeader() {
                         </div>
                       </div>
 
-                      <div className="flex flex-col justify-between bg-brand p-6 text-brand-foreground">
+                      <div className="flex flex-col justify-between bg-brand p-6 text-white">
                         <div>
                           <span className="inline-flex rounded-full border border-white/15 px-3 py-1 text-[0.62rem] font-bold uppercase tracking-[0.15em] text-accent">
                             Start with clarity
