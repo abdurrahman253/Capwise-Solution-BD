@@ -1,6 +1,7 @@
 import BangladeshPreview from "@/components/home/BangladeshPreview";
 import HomeHero from "@/components/home/HomeHero";
 import IndustriesOverview from "@/components/home/IndustriesOverview";
+import ResourcesPreview from "@/components/home/ResourcesPreview";
 import ServiceOverview from "@/components/home/ServiceOverview";
 import TrustStrip from "@/components/home/TrustStrip";
 import TeamPreview from "@/components/home/TeamPreview";
@@ -20,6 +21,7 @@ export default function HomePage() {
         <IndustriesOverview />
         <BangladeshPreview />
         <TeamPreview />
+        <ResourcesPreview />
       </main>
     </>
   );

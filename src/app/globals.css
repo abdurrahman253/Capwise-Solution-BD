@@ -105,6 +105,16 @@
   --gateway-muted: rgba(11, 31, 51, 0.63);
   --gateway-border: rgba(11, 31, 51, 0.13);
   --gateway-panel: rgba(255, 255, 255, 0.64);
+
+  --resources-background: #f2f7f5;
+  --resources-foreground: #0b1f33;
+  --resources-muted: rgba(11, 31, 51, 0.63);
+  --resources-border: rgba(11, 31, 51, 0.13);
+  --resources-panel: rgba(255, 255, 255, 0.72);
+  --resources-panel-hover: rgba(255, 255, 255, 0.96);
+  --resources-note: rgba(255, 255, 255, 0.56);
+  --resources-regulatory: rgba(238, 244, 245, 0.84);
+  --resources-shadow: 0 24px 70px rgba(11, 31, 51, 0.1);
 }
 
 /* ----------------------------------------
@@ -210,6 +220,16 @@
   --gateway-muted: rgba(255, 255, 255, 0.62);
   --gateway-border: rgba(255, 255, 255, 0.11);
   --gateway-panel: rgba(255, 255, 255, 0.055);
+
+  --resources-background: #071a2c;
+  --resources-foreground: #ffffff;
+  --resources-muted: rgba(255, 255, 255, 0.62);
+  --resources-border: rgba(255, 255, 255, 0.11);
+  --resources-panel: rgba(255, 255, 255, 0.045);
+  --resources-panel-hover: rgba(255, 255, 255, 0.075);
+  --resources-note: rgba(255, 255, 255, 0.04);
+  --resources-regulatory: rgba(255, 255, 255, 0.05);
+  --resources-shadow: 0 28px 80px rgba(0, 0, 0, 0.24);
 }
 
 /* ----------------------------------------
@@ -622,6 +642,41 @@ canvas {
 
 .capwise-gateway-muted {
   color: var(--gateway-muted);
+}
+
+.capwise-resources {
+  background: var(--resources-background);
+  color: var(--resources-foreground);
+  transition:
+    background-color 240ms ease,
+    color 240ms ease;
+}
+
+.capwise-resource-card {
+  border-color: var(--resources-border);
+  background: var(--resources-panel);
+  color: var(--resources-foreground);
+  transition:
+    transform 300ms ease,
+    border-color 300ms ease,
+    background-color 300ms ease,
+    box-shadow 300ms ease;
+}
+
+.capwise-resource-card:hover {
+  border-color: color-mix(in srgb, var(--accent) 38%, var(--resources-border));
+  background: var(--resources-panel-hover);
+  box-shadow: var(--resources-shadow);
+}
+
+.capwise-regulatory-panel {
+  border-color: var(--resources-border);
+  background: var(--resources-regulatory);
+}
+
+.capwise-resource-note {
+  border-color: var(--resources-border);
+  background: var(--resources-note);
 }
 
 /* ----------------------------------------

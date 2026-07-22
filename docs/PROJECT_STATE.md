@@ -38,13 +38,18 @@ Build a bespoke, agency-grade corporate advisory website with the polish, trust,
 - Premium homepage Team Preview
 - Working `/team` route with client-supplied draft profiles and approval-safe placeholders
 - Team link added to primary and mobile navigation
+- Premium homepage Guides & Regulatory Insights Preview
+- Working `/resources`, `/resources/guides`, and `/resources/regulatory-updates` routes
+- Approval-safe guide concepts with no fake download states
+- Official-source, review-date, and professional-advice publication safeguards
 
 ## Current verification state
 
-- JavaScript/JSX syntax parsing: passed
+- JavaScript/JSX syntax parsing: passed across 37 source files
 - Local import resolution: passed
-- `npm run lint` and `npm run build`: pending local verification because the isolated build environment could not download npm packages
+- Unused import/local static check: passed
+- `npm run lint` and `npm run build`: required on the owner's local machine before commit
 
 ## Next homepage stage
 
-Guides and regulatory insights preview, followed by approved evidence/testimonials only when real source material exists.
+Verified testimonials/case evidence are intentionally deferred because no approved source material exists. The next safe homepage stage is the FAQ Preview, followed by the Consultation CTA/contact form architecture.
