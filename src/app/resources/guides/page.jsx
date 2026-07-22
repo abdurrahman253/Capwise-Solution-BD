@@ -1,13 +1,12 @@
 import {
-  ArrowRight,
   BookOpenCheck,
   Check,
   FileCheck2,
   ShieldCheck,
 } from "lucide-react";
-import Link from "next/link";
 
 import SiteHeader from "@/components/layout/SiteHeader";
+import GuideRequestButton from "@/components/resources/GuideRequestButton";
 import {
   guideResources,
   RESOURCE_CONTENT_VERSION,
@@ -174,17 +173,7 @@ export default function GuidesPage() {
                       </div>
                     </div>
 
-                    <Link
-                      href="/contact"
-                      className={`mt-auto flex items-center justify-between gap-4 border-t pt-6 text-xs font-bold transition sm:text-sm ${
-                        guide.featured
-                          ? "border-white/12 text-white/72 hover:text-accent"
-                          : "border-border text-foreground/72 hover:text-accent-strong"
-                      }`}
-                    >
-                      Discuss this topic
-                      <ArrowRight aria-hidden="true" size={16} />
-                    </Link>
+                    <GuideRequestButton guide={guide} featured={guide.featured} />
                   </div>
                 </article>
               ))}

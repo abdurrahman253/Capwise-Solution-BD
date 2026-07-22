@@ -7,7 +7,7 @@ import {
   MapPin,
   ShieldCheck,
 } from "lucide-react";
-import { m } from "motion/react";
+import { m } from "@/components/ui/Motionless";
 import Link from "next/link";
 
 const principles = [

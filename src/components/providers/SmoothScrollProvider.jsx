@@ -1,10 +1,18 @@
 "use client";
 
 import { ReactLenis } from "lenis/react";
-import { useReducedMotion } from "motion/react";
+import { useEffect, useState } from "react";
 
 export default function SmoothScrollProvider({ children }) {
-  const shouldReduceMotion = useReducedMotion();
+  const [reduceMotion, setReduceMotion] = useState(false);
+
+  useEffect(() => {
+    const media = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const update = () => setReduceMotion(media.matches);
+    update();
+    media.addEventListener("change", update);
+    return () => media.removeEventListener("change", update);
+  }, []);
 
   return (
     <ReactLenis
@@ -13,8 +21,8 @@ export default function SmoothScrollProvider({ children }) {
         anchors: { offset: -112 },
         autoRaf: true,
         autoToggle: true,
-        duration: 1.05,
-        smoothWheel: !shouldReduceMotion,
+        duration: reduceMotion ? 0 : 1.05,
+        smoothWheel: !reduceMotion,
         syncTouch: false,
         touchMultiplier: 1,
         wheelMultiplier: 0.9,

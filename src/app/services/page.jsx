@@ -3,15 +3,12 @@ import {
   ArrowUpRight,
   Check,
   ChevronRight,
-  Mail,
   MessageCircle,
-  Phone,
 } from "lucide-react";
 import Link from "next/link";
 
 import SiteHeader from "@/components/layout/SiteHeader";
 import ServiceIcon from "@/components/services/ServiceIcon";
-import BrandLogo from "@/components/ui/BrandLogo";
 import {
   SERVICE_CONTENT_VERSION,
   serviceDetails,
@@ -107,8 +104,8 @@ export default function ServicesPage() {
                   and legal decisions affect one another. Capwise helps organise
                   that work around the business issue—not isolated tasks.
                 </p>
-                <a
-                  href="mailto:info@capwisebd.com?subject=Capwise%20consultation%20request"
+                <Link
+                  href="/contact"
                   className="group mt-6 inline-flex min-h-11 items-center justify-center gap-4 rounded-full bg-action px-5 text-xs font-bold text-action-foreground shadow-[0_14px_36px_rgba(15,118,110,0.18)] transition hover:-translate-y-0.5 hover:bg-action-hover sm:min-h-13 sm:px-6 sm:text-sm"
                 >
                   Discuss your requirement
@@ -117,7 +114,7 @@ export default function ServicesPage() {
                     size={16}
                     className="transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
                   />
-                </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -261,13 +258,13 @@ export default function ServicesPage() {
             </div>
 
             <div className="grid gap-2.5 min-[430px]:grid-cols-2 lg:w-[24rem]">
-              <a
-                href="mailto:info@capwisebd.com?subject=Capwise%20consultation%20request"
+              <Link
+                href="/contact"
                 className="inline-flex min-h-11 items-center justify-center gap-2.5 rounded-full bg-accent px-5 text-xs font-bold text-[#042f2e] transition hover:bg-[#5eead4] sm:min-h-13 sm:text-sm"
               >
-                <Mail aria-hidden="true" size={16} />
-                Email Capwise
-              </a>
+                Book consultation
+                <ArrowUpRight aria-hidden="true" size={16} />
+              </Link>
               <a
                 href="https://wa.me/8801624000381?text=Hello%20Capwise%2C%20I%20would%20like%20to%20discuss%20business%20support."
                 target="_blank"
@@ -282,30 +279,6 @@ export default function ServicesPage() {
         </section>
       </main>
 
-      <footer className="border-t border-border bg-surface py-8">
-        <div className="mx-auto flex max-w-[90rem] flex-col gap-6 px-4 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-10">
-          <BrandLogo />
-          <div className="flex flex-wrap gap-x-5 gap-y-2 text-[0.68rem] font-semibold text-muted sm:text-xs">
-            <a
-              href="mailto:info@capwisebd.com"
-              className="inline-flex items-center gap-1.5 hover:text-accent-strong"
-            >
-              <Mail aria-hidden="true" size={13} />
-              info@capwisebd.com
-            </a>
-            <a
-              href="tel:+8801624000381"
-              className="inline-flex items-center gap-1.5 hover:text-accent-strong"
-            >
-              <Phone aria-hidden="true" size={13} />
-              01624 000 381
-            </a>
-          </div>
-        </div>
-        <div className="mx-auto mt-6 max-w-[90rem] border-t border-border px-4 pt-5 text-[0.62rem] text-muted sm:px-6 sm:text-[0.68rem] lg:px-10">
-          © {new Date().getFullYear()} Capwise Solution BD. All rights reserved.
-        </div>
-      </footer>
     </>
   );
 }

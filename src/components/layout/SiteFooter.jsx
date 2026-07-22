@@ -7,6 +7,7 @@ const columns = [
     links: [
       ["About", "/about"],
       ["Advisory Team", "/team"],
+      ["Case Studies", "/case-studies"],
       ["Client Evidence", "/testimonials"],
       ["Contact", "/contact"],
     ],
@@ -18,6 +19,7 @@ const columns = [
       ["Doing Business", "/business-in-bangladesh"],
       ["Industries", "/industries"],
       ["Resources", "/resources"],
+      ["Insights", "/blog"],
       ["FAQ", "/faq"],
     ],
   },
@@ -73,9 +75,16 @@ export default function SiteFooter() {
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col gap-4 border-t border-white/10 pt-6 text-[0.7rem] font-medium text-white/38 sm:flex-row sm:items-center sm:justify-between">
-          <p>© {new Date().getFullYear()} Capwise Solution BD. All rights reserved.</p>
-          <p>Legal documents and social profiles remain subject to client and legal approval.</p>
+        <div className="mt-12 border-t border-white/10 pt-6 text-[0.7rem] font-medium text-white/38">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <p>© {new Date().getFullYear()} Capwise Solution BD. All rights reserved.</p>
+            <div className="flex flex-wrap gap-x-5 gap-y-2">
+              <Link href="/privacy-policy" className="transition hover:text-accent">Privacy</Link>
+              <Link href="/terms-of-use" className="transition hover:text-accent">Terms</Link>
+              <Link href="/professional-disclaimer" className="transition hover:text-accent">Professional disclaimer</Link>
+            </div>
+          </div>
+          <p className="mt-4">Legal drafts, team details, case evidence and social profiles require final client and legal approval before launch.</p>
         </div>
       </div>
     </footer>

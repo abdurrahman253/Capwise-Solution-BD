@@ -2,6 +2,7 @@ import { ArrowUpRight, BriefcaseBusiness, Building2, Calculator, FileCheck2, Use
 import Link from "next/link";
 
 import SiteHeader from "@/components/layout/SiteHeader";
+import { businessBangladeshTopics } from "@/data/businessBangladesh";
 
 export const metadata = {
   title: "Doing Business in Bangladesh",
@@ -10,13 +11,12 @@ export const metadata = {
   alternates: { canonical: "/business-in-bangladesh" },
 };
 
-const topics = [
-  { icon: Building2, eyebrow: "Structure", title: "Choose the right legal form", text: "Compare sole proprietorship, partnership, private limited company and approved branch or liaison office routes against ownership, liability and operating needs." },
-  { icon: FileCheck2, eyebrow: "Incorporation", title: "Move through registration in sequence", text: "Coordinate name clearance, constitutional documents, registration, tax identification, VAT or BIN where applicable, trade licensing and sector approvals." },
-  { icon: BriefcaseBusiness, eyebrow: "Governance", title: "Maintain recurring obligations", text: "Build an annual calendar for corporate filings, statutory records, financial reporting, tax, VAT, audit and other entity-specific requirements." },
-  { icon: Calculator, eyebrow: "Tax & VAT", title: "Review current treatment before action", text: "Rates and treatments differ by entity, sector and transaction and can change through legislation and official guidance. Avoid relying on undated summaries." },
-  { icon: UsersRound, eyebrow: "People", title: "Operate with responsible employment practices", text: "Consider contracts, payroll, leave, working time, termination, employee records and provident fund or gratuity requirements where applicable." },
-];
+const topicIcons = [Building2, FileCheck2, BriefcaseBusiness, Calculator, UsersRound];
+
+const topics = businessBangladeshTopics.map((topic, index) => ({
+  ...topic,
+  icon: topicIcons[index],
+}));
 
 export default function BusinessInBangladeshPage() {
   return (
@@ -41,12 +41,13 @@ export default function BusinessInBangladeshPage() {
         <section className="bg-surface py-16 sm:py-24 lg:py-28">
           <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-10">
             <div className="grid gap-5 lg:grid-cols-12">
-              {topics.map(({ icon: Icon, eyebrow, title, text }, index) => (
-                <article key={title} className={`rounded-[1.6rem] border border-border bg-background p-6 sm:p-8 ${index < 2 ? "lg:col-span-6" : "lg:col-span-4"}`}>
+              {topics.map(({ icon: Icon, eyebrow, title, description, slug }, index) => (
+                <article key={title} className={`group rounded-[1.6rem] border border-border bg-background p-6 transition hover:-translate-y-1 hover:border-accent/40 sm:p-8 ${index < 2 ? "lg:col-span-6" : "lg:col-span-4"}`}>
                   <div className="flex items-start justify-between gap-5"><span className="inline-flex size-12 items-center justify-center rounded-full border border-accent/25 bg-accent/10 text-accent-strong"><Icon aria-hidden="true" size={19} /></span><span className="font-display text-xs font-bold text-foreground/24">{String(index + 1).padStart(2, "0")}</span></div>
                   <p className="mt-8 text-[0.6rem] font-bold uppercase tracking-[0.18em] text-accent-strong">{eyebrow}</p>
                   <h2 className="mt-3 font-display text-2xl font-semibold tracking-[-0.045em] text-foreground sm:text-3xl">{title}</h2>
-                  <p className="mt-4 text-sm leading-7 text-muted">{text}</p>
+                  <p className="mt-4 text-sm leading-7 text-muted">{description}</p>
+                  <Link href={`/business-in-bangladesh/${slug}`} className="mt-7 inline-flex items-center gap-2 text-xs font-bold text-foreground transition group-hover:text-accent-strong">Read the practical guide <ArrowUpRight aria-hidden="true" size={15} /></Link>
                 </article>
               ))}
             </div>

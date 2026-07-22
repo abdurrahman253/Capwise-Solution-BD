@@ -8,13 +8,15 @@ import {
   FileCheck2,
   Landmark,
   LineChart,
+  UsersRound,
 } from "lucide-react";
-import { m } from "motion/react";
+import { m } from "@/components/ui/Motionless";
 import Link from "next/link";
 
 const chapters = [
   {
     number: "01",
+    slug: "legal-structures",
     eyebrow: "Choose the foundation",
     title: "Structure the entry path.",
     description:
@@ -23,6 +25,7 @@ const chapters = [
   },
   {
     number: "02",
+    slug: "incorporation-procedures",
     eyebrow: "Activate the business",
     title: "Coordinate the setup requirements.",
     description:
@@ -31,6 +34,7 @@ const chapters = [
   },
   {
     number: "03",
+    slug: "ongoing-compliance",
     eyebrow: "Protect operations",
     title: "Build a dependable compliance rhythm.",
     description:
@@ -39,11 +43,21 @@ const chapters = [
   },
   {
     number: "04",
-    eyebrow: "Prepare for change",
-    title: "Keep governance ready for growth.",
+    slug: "tax-vat",
+    eyebrow: "Plan and maintain",
+    title: "Build a controlled tax and VAT workflow.",
     description:
-      "Strengthen records and decision support as the company evolves, raises capital or expands its Bangladesh presence.",
+      "Connect registrations, returns, withholding, records and review checkpoints to the current rules and the real transaction profile.",
     icon: LineChart,
+  },
+  {
+    number: "05",
+    slug: "labour-employment",
+    eyebrow: "Build responsible operations",
+    title: "Connect people, policy and payroll controls.",
+    description:
+      "Organise employment documentation, payroll approvals, benefits and HR policies around the workforce and applicable requirements.",
+    icon: UsersRound,
   },
 ];
 
@@ -157,7 +171,7 @@ export default function BangladeshPreview() {
               className="absolute bottom-0 left-[1.45rem] top-0 hidden w-px bg-accent/22 sm:block"
             />
 
-            {chapters.map(({ number, eyebrow, title, description, icon: Icon }, index) => (
+            {chapters.map(({ number, slug, eyebrow, title, description, icon: Icon }, index) => (
               <m.article
                 key={number}
                 initial={{ x: 28 }}
@@ -193,7 +207,7 @@ export default function BangladeshPreview() {
                       {description}
                     </p>
                     <Link
-                      href="/business-in-bangladesh"
+                      href={`/business-in-bangladesh/${slug}`}
                       aria-label={`Learn more: ${title}`}
                       className="mt-5 inline-flex items-center gap-2 text-xs font-bold text-accent-strong transition hover:gap-3"
                     >

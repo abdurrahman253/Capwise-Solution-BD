@@ -2,14 +2,12 @@ import {
   ArrowRight,
   BadgeCheck,
   Check,
-  Mail,
   MessageCircle,
   ShieldCheck,
 } from "lucide-react";
 import Link from "next/link";
 
 import SiteHeader from "@/components/layout/SiteHeader";
-import BrandLogo from "@/components/ui/BrandLogo";
 import { teamMembers, TEAM_CONTENT_VERSION } from "@/data/team";
 
 export const metadata = {
@@ -218,13 +216,13 @@ export default function TeamPage() {
             </div>
 
             <div className="grid gap-2.5 min-[430px]:grid-cols-2 lg:w-[25rem]">
-              <a
-                href="mailto:info@capwisebd.com?subject=Capwise%20team%20consultation"
+              <Link
+                href="/contact"
                 className="inline-flex min-h-12 items-center justify-center gap-2.5 rounded-full bg-accent px-5 text-xs font-bold text-[#042f2e] transition hover:bg-[#5eead4] sm:text-sm"
               >
-                <Mail aria-hidden="true" size={16} />
-                Email Capwise
-              </a>
+                Book consultation
+                <ArrowRight aria-hidden="true" size={16} />
+              </Link>
               <a
                 href="https://wa.me/8801624000381?text=Hello%20Capwise%2C%20I%20would%20like%20to%20book%20a%20consultation."
                 target="_blank"
@@ -239,30 +237,6 @@ export default function TeamPage() {
         </section>
       </main>
 
-      <footer className="border-t border-border bg-surface py-8">
-        <div className="mx-auto flex max-w-[90rem] flex-col gap-6 px-4 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-10">
-          <BrandLogo />
-          <div className="flex flex-wrap gap-x-5 gap-y-2 text-[0.68rem] font-semibold text-muted sm:justify-end sm:text-xs">
-            <a href="mailto:info@capwisebd.com" className="hover:text-accent-strong">
-              info@capwisebd.com
-            </a>
-            <a href="tel:+8801624000381" className="hover:text-accent-strong">
-              01624 000 381
-            </a>
-            <span>Banani, Dhaka</span>
-          </div>
-        </div>
-        <div className="mx-auto mt-6 flex max-w-[90rem] items-center justify-between gap-4 border-t border-border px-4 pt-5 text-[0.62rem] text-muted sm:px-6 sm:text-[0.68rem] lg:px-10">
-          <p>© {new Date().getFullYear()} Capwise Solution BD.</p>
-          <Link
-            href="/contact"
-            className="inline-flex items-center gap-1.5 font-bold hover:text-accent-strong"
-          >
-            Contact
-            <ArrowRight aria-hidden="true" size={12} />
-          </Link>
-        </div>
-      </footer>
     </>
   );
 }

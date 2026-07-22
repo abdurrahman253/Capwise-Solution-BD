@@ -4,7 +4,7 @@ Last updated: 2026-07-22
 
 ## Quality target
 
-Build a bespoke, agency-grade corporate advisory website with the polish, trust, clarity, accessibility, performance and maintainability expected from a premium USD 100,000-class engagement. This is a quality benchmark, not a guaranteed market valuation.
+Build a bespoke, agency-grade corporate advisory website with the polish, trust, clarity, accessibility, performance and maintainability associated with a high-value professional engagement. This is a quality benchmark, not a promise of market valuation or commercial results.
 
 ## Source of truth
 
@@ -13,77 +13,60 @@ Build a bespoke, agency-grade corporate advisory website with the polish, trust,
 3. The latest explicit instruction from the project owner
 4. Existing approved implementation decisions, unless the owner replaces them
 
-## Non-negotiable implementation rules
+## Completed platform stage
 
-- Next.js App Router
-- JavaScript and JSX only
-- npm and `package-lock.json`
-- Mobile-first responsive implementation
-- Premium light, dark and system themes
-- Semantic design tokens and accessible contrast
-- Smooth scrolling and restrained, meaningful motion
-- Reduced-motion support and keyboard accessibility
-- No fabricated testimonials, credentials, outcomes or team photography
-- No government endorsement or guaranteed-result claims
-- Fast, SEO-ready, production-minded architecture
-- Small verified stages with lint/build QA before each delivery
-- Exact Git commit commands supplied for every completed stage
-
-## Current completed stage
-
-- Seven service detail routes and service overview
-- Homepage Industries Served section and `/industries` overview
-- Premium homepage Team Preview and `/team` route
-- Homepage Guides & Regulatory Insights Preview
-- Working `/resources`, `/resources/guides`, and `/resources/regulatory-updates` routes
-- Resource dark-card contrast correction across light and dark themes
-- Premium global route-transition loader and App Router `loading.jsx` fallback
-- Premium global `not-found.jsx` and recoverable `error.jsx`
-- Premium homepage Client Evidence preview without fabricated testimonials
-- Professional `/testimonials` evidence-standard page with approval-safe empty state
-- Premium homepage FAQ Preview and full `/faq` route with matching FAQ JSON-LD
-- Premium homepage Consultation CTA and working `/contact` route
-- Consultation form prepares a transparent direct email without pretending data was stored
-- New `/about` and `/business-in-bangladesh` routes
-- Global premium footer with only working internal links
-- All currently published literal internal links resolve to a real route
+- Premium marketing routes for home, about, team, services, industries, Business in Bangladesh, resources, FAQ and contact.
+- Seven service-detail routes, five Business-in-Bangladesh detail routes and five industry-detail routes.
+- Real `/api/consultations` backend with React Hook Form and shared Zod validation, consent, honeypot, human-completion check, origin validation and rate limiting.
+- Resend transactional email with branded HTML/plain-text templates, unique reference, visitor Reply-To and optional acknowledgement.
+- Optional MongoDB lead persistence and optional Upstash REST rate limiting.
+- Premium React-Toastify feedback and two-stage consultation form.
+- Premium GSAP route transition plus App Router loading fallback and reduced-motion support.
+- Approved-knowledge guided support with English, Bangla and Banglish matching, quick actions, visible disclaimer and human handoff. It is not presented as unrestricted AI.
+- Resource-interest and regulatory-update workflows with approval-safe messaging and no fake download or bulletin.
+- Case-study, testimonial and blog architecture with empty states instead of fabricated evidence.
+- Privacy Policy, Terms of Use and Professional Disclaimer working drafts.
+- Sitemap, robots, manifest, dynamic Open Graph image and appropriate structured data.
+- Security headers, custom 404/error states and static route/import/syntax audit tooling.
+- Client-portal scope document rather than a decorative or insecure portal.
 
 ## Current verification state
 
-- JavaScript/JSX syntax parsing: passed across 54 source files
-- Local import resolution: passed
-- Literal internal route audit: 0 missing routes
-- `npm run lint` and `npm run build`: required on the owner's local machine before commit
+- JavaScript/JSX syntax diagnostics: passed across 86 source files.
+- Local import resolution: passed; 0 missing imports.
+- Potential unused-import audit: 0.
+- Literal internal route audit: 0 missing routes across 23 page patterns.
+- HTML and plain-text consultation email preview generated in `docs/previews/`.
+- ZIP integrity: must be checked after packaging.
+- Full `npm install`, ESLint and Next.js production build could not be run in this delivery environment because the npm registry was not reachable. Run them locally before commit or deployment.
 
-## Important content safeguards
+## Required local verification
 
-- FAQ, guides, team details and all business copy remain draft content until client approval.
-- Testimonials, client logos, case outcomes and identities must not be published without written approval and confidentiality review.
-- Tax, VAT, legal and regulatory information requires current official-source verification and visible review dates.
-- The contact form currently opens the visitor's email application. A secure server endpoint, validation schema, persistence, spam protection and notification workflow must be added before final production.
+```bash
+npm install
+npm run lint
+npm run build
+npm run audit:routes
+npm run dev
+```
 
-## Technical alignment backlog
+With Resend configured and the dev server running, use a second terminal:
 
-The current codebase predates the final master-prompt library decisions in two areas:
+```bash
+npm run test:email
+```
 
-- It uses `motion` instead of the preferred GSAP strategy.
-- It uses `react-hot-toast` instead of the preferred React-Toastify strategy.
+## Launch-blocking client inputs
 
-Do not perform a rushed library migration inside a content stage. Reconcile these deliberately after route/content completion, with regression testing for animation, theme, accessibility and bundle size.
+- Resend verification for `capwisebd.com` and final sender/recipient addresses.
+- Verified team photography, credentials and final biographies.
+- Approved case studies, testimonials and logo permissions.
+- Final reviewed guide PDFs.
+- Exact Facebook and LinkedIn URLs, confirmed WhatsApp format and Google Maps pin.
+- Lawyer review of legal pages and time-sensitive tax/legal/regulatory copy.
+- Analytics, cookie-consent, retention and unsubscribe decisions.
+- Portal roles, secure-document rules and operational ownership if the portal proceeds.
 
-The approved production form stack (`react-hook-form`, `zod`, `@hookform/resolvers`) and secure backend persistence are also pending the dedicated forms/API stage.
+## Package-lock note
 
-## Remaining major stages
-
-- Comprehensive footer legal links after legal drafts are created and reviewed
-- Newsletter/resource subscription
-- Business in Bangladesh detail routes
-- Blog and regulatory article architecture
-- Privacy Policy, Terms of Use and Professional Disclaimer
-- Secure form API, validation, MongoDB persistence, spam protection and rate limiting
-- Guided FAQ assistant knowledge review and human escalation workflow
-- Approved WhatsApp/Messenger configuration and official social links
-- Technical SEO files, structured data expansion, sitemap, robots and OG assets
-- Selective motion-system reconciliation and final animation polish
-- Accessibility, performance, responsive, security and production-build QA
-- Vercel preview, client review, domain connection and handover documentation
+`package.json` reflects the approved dependency migration. The existing `package-lock.json` is from the uploaded repository and is intentionally preserved, but it is stale because registry access was unavailable here. Run `npm install` locally once; npm will resolve the new packages and update the lockfile. Commit the updated lockfile with the code.

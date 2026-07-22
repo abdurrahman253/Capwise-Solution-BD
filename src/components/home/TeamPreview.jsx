@@ -1,7 +1,7 @@
 "use client";
 
 import { ArrowRight, ArrowUpRight, BadgeCheck, UsersRound } from "lucide-react";
-import { m, useReducedMotion } from "motion/react";
+import { m, useReducedMotion } from "@/components/ui/Motionless";
 import Link from "next/link";
 
 import {

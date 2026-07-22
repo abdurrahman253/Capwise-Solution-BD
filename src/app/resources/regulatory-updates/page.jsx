@@ -9,6 +9,7 @@ import {
 import Link from "next/link";
 
 import SiteHeader from "@/components/layout/SiteHeader";
+import NewsletterForm from "@/components/resources/NewsletterForm";
 import {
   regulatoryWatchTopics,
   resourcePublicationPrinciples,
@@ -185,6 +186,26 @@ export default function RegulatoryUpdatesPage() {
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="bg-brand border-y border-white/8 py-16 text-white sm:py-24 lg:py-28">
+          <div className="mx-auto grid max-w-[90rem] gap-12 px-4 sm:px-6 lg:grid-cols-12 lg:gap-16 lg:px-10">
+            <div className="lg:col-span-5">
+              <p className="inline-flex items-center gap-2 text-[0.6rem] font-bold uppercase tracking-[0.18em] text-accent">
+                <Radar aria-hidden="true" size={14} />
+                Reviewed update list
+              </p>
+              <h2 className="mt-5 max-w-[13ch] font-display text-[clamp(2.3rem,5vw,5rem)] font-semibold leading-[0.95] tracking-[-0.06em] text-white">
+                Follow the topics that matter to your business.
+              </h2>
+              <p className="mt-5 max-w-xl text-sm leading-7 text-white/62 sm:text-base sm:leading-8">
+                This workflow records topic preferences for future Capwise updates. It does not auto-publish unreviewed alerts or promise that every regulatory change will be covered.
+              </p>
+            </div>
+            <div className="rounded-[1.65rem] border border-white/10 bg-white/[0.045] p-6 backdrop-blur-sm sm:p-8 lg:col-span-7">
+              <NewsletterForm />
             </div>
           </div>
         </section>

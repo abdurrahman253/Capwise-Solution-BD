@@ -869,3 +869,352 @@ canvas {
   0% { transform: translate(-28%, -42%) rotate(136deg); }
   100% { transform: translate(-28%, -42%) rotate(496deg); }
 }
+
+/* ----------------------------------------
+   Capwise accessibility utilities
+----------------------------------------- */
+
+.capwise-skip-link {
+  position: fixed;
+  left: 1rem;
+  top: 1rem;
+  z-index: 220;
+  transform: translateY(-180%);
+  border-radius: 999px;
+  background: var(--accent);
+  color: #042f2e;
+  padding: 0.7rem 1rem;
+  font-size: 0.75rem;
+  font-weight: 800;
+  transition: transform 180ms ease;
+}
+
+.capwise-skip-link:focus {
+  transform: translateY(0);
+}
+
+/* ----------------------------------------
+   Premium guided support
+----------------------------------------- */
+
+.capwise-support-launcher {
+  border-color: var(--assistant-border);
+  background: var(--assistant-launcher);
+  color: var(--assistant-foreground);
+  box-shadow: 0 22px 70px rgba(2, 12, 23, 0.28);
+  backdrop-filter: blur(20px);
+}
+
+[data-theme="light"] .capwise-support-launcher {
+  box-shadow: 0 22px 65px rgba(11, 31, 51, 0.18);
+}
+
+.capwise-support-launcher:hover {
+  border-color: color-mix(in srgb, var(--accent) 36%, var(--assistant-border));
+  box-shadow: 0 28px 80px rgba(2, 12, 23, 0.34);
+}
+
+.capwise-support-panel {
+  border-color: var(--assistant-border);
+  background: var(--assistant-background);
+  color: var(--assistant-foreground);
+  box-shadow: var(--assistant-shadow);
+  backdrop-filter: blur(24px);
+}
+
+.capwise-support-header {
+  border-color: var(--assistant-border);
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--accent) 7%, transparent), transparent 58%),
+    var(--assistant-background);
+}
+
+.capwise-support-grid {
+  background-image:
+    linear-gradient(var(--assistant-border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--assistant-border) 1px, transparent 1px);
+  background-size: 34px 34px;
+  mask-image: linear-gradient(to bottom, black, transparent 82%);
+}
+
+.capwise-support-action {
+  border-color: var(--assistant-border);
+  background: var(--assistant-option);
+}
+
+.capwise-support-action:hover {
+  border-color: color-mix(in srgb, var(--accent) 42%, var(--assistant-border));
+  background: color-mix(in srgb, var(--accent) 9%, var(--assistant-option));
+  transform: translateY(-2px);
+}
+
+.capwise-support-messages {
+  background:
+    radial-gradient(circle at 90% 12%, color-mix(in srgb, var(--accent) 7%, transparent), transparent 24%),
+    var(--assistant-background);
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in srgb, var(--accent) 32%, transparent) transparent;
+}
+
+.capwise-support-bubble {
+  border-color: var(--assistant-border);
+  background: var(--assistant-bubble);
+  color: var(--assistant-muted);
+}
+
+.capwise-support-footer {
+  border-color: var(--assistant-border);
+  background: var(--assistant-footer);
+}
+
+.capwise-support-input {
+  border-color: var(--assistant-border);
+  background: var(--assistant-input);
+  color: var(--assistant-foreground);
+}
+
+.capwise-support-input::placeholder {
+  color: var(--assistant-faint);
+}
+
+.capwise-support-input:focus {
+  border-color: color-mix(in srgb, var(--accent) 58%, transparent);
+  background: var(--assistant-background);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 10%, transparent);
+}
+
+.capwise-support-typing {
+  animation: capwise-support-dot 1.05s ease-in-out infinite;
+}
+
+@keyframes capwise-support-dot {
+  0%, 65%, 100% { opacity: 0.3; transform: translateY(0); }
+  32% { opacity: 1; transform: translateY(-3px); }
+}
+
+/* ----------------------------------------
+   Premium React-Toastify surface
+----------------------------------------- */
+
+.Toastify__toast-container.capwise-toast-region {
+  width: min(92vw, 25rem);
+  z-index: 180;
+}
+
+.Toastify__toast.capwise-toast {
+  min-height: 4.25rem;
+  border: 1px solid color-mix(in srgb, var(--accent) 18%, var(--border));
+  border-radius: 1rem;
+  background: color-mix(in srgb, var(--surface) 94%, transparent);
+  color: var(--foreground);
+  padding: 0.9rem 1rem;
+  font-family: var(--font-inter), Arial, sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  line-height: 1.35rem;
+  box-shadow: 0 24px 75px rgba(2, 12, 23, 0.24);
+  backdrop-filter: blur(20px);
+}
+
+.Toastify__progress-bar.capwise-toast-progress {
+  background: linear-gradient(90deg, var(--accent), var(--accent-strong));
+}
+
+.Toastify__close-button {
+  color: var(--muted);
+}
+
+/* ----------------------------------------
+   Premium GSAP route transition
+----------------------------------------- */
+
+.capwise-route-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 190;
+  display: grid;
+  place-items: center;
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  overflow: hidden;
+  background: transparent;
+}
+
+.capwise-route-loader__panel {
+  position: absolute;
+  inset-inline: 0;
+  height: 52%;
+  background: #071a2c;
+}
+
+.capwise-route-loader__panel--one {
+  top: 0;
+}
+
+.capwise-route-loader__panel--two {
+  bottom: 0;
+  background: #061521;
+}
+
+.capwise-route-loader__grid {
+  position: absolute;
+  inset: 0;
+  opacity: 0.26;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(circle at center, black, transparent 72%);
+}
+
+.capwise-route-loader__content {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  width: min(82vw, 24rem);
+  justify-items: center;
+  color: #ffffff;
+}
+
+.capwise-route-loader__seal {
+  position: relative;
+  display: grid;
+  width: 5.35rem;
+  height: 5.35rem;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.045);
+  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.34);
+  backdrop-filter: blur(14px);
+}
+
+.capwise-route-loader__seal svg {
+  width: 2.85rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.capwise-route-loader__orbit {
+  position: absolute;
+  inset: -0.38rem;
+  border: 1px solid transparent;
+  border-top-color: var(--accent);
+  border-right-color: rgba(45, 212, 191, 0.22);
+  border-radius: 999px;
+}
+
+.capwise-route-loader__brand {
+  margin: 1.35rem 0 0;
+  font-family: var(--font-manrope), Arial, sans-serif;
+  font-size: 1.05rem;
+  font-weight: 850;
+  letter-spacing: 0.09em;
+}
+
+.capwise-route-loader__subbrand {
+  margin: 0.45rem 0 0;
+  color: var(--accent);
+  font-size: 0.56rem;
+  font-weight: 800;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+}
+
+.capwise-route-loader__rule {
+  position: relative;
+  width: 100%;
+  height: 2px;
+  margin-top: 1.6rem;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.11);
+}
+
+.capwise-route-loader__rule span {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #2dd4bf, #d6b15a);
+  transform: scaleX(0);
+}
+
+.capwise-route-loader__meta {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 0.8rem;
+  color: rgba(255, 255, 255, 0.42);
+  font-size: 0.52rem;
+  font-weight: 750;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.capwise-loading-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 180;
+  display: grid;
+  min-height: 100svh;
+  place-items: center;
+  background: #071a2c;
+  color: #ffffff;
+}
+
+.capwise-loading-screen__content {
+  display: grid;
+  justify-items: center;
+  gap: 1rem;
+}
+
+.capwise-loading-screen__mark {
+  position: relative;
+  width: 3.9rem;
+  height: 3.9rem;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 999px;
+}
+
+.capwise-loading-screen__mark::before,
+.capwise-loading-screen__mark span {
+  content: "";
+  position: absolute;
+  inset: 0.45rem;
+  border: 2px solid transparent;
+  border-top-color: var(--accent);
+  border-radius: 999px;
+  animation: capwise-fallback-spin 1.15s linear infinite;
+}
+
+.capwise-loading-screen__mark span {
+  inset: 1rem;
+  border-top-color: #d6b15a;
+  animation-direction: reverse;
+  animation-duration: 0.85s;
+}
+
+.capwise-loading-screen__content p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.52);
+  font-size: 0.58rem;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+@keyframes capwise-fallback-spin {
+  to { transform: rotate(360deg); }
+}
+
+@media (max-width: 640px) {
+  .Toastify__toast-container.capwise-toast-region {
+    inset: 0.75rem 0.75rem auto !important;
+    width: auto;
+  }
+
+  .capwise-route-loader__meta {
+    font-size: 0.46rem;
+  }
+}

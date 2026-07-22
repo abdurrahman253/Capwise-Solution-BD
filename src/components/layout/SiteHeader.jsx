@@ -47,13 +47,6 @@ export default function SiteHeader() {
 
   return (
     <>
-      <a
-        href="#main-content"
-        className="fixed left-4 top-4 z-[100] -translate-y-24 rounded-lg bg-action px-4 py-3 text-sm font-semibold text-action-foreground shadow-lg transition focus:translate-y-0"
-      >
-        Skip to content
-      </a>
-
       <header
         data-header-version={HEADER_VERSION}
         className="sticky top-0 z-50 border-b border-border/80 bg-surface/95 shadow-[0_10px_35px_rgba(11,31,51,0.06)] backdrop-blur-xl"

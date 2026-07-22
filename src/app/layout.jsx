@@ -1,9 +1,11 @@
 import { Inter, Manrope } from "next/font/google";
 import "lenis/dist/lenis.css";
+import "react-toastify/dist/ReactToastify.css";
 import "./globals.css";
 
 import AppProviders from "@/components/providers/AppProviders";
 import SiteFooter from "@/components/layout/SiteFooter";
+import JsonLd from "@/components/seo/JsonLd";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -47,11 +49,38 @@ export const metadata = {
     description: siteDescription,
   },
 
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || undefined,
+    other: {
+      "msvalidate.01": process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION || undefined,
+    },
+  },
+
   twitter: {
     card: "summary_large_image",
     title: siteTitle,
     description: siteDescription,
   },
+};
+
+
+const organizationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": ["Organization", "ProfessionalService"],
+  name: "Capwise Solution BD",
+  url: "https://capwisebd.com",
+  slogan: "Wise Choice for Your Finance.",
+  foundingDate: "2022",
+  email: "info@capwisebd.com",
+  telephone: "+8801624000381",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "Level-03, House 76/A, Road 11, Banani",
+    addressLocality: "Dhaka",
+    postalCode: "1213",
+    addressCountry: "BD",
+  },
+  areaServed: { "@type": "Country", name: "Bangladesh" },
 };
 
 export default function RootLayout({ children }) {
@@ -62,6 +91,8 @@ export default function RootLayout({ children }) {
       className={`${inter.variable} ${manrope.variable}`}
     >
       <body className="min-h-screen antialiased">
+        <a className="capwise-skip-link" href="#main-content">Skip to main content</a>
+        <JsonLd data={organizationJsonLd} />
         <AppProviders>
           {children}
           <SiteFooter />

@@ -1,7 +1,7 @@
 "use client";
 
 import { ArrowRight, ArrowUpRight, Check, MapPin } from "lucide-react";
-import { m, useReducedMotion } from "motion/react";
+import { m, useReducedMotion } from "@/components/ui/Motionless";
 import Image from "next/image";
 import Link from "next/link";
 

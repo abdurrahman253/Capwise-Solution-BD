@@ -3,16 +3,12 @@ import {
   ArrowUpRight,
   Check,
   ChevronRight,
-  Mail,
-  MapPin,
   MessageCircle,
-  Phone,
 } from "lucide-react";
 import Link from "next/link";
 
 import IndustryIcon from "@/components/industries/IndustryIcon";
 import SiteHeader from "@/components/layout/SiteHeader";
-import BrandLogo from "@/components/ui/BrandLogo";
 import {
   INDUSTRIES_CONTENT_VERSION,
   industries,
@@ -43,7 +39,7 @@ const industryListSchema = {
     "@type": "ListItem",
     position: index + 1,
     name: industry.label,
-    url: `https://capwisebd.com/industries#${industry.slug}`,
+    url: `https://capwisebd.com/industries/${industry.slug}`,
   })),
 };
 
@@ -129,8 +125,8 @@ export default function IndustriesPage() {
                   different across sectors. Capwise shapes the advisory scope
                   around those practical differences.
                 </p>
-                <a
-                  href="mailto:info@capwisebd.com?subject=Capwise%20industry%20consultation"
+                <Link
+                  href="/contact"
                   className="group mt-6 inline-flex min-h-11 items-center justify-center gap-4 rounded-full bg-action px-5 text-xs font-bold text-action-foreground shadow-[0_14px_36px_rgba(15,118,110,0.18)] transition hover:-translate-y-0.5 hover:bg-action-hover sm:min-h-13 sm:px-6 sm:text-sm"
                 >
                   Discuss your sector
@@ -139,7 +135,7 @@ export default function IndustriesPage() {
                     size={16}
                     className="transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
                   />
-                </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -230,6 +226,17 @@ export default function IndustriesPage() {
                       <p className="mt-4 max-w-xl text-sm leading-7 text-muted sm:text-[0.95rem] sm:leading-8">
                         {industry.description}
                       </p>
+                      <Link
+                        href={`/industries/${industry.slug}`}
+                        className="group mt-6 inline-flex items-center gap-2 text-xs font-bold text-foreground transition hover:text-accent-strong"
+                      >
+                        View sector guide
+                        <ArrowUpRight
+                          aria-hidden="true"
+                          size={15}
+                          className="transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                        />
+                      </Link>
                     </div>
 
                     <div className="lg:col-span-6 lg:col-start-7">
@@ -293,13 +300,13 @@ export default function IndustriesPage() {
             </div>
 
             <div className="grid gap-2.5 min-[430px]:grid-cols-2 lg:w-[24rem]">
-              <a
-                href="mailto:info@capwisebd.com?subject=Capwise%20industry%20consultation"
+              <Link
+                href="/contact"
                 className="inline-flex min-h-11 items-center justify-center gap-2.5 rounded-full bg-accent px-5 text-xs font-bold text-[#042f2e] transition hover:bg-[#5eead4] sm:min-h-13 sm:text-sm"
               >
-                <Mail aria-hidden="true" size={16} />
-                Email Capwise
-              </a>
+                Book consultation
+                <ArrowUpRight aria-hidden="true" size={16} />
+              </Link>
               <a
                 href="https://wa.me/8801624000381?text=Hello%20Capwise%2C%20I%20would%20like%20to%20discuss%20support%20for%20my%20industry."
                 target="_blank"
@@ -314,41 +321,6 @@ export default function IndustriesPage() {
         </section>
       </main>
 
-      <footer className="border-t border-border bg-surface py-8">
-        <div className="mx-auto flex max-w-[90rem] flex-col gap-6 px-4 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-10">
-          <BrandLogo />
-          <div className="flex flex-wrap gap-x-5 gap-y-2 text-[0.68rem] font-semibold text-muted sm:justify-end sm:text-xs">
-            <a
-              href="mailto:info@capwisebd.com"
-              className="inline-flex items-center gap-1.5 hover:text-accent-strong"
-            >
-              <Mail aria-hidden="true" size={13} />
-              info@capwisebd.com
-            </a>
-            <a
-              href="tel:+8801624000381"
-              className="inline-flex items-center gap-1.5 hover:text-accent-strong"
-            >
-              <Phone aria-hidden="true" size={13} />
-              01624 000 381
-            </a>
-            <span className="inline-flex items-center gap-1.5">
-              <MapPin aria-hidden="true" size={13} />
-              Banani, Dhaka
-            </span>
-          </div>
-        </div>
-        <div className="mx-auto mt-6 flex max-w-[90rem] items-center justify-between gap-4 border-t border-border px-4 pt-5 text-[0.62rem] text-muted sm:px-6 sm:text-[0.68rem] lg:px-10">
-          <p>© {new Date().getFullYear()} Capwise Solution BD.</p>
-          <Link
-            href="/services"
-            className="inline-flex items-center gap-1.5 font-bold hover:text-accent-strong"
-          >
-            Services
-            <ArrowRight aria-hidden="true" size={12} />
-          </Link>
-        </div>
-      </footer>
     </>
   );
 }
