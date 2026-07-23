@@ -64,6 +64,11 @@ export const metadata = {
 };
 
 
+const officialProfiles = [
+  process.env.NEXT_PUBLIC_FACEBOOK_URL,
+  process.env.NEXT_PUBLIC_LINKEDIN_URL,
+].filter(Boolean);
+
 const organizationJsonLd = {
   "@context": "https://schema.org",
   "@type": ["Organization", "ProfessionalService"],
@@ -73,6 +78,15 @@ const organizationJsonLd = {
   foundingDate: "2022",
   email: "info@capwisebd.com",
   telephone: "+8801624000381",
+  contactPoint: {
+    "@type": "ContactPoint",
+    contactType: "customer support",
+    telephone: "+8801624000381",
+    email: "info@capwisebd.com",
+    areaServed: "BD",
+    availableLanguage: ["English", "Bengali"],
+  },
+  ...(officialProfiles.length ? { sameAs: officialProfiles } : {}),
   address: {
     "@type": "PostalAddress",
     streetAddress: "Level-03, House 76/A, Road 11, Banani",

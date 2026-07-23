@@ -1,18 +1,19 @@
-# Stage Delivery — Premium Conversion, Guided Support and Platform Foundation
+# Stage Delivery — Operational Polish v2
 
-Date: 2026-07-22
+Date: 2026-07-23
 
-## Immediate objectives completed
+## Completed in this stage
 
-1. Replace the primary `mailto:` consultation flow with a real protected API route.
-2. Add shared React Hook Form and Zod validation, consent, honeypot, timing checks and rate limiting.
-3. Add branded Resend HTML/plain-text email, visitor Reply-To, reference number and optional acknowledgement.
-4. Redesign the support widget as a premium guided FAQ assistant with approved answers and human handoff.
-5. Replace the basic loader with a GSAP-branded transition and accessible App Router fallback.
-6. Add resource-interest and regulatory-update workflows without fake downloads or fabricated bulletins.
-7. Add Business-in-Bangladesh, industry, case-study and blog detail architecture.
-8. Add tailored legal drafts, technical SEO files, structured data and security headers.
-9. Complete static syntax, import and internal-route audits.
+1. Made consultation lead persistence independent from email-provider availability.
+2. Added accurate stored/sent/delayed status feedback instead of false success messaging.
+3. Added exact local email preview and stronger owner email actions.
+4. Added setup diagnostics, health endpoint and robust real-delivery test script.
+5. Added MongoDB indexes, deduplication and privacy-reduced request metadata.
+6. Added signed, idempotent Resend delivery-status webhooks.
+7. Added security headers and production HSTS.
+8. Added noindex safeguards for empty/unapproved evidence content and stricter dynamic routes.
+9. Added GitHub Actions lint/build/route-audit workflow.
+10. Updated environment examples, email guide, data model, QA and launch documentation.
 
 ## Local verification commands
 
@@ -20,19 +21,31 @@ Date: 2026-07-22
 cd /c/Projects/capwisebd/client-side
 rm -rf node_modules .next
 npm install
+npm run check:setup
 npm run lint
 npm run build
 npm run audit:routes
 npm run dev
 ```
 
-After Resend variables are present and the dev server is running, use a second terminal:
+Then in a second terminal:
 
 ```bash
-cd /c/Projects/capwisebd/client-side
 npm run test:email
 ```
 
-## Important production note
+## Development email preview
 
-The real consultation route intentionally returns an error when email delivery is not configured; it does not pretend the enquiry was sent. Resource/newsletter workflows also require either configured email delivery or MongoDB persistence. Verify `capwisebd.com` in Resend before switching from the development sender to a Capwise domain sender.
+```text
+http://localhost:3000/email-preview
+```
+
+## Workflow health
+
+```text
+http://localhost:3000/api/health
+```
+
+## Production note
+
+MongoDB stores the lead; Resend delivers the notification. Configure and verify both. The public form remains operational in a MongoDB-only state and clearly tells the visitor that email notification is pending rather than losing the enquiry.

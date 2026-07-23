@@ -1,5 +1,7 @@
 import "server-only";
 
+import { createHash, createHmac } from "node:crypto";
+
 const localRateStore = globalThis.__capwiseRateStore || new Map();
 if (!globalThis.__capwiseRateStore) globalThis.__capwiseRateStore = localRateStore;
 
@@ -9,6 +11,25 @@ export function getClientIp(request) {
     request.headers.get("x-real-ip") ||
     "local"
   );
+}
+
+export function hashSensitiveIdentifier(value) {
+  if (!value) return null;
+  const normalized = String(value).trim().toLowerCase();
+  const salt = process.env.SECURITY_HASH_SALT?.trim();
+
+  return salt
+    ? createHmac("sha256", salt).update(normalized).digest("hex")
+    : createHash("sha256").update(normalized).digest("hex");
+}
+
+export function getRequestMeta(request, ip = getClientIp(request)) {
+  return {
+    ipHash: hashSensitiveIdentifier(ip),
+    userAgent: request.headers.get("user-agent")?.slice(0, 300) || null,
+    origin: request.headers.get("origin")?.slice(0, 240) || null,
+    referer: request.headers.get("referer")?.slice(0, 500) || null,
+  };
 }
 
 function getAllowedOrigins(request) {
@@ -82,7 +103,7 @@ async function upstashRateLimit(key, limit, windowSeconds) {
 }
 
 export async function checkRateLimit({ namespace, identifier, limit = 5, windowSeconds = 600 }) {
-  const key = `capwise:${namespace}:${identifier}`;
+  const key = `capwise:${namespace}:${hashSensitiveIdentifier(identifier) || "anonymous"}`;
   const shared = await upstashRateLimit(key, limit, windowSeconds);
   return shared || localRateLimit(key, limit, windowSeconds);
 }

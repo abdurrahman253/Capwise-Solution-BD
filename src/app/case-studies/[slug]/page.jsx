@@ -3,6 +3,8 @@ import { notFound } from "next/navigation";
 import SiteHeader from "@/components/layout/SiteHeader";
 import { caseStudies, getCaseStudy } from "@/data/caseStudies";
 
+export const dynamicParams = false;
+
 export function generateStaticParams() {
   return caseStudies.map(({ slug }) => ({ slug }));
 }

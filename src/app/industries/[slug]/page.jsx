@@ -7,6 +7,8 @@ import SiteHeader from "@/components/layout/SiteHeader";
 import { industries } from "@/data/industries";
 import { getServiceBySlug } from "@/data/services";
 
+export const dynamicParams = false;
+
 export function generateStaticParams() {
   return industries.map(({ slug }) => ({ slug }));
 }

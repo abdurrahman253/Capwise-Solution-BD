@@ -31,7 +31,7 @@ function FieldError({ id, message }) {
 export default function ConsultationForm({ compact = false }) {
   const startedAtRef = useRef(Date.now());
   const [step, setStep] = useState(1);
-  const [submittedReference, setSubmittedReference] = useState("");
+  const [submissionResult, setSubmissionResult] = useState(null);
   const {
     register,
     handleSubmit,
@@ -50,7 +50,7 @@ export default function ConsultationForm({ compact = false }) {
       service: "",
       message: "",
       consent: false,
-      website: "",
+      capwiseFormCheck: "",
       startedAt: Date.now(),
       sourcePath: "",
     },
@@ -88,7 +88,17 @@ export default function ConsultationForm({ compact = false }) {
         throw new Error(result?.error || "The enquiry could not be sent.");
       }
 
-      setSubmittedReference(result.reference || "");
+      if (!result?.reference) {
+        throw new Error(
+          "The website could not confirm delivery. Please refresh the page and try again.",
+        );
+      }
+
+      setSubmissionResult({
+        reference: result.reference || "",
+        deliveryStatus: result.deliveryStatus || "sent",
+        message: result.message || "Your consultation request has been sent.",
+      });
       toast.update(toastId, {
         render: result.message || "Your consultation request has been sent.",
         type: "success",
@@ -107,25 +117,27 @@ export default function ConsultationForm({ compact = false }) {
     }
   }
 
-  if (submittedReference) {
+  if (submissionResult?.reference) {
+    const notificationSent = submissionResult.deliveryStatus === "sent";
+
     return (
       <div className="rounded-[1.35rem] border border-accent/25 bg-accent/8 p-6 sm:p-7" role="status">
         <span className="inline-flex size-12 items-center justify-center rounded-full bg-accent text-[#042f2e]">
           <MailCheck aria-hidden="true" size={21} />
         </span>
         <h3 className="mt-5 font-display text-2xl font-bold tracking-[-0.045em] text-foreground">
-          Enquiry sent successfully.
+          {notificationSent ? "Enquiry sent successfully." : "Enquiry recorded successfully."}
         </h3>
         <p className="mt-3 text-sm leading-7 text-muted">
-          The Capwise team received your briefing. Keep this reference for follow-up:
+          {submissionResult.message} Keep this reference for follow-up:
         </p>
         <p className="mt-4 inline-flex rounded-full border border-accent/30 bg-surface px-4 py-2 text-xs font-extrabold tracking-[0.08em] text-accent-strong">
-          {submittedReference}
+          {submissionResult.reference}
         </p>
         <button
           type="button"
           onClick={() => {
-            setSubmittedReference("");
+            setSubmissionResult(null);
             setStep(1);
           }}
           className="mt-6 block text-xs font-bold text-foreground underline decoration-accent/50 underline-offset-4"
@@ -163,10 +175,13 @@ export default function ConsultationForm({ compact = false }) {
       </div>
 
       <input
-        {...register("website")}
+        {...register("capwiseFormCheck")}
         tabIndex="-1"
-        autoComplete="off"
-        className="absolute -left-[9999px] h-px w-px overflow-hidden"
+        autoComplete="one-time-code"
+        data-lpignore="true"
+        data-1p-ignore="true"
+        data-bwignore="true"
+        className="pointer-events-none absolute -left-[10000px] top-auto h-px w-px overflow-hidden opacity-0"
         aria-hidden="true"
       />
 
@@ -328,7 +343,7 @@ export default function ConsultationForm({ compact = false }) {
 
       <p className="flex items-start gap-2 text-[0.66rem] font-semibold leading-5 text-muted">
         <LockKeyhole aria-hidden="true" size={14} className="mt-0.5 shrink-0 text-accent-strong" />
-        The form sends through a protected server route and creates a unique enquiry reference. Email delivery requires the Resend environment variables.
+        The form uses a protected server route, creates a unique reference and records the lead in MongoDB when configured. Resend delivers the team notification.
       </p>
     </form>
   );

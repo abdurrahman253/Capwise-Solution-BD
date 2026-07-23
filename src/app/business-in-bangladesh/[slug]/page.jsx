@@ -5,6 +5,8 @@ import { notFound } from "next/navigation";
 import SiteHeader from "@/components/layout/SiteHeader";
 import { businessBangladeshTopics, getBusinessTopic } from "@/data/businessBangladesh";
 
+export const dynamicParams = false;
+
 export function generateStaticParams() {
   return businessBangladeshTopics.map(({ slug }) => ({ slug }));
 }

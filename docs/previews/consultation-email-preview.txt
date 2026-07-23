@@ -1,12 +1,12 @@
 CAPWISE CONSULTATION ENQUIRY
-Reference: CAP-PREVIEW-0722
-Submitted: 22 Jul 2026, 11:30 pm
-Name: Sample Client
-Email: client@example.com
-Phone: +880 17XX XXXXXX
-Company: Example Holdings Ltd.
-Service: Foreign Investment
-Source: /contact
+Reference: CAP-PREVIEW-260723
+Submitted: 23 Jul 2026, 4:00 PM
+Name: Capwise Email Test
+Email: test@capwisebd.com
+Phone: +880 1624 000 381
+Company: Capwise Solution BD
+Service: Business Advisory
+Source: /email-preview
 
 Client briefing:
-We are assessing a Bangladesh market-entry route and need support comparing a private limited company with a branch or liaison office, followed by a practical compliance roadmap.
+This is a safe local preview of the branded consultation notification.

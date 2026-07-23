@@ -8,6 +8,7 @@ export const metadata = {
   description:
     "Learn how Capwise Solution BD verifies client testimonials and case evidence before publication.",
   alternates: { canonical: "/testimonials" },
+  robots: { index: false, follow: true },
 };
 
 const standards = [

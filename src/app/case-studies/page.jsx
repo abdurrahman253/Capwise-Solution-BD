@@ -9,6 +9,7 @@ export const metadata = {
   description:
     "Capwise Solution BD's evidence publication standard for approved, verifiable client case studies in Bangladesh.",
   alternates: { canonical: "/case-studies" },
+  robots: caseStudies.length ? undefined : { index: false, follow: true },
 };
 
 const evidenceRequirements = [

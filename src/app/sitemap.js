@@ -6,8 +6,14 @@ import { serviceDetails } from "@/data/services";
 
 const baseUrl = "https://capwisebd.com";
 
+function optionalLastModified() {
+  const value = process.env.CONTENT_LAST_REVIEWED_AT;
+  if (!value) return {};
+  const date = new Date(value);
+  return Number.isNaN(date.getTime()) ? {} : { lastModified: date };
+}
+
 export default function sitemap() {
-  const now = new Date();
   const staticRoutes = [
     "",
     "/about",
@@ -18,15 +24,15 @@ export default function sitemap() {
     "/resources",
     "/resources/guides",
     "/resources/regulatory-updates",
-    "/blog",
     "/faq",
     "/contact",
-    "/case-studies",
-    "/testimonials",
     "/privacy-policy",
     "/terms-of-use",
     "/professional-disclaimer",
   ];
+
+  if (blogPosts.length) staticRoutes.push("/blog");
+  if (caseStudies.length) staticRoutes.push("/case-studies");
 
   const entries = [
     ...staticRoutes,
@@ -39,8 +45,9 @@ export default function sitemap() {
 
   return entries.map((route) => ({
     url: `${baseUrl}${route}`,
-    lastModified: now,
-    changeFrequency: route === "" ? "weekly" : route.includes("regulatory") || route === "/blog" ? "weekly" : "monthly",
+    ...optionalLastModified(),
+    changeFrequency:
+      route === "" ? "weekly" : route.includes("regulatory") || route === "/blog" ? "weekly" : "monthly",
     priority: route === "" ? 1 : route.startsWith("/services/") ? 0.85 : 0.7,
   }));
 }

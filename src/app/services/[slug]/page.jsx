@@ -5,6 +5,8 @@ import ServiceDetailPage from "@/components/services/ServiceDetailPage";
 import JsonLd from "@/components/seo/JsonLd";
 import { getServiceBySlug, serviceDetails } from "@/data/services";
 
+export const dynamicParams = false;
+
 export function generateStaticParams() {
   return serviceDetails.map(({ slug }) => ({ slug }));
 }

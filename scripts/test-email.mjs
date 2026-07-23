@@ -2,7 +2,7 @@ const baseUrl = process.env.CAPWISE_TEST_URL || "http://localhost:3000";
 
 const payload = {
   name: "Capwise Email Test",
-  email: process.env.CAPWISE_TEST_REPLY_TO || "abrahman5676@gmail.com",
+  email: process.env.CAPWISE_TEST_REPLY_TO || "test@capwisebd.com",
   phone: "+880 1624 000 381",
   company: "Capwise Solution BD",
   service: "Business Advisory",
@@ -14,9 +14,21 @@ const payload = {
   sourcePath: "/scripts/test-email",
 };
 
-console.log(`Sending Capwise test enquiry to ${baseUrl}/api/consultations ...`);
+async function readJson(response) {
+  return response.json().catch(() => null);
+}
 
 try {
+  const healthResponse = await fetch(`${baseUrl}/api/health`, { cache: "no-store" });
+  const health = await readJson(healthResponse);
+  console.log("Capwise workflow health:", JSON.stringify(health, null, 2));
+
+  if (!health?.checks?.email?.configured || !health?.checks?.email?.recipientConfigured) {
+    console.error("\nEmail delivery is not configured. Add RESEND_API_KEY, RESEND_FROM_EMAIL and CONSULTATION_TO_EMAIL to .env.local, restart npm run dev, then retry.");
+    process.exit(1);
+  }
+
+  console.log(`\nSending Capwise test enquiry through ${baseUrl}/api/consultations ...`);
   const response = await fetch(`${baseUrl}/api/consultations`, {
     method: "POST",
     headers: {
@@ -25,14 +37,17 @@ try {
     },
     body: JSON.stringify(payload),
   });
-  const result = await response.json().catch(() => null);
+  const result = await readJson(response);
 
   if (!response.ok) {
     console.error("Email test failed:", result || response.statusText);
     process.exitCode = 1;
+  } else if (result?.deliveryStatus !== "sent") {
+    console.error("The lead was recorded, but email delivery did not complete:", result);
+    process.exitCode = 1;
   } else {
     console.log("Email test succeeded:", result);
-    console.log("Check CONSULTATION_TO_EMAIL and verify the Reply-To address by replying to the message.");
+    console.log("Check CONSULTATION_TO_EMAIL and verify Reply-To by replying to the message.");
   }
 } catch (error) {
   console.error("Could not reach the local website. Run `npm run dev` in another terminal first.");

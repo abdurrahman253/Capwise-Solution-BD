@@ -9,6 +9,7 @@ export const metadata = {
   description:
     "Reviewed Capwise insights on company formation, tax, VAT, accounting, payroll and regulatory compliance in Bangladesh.",
   alternates: { canonical: "/blog" },
+  robots: blogPosts.length ? undefined : { index: false, follow: true },
 };
 
 export default function BlogPage() {

@@ -1,10 +1,11 @@
 import { resourceOwnerEmail } from "@/lib/emailTemplates";
-import { insertOptional } from "@/lib/mongodb";
+import { isMongoConfigured, upsertOptional } from "@/lib/mongodb";
 import { createReference } from "@/lib/references";
-import { sendTransactionalEmail } from "@/lib/resend";
+import { getEmailConfiguration, sendTransactionalEmail } from "@/lib/resend";
 import {
   checkRateLimit,
   getClientIp,
+  getRequestMeta,
   hasHumanCompletionTime,
   isAllowedOrigin,
   noStoreJson,
@@ -50,7 +51,9 @@ export async function POST(request) {
   if (!hasHumanCompletionTime(data.startedAt, 1200)) {
     return noStoreJson({ error: "Please review the form before submitting." }, { status: 400 });
   }
-  if (!(process.env.RESEND_API_KEY && process.env.RESEND_FROM_EMAIL) && !process.env.MONGODB_URI) {
+
+  const emailConfig = getEmailConfiguration();
+  if (!emailConfig.configured && !isMongoConfigured()) {
     return noStoreJson(
       {
         error:
@@ -62,14 +65,16 @@ export async function POST(request) {
   }
 
   const reference = createReference("GUIDE");
+  const now = new Date();
   const submittedAt = new Intl.DateTimeFormat("en-GB", {
     dateStyle: "medium",
     timeStyle: "short",
     timeZone: "Asia/Dhaka",
-  }).format(new Date());
+  }).format(now);
+  const emailNormalized = data.email.trim().toLowerCase();
 
   let emailStatus = "not-configured";
-  if (process.env.RESEND_API_KEY && process.env.RESEND_FROM_EMAIL) {
+  if (emailConfig.configured) {
     try {
       const template = resourceOwnerEmail({ reference, data, submittedAt });
       await sendTransactionalEmail({
@@ -84,19 +89,37 @@ export async function POST(request) {
         reference,
         name: error?.name,
         message: error?.message,
+        code: error?.code,
       });
     }
   }
 
-  const persistence = await insertOptional("guide_downloads", {
-    reference,
-    ...data,
-    website: undefined,
-    requestType: "release-notification",
-    emailStatus,
-    submittedAt: new Date(),
-    requestMeta: { ip },
-  });
+  const persistence = await upsertOptional(
+    "guide_downloads",
+    { emailNormalized, resourceSlug: data.resourceSlug },
+    {
+      $set: {
+        reference,
+        name: data.name,
+        email: data.email,
+        emailNormalized,
+        company: data.company || "",
+        resourceSlug: data.resourceSlug,
+        resourceTitle: data.resourceTitle,
+        requestType: "release-notification",
+        status: "interested-pending-approved-release",
+        emailStatus,
+        consent: {
+          accepted: data.consent,
+          version: "guide-release-consent-v1-20260723",
+          acceptedAt: now,
+        },
+        requestMeta: getRequestMeta(request, ip),
+        updatedAt: now,
+      },
+      $setOnInsert: { createdAt: now },
+    },
+  );
 
   if (emailStatus === "failed" && !persistence.persisted) {
     return noStoreJson(
@@ -110,7 +133,9 @@ export async function POST(request) {
       ok: true,
       reference,
       message: "Your interest has been recorded. Capwise will only notify you when an approved guide is ready.",
+      deliveryStatus: emailStatus,
+      persisted: persistence.persisted,
     },
-    { status: 201 },
+    { status: emailStatus === "sent" ? 201 : 202 },
   );
 }

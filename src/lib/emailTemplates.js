@@ -75,6 +75,8 @@ function shell({ preheader, eyebrow, title, subtitle, content, reference }) {
 
 export function consultationOwnerEmail({ reference, data, submittedAt }) {
   const message = escapeHtml(data.message).replaceAll("\n", "<br>");
+  const replyHref = `mailto:${escapeHtml(data.email)}?subject=${encodeURIComponent(`Re: ${reference} — Capwise consultation`)}`;
+  const phoneHref = data.phone ? `tel:${String(data.phone).replace(/[^+\d]/g, "")}` : null;
   const content = `
     <table role="presentation" cellpadding="0" cellspacing="0" width="100%">
       ${row("Full name", data.name)}
@@ -89,7 +91,15 @@ export function consultationOwnerEmail({ reference, data, submittedAt }) {
       <div style="font-size:10px;line-height:16px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:${brand.darkTeal};">Client briefing</div>
       <div style="margin-top:10px;font-size:14px;line-height:24px;color:${brand.text};">${message}</div>
     </div>
-    <div style="margin-top:20px;padding:16px 18px;border-left:3px solid ${brand.teal};background:${brand.pale};font-size:12px;line-height:20px;color:${brand.muted};">Reply directly to this email to respond to <strong style="color:${brand.text};">${escapeHtml(data.name)}</strong>. The website sets the visitor email as Reply-To.</div>`;
+    <table role="presentation" cellpadding="0" cellspacing="0" style="margin-top:22px;">
+      <tr>
+        <td style="padding-right:10px;">
+          <a href="${replyHref}" style="display:inline-block;padding:12px 18px;border-radius:999px;background:${brand.darkTeal};font-size:12px;line-height:18px;font-weight:800;text-decoration:none;color:#FFFFFF;">Reply to visitor</a>
+        </td>
+        ${phoneHref ? `<td><a href="${phoneHref}" style="display:inline-block;padding:11px 17px;border:1px solid ${brand.border};border-radius:999px;background:#FFFFFF;font-size:12px;line-height:18px;font-weight:800;text-decoration:none;color:${brand.navy};">Call visitor</a></td>` : ""}
+      </tr>
+    </table>
+    <div style="margin-top:20px;padding:16px 18px;border-left:3px solid ${brand.teal};background:${brand.pale};font-size:12px;line-height:20px;color:${brand.muted};">Replying to the delivered email will also respond to <strong style="color:${brand.text};">${escapeHtml(data.name)}</strong>, because the website sets the visitor email as Reply-To.</div>`;
 
   const text = [
     `CAPWISE CONSULTATION ENQUIRY`,

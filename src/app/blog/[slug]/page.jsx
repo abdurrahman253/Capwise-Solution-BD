@@ -3,6 +3,8 @@ import { notFound } from "next/navigation";
 import SiteHeader from "@/components/layout/SiteHeader";
 import { blogPosts, getBlogPost } from "@/data/blog";
 
+export const dynamicParams = false;
+
 export function generateStaticParams() {
   return blogPosts.map(({ slug }) => ({ slug }));
 }

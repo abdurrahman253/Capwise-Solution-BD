@@ -43,7 +43,7 @@ export const consultationSchema = z.object({
   consent: z.literal(true, {
     error: "Consent is required before the enquiry can be submitted.",
   }),
-  website: z.string().trim().max(200).optional().or(z.literal("")),
+  capwiseFormCheck: z.string().trim().max(200).optional().or(z.literal("")),
   startedAt: z.coerce.number().int().positive(),
   sourcePath: z.string().trim().max(240).optional().or(z.literal("")),
 });

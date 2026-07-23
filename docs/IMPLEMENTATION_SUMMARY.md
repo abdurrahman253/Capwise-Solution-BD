@@ -1,29 +1,50 @@
-# Implementation Summary — Premium Conversion and Advisory Platform
+# Implementation Summary — Operational Polish v2
 
-## Implemented
+Date: 2026-07-23
 
-- Real `/api/consultations` route with shared client/server validation, origin checks, honeypot, completion-time checks, rate limiting, branded Resend email, Reply-To, reference number and optional acknowledgement.
-- Optional MongoDB persistence and optional Upstash REST rate limiting.
-- Two-step React Hook Form and Zod consultation flow with React-Toastify feedback.
-- Guided FAQ support using approved predefined information, English/Bangla/Banglish intent matching, quick actions and human handoff. No unrestricted AI claim.
-- GSAP route transition and premium App Router fallback loader.
-- Guide-release interest workflow through `/api/resource-requests`.
-- Reviewed regulatory-update preference workflow through `/api/newsletter`.
-- Business-in-Bangladesh and industry detail routes.
-- Case-study and blog architecture without fabricated content.
-- Privacy Policy, Terms of Use and Professional Disclaimer working drafts, plus a noindex `/thank-you` confirmation route.
-- Sitemap, robots, web manifest, Open Graph image, Organization/ProfessionalService, Service, Breadcrumb and FAQ structured data.
-- Security headers, custom error/loading/not-found states and route audit script.
-- Client portal decision document and high-value roadmap.
+## Lead and email reliability
+
+- The consultation API now treats MongoDB persistence and Resend delivery as separate operational stages.
+- A valid lead is recorded in `consultations` before email is attempted when MongoDB is configured.
+- Email configuration missing: HTTP 202 with `stored-only`, not a false “sent” claim.
+- Email provider failure after persistence: HTTP 202 with `email-failed`; the reference and lead remain available.
+- Successful provider submission records the Resend email ID, send time and optional acknowledgement state.
+- The visitor email remains the Reply-To address so the Capwise team can reply directly from the branded notification.
+- `/email-preview` renders the exact team and visitor templates locally without sending.
+- `/api/health`, `npm run check:setup` and `npm run test:email` make configuration and delivery testing explicit.
+
+## MongoDB operations
+
+- Cached official MongoDB driver connection suitable for Next.js serverless execution.
+- Automatic indexes for references, lead queues, normalized email history and deduplication.
+- Collections: `consultations`, `guide_downloads`, `newsletter_subscribers`, `resend_events`.
+- Guide requests are upserted by normalized email + guide; update subscriptions are upserted by normalized email.
+- Consent versions and privacy-reduced request metadata are retained; raw client IPs are not stored.
+
+## Delivery observability
+
+- Signed `/api/webhooks/resend` endpoint verifies the raw request with the webhook secret.
+- Delivery events are deduplicated by unique Svix event ID.
+- Consultation records can progress through sent, delivered, delayed, bounced, failed, suppressed and complained states.
+- Full email bodies are not copied into webhook audit records.
+
+## Platform polish
+
+- Security and privacy headers in `next.config.mjs`, including HSTS in production.
+- Noindex handling for unapproved/empty blog, case-study and testimonial pages.
+- Dynamic routes reject unknown slugs instead of silently generating thin pages.
+- Sitemap avoids fabricated review dates and includes approved content only.
+- Organization schema supports official social URLs only after configuration.
+- GitHub Actions quality gate, pre-launch checklist and operational documentation.
+- Removed unused direct dependencies for old toast, motion and OpenAI client approaches.
 
 ## Client-dependent launch inputs
 
-- Resend production domain verification.
+- Verified Capwise domain email with SPF/DKIM and an approved sender address.
 - Verified team photos, bios and credentials.
 - Approved case studies, testimonials and logo permissions.
 - Final guide PDFs and source review.
 - Exact official social URLs and Google Maps pin.
 - Final WhatsApp format confirmation.
 - Legal review of policies, disclaimer and time-sensitive content.
-- Analytics/cookie consent decision.
-- Portal roles, secure document rules and retention policy.
+- Analytics/cookie-consent decision and approved retention schedule.
