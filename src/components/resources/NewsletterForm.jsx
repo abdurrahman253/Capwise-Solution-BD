@@ -2,7 +2,7 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CheckCircle2, LoaderCircle, Radar, ShieldCheck } from "lucide-react";
-import { useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 
@@ -10,13 +10,17 @@ import { newsletterSchema } from "@/schemas/newsletter";
 
 const topics = ["Tax & VAT", "RJSC & Corporate", "Investment", "Labour & HR"];
 
+function getCurrentTimestamp() {
+  return Date.now();
+}
+
 export default function NewsletterForm() {
-  const startedAtRef = useRef(Date.now());
   const [reference, setReference] = useState("");
   const {
     register,
     handleSubmit,
     reset,
+    setValue,
     formState: { errors, isSubmitting },
   } = useForm({
     resolver: zodResolver(newsletterSchema),
@@ -27,9 +31,18 @@ export default function NewsletterForm() {
       topics: [],
       consent: false,
       website: "",
-      startedAt: Date.now(),
+      startedAt: 1,
     },
   });
+
+
+  useEffect(() => {
+    setValue("startedAt", getCurrentTimestamp(), {
+      shouldDirty: false,
+      shouldTouch: false,
+      shouldValidate: false,
+    });
+  }, [setValue]);
 
   async function onSubmit(values) {
     const toastId = toast.loading("Recording your update preferences…");
@@ -37,7 +50,7 @@ export default function NewsletterForm() {
       const response = await fetch("/api/newsletter", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...values, startedAt: startedAtRef.current }),
+        body: JSON.stringify(values),
       });
       const result = await response.json().catch(() => null);
       if (!response.ok) throw new Error(result?.error || "The subscription could not be recorded.");
@@ -48,8 +61,15 @@ export default function NewsletterForm() {
         isLoading: false,
         autoClose: 5000,
       });
-      reset();
-      startedAtRef.current = Date.now();
+      reset({
+        name: "",
+        email: "",
+        company: "",
+        topics: [],
+        consent: false,
+        website: "",
+        startedAt: getCurrentTimestamp(),
+      });
     } catch (error) {
       toast.update(toastId, {
         render: error.message || "Please try again.",
@@ -77,6 +97,7 @@ export default function NewsletterForm() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="grid gap-4" noValidate>
+      <input {...register("startedAt")} type="hidden" />
       <input {...register("website")} className="absolute -left-[9999px]" tabIndex="-1" autoComplete="off" />
       <div className="grid gap-4 sm:grid-cols-2">
         <label className="grid gap-2 text-xs font-bold text-white">

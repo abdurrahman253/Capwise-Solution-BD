@@ -3,20 +3,24 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Dialog, DialogBackdrop, DialogPanel, DialogTitle } from "@headlessui/react";
 import { ArrowRight, BookOpenCheck, CheckCircle2, LoaderCircle, ShieldCheck, X } from "lucide-react";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 
 import { resourceRequestSchema } from "@/schemas/resourceRequest";
 
+function getCurrentTimestamp() {
+  return Date.now();
+}
+
 export default function GuideRequestButton({ guide, featured = false }) {
   const [open, setOpen] = useState(false);
   const [complete, setComplete] = useState("");
-  const startedAtRef = useRef(Date.now());
   const {
     register,
     handleSubmit,
     reset,
+    setValue,
     formState: { errors, isSubmitting },
   } = useForm({
     resolver: zodResolver(resourceRequestSchema),
@@ -28,7 +32,7 @@ export default function GuideRequestButton({ guide, featured = false }) {
       resourceTitle: guide.title,
       consent: false,
       website: "",
-      startedAt: Date.now(),
+      startedAt: 1,
     },
   });
 
@@ -38,7 +42,7 @@ export default function GuideRequestButton({ guide, featured = false }) {
       const response = await fetch("/api/resource-requests", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...values, startedAt: startedAtRef.current }),
+        body: JSON.stringify(values),
       });
       const result = await response.json().catch(() => null);
       if (!response.ok) throw new Error(result?.error || "The request could not be recorded.");
@@ -50,8 +54,16 @@ export default function GuideRequestButton({ guide, featured = false }) {
         isLoading: false,
         autoClose: 5000,
       });
-      reset();
-      startedAtRef.current = Date.now();
+      reset({
+        name: "",
+        email: "",
+        company: "",
+        resourceSlug: guide.slug,
+        resourceTitle: guide.title,
+        consent: false,
+        website: "",
+        startedAt: getCurrentTimestamp(),
+      });
     } catch (error) {
       toast.update(toastId, {
         render: error.message || "Please try again.",
@@ -71,7 +83,11 @@ export default function GuideRequestButton({ guide, featured = false }) {
         type="button"
         onClick={() => {
           setComplete("");
-          startedAtRef.current = Date.now();
+          setValue("startedAt", getCurrentTimestamp(), {
+            shouldDirty: false,
+            shouldTouch: false,
+            shouldValidate: false,
+          });
           setOpen(true);
         }}
         className={`mt-auto flex w-full items-center justify-between gap-4 border-t pt-6 text-left text-xs font-bold transition sm:text-sm ${
@@ -136,6 +152,7 @@ export default function GuideRequestButton({ guide, featured = false }) {
                     <BookOpenCheck aria-hidden="true" size={18} className="mt-0.5 shrink-0 text-gold" />
                     This is not a download gate for an unfinished file. It records genuine interest so Capwise can notify you after content, citations and legal review are complete.
                   </div>
+                  <input {...register("startedAt")} type="hidden" />
                   <input {...register("resourceSlug")} type="hidden" />
                   <input {...register("resourceTitle")} type="hidden" />
                   <input {...register("website")} className="absolute -left-[9999px]" tabIndex="-1" autoComplete="off" />

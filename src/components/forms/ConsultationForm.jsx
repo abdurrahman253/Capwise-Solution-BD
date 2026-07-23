@@ -10,7 +10,7 @@ import {
   MailCheck,
   ShieldCheck,
 } from "lucide-react";
-import { useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 
@@ -18,6 +18,10 @@ import {
   consultationSchema,
   consultationServices,
 } from "@/schemas/consultation";
+
+function getCurrentTimestamp() {
+  return Date.now();
+}
 
 function FieldError({ id, message }) {
   if (!message) return null;
@@ -29,7 +33,6 @@ function FieldError({ id, message }) {
 }
 
 export default function ConsultationForm({ compact = false }) {
-  const startedAtRef = useRef(Date.now());
   const [step, setStep] = useState(1);
   const [submissionResult, setSubmissionResult] = useState(null);
   const {
@@ -38,6 +41,7 @@ export default function ConsultationForm({ compact = false }) {
     trigger,
     reset,
     setError,
+    setValue,
     formState: { errors, isSubmitting },
   } = useForm({
     resolver: zodResolver(consultationSchema),
@@ -51,10 +55,19 @@ export default function ConsultationForm({ compact = false }) {
       message: "",
       consent: false,
       capwiseFormCheck: "",
-      startedAt: Date.now(),
+      startedAt: 1,
       sourcePath: "",
     },
   });
+
+
+  useEffect(() => {
+    setValue("startedAt", getCurrentTimestamp(), {
+      shouldDirty: false,
+      shouldTouch: false,
+      shouldValidate: false,
+    });
+  }, [setValue]);
 
   async function goToDetails() {
     const fields = compact
@@ -73,7 +86,6 @@ export default function ConsultationForm({ compact = false }) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           ...values,
-          startedAt: startedAtRef.current,
           sourcePath: window.location.pathname,
         }),
       });
@@ -105,8 +117,18 @@ export default function ConsultationForm({ compact = false }) {
         isLoading: false,
         autoClose: 5000,
       });
-      reset();
-      startedAtRef.current = Date.now();
+      reset({
+        name: "",
+        email: "",
+        phone: "",
+        company: "",
+        service: "",
+        message: "",
+        consent: false,
+        capwiseFormCheck: "",
+        startedAt: getCurrentTimestamp(),
+        sourcePath: "",
+      });
     } catch (error) {
       toast.update(toastId, {
         render: error.message || "Something went wrong. Please try again.",
@@ -139,6 +161,11 @@ export default function ConsultationForm({ compact = false }) {
           onClick={() => {
             setSubmissionResult(null);
             setStep(1);
+            setValue("startedAt", getCurrentTimestamp(), {
+              shouldDirty: false,
+              shouldTouch: false,
+              shouldValidate: false,
+            });
           }}
           className="mt-6 block text-xs font-bold text-foreground underline decoration-accent/50 underline-offset-4"
         >
@@ -173,6 +200,8 @@ export default function ConsultationForm({ compact = false }) {
           ))}
         </div>
       </div>
+
+      <input {...register("startedAt")} type="hidden" />
 
       <input
         {...register("capwiseFormCheck")}
