@@ -159,8 +159,8 @@ export default function ServiceDetailPage({ service }) {
                 </p>
 
                 <div className="mt-7 flex flex-col gap-2.5 min-[430px]:flex-row min-[430px]:flex-wrap sm:mt-9">
-                  <a
-                    href={emailHref}
+                  <Link
+                    href="/contact"
                     className="group inline-flex min-h-11 items-center justify-between gap-5 rounded-full bg-action px-5 text-xs font-bold text-action-foreground shadow-[0_14px_35px_rgba(15,118,110,0.18)] transition hover:-translate-y-0.5 hover:bg-action-hover sm:min-h-13 sm:px-6 sm:text-sm"
                   >
                     Request a consultation
@@ -169,7 +169,7 @@ export default function ServiceDetailPage({ service }) {
                       size={16}
                       className="transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
                     />
-                  </a>
+                  </Link>
                   <a
                     href="tel:+8801624000381"
                     className="inline-flex min-h-11 items-center justify-center gap-2.5 rounded-full border border-border bg-surface px-5 text-xs font-bold text-foreground transition hover:border-accent hover:text-accent-strong sm:min-h-13 sm:px-6 sm:text-sm"

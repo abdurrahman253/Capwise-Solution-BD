@@ -22,9 +22,13 @@ export default function OpenGraphImage() {
       >
         <div style={{ position: "absolute", inset: 0, opacity: 0.15, backgroundImage: "linear-gradient(rgba(255,255,255,.12) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.12) 1px, transparent 1px)", backgroundSize: "54px 54px" }} />
         <div style={{ position: "absolute", right: -120, top: -160, width: 520, height: 520, borderRadius: 999, background: "rgba(45,212,191,.20)" }} />
-        <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", width: "100%", zIndex: 1 }}>
+        <div style={{ position: "relative", display: "flex", flexDirection: "column", justifyContent: "space-between", width: "100%" }}>
           <div style={{ display: "flex", alignItems: "center", gap: 18 }}>
-            <div style={{ width: 66, height: 66, borderRadius: 999, border: "2px solid rgba(255,255,255,.28)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 34, color: "#2DD4BF" }}>✓</div>
+            <div style={{ width: 66, height: 66, borderRadius: 999, border: "2px solid rgba(255,255,255,.28)", display: "flex", alignItems: "center", justifyContent: "center", color: "#2DD4BF" }}>
+              <svg width="38" height="38" viewBox="0 0 38 38" fill="none" aria-hidden="true">
+                <path d="M8 20L15 27L30 11" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </div>
             <div style={{ display: "flex", flexDirection: "column" }}>
               <div style={{ fontSize: 28, fontWeight: 800, letterSpacing: -1 }}>CAPWISE</div>
               <div style={{ marginTop: 4, fontSize: 12, fontWeight: 800, letterSpacing: 5, color: "#2DD4BF" }}>SOLUTION BD</div>
