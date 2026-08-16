@@ -1,0 +1,430 @@
+"use client";
+
+import { zodResolver } from "@hookform/resolvers/zod";
+import {
+  ArrowLeft,
+  ArrowRight,
+  Check,
+  LoaderCircle,
+  LockKeyhole,
+  MailCheck,
+  ShieldCheck,
+} from "lucide-react";
+import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
+
+import {
+  consultationIndustries,
+  consultationSchema,
+  consultationServices,
+} from "@/schemas/consultation";
+
+function getCurrentTimestamp() {
+  return Date.now();
+}
+
+function FieldError({ id, message }) {
+  if (!message) return null;
+  return (
+    <p id={id} className="text-[0.68rem] font-semibold leading-5 text-danger" role="alert">
+      {message}
+    </p>
+  );
+}
+
+export default function ConsultationForm({ compact = false }) {
+  const [step, setStep] = useState(1);
+  const [submissionResult, setSubmissionResult] = useState(null);
+  const {
+    register,
+    handleSubmit,
+    trigger,
+    reset,
+    setError,
+    setValue,
+    watch,
+    formState: { errors, isSubmitting },
+  } = useForm({
+    resolver: zodResolver(consultationSchema),
+    mode: "onTouched",
+    defaultValues: {
+      name: "",
+      email: "",
+      phone: "",
+      company: "",
+      businessType: "",
+      pickYourIndustry: "",
+      service: "",
+      message: "",
+      consent: false,
+      capwiseFormCheck: "",
+      startedAt: 1,
+      sourcePath: "",
+    },
+  });
+
+  const businessType = watch("businessType");
+
+  useEffect(() => {
+    setValue("startedAt", getCurrentTimestamp(), {
+      shouldDirty: false,
+      shouldTouch: false,
+      shouldValidate: false,
+    });
+  }, [setValue]);
+
+  async function goToDetails() {
+    const fields = compact
+      ? ["name", "email", "businessType", "pickYourIndustry", "service"]
+      : [
+          "name",
+          "email",
+          "phone",
+          "company",
+          "businessType",
+          "pickYourIndustry",
+          "service",
+        ];
+    const valid = await trigger(fields, { shouldFocus: true });
+    if (valid) setStep(2);
+  }
+
+  async function onSubmit(values) {
+    const toastId = toast.loading("Sending your consultation request…");
+
+    try {
+      const response = await fetch("/api/consultations", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          ...values,
+          sourcePath: window.location.pathname,
+        }),
+      });
+      const result = await response.json().catch(() => null);
+
+      if (!response.ok) {
+        if (result?.fields) {
+          Object.entries(result.fields).forEach(([name, message]) => {
+            setError(name, { type: "server", message });
+          });
+        }
+        throw new Error(result?.error || "The enquiry could not be sent.");
+      }
+
+      if (!result?.reference) {
+        throw new Error(
+          "The website could not confirm delivery. Please refresh the page and try again.",
+        );
+      }
+
+      setSubmissionResult({
+        reference: result.reference || "",
+        deliveryStatus: result.deliveryStatus || "sent",
+        message: result.message || "Your consultation request has been sent.",
+      });
+      toast.update(toastId, {
+        render: result.message || "Your consultation request has been sent.",
+        type: "success",
+        isLoading: false,
+        autoClose: 5000,
+      });
+      reset({
+        name: "",
+        email: "",
+        phone: "",
+        company: "",
+        businessType: "",
+        pickYourIndustry: "",
+        service: "",
+        message: "",
+        consent: false,
+        capwiseFormCheck: "",
+        startedAt: getCurrentTimestamp(),
+        sourcePath: "",
+      });
+    } catch (error) {
+      toast.update(toastId, {
+        render: error.message || "Something went wrong. Please try again.",
+        type: "error",
+        isLoading: false,
+        autoClose: 6000,
+      });
+    }
+  }
+
+  if (submissionResult?.reference) {
+    const notificationSent = submissionResult.deliveryStatus === "sent";
+
+    return (
+      <div className="rounded-[1.35rem] border border-accent/25 bg-accent/8 p-6 sm:p-7" role="status">
+        <span className="inline-flex size-12 items-center justify-center rounded-full bg-accent text-[#1b1464]">
+          <MailCheck aria-hidden="true" size={21} />
+        </span>
+        <h3 className="mt-5 font-display text-2xl font-bold tracking-[-0.045em] text-foreground">
+          {notificationSent ? "Enquiry sent successfully." : "Enquiry recorded successfully."}
+        </h3>
+        <p className="mt-3 text-sm leading-7 text-muted">
+          {submissionResult.message} Keep this reference for follow-up:
+        </p>
+        <p className="mt-4 inline-flex rounded-full border border-accent/30 bg-surface px-4 py-2 text-xs font-extrabold tracking-[0.08em] text-accent-strong">
+          {submissionResult.reference}
+        </p>
+        <button
+          type="button"
+          onClick={() => {
+            setSubmissionResult(null);
+            setStep(1);
+            setValue("startedAt", getCurrentTimestamp(), {
+              shouldDirty: false,
+              shouldTouch: false,
+              shouldValidate: false,
+            });
+          }}
+          className="mt-6 block text-xs font-bold text-foreground underline decoration-accent/50 underline-offset-4"
+        >
+          Send another enquiry
+        </button>
+      </div>
+    );
+  }
+
+  const fieldClass =
+    "h-12 w-full rounded-xl border border-border bg-surface px-4 text-sm text-foreground outline-none transition placeholder:text-muted/65 focus:border-accent-strong focus:ring-4 focus:ring-accent/10 aria-[invalid=true]:border-danger aria-[invalid=true]:focus:ring-danger/10";
+
+  return (
+    <form onSubmit={handleSubmit(onSubmit)} className="grid gap-5" noValidate>
+      <div className="flex items-center justify-between gap-4 border-b border-border pb-5">
+        <div>
+          <p className="text-[0.6rem] font-bold uppercase tracking-[0.18em] text-accent-strong">
+            Step {step} of 2
+          </p>
+          <p className="mt-1 text-sm font-bold text-foreground">
+            {step === 1 ? "Contact and service fit" : "Business briefing and consent"}
+          </p>
+        </div>
+        <div className="flex items-center gap-2" aria-hidden="true">
+          {[1, 2].map((item) => (
+            <span
+              key={item}
+              className={`h-1.5 rounded-full transition-all ${
+                item <= step ? "w-10 bg-accent" : "w-5 bg-border"
+              }`}
+            />
+          ))}
+        </div>
+      </div>
+
+      <input {...register("startedAt")} type="hidden" />
+
+      <input
+        {...register("capwiseFormCheck")}
+        tabIndex="-1"
+        autoComplete="one-time-code"
+        data-lpignore="true"
+        data-1p-ignore="true"
+        data-bwignore="true"
+        className="pointer-events-none absolute -left-[10000px] top-auto h-px w-px overflow-hidden opacity-0"
+        aria-hidden="true"
+      />
+
+      {step === 1 && (
+        <div className="grid gap-4">
+          <div className="grid gap-4 sm:grid-cols-2">
+            <label className="grid gap-2 text-xs font-bold text-foreground">
+              Full name
+              <input
+                {...register("name")}
+                className={fieldClass}
+                autoComplete="name"
+                placeholder="Your name"
+                aria-invalid={Boolean(errors.name)}
+                aria-describedby={errors.name ? "consultation-name-error" : undefined}
+              />
+              <FieldError id="consultation-name-error" message={errors.name?.message} />
+            </label>
+            <label className="grid gap-2 text-xs font-bold text-foreground">
+              Work email
+              <input
+                {...register("email")}
+                className={fieldClass}
+                type="email"
+                autoComplete="email"
+                placeholder="name@company.com"
+                aria-invalid={Boolean(errors.email)}
+                aria-describedby={errors.email ? "consultation-email-error" : undefined}
+              />
+              <FieldError id="consultation-email-error" message={errors.email?.message} />
+            </label>
+          </div>
+
+          {!compact && (
+            <div className="grid gap-4 sm:grid-cols-2">
+              <label className="grid gap-2 text-xs font-bold text-foreground">
+                Company name <span className="font-medium text-muted">(optional)</span>
+                <input
+                  {...register("company")}
+                  className={fieldClass}
+                  autoComplete="organization"
+                  placeholder="Company name"
+                  aria-invalid={Boolean(errors.company)}
+                  aria-describedby={errors.company ? "consultation-company-error" : undefined}
+                />
+                <FieldError id="consultation-company-error" message={errors.company?.message} />
+              </label>
+              <label className="grid gap-2 text-xs font-bold text-foreground">
+                Phone number <span className="font-medium text-muted">(optional)</span>
+                <input
+                  {...register("phone")}
+                  className={fieldClass}
+                  type="tel"
+                  autoComplete="tel"
+                  placeholder="+880 1XXX XXXXXX"
+                  aria-invalid={Boolean(errors.phone)}
+                  aria-describedby={errors.phone ? "consultation-phone-error" : undefined}
+                />
+                <FieldError id="consultation-phone-error" message={errors.phone?.message} />
+              </label>
+            </div>
+          )}
+
+          <fieldset className="grid gap-2">
+            <legend className="text-xs font-bold text-foreground">Business type</legend>
+            <div className="grid grid-cols-2 gap-2" role="radiogroup" aria-describedby={errors.businessType ? "consultation-business-type-error" : undefined}>
+              {["SME", "Non-SME"].map((option) => (
+                <label key={option} className={`flex h-12 cursor-pointer items-center justify-center rounded-xl border text-sm font-extrabold transition ${businessType === option ? "border-brand-blue bg-brand-blue text-white shadow-sm" : "border-border bg-surface text-foreground hover:border-brand-blue/40"}`}>
+                  <input {...register("businessType")} type="radio" value={option} className="sr-only" />
+                  {option}
+                </label>
+              ))}
+            </div>
+            <FieldError id="consultation-business-type-error" message={errors.businessType?.message} />
+          </fieldset>
+
+          <label className="grid gap-2 text-xs font-bold text-foreground">
+            Pick Your Industry
+            <select
+              {...register("pickYourIndustry")}
+              className={fieldClass}
+              defaultValue=""
+              aria-invalid={Boolean(errors.pickYourIndustry)}
+              aria-describedby={errors.pickYourIndustry ? "consultation-industry-error" : undefined}
+            >
+              <option value="" disabled>
+                Select your industry
+              </option>
+              {consultationIndustries.map((option) => (
+                <option key={option} value={option}>
+                  {option}
+                </option>
+              ))}
+            </select>
+            <FieldError id="consultation-industry-error" message={errors.pickYourIndustry?.message} />
+          </label>
+
+          <label className="grid gap-2 text-xs font-bold text-foreground">
+            Service interest
+            <select
+              {...register("service")}
+              className={fieldClass}
+              defaultValue=""
+              aria-invalid={Boolean(errors.service)}
+              aria-describedby={errors.service ? "consultation-service-error" : undefined}
+            >
+              <option value="" disabled>
+                Select a service
+              </option>
+              {consultationServices.map((option) => (
+                <option key={option} value={option}>
+                  {option}
+                </option>
+              ))}
+            </select>
+            <FieldError id="consultation-service-error" message={errors.service?.message} />
+          </label>
+
+          <button
+            type="button"
+            onClick={goToDetails}
+            className="mt-1 inline-flex h-12 items-center justify-center gap-3 rounded-full bg-action px-6 text-sm font-bold text-action-foreground transition hover:-translate-y-0.5 hover:bg-action-hover"
+          >
+            Continue to briefing
+            <ArrowRight aria-hidden="true" size={17} />
+          </button>
+        </div>
+      )}
+
+      {step === 2 && (
+        <div className="grid gap-4">
+          <div className="rounded-xl border border-border bg-surface-muted/55 p-4 text-xs leading-6 text-muted">
+            <p className="flex items-start gap-2 font-semibold text-foreground">
+              <ShieldCheck aria-hidden="true" size={16} className="mt-1 shrink-0 text-accent-strong" />
+              A focused briefing helps Capwise route the enquiry to the right adviser.
+            </p>
+            <p className="mt-1 pl-6">Mention the entity, immediate issue, deadline and practical outcome needed.</p>
+          </div>
+
+          <label className="grid gap-2 text-xs font-bold text-foreground">
+            What would you like to solve?
+            <textarea
+              {...register("message")}
+              className="min-h-40 w-full resize-y rounded-xl border border-border bg-surface px-4 py-3 text-sm leading-6 text-foreground outline-none transition placeholder:text-muted/65 focus:border-accent-strong focus:ring-4 focus:ring-accent/10 aria-[invalid=true]:border-danger"
+              placeholder="Example: We are setting up a foreign-owned company and need help choosing the structure, preparing the registration sequence and understanding the ongoing compliance workstream."
+              aria-invalid={Boolean(errors.message)}
+              aria-describedby={errors.message ? "consultation-message-error" : undefined}
+            />
+            <FieldError id="consultation-message-error" message={errors.message?.message} />
+          </label>
+
+          <label className="flex items-start gap-3 rounded-xl border border-border bg-surface p-4 text-xs leading-5 text-muted">
+            <input
+              {...register("consent")}
+              type="checkbox"
+              className="mt-0.5 size-4 shrink-0 rounded border-border accent-[var(--accent-strong)]"
+              aria-invalid={Boolean(errors.consent)}
+            />
+            <span>
+              I consent to Capwise using these details to respond to this enquiry. I will not send sensitive tax, banking, identity or company documents at this stage.
+              <FieldError id="consultation-consent-error" message={errors.consent?.message} />
+            </span>
+          </label>
+
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <button
+              type="button"
+              onClick={() => setStep(1)}
+              disabled={isSubmitting}
+              className="inline-flex h-11 items-center justify-center gap-2 rounded-full border border-border bg-surface px-5 text-xs font-bold text-foreground transition hover:border-accent"
+            >
+              <ArrowLeft aria-hidden="true" size={16} />
+              Back
+            </button>
+            <button
+              type="submit"
+              disabled={isSubmitting}
+              className="inline-flex h-12 items-center justify-center gap-3 rounded-full bg-action px-6 text-sm font-bold text-action-foreground transition hover:-translate-y-0.5 hover:bg-action-hover disabled:cursor-wait disabled:opacity-65"
+            >
+              {isSubmitting ? (
+                <>
+                  <LoaderCircle aria-hidden="true" size={17} className="animate-spin motion-reduce:animate-none" />
+                  Sending securely…
+                </>
+              ) : (
+                <>
+                  Send consultation request
+                  <Check aria-hidden="true" size={17} />
+                </>
+              )}
+            </button>
+          </div>
+        </div>
+      )}
+
+      <p className="flex items-start gap-2 text-[0.66rem] font-semibold leading-5 text-muted">
+        <LockKeyhole aria-hidden="true" size={14} className="mt-0.5 shrink-0 text-accent-strong" />
+        The form uses a protected server route, creates a unique reference and records the lead in MongoDB when configured. Resend delivers the team notification.
+      </p>
+    </form>
+  );
+}

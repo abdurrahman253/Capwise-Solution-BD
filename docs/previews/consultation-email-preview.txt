@@ -1,0 +1,12 @@
+CAPWISE CONSULTATION ENQUIRY
+Reference: CAP-PREVIEW-260723
+Submitted: 23 Jul 2026, 4:00 PM
+Name: Capwise Email Test
+Email: test@capwisebd.com
+Phone: +880 1624 000 381
+Company: Capwise Solution BD
+Service: Business Advisory
+Source: /email-preview
+
+Client briefing:
+This is a safe local preview of the branded consultation notification.
