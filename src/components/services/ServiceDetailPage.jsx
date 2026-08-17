@@ -553,7 +553,7 @@ export default function ServiceDetailPage({ service }) {
             <div className="grid gap-2.5 min-[430px]:grid-cols-2 lg:w-[24rem]">
               <Link
                 href="/contact"
-                className="inline-flex min-h-11 items-center justify-center gap-2.5 rounded-full bg-accent px-5 text-xs font-bold text-[#1b1464] transition hover:bg-[#e5c95f] sm:min-h-13 sm:text-sm"
+                className="inline-flex min-h-11 items-center justify-center gap-2.5 rounded-full bg-brand-gold px-5 text-xs font-bold text-brand-navy shadow-[0_10px_28px_rgba(212,175,55,.2)] transition duration-200 hover:-translate-y-0.5 hover:bg-brand-gold-soft active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-brand-navy sm:min-h-13 sm:text-sm"
               >
                 Book a Free Consultation
                 <ArrowUpRight aria-hidden="true" size={16} />

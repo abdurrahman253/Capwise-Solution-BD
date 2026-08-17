@@ -12,8 +12,8 @@ const columns = [
 
 export default function SiteFooter() {
   return <footer className="border-t border-white/10 bg-[#090d23] text-white"><div className="mx-auto max-w-[94rem] px-5 py-14 sm:px-6 sm:py-18 lg:px-8 lg:py-20 2xl:px-10">
-    <div className="grid gap-12 lg:grid-cols-12 lg:gap-10">
-      <div className="lg:col-span-4"><BrandLogo compact light /><h2 className="mt-7 max-w-[14ch] font-display text-3xl font-semibold leading-tight tracking-[-.05em] sm:text-4xl">Accounting, tax, legal and compliance—connected.</h2><p className="mt-4 max-w-md text-sm leading-7 text-white/55">Professional advisory support for businesses operating in Bangladesh.</p></div>
+    <div className="grid grid-cols-2 gap-x-6 gap-y-10 lg:grid-cols-12 lg:gap-10">
+      <div className="col-span-2 lg:col-span-4"><BrandLogo compact tagline="stacked" light /><h2 className="mt-7 max-w-[14ch] font-display text-3xl font-semibold leading-tight tracking-[-.05em] sm:text-4xl">Accounting, tax, legal and compliance—connected.</h2><p className="mt-4 max-w-md text-sm leading-7 text-white/55">Professional advisory support for businesses operating in Bangladesh.</p></div>
       <div className="lg:col-span-2"><p className="text-[.6rem] font-extrabold uppercase tracking-[.18em] text-white/35">Services</p><div className="mt-5 grid gap-2.5">{services.map(item=><Link key={item.href} href={item.href} className="text-xs font-semibold leading-5 text-white/65 transition hover:text-brand-gold">{item.label}</Link>)}</div></div>
       {columns.map(col=><div key={col.title} className="lg:col-span-2"><p className="text-[.6rem] font-extrabold uppercase tracking-[.18em] text-white/35">{col.title}</p><div className="mt-5 grid gap-2.5">{col.links.map(([label,href])=><Link key={href} href={href} className="group inline-flex items-center gap-2 text-xs font-semibold leading-5 text-white/65 transition hover:text-brand-gold">{label}<ArrowUpRight size={12} className="opacity-0 transition group-hover:opacity-100"/></Link>)}</div></div>)}
     </div>

@@ -11,7 +11,8 @@ export default function PickYourIndustry() {
   const reduceMotion = useReducedMotion();
 
   return (
-    <section className="bg-brand-navy py-18 text-white sm:py-24 lg:py-28" aria-labelledby="pick-industry-title">
+    <section className="relative overflow-hidden bg-brand-navy py-18 text-white sm:py-24 lg:py-28" aria-labelledby="pick-industry-title">
+      <div aria-hidden="true" className="pointer-events-none absolute -right-40 -top-40 -z-10 size-[32rem] rounded-full bg-brand-gold/10 blur-[120px]" />
       <div className="mx-auto max-w-[94rem] px-5 sm:px-6 lg:px-8 2xl:px-10">
         <div className="grid gap-8 lg:grid-cols-12 lg:items-end">
           <div className="lg:col-span-8">
@@ -27,7 +28,7 @@ export default function PickYourIndustry() {
           </div>
         </div>
 
-        <div className="mt-12 grid gap-3 md:grid-cols-2 xl:grid-cols-3">
+        <div className="mt-8 grid grid-cols-2 gap-2.5 sm:mt-12 sm:gap-3 md:grid-cols-2 xl:grid-cols-3">
           {pickYourIndustryOptions.map((item, index) => {
             const Icon = icons[index];
             return (
@@ -37,20 +38,21 @@ export default function PickYourIndustry() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ delay: index * 0.05 }}
-                className="group rounded-[1.3rem] border border-white/12 bg-white/[.045] p-6 transition hover:-translate-y-1 hover:border-brand-gold/45 hover:bg-white/[.07]"
+                className="group rounded-[1.1rem] border border-white/12 bg-white/[.045] p-4 transition hover:-translate-y-1 hover:border-brand-gold/45 hover:bg-white/[.07] sm:rounded-[1.3rem] sm:p-6"
               >
-                <Link href={item.href} className="flex min-h-[16rem] flex-col">
+                <Link href={item.href} className="flex min-h-[10.5rem] flex-col sm:min-h-[16rem]">
                   <div className="flex items-start justify-between">
-                    <span className="inline-flex size-11 items-center justify-center rounded-full border border-white/12 bg-white/[.055] text-brand-gold">
-                      <Icon size={18} />
+                    <span className="inline-flex size-8 items-center justify-center rounded-full border border-white/12 bg-white/[.055] text-brand-gold sm:size-11">
+                      <Icon size={15} className="sm:hidden" />
+                      <Icon size={18} className="hidden sm:block" />
                     </span>
                     <span className="text-[.65rem] font-extrabold text-white/35">{item.number}</span>
                   </div>
-                  <h3 className="mt-7 font-display text-2xl font-semibold leading-[1.05] tracking-[-.045em]">
+                  <h3 className="mt-4 font-display text-base font-semibold leading-[1.15] tracking-[-.03em] sm:mt-7 sm:text-2xl sm:leading-[1.05] sm:tracking-[-.045em]">
                     {item.label}
                   </h3>
-                  <p className="mt-3 text-sm leading-7 text-white/58">{item.text}</p>
-                  <span className="mt-auto flex items-center justify-between border-t border-white/10 pt-5 text-xs font-extrabold">
+                  <p className="mt-2 text-xs leading-5 text-white/58 sm:mt-3 sm:text-sm sm:leading-7">{item.text}</p>
+                  <span className="mt-auto flex items-center justify-between border-t border-white/10 pt-3 text-[0.68rem] font-extrabold sm:pt-5 sm:text-xs">
                     Read guide
                     <ArrowUpRight size={15} className="text-brand-gold transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
                   </span>

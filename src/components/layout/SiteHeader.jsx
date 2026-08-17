@@ -15,7 +15,9 @@ import {
   ArrowRight,
   ArrowUpRight,
   ChevronDown,
+  Mail,
   Menu,
+  Phone,
   X,
 } from "lucide-react";
 import Link from "next/link";
@@ -188,9 +190,32 @@ export default function SiteHeader() {
 
   return (
     <>
+      <div className="hidden border-b border-white/10 bg-gradient-to-r from-brand-navy via-[#171163] to-brand-navy lg:block">
+        <div className="mx-auto flex h-10 max-w-[94rem] items-center justify-end gap-3 px-4 sm:px-6 lg:px-8 2xl:px-10">
+          <a
+            href="mailto:info@capwisebd.com"
+            className="inline-flex items-center gap-1.5 text-[0.68rem] font-semibold text-white/55 transition hover:text-white/85"
+          >
+            <Mail aria-hidden="true" size={12} />
+            info@capwisebd.com
+          </a>
+          <span aria-hidden="true" className="h-3 w-px bg-white/15" />
+          <a
+            href="tel:+8801624000381"
+            className="group inline-flex h-7 items-center gap-2 rounded-full border border-white/15 bg-white/[0.06] pl-2.5 pr-3 backdrop-blur transition duration-200 hover:-translate-y-px hover:border-brand-gold/45 hover:bg-white/[0.1]"
+          >
+            <span className="inline-flex size-4 items-center justify-center rounded-full bg-brand-gold text-brand-navy">
+              <Phone aria-hidden="true" size={10} />
+            </span>
+            <span className="text-[0.7rem] font-extrabold tracking-[-0.01em] text-white">+880 1624-000381</span>
+          </a>
+        </div>
+      </div>
+
       <header className="sticky top-0 z-50 border-b border-border/80 bg-surface/94 shadow-[0_10px_34px_rgba(11,27,61,0.055)] backdrop-blur-xl">
+        <span aria-hidden="true" className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
         <div className="mx-auto flex h-[4.75rem] max-w-[94rem] items-center gap-3 px-4 sm:px-6 lg:px-8 2xl:px-10">
-          <BrandLogo compact light={logoIsLight} className="mr-auto" />
+          <BrandLogo compact tagline light={logoIsLight} className="mr-auto" />
 
           <nav aria-label="Primary navigation" className="hidden items-center gap-0 xl:flex">
             <DesktopDropdown
@@ -307,10 +332,10 @@ export default function SiteHeader() {
 
             <Link
               href="/contact"
-              className="hidden h-11 items-center gap-2 whitespace-nowrap rounded-full bg-brand-navy px-4 text-xs font-extrabold text-white shadow-[0_10px_28px_rgba(27,20,100,.18)] transition duration-200 hover:-translate-y-0.5 hover:bg-brand-blue 2xl:px-5 2xl:text-sm sm:inline-flex"
+              className="hidden h-11 items-center gap-2 whitespace-nowrap rounded-full bg-action px-5 text-[0.8rem] font-extrabold tracking-[-0.01em] text-action-foreground shadow-[0_10px_28px_rgba(27,20,100,.18)] transition duration-200 hover:-translate-y-0.5 hover:bg-action-hover hover:shadow-[0_14px_36px_rgba(212,175,55,.25),0_10px_28px_rgba(27,20,100,.18)] active:translate-y-0 active:shadow-[0_6px_18px_rgba(27,20,100,.2)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-strong focus-visible:ring-offset-2 focus-visible:ring-offset-surface 2xl:px-5 2xl:text-sm sm:inline-flex"
             >
               Book a Free Consultation
-              <ArrowUpRight aria-hidden="true" size={15} className="text-brand-gold" />
+              <ArrowUpRight aria-hidden="true" size={15} />
             </Link>
 
             <button
@@ -329,10 +354,10 @@ export default function SiteHeader() {
       <Dialog open={mobileMenuOpen} onClose={setMobileMenuOpen} className="relative z-[90] xl:hidden">
         <DialogBackdrop className="fixed inset-0 bg-brand-navy/55 backdrop-blur-sm data-[closed]:opacity-0" transition />
         <DialogPanel className="fixed inset-y-0 right-0 w-full max-w-md overflow-y-auto bg-surface p-5 shadow-2xl duration-300 data-[closed]:translate-x-full" transition>
-          <div className="flex items-center justify-between gap-4 border-b border-border pb-4">
+          <div className="flex items-start justify-between gap-4 border-b border-border pb-4">
             <DialogTitle className="sr-only">Navigation</DialogTitle>
-            <BrandLogo compact light={logoIsLight} />
-            <div className="flex items-center gap-2">
+            <BrandLogo compact tagline="stacked" light={logoIsLight} />
+            <div className="flex shrink-0 items-center gap-2">
               <ThemeToggle />
               <button type="button" onClick={() => setMobileMenuOpen(false)} className="inline-flex size-11 items-center justify-center rounded-full border border-border" aria-label="Close navigation menu"><X size={20} /></button>
             </div>
@@ -372,7 +397,9 @@ export default function SiteHeader() {
             {primaryNavigation.slice(2).map((item) => <Link key={item.href} href={item.href} className="flex min-h-12 items-center rounded-xl px-3 text-sm font-extrabold hover:bg-brand-navy/[0.045] hover:text-brand-blue">{item.label}</Link>)}
           </nav>
 
-          <Link href="/contact" className="mt-6 flex h-12 items-center justify-between rounded-xl bg-brand-navy px-5 text-sm font-extrabold text-white">Book a Free Consultation <ArrowUpRight size={17} className="text-brand-gold" /></Link>
+          <Link href="/contact" className="mt-6 flex h-12 items-center justify-between rounded-full bg-action px-5 text-sm font-extrabold text-action-foreground shadow-[0_10px_28px_rgba(27,20,100,.18)] transition duration-200 hover:-translate-y-0.5 hover:bg-action-hover active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-strong focus-visible:ring-offset-2 focus-visible:ring-offset-surface">Book a Free Consultation <ArrowUpRight size={17} /></Link>
+
+          <a href="tel:+8801624000381" className="mt-3 flex h-12 items-center justify-center gap-2 rounded-full border border-border text-sm font-bold text-foreground transition hover:border-brand-blue hover:text-brand-blue"><Phone size={15} aria-hidden="true" /> +880 1624-000381</a>
         </DialogPanel>
       </Dialog>
     </>

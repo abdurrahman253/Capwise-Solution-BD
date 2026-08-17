@@ -208,6 +208,7 @@ export default function SupportAssistant() {
           aria-haspopup="dialog"
           aria-expanded={isOpen}
         >
+          <span aria-hidden="true" className="pointer-events-none absolute -inset-3 -z-20 rounded-full bg-accent/16 opacity-70 blur-xl transition-opacity duration-300 group-hover:opacity-100" />
           <span className="absolute inset-y-0 left-0 -z-10 w-24 bg-gradient-to-r from-accent/14 to-transparent" />
           <span className="relative inline-flex size-10 shrink-0 items-center justify-center rounded-full bg-accent text-[#1b1464] shadow-[0_9px_24px_rgba(27,100,170,.28)]">
             <Sparkles aria-hidden="true" size={17} />
@@ -230,11 +231,15 @@ export default function SupportAssistant() {
       </div>
 
       <Dialog open={isOpen} onClose={setIsOpen} className="relative z-[100]">
-        <DialogBackdrop className="fixed inset-0 bg-[#020c17]/46 backdrop-blur-[3px] data-closed:opacity-0" />
+        <DialogBackdrop
+          className="fixed inset-0 bg-[#020c17]/46 backdrop-blur-[3px] duration-300 data-[closed]:opacity-0"
+          transition
+        />
         <div className="fixed inset-0 flex items-end justify-center p-2 sm:items-end sm:justify-end sm:p-6">
           <DialogPanel
             ref={panelRef}
-            className="capwise-support-panel flex h-[min(48rem,calc(100svh-1rem))] w-full max-w-[27rem] flex-col overflow-hidden rounded-[1.75rem] border sm:h-[min(44rem,calc(100svh-3rem))]"
+            className="capwise-support-panel flex h-[min(48rem,calc(100svh-1rem))] w-full max-w-[27rem] flex-col overflow-hidden rounded-[1.5rem] border duration-300 data-[closed]:translate-y-3 data-[closed]:opacity-0 sm:h-[min(44rem,calc(100svh-3rem))]"
+            transition
           >
             <header className="capwise-support-header relative overflow-hidden border-b px-5 pb-5 pt-5 sm:px-6">
               <div className="capwise-support-grid pointer-events-none absolute inset-0 opacity-60" />
@@ -276,7 +281,7 @@ export default function SupportAssistant() {
                     disabled={isSending}
                     className="capwise-support-action group flex min-h-16 items-center gap-3 rounded-xl border p-3 text-left transition disabled:cursor-wait disabled:opacity-55"
                   >
-                    <span className="inline-flex size-9 shrink-0 items-center justify-center rounded-lg bg-accent/10 text-accent-strong">
+                    <span className="inline-flex size-9 shrink-0 items-center justify-center rounded-xl bg-accent/10 text-accent-strong">
                       <Icon aria-hidden="true" size={16} />
                     </span>
                     <span className="text-[0.67rem] font-bold leading-4 text-[var(--assistant-foreground)]">
@@ -326,7 +331,7 @@ export default function SupportAssistant() {
                   <Link
                     href="/contact"
                     onClick={() => setIsOpen(false)}
-                    className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-accent px-3 text-[0.68rem] font-extrabold text-[#1b1464] transition hover:bg-[#e5c95f]"
+                    className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-action px-3 text-[0.68rem] font-extrabold text-action-foreground transition hover:bg-action-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-strong focus-visible:ring-offset-1"
                   >
                     Book a Free Consultation
                     <ArrowRight aria-hidden="true" size={14} />
