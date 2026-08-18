@@ -87,8 +87,8 @@ export const insights = [
     description: "A concise look at Bangladesh's SME sector, its role in the economy and the main challenges owners face.",
     excerpt: "SME opportunity grows with formalisation, clean records and access to finance.",
     category: "SME",
-    image: "https://images.pexels.com/photos/3184639/pexels-photo-3184639.jpeg?auto=compress&cs=tinysrgb&w=1600",
-    imageAlt: "Small business team collaborating in an office",
+    image: "https://images.pexels.com/photos/37115597/pexels-photo-37115597.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    imageAlt: "Bangladeshi small business owner in his local shop",
   },
   {
     slug: "startups-in-bangladesh",
@@ -96,8 +96,8 @@ export const insights = [
     description: "A concise overview of Bangladesh's startup landscape, structuring decisions and early compliance priorities.",
     excerpt: "Get entity structure, tax, VAT and financial records right before diligence makes them urgent.",
     category: "Startup",
-    image: "https://images.pexels.com/photos/6340689/pexels-photo-6340689.jpeg?auto=compress&cs=tinysrgb&w=1600",
-    imageAlt: "Startup team planning a business together",
+    image: "https://images.pexels.com/photos/7581043/pexels-photo-7581043.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    imageAlt: "Two founders discussing a business plan in an office",
   },
   {
     slug: "foreign-investors-market-entrants-bangladesh",
@@ -114,8 +114,8 @@ export const insights = [
     description: "A concise guide to registering and running a compliant NGO or non-profit in Bangladesh, including NGOAB requirements for foreign funding.",
     excerpt: "Foreign-funded organisations often need both a base legal registration and NGOAB compliance.",
     category: "Industries",
-    image: "https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=1600",
-    imageAlt: "Non-profit team collaborating around a community project",
+    image: "https://images.pexels.com/photos/36384099/pexels-photo-36384099.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    imageAlt: "Community development field work in a Bangladeshi village",
   },
   {
     slug: "manufacturing-rmg-bangladesh",
@@ -123,8 +123,8 @@ export const insights = [
     description: "A concise overview of Bangladesh's manufacturing and RMG sector, tax incentives and compliance expectations.",
     excerpt: "Factory safety, labour, export registration and tax treatment need one connected compliance view.",
     category: "Industries",
-    image: "https://images.pexels.com/photos/17382269/pexels-photo-17382269.jpeg?auto=compress&cs=tinysrgb&w=1600",
-    imageAlt: "Workers and operations inside a manufacturing facility",
+    image: "https://images.pexels.com/photos/31199588/pexels-photo-31199588.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    imageAlt: "Garment factory workers operating sewing machines",
   },
   {
     slug: "trading-import-export-bangladesh",
@@ -132,8 +132,8 @@ export const insights = [
     description: "A concise guide to IRC and ERC licensing for import-export businesses in Bangladesh, including process and renewal requirements.",
     excerpt: "Incorporation does not replace the IRC or ERC needed for international trading activity.",
     category: "Industries",
-    image: "https://images.pexels.com/photos/7821684/pexels-photo-7821684.jpeg?auto=compress&cs=tinysrgb&w=1600",
-    imageAlt: "Cargo containers and international trading logistics",
+    image: "https://images.pexels.com/photos/5371147/pexels-photo-5371147.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    imageAlt: "Cargo ships at Chattogram port in Bangladesh",
   },
 ];
 

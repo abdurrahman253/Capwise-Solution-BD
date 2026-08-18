@@ -26,10 +26,10 @@ export default function OpenGraphImage() {
         <div style={{ position: "relative", display: "flex", flexDirection: "column", justifyContent: "space-between", width: "100%" }}>
           <div style={{ display: "flex", alignItems: "center", gap: 18 }}>
             <img
-              src="https://capwisebd.com/brand/capwise-official.png"
+              src="https://capwisebd.com/brand/CAPWISE_logo_clean_notagline.png"
               alt=""
-              width="306"
-              height="138"
+              width={306}
+              height={138}
               style={{ objectFit: "contain", background: "white", borderRadius: 16, padding: "10px 14px" }}
             />
           </div>

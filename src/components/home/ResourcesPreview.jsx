@@ -68,7 +68,7 @@ export default function ResourcesPreview() {
 
             <h2
               id="resources-preview-title"
-              className="mt-5 max-w-[15ch] font-display text-[clamp(2.7rem,5.7vw,6.2rem)] font-semibold leading-[0.93] tracking-[-0.07em] text-foreground sm:mt-6"
+              className="mt-5 max-w-[15ch] font-display text-[clamp(2.15rem,3.6vw,3.6rem)] font-semibold leading-[0.93] tracking-[-0.07em] text-foreground sm:mt-6"
             >
               Practical knowledge.
               <span className="mt-1 block text-accent-strong">

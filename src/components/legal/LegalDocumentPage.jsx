@@ -11,7 +11,7 @@ export default function LegalDocumentPage({ eyebrow, title, intro, reviewNote, s
           <div className="capwise-coordinate-grid pointer-events-none absolute inset-0 -z-20 opacity-40" />
           <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-10">
             <p className="text-[0.62rem] font-bold uppercase tracking-[0.2em] text-accent-strong">{eyebrow}</p>
-            <h1 className="mt-6 max-w-[14ch] font-display text-[clamp(3rem,7vw,7rem)] font-semibold leading-[0.92] tracking-[-0.07em] text-foreground">{title}</h1>
+            <h1 className="mt-6 max-w-[14ch] font-display text-[clamp(2.4rem,4.4vw,4.6rem)] font-semibold leading-[0.92] tracking-[-0.07em] text-foreground">{title}</h1>
             <p className="mt-7 max-w-3xl text-sm leading-7 text-muted sm:text-base sm:leading-8">{intro}</p>
             <div className="mt-7 flex max-w-3xl items-start gap-3 rounded-xl border border-gold/25 bg-gold/8 p-4 text-xs leading-6 text-muted">
               <ShieldCheck aria-hidden="true" size={17} className="mt-1 shrink-0 text-gold" />

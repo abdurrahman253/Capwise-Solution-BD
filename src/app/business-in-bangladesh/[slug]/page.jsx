@@ -36,7 +36,7 @@ export default async function BusinessTopicPage({ params }) {
           <div className="mx-auto grid max-w-[90rem] gap-10 px-4 sm:px-6 lg:grid-cols-12 lg:items-end lg:gap-14 lg:px-10">
             <div className="lg:col-span-8">
               <p className="text-[0.62rem] font-bold uppercase tracking-[0.2em] text-accent-strong">{topic.eyebrow}</p>
-              <h1 className="mt-6 max-w-[13ch] font-display text-[clamp(3rem,7vw,7rem)] font-semibold leading-[0.92] tracking-[-0.07em] text-foreground">{topic.title}</h1>
+              <h1 className="mt-6 max-w-[13ch] font-display text-[clamp(2.4rem,4.4vw,4.6rem)] font-semibold leading-[0.92] tracking-[-0.07em] text-foreground">{topic.title}</h1>
             </div>
             <div className="lg:col-span-4">
               <p className="text-sm leading-7 text-muted sm:text-base sm:leading-8">{topic.intro}</p>

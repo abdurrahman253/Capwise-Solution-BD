@@ -42,7 +42,7 @@ export default async function IndustryPage({ params }) {
                 <IndustryIcon name={industry.icon} size={25} />
               </div>
               <p className="mt-7 text-[0.62rem] font-bold uppercase tracking-[0.2em] text-[var(--industries-accent)]">{industry.eyebrow}</p>
-              <h1 className="mt-5 max-w-[13ch] font-display text-[clamp(3rem,7vw,7rem)] font-semibold leading-[0.92] tracking-[-0.07em] text-[var(--industries-foreground)]">{industry.label}</h1>
+              <h1 className="mt-5 max-w-[13ch] font-display text-[clamp(2.4rem,4.4vw,4.6rem)] font-semibold leading-[0.92] tracking-[-0.07em] text-[var(--industries-foreground)]">{industry.label}</h1>
             </div>
             <div className="lg:col-span-4">
               <p className="text-sm leading-7 text-[var(--industries-muted)] sm:text-base sm:leading-8">{industry.description}</p>
@@ -54,7 +54,7 @@ export default async function IndustryPage({ params }) {
           <div className="mx-auto grid max-w-[90rem] gap-12 px-4 sm:px-6 lg:grid-cols-12 lg:gap-16 lg:px-10">
             <div className="lg:col-span-7">
               <p className="text-[0.6rem] font-bold uppercase tracking-[0.18em] text-accent-strong">Priority workstreams</p>
-              <h2 className="mt-4 max-w-[15ch] font-display text-[clamp(2.4rem,5vw,5rem)] font-semibold leading-[0.96] tracking-[-0.06em] text-foreground">Coordinate the obligations that affect day-to-day operations.</h2>
+              <h2 className="mt-4 max-w-[15ch] font-display text-[clamp(2.15rem,3.6vw,3.6rem)] font-semibold leading-[0.96] tracking-[-0.06em] text-foreground">Coordinate the obligations that affect day-to-day operations.</h2>
               <div className="mt-8 grid gap-4 sm:grid-cols-3">
                 {industry.supportAreas.map((area) => (
                   <div key={area} className="rounded-[1.3rem] border border-border bg-background p-5">

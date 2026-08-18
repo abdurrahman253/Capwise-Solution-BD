@@ -30,7 +30,7 @@ export default function FaqPreview() {
           </p>
           <h2
             id="faq-preview-title"
-            className="mt-5 max-w-[11ch] font-display text-[clamp(2.8rem,5.7vw,6.1rem)] font-semibold leading-[0.92] tracking-[-0.07em] text-foreground"
+            className="mt-5 max-w-[11ch] font-display text-[clamp(2.15rem,3.6vw,3.6rem)] font-semibold leading-[0.92] tracking-[-0.07em] text-foreground"
           >
             Clear first answers. Better next questions.
           </h2>

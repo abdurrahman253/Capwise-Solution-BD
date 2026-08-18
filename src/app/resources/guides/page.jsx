@@ -46,7 +46,7 @@ export default function GuidesPage() {
                     Practical guides
                   </p>
                 </div>
-                <h1 className="mt-6 max-w-[13ch] font-display text-[clamp(3rem,7vw,7.2rem)] font-semibold leading-[0.91] tracking-[-0.075em] text-foreground">
+                <h1 className="mt-6 max-w-[13ch] font-display text-[clamp(2.4rem,4.4vw,4.6rem)] font-semibold leading-[0.91] tracking-[-0.075em] text-foreground">
                   Prepare the work.
                   <span className="mt-1 block text-accent-strong">
                     Reduce avoidable friction.

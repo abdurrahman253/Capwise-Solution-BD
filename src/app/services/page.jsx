@@ -91,7 +91,7 @@ export default function ServicesPage() {
                     Advisory services
                   </p>
                 </div>
-                <h1 className="mt-5 max-w-[13ch] font-display text-[clamp(2.55rem,8vw,6.2rem)] font-semibold leading-[0.94] tracking-[-0.068em] text-foreground sm:mt-7">
+                <h1 className="mt-5 max-w-[13ch] font-display text-[clamp(2.4rem,4.4vw,4.6rem)] font-semibold leading-[0.94] tracking-[-0.068em] text-foreground sm:mt-7">
                   Seven disciplines.
                   <span className="mt-1 block text-accent-strong">
                     One coordinated path.
@@ -188,7 +188,7 @@ export default function ServicesPage() {
                   Connected by business stage
                 </p>
               </div>
-              <h2 className="mt-4 font-display text-[clamp(2.1rem,6vw,4.7rem)] font-semibold leading-[0.98] tracking-[-0.058em] text-foreground sm:mt-6">
+              <h2 className="mt-4 font-display text-[clamp(2.15rem,3.6vw,3.6rem)] font-semibold leading-[0.98] tracking-[-0.058em] text-foreground sm:mt-6">
                 Start, operate and grow with clearer ownership.
               </h2>
             </div>
@@ -248,7 +248,7 @@ export default function ServicesPage() {
               <p className="text-[0.59rem] font-bold uppercase tracking-[0.2em] text-accent">
                 Not sure where to begin?
               </p>
-              <h2 className="mt-4 max-w-3xl font-display text-[clamp(2rem,6vw,4.2rem)] font-semibold leading-[0.98] tracking-[-0.058em]">
+              <h2 className="mt-4 max-w-3xl font-display text-[clamp(2.15rem,3.6vw,3.6rem)] font-semibold leading-[0.98] tracking-[-0.058em]">
                 Start with the issue. We&apos;ll help map the service.
               </h2>
               <p className="mt-4 max-w-2xl text-xs leading-6 text-white/62 sm:text-sm sm:leading-7">

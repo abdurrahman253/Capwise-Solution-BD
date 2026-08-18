@@ -29,7 +29,7 @@ export default function CaseStudiesPage() {
           <div className="mx-auto grid max-w-[90rem] gap-10 px-4 sm:px-6 lg:grid-cols-12 lg:items-end lg:gap-14 lg:px-10">
             <div className="lg:col-span-8">
               <p className="text-[0.62rem] font-bold uppercase tracking-[0.2em] text-accent-strong">Case studies & evidence</p>
-              <h1 className="mt-6 max-w-[12ch] font-display text-[clamp(3rem,7vw,7rem)] font-semibold leading-[0.92] tracking-[-0.07em] text-foreground">Proof should be verified before it becomes marketing.</h1>
+              <h1 className="mt-6 max-w-[12ch] font-display text-[clamp(2.4rem,4.4vw,4.6rem)] font-semibold leading-[0.92] tracking-[-0.07em] text-foreground">Proof should be verified before it becomes marketing.</h1>
             </div>
             <div className="lg:col-span-4">
               <p className="text-sm leading-7 text-muted sm:text-base sm:leading-8">This architecture is ready for approved client stories, but no client, quote, logo or result is fabricated to fill the page.</p>
@@ -55,7 +55,7 @@ export default function CaseStudiesPage() {
                 <div className="rounded-[1.6rem] bg-brand p-7 text-white sm:p-10 lg:col-span-7">
                   <FileSearch aria-hidden="true" size={28} className="text-accent" />
                   <p className="mt-7 text-[0.6rem] font-bold uppercase tracking-[0.18em] text-accent">Evidence intake required</p>
-                  <h2 className="mt-4 max-w-[14ch] font-display text-[clamp(2.3rem,4vw,4.4rem)] font-semibold leading-[0.98] tracking-[-0.06em] text-white">The page is ready. The proof must come from real work.</h2>
+                  <h2 className="mt-4 max-w-[14ch] font-display text-[clamp(2.15rem,3.6vw,3.6rem)] font-semibold leading-[0.98] tracking-[-0.06em] text-white">The page is ready. The proof must come from real work.</h2>
                   <p className="mt-5 max-w-2xl text-sm leading-7 text-white/64">Use the case-study intake process to capture the situation, approved scope, measurable outcome, timeline and publication permissions.</p>
                   <Link href="/contact" className="mt-8 inline-flex h-12 items-center justify-center gap-3 rounded-full bg-accent px-6 text-sm font-bold text-[#1b1464]">Discuss evidence approval <ArrowRight aria-hidden="true" size={17} /></Link>
                 </div>

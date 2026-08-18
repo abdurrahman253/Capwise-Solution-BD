@@ -106,7 +106,7 @@ export default function BangladeshPreview() {
 
             <h2
               id="bangladesh-preview-title"
-              className="mt-6 max-w-2xl font-display text-[clamp(2.8rem,5.2vw,5.8rem)] font-semibold leading-[0.94] tracking-[-0.068em]"
+              className="mt-6 max-w-2xl font-display text-[clamp(2.15rem,3.6vw,3.6rem)] font-semibold leading-[0.94] tracking-[-0.068em]"
             >
               Enter informed.
               <span className="mt-2 block text-accent-strong">

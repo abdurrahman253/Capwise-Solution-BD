@@ -831,21 +831,21 @@ canvas {
 ----------------------------------------- */
 
 .capwise-floating-nav {
-  border: 1px solid color-mix(in srgb, var(--border) 70%, transparent);
-  background: color-mix(in srgb, var(--surface) 60%, transparent);
+  border: 1px solid color-mix(in srgb, var(--border) 85%, transparent);
+  background: color-mix(in srgb, var(--surface) 88%, transparent);
   box-shadow:
     0 20px 55px rgba(11, 27, 61, 0.14),
     0 2px 12px rgba(11, 27, 61, 0.06),
     inset 0 1px 0 0 rgba(255, 255, 255, 0.4);
-  backdrop-filter: blur(28px) saturate(1.65);
-  -webkit-backdrop-filter: blur(28px) saturate(1.65);
+  backdrop-filter: blur(32px) saturate(1.5);
+  -webkit-backdrop-filter: blur(32px) saturate(1.5);
   transition:
     box-shadow 250ms ease,
     background-color 250ms ease;
 }
 
 [data-theme="dark"] .capwise-floating-nav {
-  background: color-mix(in srgb, var(--surface) 52%, transparent);
+  background: color-mix(in srgb, var(--surface) 86%, transparent);
   box-shadow:
     0 20px 55px rgba(2, 12, 23, 0.4),
     0 2px 12px rgba(2, 12, 23, 0.2),
@@ -855,6 +855,35 @@ canvas {
 @media (prefers-reduced-motion: reduce) {
   .capwise-floating-nav {
     transition: none;
+  }
+}
+
+/* ----------------------------------------
+   Premium route transition bar
+----------------------------------------- */
+
+.capwise-route-progress-crawl {
+  animation:
+    capwise-route-crawl 4.2s cubic-bezier(0.15, 0.7, 0.3, 1) forwards,
+    capwise-route-pulse 1.4s ease-in-out 4.2s infinite;
+}
+
+@keyframes capwise-route-crawl {
+  0% { transform: scaleX(0); }
+  15% { transform: scaleX(0.28); }
+  40% { transform: scaleX(0.52); }
+  70% { transform: scaleX(0.74); }
+  100% { transform: scaleX(0.92); }
+}
+
+@keyframes capwise-route-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.55; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .capwise-route-progress-crawl {
+    animation-duration: 1ms;
   }
 }
 

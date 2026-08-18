@@ -15,7 +15,7 @@ export default function ClientEvidencePreview() {
           <p className="text-[0.62rem] font-bold uppercase tracking-[0.22em] text-accent">
             Client evidence
           </p>
-          <h2 id="evidence-preview-title" className="mt-5 max-w-[13ch] font-display text-[clamp(2.6rem,5vw,5.4rem)] font-semibold leading-[0.94] tracking-[-0.065em] text-white">
+          <h2 id="evidence-preview-title" className="mt-5 max-w-[13ch] font-display text-[clamp(2.15rem,3.6vw,3.6rem)] font-semibold leading-[0.94] tracking-[-0.065em] text-white">
             Trust should be evidenced, not invented.
           </h2>
           <p className="mt-6 max-w-2xl text-sm leading-7 text-white/64 sm:text-base sm:leading-8">

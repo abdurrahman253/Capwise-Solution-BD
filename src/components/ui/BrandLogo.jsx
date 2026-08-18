@@ -42,7 +42,7 @@ export default function BrandLogo({ className = "", compact = false, light = fal
           width={1012}
           height={358}
           priority
-          className={`${compact ? "h-[3.3rem] sm:h-[3.55rem]" : "h-[3.8rem] sm:h-[4.1rem]"} w-auto object-contain ${light ? "brightness-0 invert sepia-[25%] saturate-[1.8] hue-rotate-[3deg]" : ""}`}
+          className={`${compact ? "h-[2.7rem] sm:h-[2.95rem]" : "h-[3.2rem] sm:h-[3.5rem]"} w-auto object-contain ${light ? "brightness-0 invert sepia-[25%] saturate-[1.8] hue-rotate-[3deg]" : ""}`}
         />
         {!reduceMotion && (
           <m.span

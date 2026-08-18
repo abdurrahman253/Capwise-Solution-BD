@@ -29,7 +29,7 @@ export default function BusinessInBangladeshPage() {
           <div className="mx-auto grid max-w-[90rem] gap-10 px-4 sm:px-6 lg:grid-cols-12 lg:items-end lg:gap-14 lg:px-10">
             <div className="lg:col-span-8">
               <div className="flex items-center gap-3"><span className="h-px w-10 bg-accent-strong" /><p className="text-[0.62rem] font-bold uppercase tracking-[0.22em] text-accent-strong">Doing business in Bangladesh</p></div>
-              <h1 className="mt-6 max-w-[12ch] font-display text-[clamp(3rem,7vw,7.3rem)] font-semibold leading-[0.91] tracking-[-0.075em] text-foreground">A clearer route from market-entry decision to compliant operation.</h1>
+              <h1 className="mt-6 max-w-[12ch] font-display text-[clamp(2.4rem,4.4vw,4.6rem)] font-semibold leading-[0.91] tracking-[-0.075em] text-foreground">A clearer route from market-entry decision to compliant operation.</h1>
             </div>
             <div className="lg:col-span-4">
               <p className="text-sm leading-7 text-muted sm:text-base sm:leading-8">Use this overview to identify the main workstreams. It is general information and should not replace a current review of the law, regulator guidance and the facts.</p>
@@ -56,7 +56,7 @@ export default function BusinessInBangladeshPage() {
 
         <section className="bg-brand py-14 text-white sm:py-20 lg:py-24">
           <div className="mx-auto flex max-w-[90rem] flex-col gap-8 px-4 sm:px-6 lg:flex-row lg:items-end lg:justify-between lg:px-10">
-            <div><p className="text-[0.62rem] font-bold uppercase tracking-[0.2em] text-accent">From overview to action</p><h2 className="mt-4 max-w-[17ch] font-display text-[clamp(2.4rem,5vw,4.8rem)] font-semibold leading-[0.96] tracking-[-0.06em] text-white">Map the registrations, owners, deadlines and operating obligations.</h2></div>
+            <div><p className="text-[0.62rem] font-bold uppercase tracking-[0.2em] text-accent">From overview to action</p><h2 className="mt-4 max-w-[17ch] font-display text-[clamp(2.15rem,3.6vw,3.6rem)] font-semibold leading-[0.96] tracking-[-0.06em] text-white">Map the registrations, owners, deadlines and operating obligations.</h2></div>
             <div className="flex flex-wrap gap-3"><Link href="/services/company-formation-registration" className="inline-flex h-12 items-center gap-3 rounded-full border border-white/15 px-6 text-sm font-bold text-white transition hover:border-accent hover:text-accent">Formation services <ArrowUpRight aria-hidden="true" size={17} /></Link><Link href="/contact" className="inline-flex h-12 items-center gap-3 rounded-full bg-brand-gold px-6 text-sm font-extrabold text-brand-navy shadow-[0_10px_28px_rgba(212,175,55,.2)] transition duration-200 hover:-translate-y-0.5 hover:bg-brand-gold-soft active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-brand-navy">Book a Free Consultation <ArrowUpRight aria-hidden="true" size={17} /></Link></div>
           </div>
         </section>

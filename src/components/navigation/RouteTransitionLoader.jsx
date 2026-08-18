@@ -15,13 +15,19 @@ export default function RouteTransitionLoader() {
   const pathname = usePathname();
   const previousPath = useRef(pathname);
   const finishTimer = useRef(null);
+  const barRef = useRef(null);
   const [active, setActive] = useState(false);
-  const [complete, setComplete] = useState(false);
+  const [crawling, setCrawling] = useState(false);
 
   useEffect(() => {
     function start() {
       window.clearTimeout(finishTimer.current);
-      setComplete(false);
+      const bar = barRef.current;
+      if (bar) {
+        bar.style.transition = "";
+        bar.style.transform = "";
+      }
+      setCrawling(true);
       setActive(true);
     }
 
@@ -51,12 +57,37 @@ export default function RouteTransitionLoader() {
   useEffect(() => {
     if (previousPath.current === pathname) return;
     previousPath.current = pathname;
+
+    const bar = barRef.current;
+    if (bar) {
+      // Freeze the bar at whatever progress the crawl animation had
+      // actually reached, then transition smoothly from there to 100%,
+      // instead of jumping to a hardcoded value (which would visibly
+      // snap backward if the route resolved early).
+      const liveTransform = getComputedStyle(bar).transform;
+      bar.style.animation = "none";
+      bar.style.transform = liveTransform === "none" ? "scaleX(0)" : liveTransform;
+      void bar.offsetWidth;
+    }
+
     setActive(true);
-    setComplete(true);
+    setCrawling(false);
+
+    requestAnimationFrame(() => {
+      if (bar) {
+        bar.style.transition = "transform 260ms cubic-bezier(0.4,0,0.2,1)";
+        bar.style.transform = "scaleX(1)";
+      }
+    });
+
     finishTimer.current = window.setTimeout(() => {
       setActive(false);
-      setComplete(false);
-    }, 240);
+      if (bar) {
+        bar.style.animation = "";
+        bar.style.transform = "";
+        bar.style.transition = "";
+      }
+    }, 260);
   }, [pathname]);
 
   return (
@@ -65,8 +96,8 @@ export default function RouteTransitionLoader() {
       className={`pointer-events-none fixed inset-x-0 top-0 z-[120] h-[3px] overflow-hidden transition-opacity duration-200 ${active ? "opacity-100" : "opacity-0"}`}
     >
       <span
-        className={`block h-full origin-left bg-[linear-gradient(90deg,var(--brand-blue),var(--brand-gold))] shadow-[0_0_16px_rgba(212,175,55,.32)] transition-transform ${complete ? "duration-200 ease-out" : "duration-[1400ms] ease-out"}`}
-        style={{ transform: `scaleX(${complete ? 1 : active ? 0.78 : 0})` }}
+        ref={barRef}
+        className={`block h-full origin-left bg-[linear-gradient(90deg,var(--brand-blue),var(--brand-gold))] shadow-[0_0_16px_rgba(212,175,55,.32)] ${crawling ? "capwise-route-progress-crawl" : ""}`}
       />
     </div>
   );
