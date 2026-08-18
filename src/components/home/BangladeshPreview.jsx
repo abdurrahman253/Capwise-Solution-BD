@@ -106,7 +106,7 @@ export default function BangladeshPreview() {
 
             <h2
               id="bangladesh-preview-title"
-              className="mt-6 max-w-2xl font-display text-[clamp(2.15rem,3.6vw,3.6rem)] font-semibold leading-[0.94] tracking-[-0.068em]"
+              className="mt-6 max-w-2xl font-display text-[clamp(1.75rem,2.6vw,2.5rem)] font-semibold leading-[1.1] tracking-[-0.02em]"
             >
               Enter informed.
               <span className="mt-2 block text-accent-strong">
@@ -194,7 +194,7 @@ export default function BangladeshPreview() {
                         {eyebrow}
                       </p>
                     </div>
-                    <h3 className="mt-4 max-w-2xl font-display text-[clamp(2rem,3.5vw,3.65rem)] font-semibold leading-[1] tracking-[-0.058em]">
+                    <h3 className="mt-4 max-w-2xl font-display text-[clamp(1.75rem,2.6vw,2.5rem)] font-semibold leading-[1.1] tracking-[-0.02em]">
                       {title}
                     </h3>
                   </div>

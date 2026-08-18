@@ -127,9 +127,9 @@ export default function HomeHero() {
                   </div>
 
                   {index === 0 ? (
-                    <h1 className="mt-6 max-w-[12ch] font-display text-[clamp(2.4rem,4.4vw,4.6rem)] font-semibold leading-[0.96] tracking-[-0.05em] text-white sm:leading-[0.91] sm:tracking-[-0.07em]">{slide.title}</h1>
+                    <h1 className="mt-6 max-w-[12ch] font-display text-[clamp(2.2rem,4vw,3.6rem)] font-semibold leading-[1.1] tracking-[-0.02em] text-white">{slide.title}</h1>
                   ) : (
-                    <h2 className="mt-6 max-w-[12ch] font-display text-[clamp(2.4rem,4.4vw,4.6rem)] font-semibold leading-[0.96] tracking-[-0.05em] text-white sm:leading-[0.91] sm:tracking-[-0.07em]">{slide.title}</h2>
+                    <h2 className="mt-6 max-w-[12ch] font-display text-[clamp(2.2rem,4vw,3.6rem)] font-semibold leading-[1.1] tracking-[-0.02em] text-white">{slide.title}</h2>
                   )}
 
                   <p className="mt-6 max-w-[42rem] text-base leading-8 text-white/72 sm:text-lg sm:leading-9">{slide.description}</p>

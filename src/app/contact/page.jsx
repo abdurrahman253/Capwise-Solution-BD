@@ -32,7 +32,7 @@ export default function ContactPage() {
           <div className="mx-auto grid max-w-[90rem] gap-10 px-4 sm:px-6 lg:grid-cols-12 lg:items-end lg:gap-14 lg:px-10">
             <div className="lg:col-span-8">
               <div className="flex items-center gap-3"><span className="h-px w-10 bg-accent-strong" /><p className="text-[0.62rem] font-bold uppercase tracking-[0.22em] text-accent-strong">Book a Free Consultation</p></div>
-              <h1 className="mt-6 max-w-[12ch] font-display text-[clamp(2.4rem,4.4vw,4.6rem)] font-semibold leading-[0.91] tracking-[-0.075em] text-foreground">Start with the business issue, not a generic service package.</h1>
+              <h1 className="mt-6 max-w-[12ch] font-display text-[clamp(2rem,3.5vw,3.2rem)] font-semibold leading-[1.1] tracking-[-0.02em] text-foreground">Start with the business issue, not a generic service package.</h1>
             </div>
             <div className="lg:col-span-4">
               <p className="text-sm leading-7 text-muted sm:text-base sm:leading-8">A focused first conversation helps identify the right workstream, urgency, scope and next information needed.</p>
@@ -45,14 +45,14 @@ export default function ContactPage() {
           <div className="mx-auto grid max-w-[90rem] gap-8 px-4 sm:px-6 lg:grid-cols-12 lg:gap-12 lg:px-10">
             <div className="rounded-[1.8rem] border border-border bg-background p-6 sm:p-9 lg:col-span-7 lg:p-12">
               <p className="text-[0.62rem] font-bold uppercase tracking-[0.2em] text-accent-strong">Enquiry details</p>
-              <h2 className="mt-4 font-display text-3xl font-semibold tracking-[-0.05em] text-foreground sm:text-4xl">Prepare a useful first briefing.</h2>
+              <h2 className="mt-4 font-display text-[clamp(1.75rem,2.6vw,2.5rem)] font-semibold leading-[1.1] tracking-[-0.02em] text-foreground">Prepare a useful first briefing.</h2>
               <p className="mb-8 mt-4 max-w-2xl text-sm leading-7 text-muted">Mention the entity, decision, deadline and the outcome you need. Your briefing is validated on the client and server, delivered through a protected email route and assigned a reference number for follow-up.</p>
               <ConsultationForm />
             </div>
 
             <aside className="rounded-[1.8rem] bg-brand p-6 text-white shadow-[0_35px_100px_rgba(27,20,100,0.24)] sm:p-9 lg:col-span-5 lg:p-12">
               <p className="text-[0.62rem] font-bold uppercase tracking-[0.2em] text-accent">Direct contact</p>
-              <h2 className="mt-4 max-w-[11ch] font-display text-[clamp(1.8rem,3vw,2.6rem)] font-semibold leading-[1.05] tracking-[-0.055em] text-white">Reach the Dhaka advisory team.</h2>
+              <h2 className="mt-4 max-w-[11ch] font-display text-[clamp(1.35rem,1.8vw,1.8rem)] font-semibold leading-[1.1] tracking-[-0.02em] text-white">Reach the Dhaka advisory team.</h2>
               <div className="mt-9 divide-y divide-white/12 border-y border-white/12">
                 {channels.map(({ icon: Icon, label, value, href }) => (
                   <a key={label} href={href} target={href.startsWith("http") ? "_blank" : undefined} rel={href.startsWith("http") ? "noreferrer" : undefined} className="group flex items-center justify-between gap-4 py-5">

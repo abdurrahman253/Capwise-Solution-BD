@@ -38,7 +38,7 @@ export default function FaqPage() {
                 <span className="h-px w-10 bg-accent-strong" />
                 <p className="text-[0.62rem] font-bold uppercase tracking-[0.22em] text-accent-strong">Frequently asked</p>
               </div>
-              <h1 className="mt-6 max-w-[12ch] font-display text-[clamp(2.4rem,4.4vw,4.6rem)] font-semibold leading-[0.91] tracking-[-0.075em] text-foreground">
+              <h1 className="mt-6 max-w-[12ch] font-display text-[clamp(2rem,3.5vw,3.2rem)] font-semibold leading-[1.1] tracking-[-0.02em] text-foreground">
                 First answers for better-informed decisions.
               </h1>
             </div>
@@ -58,7 +58,7 @@ export default function FaqPage() {
             <div className="grid gap-10 lg:grid-cols-12 lg:gap-16">
               <aside className="lg:col-span-4 lg:sticky lg:top-36 lg:self-start">
                 <span className="inline-flex size-12 items-center justify-center rounded-full border border-accent/25 bg-accent/10 text-accent-strong"><MessageCircleQuestion aria-hidden="true" size={20} /></span>
-                <h2 className="mt-7 font-display text-[clamp(1.8rem,3vw,2.6rem)] font-semibold leading-[1.05] tracking-[-0.05em] text-foreground">Browse by decision stage.</h2>
+                <h2 className="mt-7 font-display text-[clamp(1.35rem,1.8vw,1.8rem)] font-semibold leading-[1.1] tracking-[-0.02em] text-foreground">Browse by decision stage.</h2>
                 <div className="mt-7 grid gap-3">
                   {faqCategories.map((category, index) => (
                     <a key={category.id} href={`#${category.id}`} className="group rounded-xl border border-border bg-background p-4 transition hover:border-accent-strong hover:bg-surface-muted">
@@ -89,7 +89,7 @@ export default function FaqPage() {
           <div className="mx-auto flex max-w-[90rem] flex-col gap-8 px-4 sm:px-6 lg:flex-row lg:items-end lg:justify-between lg:px-10">
             <div>
               <p className="inline-flex items-center gap-2 text-[0.62rem] font-bold uppercase tracking-[0.18em] text-accent"><Info aria-hidden="true" size={15} /> Need a fact-specific answer?</p>
-              <h2 className="mt-4 max-w-[15ch] font-display text-[clamp(2.15rem,3.6vw,3.6rem)] font-semibold leading-[0.96] tracking-[-0.06em] text-white">Bring the context to a focused consultation.</h2>
+              <h2 className="mt-4 max-w-[15ch] font-display text-[clamp(1.75rem,2.6vw,2.5rem)] font-semibold leading-[1.1] tracking-[-0.02em] text-white">Bring the context to a focused consultation.</h2>
             </div>
             <Link href="/contact" className="inline-flex h-12 shrink-0 items-center justify-center gap-3 rounded-full bg-brand-gold px-6 text-sm font-extrabold text-brand-navy shadow-[0_10px_28px_rgba(212,175,55,.2)] transition duration-200 hover:-translate-y-0.5 hover:bg-brand-gold-soft active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-brand-navy">Book a Free Consultation <ArrowUpRight aria-hidden="true" size={17} /></Link>
           </div>

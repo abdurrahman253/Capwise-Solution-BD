@@ -165,7 +165,7 @@ export default function ServiceDetailPage({ service }) {
                   </p>
                 </div>
 
-                <h1 className="mt-5 max-w-[14ch] font-display text-[clamp(2.4rem,4.4vw,4.6rem)] font-semibold leading-[0.95] tracking-[-0.064em] text-foreground sm:mt-7">
+                <h1 className="mt-5 max-w-[14ch] font-display text-[clamp(2rem,3.5vw,3.2rem)] font-semibold leading-[1.1] tracking-[-0.02em] text-foreground sm:mt-7">
                   {service.label}
                 </h1>
 
@@ -248,7 +248,7 @@ export default function ServiceDetailPage({ service }) {
             <div className="grid gap-8 lg:grid-cols-[0.72fr_1.28fr] lg:gap-16">
               <div>
                 <Eyebrow light>Where clients get stuck</Eyebrow>
-                <h2 className="mt-4 max-w-[12ch] font-display text-[clamp(2.15rem,3.6vw,3.6rem)] font-semibold leading-[0.98] tracking-[-0.058em] sm:mt-6">
+                <h2 className="mt-4 max-w-[12ch] font-display text-[clamp(1.75rem,2.6vw,2.5rem)] font-semibold leading-[1.1] tracking-[-0.02em] sm:mt-6">
                   Turn uncertainty into an ordered next step.
                 </h2>
               </div>
@@ -279,7 +279,7 @@ export default function ServiceDetailPage({ service }) {
           <div className="mx-auto grid max-w-[90rem] gap-10 px-4 sm:px-6 lg:grid-cols-[1.15fr_0.65fr] lg:gap-16 lg:px-10">
             <div>
               <Eyebrow>Service scope</Eyebrow>
-              <h2 className="mt-4 max-w-[14ch] font-display text-[clamp(2.15rem,3.6vw,3.6rem)] font-semibold leading-[0.98] tracking-[-0.058em] text-foreground sm:mt-6">
+              <h2 className="mt-4 max-w-[14ch] font-display text-[clamp(1.75rem,2.6vw,2.5rem)] font-semibold leading-[1.1] tracking-[-0.02em] text-foreground sm:mt-6">
                 Support shaped around the real requirement.
               </h2>
               <p className="mt-5 max-w-2xl text-sm leading-7 text-muted sm:mt-6 sm:text-base sm:leading-8">
@@ -307,7 +307,7 @@ export default function ServiceDetailPage({ service }) {
                 <p className="text-[0.6rem] font-bold uppercase tracking-[0.19em] text-accent-strong">
                   What you can expect
                 </p>
-                <h3 className="mt-2 font-display text-xl font-semibold tracking-[-0.04em] text-foreground sm:text-2xl">
+                <h3 className="mt-2 font-display text-[clamp(1.35rem,1.8vw,1.8rem)] font-semibold leading-[1.1] tracking-[-0.02em] text-foreground">
                   Clear working outputs
                 </h3>
               </div>
@@ -335,7 +335,7 @@ export default function ServiceDetailPage({ service }) {
             <div className="grid gap-5 sm:flex sm:items-end sm:justify-between sm:gap-10">
               <div>
                 <Eyebrow>How the work moves</Eyebrow>
-                <h2 className="mt-4 max-w-[13ch] font-display text-[clamp(2.15rem,3.6vw,3.6rem)] font-semibold leading-[0.98] tracking-[-0.058em] text-foreground sm:mt-6">
+                <h2 className="mt-4 max-w-[13ch] font-display text-[clamp(1.75rem,2.6vw,2.5rem)] font-semibold leading-[1.1] tracking-[-0.02em] text-foreground sm:mt-6">
                   A transparent path from question to action.
                 </h2>
               </div>
@@ -374,7 +374,7 @@ export default function ServiceDetailPage({ service }) {
           <div className="mx-auto grid max-w-[90rem] gap-5 px-4 sm:px-6 lg:grid-cols-2 lg:gap-8 lg:px-10">
             <article className="rounded-[1.35rem] border border-border bg-surface p-5 sm:rounded-[1.75rem] sm:p-8 lg:p-10">
               <Eyebrow>Who this is for</Eyebrow>
-              <h2 className="mt-4 font-display text-2xl font-semibold tracking-[-0.05em] text-foreground sm:mt-6 sm:text-4xl">
+              <h2 className="mt-4 font-display text-[clamp(1.75rem,2.6vw,2.5rem)] font-semibold leading-[1.1] tracking-[-0.02em] text-foreground sm:mt-6">
                 Useful when your business needs structure and follow-through.
               </h2>
               <ul className="mt-6 space-y-3 sm:mt-8">
@@ -396,7 +396,7 @@ export default function ServiceDetailPage({ service }) {
 
             <article className="rounded-[1.35rem] border border-border bg-surface-muted p-5 sm:rounded-[1.75rem] sm:p-8 lg:p-10">
               <Eyebrow>Why Capwise</Eyebrow>
-              <h2 className="mt-4 font-display text-2xl font-semibold tracking-[-0.05em] text-foreground sm:mt-6 sm:text-4xl">
+              <h2 className="mt-4 font-display text-[clamp(1.75rem,2.6vw,2.5rem)] font-semibold leading-[1.1] tracking-[-0.02em] text-foreground sm:mt-6">
                 Connected advice with clear ownership.
               </h2>
               <ul className="mt-6 space-y-3 sm:mt-8">
@@ -422,7 +422,7 @@ export default function ServiceDetailPage({ service }) {
           <div className="mx-auto grid max-w-[90rem] gap-10 px-4 sm:px-6 lg:grid-cols-[0.72fr_1.28fr] lg:gap-16 lg:px-10">
             <div>
               <Eyebrow>Related questions</Eyebrow>
-              <h2 className="mt-4 max-w-[12ch] font-display text-[clamp(2.15rem,3.6vw,3.6rem)] font-semibold leading-[0.98] tracking-[-0.058em] text-foreground sm:mt-6">
+              <h2 className="mt-4 max-w-[12ch] font-display text-[clamp(1.75rem,2.6vw,2.5rem)] font-semibold leading-[1.1] tracking-[-0.02em] text-foreground sm:mt-6">
                 A useful starting point—not a substitute for review.
               </h2>
               <div className="mt-6 flex items-start gap-3 rounded-xl border border-border bg-background p-4 text-xs leading-6 text-muted sm:mt-8 sm:p-5 sm:text-sm">
@@ -459,7 +459,7 @@ export default function ServiceDetailPage({ service }) {
             <div className="flex items-end justify-between gap-6">
               <div>
                 <Eyebrow>Connected services</Eyebrow>
-                <h2 className="mt-4 font-display text-2xl font-semibold tracking-[-0.05em] text-foreground sm:mt-6 sm:text-4xl">
+                <h2 className="mt-4 font-display text-[clamp(1.75rem,2.6vw,2.5rem)] font-semibold leading-[1.1] tracking-[-0.02em] text-foreground sm:mt-6">
                   Related support
                 </h2>
               </div>
@@ -497,7 +497,7 @@ export default function ServiceDetailPage({ service }) {
                     <p className="text-[0.58rem] font-bold uppercase tracking-[0.19em] text-accent-strong">
                       {related.eyebrow}
                     </p>
-                    <h3 className="mt-2 font-display text-lg font-semibold tracking-[-0.04em] text-foreground sm:text-2xl">
+                    <h3 className="mt-2 font-display text-[clamp(1.35rem,1.8vw,1.8rem)] font-semibold leading-[1.1] tracking-[-0.02em] text-foreground">
                       {related.label}
                     </h3>
                   </div>
@@ -521,7 +521,7 @@ export default function ServiceDetailPage({ service }) {
               <div className="grid gap-7 lg:grid-cols-12 lg:items-end">
                 <div className="lg:col-span-7">
                   <Eyebrow>From the knowledge desk</Eyebrow>
-                  <h2 className="mt-4 font-display text-3xl font-semibold tracking-[-0.05em] text-foreground sm:mt-6 sm:text-4xl">Read before you decide.</h2>
+                  <h2 className="mt-4 font-display text-[clamp(1.75rem,2.6vw,2.5rem)] font-semibold leading-[1.1] tracking-[-0.02em] text-foreground sm:mt-6">Read before you decide.</h2>
                 </div>
                 <p className="text-sm leading-7 text-muted lg:col-span-4 lg:col-start-9">Concise Bangladesh-focused guidance connected to this service area.</p>
               </div>
@@ -542,7 +542,7 @@ export default function ServiceDetailPage({ service }) {
           <div className="mx-auto grid max-w-[90rem] gap-7 px-4 sm:px-6 lg:grid-cols-[1fr_auto] lg:items-center lg:gap-12 lg:px-10">
             <div>
               <Eyebrow light>Start with the business issue</Eyebrow>
-              <h2 className="mt-4 max-w-3xl font-display text-[clamp(2.15rem,3.6vw,3.6rem)] font-semibold leading-[0.98] tracking-[-0.058em] sm:mt-6">
+              <h2 className="mt-4 max-w-3xl font-display text-[clamp(1.75rem,2.6vw,2.5rem)] font-semibold leading-[1.1] tracking-[-0.02em] sm:mt-6">
                 Let&apos;s identify the right next step.
               </h2>
               <p className="mt-4 max-w-2xl text-xs leading-6 text-white/62 sm:mt-5 sm:text-sm sm:leading-7">

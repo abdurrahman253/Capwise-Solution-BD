@@ -23,7 +23,7 @@ export default function NotFound() {
               <p className="text-[0.62rem] font-bold uppercase tracking-[0.22em] text-accent-strong">Navigation exception</p>
             </div>
             <p className="mt-7 font-display text-[clamp(5.5rem,15vw,12rem)] font-semibold leading-[0.75] tracking-[-0.09em] text-foreground/8">404</p>
-            <h1 className="mt-7 max-w-[11ch] font-display text-[clamp(3rem,6vw,6.5rem)] font-semibold leading-[0.92] tracking-[-0.075em] text-foreground">
+            <h1 className="mt-7 max-w-[11ch] font-display text-[clamp(2rem,3.5vw,3.2rem)] font-semibold leading-[1.1] tracking-[-0.02em] text-foreground">
               This route does not lead to a published page.
             </h1>
             <p className="mt-6 max-w-2xl text-sm leading-7 text-muted sm:text-base sm:leading-8">

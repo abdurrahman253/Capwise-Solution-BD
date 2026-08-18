@@ -57,7 +57,7 @@ export default function RegulatoryUpdatesPage() {
                     Regulatory intelligence
                   </p>
                 </div>
-                <h1 className="mt-6 max-w-[13ch] font-display text-[clamp(2.4rem,4.4vw,4.6rem)] font-semibold leading-[0.91] tracking-[-0.075em] text-foreground">
+                <h1 className="mt-6 max-w-[13ch] font-display text-[clamp(2rem,3.5vw,3.2rem)] font-semibold leading-[1.1] tracking-[-0.02em] text-foreground">
                   Verify first.
                   <span className="mt-1 block text-accent-strong">
                     Explain what matters.
@@ -101,7 +101,7 @@ export default function RegulatoryUpdatesPage() {
                   <p className="mt-9 text-[0.6rem] font-bold uppercase tracking-[0.17em] text-accent-strong">
                     {topic.label}
                   </p>
-                  <h2 className="mt-3 max-w-[22ch] font-display text-[clamp(1.55rem,3vw,2.25rem)] font-semibold leading-[1.04] tracking-[-0.05em] text-foreground">
+                  <h2 className="mt-3 max-w-[22ch] font-display text-[clamp(1.2rem,1.5vw,1.55rem)] font-semibold leading-[1.1] tracking-[-0.02em] text-foreground">
                     {topic.title}
                   </h2>
                   <p className="mt-5 text-sm leading-7 text-muted">
@@ -128,7 +128,7 @@ export default function RegulatoryUpdatesPage() {
                 <p className="mt-7 text-[0.6rem] font-bold uppercase tracking-[0.18em] text-gold">
                   Before any update goes live
                 </p>
-                <h2 className="mt-4 max-w-[15ch] font-display text-[clamp(2.15rem,3.6vw,3.6rem)] font-semibold leading-[0.96] tracking-[-0.06em] text-foreground">
+                <h2 className="mt-4 max-w-[15ch] font-display text-[clamp(1.75rem,2.6vw,2.5rem)] font-semibold leading-[1.1] tracking-[-0.02em] text-foreground">
                   A visible trail from source to explanation.
                 </h2>
                 <p className="mt-5 max-w-xl text-sm leading-7 text-muted sm:text-base sm:leading-8">
@@ -197,7 +197,7 @@ export default function RegulatoryUpdatesPage() {
                 <Radar aria-hidden="true" size={14} />
                 Reviewed update list
               </p>
-              <h2 className="mt-5 max-w-[13ch] font-display text-[clamp(2.15rem,3.6vw,3.6rem)] font-semibold leading-[0.95] tracking-[-0.06em] text-white">
+              <h2 className="mt-5 max-w-[13ch] font-display text-[clamp(1.75rem,2.6vw,2.5rem)] font-semibold leading-[1.1] tracking-[-0.02em] text-white">
                 Follow the topics that matter to your business.
               </h2>
               <p className="mt-5 max-w-xl text-sm leading-7 text-white/62 sm:text-base sm:leading-8">
@@ -217,7 +217,7 @@ export default function RegulatoryUpdatesPage() {
                 <Radar aria-hidden="true" size={14} />
                 Need a current interpretation?
               </p>
-              <h2 className="mt-4 max-w-3xl font-display text-[clamp(2.15rem,3.6vw,3.6rem)] font-semibold leading-[0.96] tracking-[-0.06em]">
+              <h2 className="mt-4 max-w-3xl font-display text-[clamp(1.75rem,2.6vw,2.5rem)] font-semibold leading-[1.1] tracking-[-0.02em]">
                 Review the rule in the context of the business.
               </h2>
               <p className="mt-4 max-w-2xl text-sm leading-7 text-white/62">

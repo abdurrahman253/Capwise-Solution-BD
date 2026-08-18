@@ -16,7 +16,7 @@ export default function ConsultationCTA() {
       <div className="mx-auto grid max-w-[90rem] gap-8 px-4 sm:px-6 lg:grid-cols-12 lg:gap-12 lg:px-10">
         <div className="rounded-[1.8rem] bg-brand p-6 text-white shadow-[0_35px_100px_rgba(27,20,100,0.24)] sm:p-9 lg:col-span-5 lg:p-12">
           <p className="text-[0.62rem] font-bold uppercase tracking-[0.22em] text-accent">Consultation</p>
-          <h2 id="consultation-title" className="mt-5 max-w-[10ch] font-display text-[clamp(2.15rem,3.6vw,3.6rem)] font-semibold leading-[0.94] tracking-[-0.065em] text-white">
+          <h2 id="consultation-title" className="mt-5 max-w-[10ch] font-display text-[clamp(1.75rem,2.6vw,2.5rem)] font-semibold leading-[1.1] tracking-[-0.02em] text-white">
             Bring the issue. Leave with a clearer next step.
           </h2>
           <p className="mt-6 max-w-lg text-sm leading-7 text-white/64 sm:text-base sm:leading-8">
@@ -38,7 +38,7 @@ export default function ConsultationCTA() {
 
         <div className="rounded-[1.8rem] border border-border bg-surface p-6 shadow-[0_24px_80px_rgba(27,20,100,0.09)] sm:p-9 lg:col-span-7 lg:p-12">
           <p className="text-[0.62rem] font-bold uppercase tracking-[0.2em] text-accent-strong">Start with context</p>
-          <h3 className="mt-4 font-display text-3xl font-semibold tracking-[-0.05em] text-foreground sm:text-4xl">Request a focused conversation.</h3>
+          <h3 className="mt-4 font-display text-[clamp(1.75rem,2.6vw,2.5rem)] font-semibold leading-[1.1] tracking-[-0.02em] text-foreground">Request a focused conversation.</h3>
           <p className="mb-8 mt-4 max-w-2xl text-sm leading-7 text-muted">No obligation, no guaranteed outcome claims and no need to send sensitive documents before scope and security are agreed.</p>
           <ConsultationForm />
         </div>
