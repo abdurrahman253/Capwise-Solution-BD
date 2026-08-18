@@ -48,7 +48,7 @@ export default function FaqPreview() {
           </Link>
         </m.div>
 
-        <m.div {...reveal} className="rounded-[1.6rem] border border-border bg-surface px-5 shadow-[0_24px_70px_rgba(11,31,51,0.08)] sm:px-8 lg:col-span-7 lg:px-10">
+        <m.div {...reveal} className="rounded-[1.6rem] border border-border bg-surface px-5 shadow-[0_24px_70px_rgba(27,20,100,0.08)] sm:px-8 lg:col-span-7 lg:px-10">
           <FaqAccordion items={featuredFaqs} />
         </m.div>
       </div>

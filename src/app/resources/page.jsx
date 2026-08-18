@@ -87,7 +87,7 @@ export default function ResourcesPage() {
             <div className="grid gap-5 lg:grid-cols-2">
               <Link
                 href="/resources/guides"
-                className="group relative min-h-[29rem] overflow-hidden rounded-[1.6rem] bg-brand p-6 text-white shadow-[0_30px_90px_rgba(11,31,51,0.2)] focus-visible:outline-offset-[-5px] sm:p-8 lg:p-10"
+                className="group relative min-h-[29rem] overflow-hidden rounded-[1.6rem] bg-brand p-6 text-white shadow-[0_30px_90px_rgba(27,20,100,0.2)] focus-visible:outline-offset-[-5px] sm:p-8 lg:p-10"
               >
                 <div
                   aria-hidden="true"
@@ -245,7 +245,7 @@ export default function ResourcesPage() {
 
             <Link
               href="/contact"
-              className="inline-flex h-12 items-center justify-center gap-3 rounded-full bg-accent px-6 text-sm font-bold text-[#042f2e] transition hover:-translate-y-0.5 hover:bg-[#5eead4]"
+              className="inline-flex h-12 items-center justify-center gap-3 rounded-full bg-accent px-6 text-sm font-bold text-[#1b1464] transition hover:-translate-y-0.5 hover:bg-[#e5c95f]"
             >
               Discuss your situation
               <ArrowRight aria-hidden="true" size={17} />

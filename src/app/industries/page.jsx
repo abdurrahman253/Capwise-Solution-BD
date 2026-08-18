@@ -8,6 +8,7 @@ import {
 import Link from "next/link";
 
 import IndustryIcon from "@/components/industries/IndustryIcon";
+import { primaryContact, whatsappHref } from "@/config/contacts";
 import SiteHeader from "@/components/layout/SiteHeader";
 import {
   INDUSTRIES_CONTENT_VERSION,
@@ -127,7 +128,7 @@ export default function IndustriesPage() {
                 </p>
                 <Link
                   href="/contact"
-                  className="group mt-6 inline-flex min-h-11 items-center justify-center gap-4 rounded-full bg-action px-5 text-xs font-bold text-action-foreground shadow-[0_14px_36px_rgba(15,118,110,0.18)] transition hover:-translate-y-0.5 hover:bg-action-hover sm:min-h-13 sm:px-6 sm:text-sm"
+                  className="group mt-6 inline-flex min-h-11 items-center justify-center gap-4 rounded-full bg-action px-5 text-xs font-bold text-action-foreground shadow-[0_14px_36px_rgba(27,20,100,0.18)] transition hover:-translate-y-0.5 hover:bg-action-hover sm:min-h-13 sm:px-6 sm:text-sm"
                 >
                   Discuss your sector
                   <ArrowUpRight
@@ -302,13 +303,13 @@ export default function IndustriesPage() {
             <div className="grid gap-2.5 min-[430px]:grid-cols-2 lg:w-[24rem]">
               <Link
                 href="/contact"
-                className="inline-flex min-h-11 items-center justify-center gap-2.5 rounded-full bg-accent px-5 text-xs font-bold text-[#042f2e] transition hover:bg-[#5eead4] sm:min-h-13 sm:text-sm"
+                className="inline-flex min-h-11 items-center justify-center gap-2.5 rounded-full bg-brand-gold px-5 text-xs font-bold text-brand-navy shadow-[0_10px_28px_rgba(212,175,55,.2)] transition duration-200 hover:-translate-y-0.5 hover:bg-brand-gold-soft active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-brand-navy sm:min-h-13 sm:text-sm"
               >
-                Book consultation
+                Book a Free Consultation
                 <ArrowUpRight aria-hidden="true" size={16} />
               </Link>
               <a
-                href="https://wa.me/8801624000381?text=Hello%20Capwise%2C%20I%20would%20like%20to%20discuss%20support%20for%20my%20industry."
+                href={whatsappHref(primaryContact.whatsapp, "Hello Capwise, I would like to discuss support for my industry.")}
                 target="_blank"
                 rel="noreferrer"
                 className="inline-flex min-h-11 items-center justify-center gap-2.5 rounded-full border border-white/18 bg-white/6 px-5 text-xs font-bold text-white transition hover:border-accent/50 hover:bg-white/10 sm:min-h-13 sm:text-sm"

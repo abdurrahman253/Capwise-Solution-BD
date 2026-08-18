@@ -51,7 +51,7 @@ export default function TestimonialsPage() {
 
         <section className="capwise-evidence py-16 sm:py-24 lg:py-28">
           <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-10">
-            <div className="rounded-[1.8rem] border border-border bg-surface p-7 text-center shadow-[0_28px_90px_rgba(11,31,51,0.09)] sm:p-12 lg:p-16">
+            <div className="rounded-[1.8rem] border border-border bg-surface p-7 text-center shadow-[0_28px_90px_rgba(27,20,100,0.09)] sm:p-12 lg:p-16">
               <span className="mx-auto inline-flex size-14 items-center justify-center rounded-full border border-accent/25 bg-accent/10 text-accent-strong"><MessageSquareQuote aria-hidden="true" size={22} /></span>
               <p className="mt-7 text-[0.62rem] font-bold uppercase tracking-[0.2em] text-accent-strong">Publication status</p>
               <h2 className="mx-auto mt-4 max-w-[17ch] font-display text-[clamp(2.4rem,5vw,4.8rem)] font-semibold leading-[0.97] tracking-[-0.06em] text-foreground">Verified client stories will appear here after approval.</h2>

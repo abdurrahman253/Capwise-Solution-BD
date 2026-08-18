@@ -12,7 +12,20 @@ import {
 import Link from "next/link";
 
 import ServiceIcon from "@/components/services/ServiceIcon";
+import { primaryContact, whatsappHref as buildWhatsappHref } from "@/config/contacts";
 import { getRelatedServices, SERVICE_CONTENT_VERSION } from "@/data/services";
+import { getInsight } from "@/data/insights";
+
+
+const serviceInsightMap = {
+  "company-formation-registration": ["company-registration-bangladesh", "business-structure-bangladesh", "foreign-investors-market-entrants-bangladesh"],
+  "accounting-bookkeeping": ["accounting-bookkeeping-bangladesh", "sme-sector-bangladesh"],
+  "tax-advisory-compliance": ["corporate-income-tax-compliance-bangladesh", "vat-registration-smes-bangladesh"],
+  "payroll-hr-compliance": ["payroll-hr-compliance-bangladesh", "manufacturing-rmg-bangladesh"],
+  "corporate-secretarial": ["corporate-secretarial-compliance-bangladesh", "company-registration-bangladesh"],
+  "regulatory-legal-advisory": ["regulatory-legal-advisory-bangladesh", "trading-import-export-bangladesh", "ngos-nonprofits-bangladesh"],
+  "business-advisory": ["business-advisory-bangladesh", "sme-sector-bangladesh", "startups-in-bangladesh"],
+};
 
 function Eyebrow({ children, light = false }) {
   return (
@@ -34,9 +47,11 @@ function Eyebrow({ children, light = false }) {
 
 export default function ServiceDetailPage({ service }) {
   const relatedServices = getRelatedServices(service);
-  const whatsappHref = `https://wa.me/8801624000381?text=${encodeURIComponent(
+  const relatedInsights = (serviceInsightMap[service.slug] || []).map(getInsight).filter(Boolean);
+  const whatsappHref = buildWhatsappHref(
+    primaryContact.whatsapp,
     `Hello Capwise, I would like to discuss ${service.shortLabel}.`,
-  )}`;
+  );
 
   const structuredData = {
     "@context": "https://schema.org",
@@ -54,7 +69,7 @@ export default function ServiceDetailPage({ service }) {
           "@type": "ProfessionalService",
           name: "Capwise Solution BD",
           url: "https://capwisebd.com",
-          telephone: "+8801624000381",
+          telephone: primaryContact.tel,
           email: "info@capwisebd.com",
           address: {
             "@type": "PostalAddress",
@@ -161,7 +176,7 @@ export default function ServiceDetailPage({ service }) {
                 <div className="mt-7 flex flex-col gap-2.5 min-[430px]:flex-row min-[430px]:flex-wrap sm:mt-9">
                   <Link
                     href="/contact"
-                    className="group inline-flex min-h-11 items-center justify-between gap-5 rounded-full bg-action px-5 text-xs font-bold text-action-foreground shadow-[0_14px_35px_rgba(15,118,110,0.18)] transition hover:-translate-y-0.5 hover:bg-action-hover sm:min-h-13 sm:px-6 sm:text-sm"
+                    className="group inline-flex min-h-11 items-center justify-between gap-5 rounded-full bg-action px-5 text-xs font-bold text-action-foreground shadow-[0_14px_35px_rgba(27,20,100,0.18)] transition hover:-translate-y-0.5 hover:bg-action-hover sm:min-h-13 sm:px-6 sm:text-sm"
                   >
                     Request a consultation
                     <ArrowUpRight
@@ -171,11 +186,11 @@ export default function ServiceDetailPage({ service }) {
                     />
                   </Link>
                   <a
-                    href="tel:+8801624000381"
+                    href={`tel:${primaryContact.tel}`}
                     className="inline-flex min-h-11 items-center justify-center gap-2.5 rounded-full border border-border bg-surface px-5 text-xs font-bold text-foreground transition hover:border-accent hover:text-accent-strong sm:min-h-13 sm:px-6 sm:text-sm"
                   >
                     <Phone aria-hidden="true" size={15} />
-                    01624 000 381
+                    {primaryContact.phone}
                   </a>
                 </div>
               </div>
@@ -500,6 +515,29 @@ export default function ServiceDetailPage({ service }) {
           </div>
         </section>
 
+        {relatedInsights.length > 0 && (
+          <section className="border-t border-border bg-surface-muted/50 py-14 sm:py-20 lg:py-24">
+            <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-10">
+              <div className="grid gap-7 lg:grid-cols-12 lg:items-end">
+                <div className="lg:col-span-7">
+                  <Eyebrow>From the knowledge desk</Eyebrow>
+                  <h2 className="mt-4 font-display text-3xl font-semibold tracking-[-0.05em] text-foreground sm:mt-6 sm:text-4xl">Read before you decide.</h2>
+                </div>
+                <p className="text-sm leading-7 text-muted lg:col-span-4 lg:col-start-9">Concise Bangladesh-focused guidance connected to this service area.</p>
+              </div>
+              <div className="mt-8 grid gap-4 md:grid-cols-3">
+                {relatedInsights.map((insight) => (
+                  <Link key={insight.slug} href={`/insights/${insight.slug}`} className="group flex min-h-48 flex-col rounded-[1.25rem] border border-border bg-surface p-6 transition hover:-translate-y-1 hover:border-brand-blue/30 hover:shadow-[0_18px_45px_rgba(27,20,100,.08)]">
+                    <p className="text-[0.58rem] font-extrabold uppercase tracking-[0.16em] text-brand-blue">{insight.category}</p>
+                    <h3 className="mt-3 font-display text-xl font-semibold leading-tight tracking-[-0.04em] text-foreground transition group-hover:text-brand-blue">{insight.title}</h3>
+                    <span className="mt-auto inline-flex items-center gap-2 pt-6 text-xs font-extrabold text-foreground">Read insight <ArrowUpRight size={14} className="text-brand-gold" /></span>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+
         <section className="bg-brand py-12 text-white sm:py-16 lg:py-20">
           <div className="mx-auto grid max-w-[90rem] gap-7 px-4 sm:px-6 lg:grid-cols-[1fr_auto] lg:items-center lg:gap-12 lg:px-10">
             <div>
@@ -517,9 +555,9 @@ export default function ServiceDetailPage({ service }) {
             <div className="grid gap-2.5 min-[430px]:grid-cols-2 lg:w-[24rem]">
               <Link
                 href="/contact"
-                className="inline-flex min-h-11 items-center justify-center gap-2.5 rounded-full bg-accent px-5 text-xs font-bold text-[#042f2e] transition hover:bg-[#5eead4] sm:min-h-13 sm:text-sm"
+                className="inline-flex min-h-11 items-center justify-center gap-2.5 rounded-full bg-brand-gold px-5 text-xs font-bold text-brand-navy shadow-[0_10px_28px_rgba(212,175,55,.2)] transition duration-200 hover:-translate-y-0.5 hover:bg-brand-gold-soft active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-brand-navy sm:min-h-13 sm:text-sm"
               >
-                Book consultation
+                Book a Free Consultation
                 <ArrowUpRight aria-hidden="true" size={16} />
               </Link>
               <a

@@ -15,6 +15,7 @@ import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 
 import {
+  consultationIndustries,
   consultationSchema,
   consultationServices,
 } from "@/schemas/consultation";
@@ -51,6 +52,7 @@ export default function ConsultationForm({ compact = false }) {
       email: "",
       phone: "",
       company: "",
+      pickYourIndustry: "",
       service: "",
       message: "",
       consent: false,
@@ -59,7 +61,6 @@ export default function ConsultationForm({ compact = false }) {
       sourcePath: "",
     },
   });
-
 
   useEffect(() => {
     setValue("startedAt", getCurrentTimestamp(), {
@@ -71,8 +72,15 @@ export default function ConsultationForm({ compact = false }) {
 
   async function goToDetails() {
     const fields = compact
-      ? ["name", "email", "service"]
-      : ["name", "email", "phone", "company", "service"];
+      ? ["name", "email", "pickYourIndustry", "service"]
+      : [
+          "name",
+          "email",
+          "phone",
+          "company",
+          "pickYourIndustry",
+          "service",
+        ];
     const valid = await trigger(fields, { shouldFocus: true });
     if (valid) setStep(2);
   }
@@ -122,6 +130,7 @@ export default function ConsultationForm({ compact = false }) {
         email: "",
         phone: "",
         company: "",
+        pickYourIndustry: "",
         service: "",
         message: "",
         consent: false,
@@ -144,7 +153,7 @@ export default function ConsultationForm({ compact = false }) {
 
     return (
       <div className="rounded-[1.35rem] border border-accent/25 bg-accent/8 p-6 sm:p-7" role="status">
-        <span className="inline-flex size-12 items-center justify-center rounded-full bg-accent text-[#042f2e]">
+        <span className="inline-flex size-12 items-center justify-center rounded-full bg-accent text-[#1b1464]">
           <MailCheck aria-hidden="true" size={21} />
         </span>
         <h3 className="mt-5 font-display text-2xl font-bold tracking-[-0.045em] text-foreground">
@@ -247,6 +256,18 @@ export default function ConsultationForm({ compact = false }) {
           {!compact && (
             <div className="grid gap-4 sm:grid-cols-2">
               <label className="grid gap-2 text-xs font-bold text-foreground">
+                Company name <span className="font-medium text-muted">(optional)</span>
+                <input
+                  {...register("company")}
+                  className={fieldClass}
+                  autoComplete="organization"
+                  placeholder="Company name"
+                  aria-invalid={Boolean(errors.company)}
+                  aria-describedby={errors.company ? "consultation-company-error" : undefined}
+                />
+                <FieldError id="consultation-company-error" message={errors.company?.message} />
+              </label>
+              <label className="grid gap-2 text-xs font-bold text-foreground">
                 Phone number <span className="font-medium text-muted">(optional)</span>
                 <input
                   {...register("phone")}
@@ -255,22 +276,33 @@ export default function ConsultationForm({ compact = false }) {
                   autoComplete="tel"
                   placeholder="+880 1XXX XXXXXX"
                   aria-invalid={Boolean(errors.phone)}
+                  aria-describedby={errors.phone ? "consultation-phone-error" : undefined}
                 />
                 <FieldError id="consultation-phone-error" message={errors.phone?.message} />
               </label>
-              <label className="grid gap-2 text-xs font-bold text-foreground">
-                Company <span className="font-medium text-muted">(optional)</span>
-                <input
-                  {...register("company")}
-                  className={fieldClass}
-                  autoComplete="organization"
-                  placeholder="Company name"
-                  aria-invalid={Boolean(errors.company)}
-                />
-                <FieldError id="consultation-company-error" message={errors.company?.message} />
-              </label>
             </div>
           )}
+
+          <label className="grid gap-2 text-xs font-bold text-foreground">
+            Pick Your Industry
+            <select
+              {...register("pickYourIndustry")}
+              className={fieldClass}
+              defaultValue=""
+              aria-invalid={Boolean(errors.pickYourIndustry)}
+              aria-describedby={errors.pickYourIndustry ? "consultation-industry-error" : undefined}
+            >
+              <option value="" disabled>
+                Select your industry
+              </option>
+              {consultationIndustries.map((option) => (
+                <option key={option} value={option}>
+                  {option}
+                </option>
+              ))}
+            </select>
+            <FieldError id="consultation-industry-error" message={errors.pickYourIndustry?.message} />
+          </label>
 
           <label className="grid gap-2 text-xs font-bold text-foreground">
             Service interest

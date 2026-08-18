@@ -8,236 +8,318 @@ import {
   Disclosure,
   DisclosureButton,
   DisclosurePanel,
-  Popover,
-  PopoverButton,
-  PopoverPanel,
 } from "@headlessui/react";
 import clsx from "clsx";
+import { AnimatePresence, m, useReducedMotion } from "motion/react";
 import {
   ArrowRight,
   ArrowUpRight,
   ChevronDown,
-  Mail,
-  MapPin,
   Menu,
+  MessageCircle,
   Phone,
   X,
 } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useTheme } from "next-themes";
+import { useEffect, useRef, useState } from "react";
 
-import { primaryNavigation, services } from "@/config/navigation";
 import BrandLogo from "@/components/ui/BrandLogo";
 import ThemeToggle from "@/components/ui/ThemeToggle";
+import useMounted from "@/hooks/useMounted";
+import { primaryContact, whatsappHref } from "@/config/contacts";
+import {
+  aboutNavigation,
+  industryNavigation,
+  primaryNavigation,
+  services,
+} from "@/config/navigation";
 
 const navLinkClasses =
-  "relative inline-flex h-11 items-center whitespace-nowrap rounded-lg px-3 text-[0.83rem] font-semibold transition-colors hover:text-accent-strong focus-visible:outline-none";
+  "relative inline-flex h-11 items-center whitespace-nowrap px-2.5 text-[0.78rem] font-bold tracking-[-0.01em] text-foreground/78 transition-colors hover:text-brand-blue focus-visible:outline-none focus-visible:text-brand-blue 2xl:px-3 2xl:text-[0.82rem]";
 
-const HEADER_VERSION = "responsive-navigation-v7-20260722";
+function Underline({ active }) {
+  return (
+    <span
+      aria-hidden="true"
+      className={clsx(
+        "absolute inset-x-2.5 bottom-1.5 h-[2px] origin-left rounded-full bg-brand-gold transition duration-200",
+        active ? "scale-x-100 opacity-100" : "scale-x-0 opacity-0",
+      )}
+    />
+  );
+}
+
+function DesktopDropdown({
+  id,
+  label,
+  open,
+  onOpen,
+  onScheduleClose,
+  onCancelClose,
+  active,
+  children,
+  widthClass = "w-[22rem]",
+  align = "left",
+}) {
+  const reduceMotion = useReducedMotion();
+  const triggerRef = useRef(null);
+
+  const closeAndRestoreFocus = () => {
+    onScheduleClose(0);
+    requestAnimationFrame(() => triggerRef.current?.focus());
+  };
+
+  return (
+    <div
+      className="relative"
+      onMouseEnter={onOpen}
+      onMouseLeave={onScheduleClose}
+      onFocus={onOpen}
+      onBlur={(event) => {
+        if (!event.currentTarget.contains(event.relatedTarget)) onScheduleClose();
+      }}
+    >
+      <button
+        ref={triggerRef}
+        type="button"
+        aria-haspopup="menu"
+        aria-expanded={open}
+        aria-controls={`${id}-menu`}
+        onClick={() => (open ? onScheduleClose(0) : onOpen())}
+        onKeyDown={(event) => {
+          if (event.key === "Escape") {
+            event.preventDefault();
+            closeAndRestoreFocus();
+          }
+          if (event.key === "ArrowDown") {
+            event.preventDefault();
+            onOpen();
+            requestAnimationFrame(() => {
+              document.querySelector(`#${id}-menu [role="menuitem"]`)?.focus();
+            });
+          }
+        }}
+        className={clsx(navLinkClasses, (active || open) && "text-brand-blue")}
+      >
+        {label}
+        <ChevronDown
+          aria-hidden="true"
+          size={14}
+          className={clsx("ml-1 transition-transform duration-200", open && "rotate-180")}
+        />
+        <Underline active={active || open} />
+      </button>
+
+      <AnimatePresence>
+        {open && (
+          <m.div
+            id={`${id}-menu`}
+            role="menu"
+            initial={reduceMotion ? false : { opacity: 0, y: 7, scale: 0.992 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={reduceMotion ? { opacity: 0 } : { opacity: 0, y: 5, scale: 0.995 }}
+            transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            onMouseEnter={onCancelClose}
+            onMouseLeave={onScheduleClose}
+            onKeyDown={(event) => {
+              if (event.key === "Escape") {
+                event.preventDefault();
+                event.stopPropagation();
+                closeAndRestoreFocus();
+              }
+            }}
+            className={clsx(
+              "absolute top-[calc(100%-0.15rem)] z-[70] pt-3",
+              widthClass,
+              align === "right" ? "right-0" : "left-0",
+            )}
+          >
+            <div className="overflow-hidden rounded-2xl border border-border bg-surface/98 shadow-[0_28px_80px_rgba(10,27,61,0.18)] backdrop-blur-xl">
+              {children}
+            </div>
+          </m.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
 
 export default function SiteHeader() {
   const pathname = usePathname();
+  const mounted = useMounted();
+  const { resolvedTheme } = useTheme();
+  const logoIsLight = mounted && resolvedTheme === "dark";
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [openMenu, setOpenMenu] = useState(null);
+  const [routePathname, setRoutePathname] = useState(pathname);
+  const closeTimer = useRef(null);
 
   const isCurrent = (href) =>
     href === "/" ? pathname === href : pathname.startsWith(href);
 
-  const servicesAreCurrent = pathname.startsWith("/services");
+  const cancelClose = () => {
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+  };
+
+  const openDropdown = (name) => {
+    cancelClose();
+    setOpenMenu(name);
+  };
+
+  const scheduleClose = (delay = 190) => {
+    cancelClose();
+    closeTimer.current = setTimeout(() => setOpenMenu(null), delay);
+  };
+
+  if (pathname !== routePathname) {
+    setRoutePathname(pathname);
+    setOpenMenu(null);
+    setMobileMenuOpen(false);
+  }
+
+  useEffect(() => () => cancelClose(), []);
+
+  useEffect(() => {
+    const onKeyDown = (event) => {
+      if (event.key === "Escape") setOpenMenu(null);
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, []);
 
   return (
     <>
-      <header
-        data-header-version={HEADER_VERSION}
-        className="sticky top-0 z-50 border-b border-border/80 bg-surface/95 shadow-[0_10px_35px_rgba(11,31,51,0.06)] backdrop-blur-xl"
-      >
-        <div className="hidden bg-brand text-white xl:block">
-          <div className="mx-auto flex h-9 max-w-7xl items-center justify-between px-6">
-            <p className="text-[0.69rem] font-semibold uppercase tracking-[0.14em] text-white/70">
-              Practical compliance guidance for Bangladesh
-            </p>
+      <header className="sticky top-3 z-50 px-3 sm:top-4 sm:px-4 lg:px-6 2xl:px-8">
+        <div className="capwise-floating-nav mx-auto flex min-h-[4.5rem] max-w-[94rem] items-center gap-3 rounded-full px-4 py-1.5 sm:px-5 lg:px-7 2xl:px-9">
+          <BrandLogo compact tagline light={logoIsLight} className="mr-auto" />
 
-            <div className="flex items-center gap-6 text-[0.72rem] font-medium text-white/80">
-              <a
-                href="mailto:info@capwisebd.com"
-                className="inline-flex items-center gap-2 transition hover:text-white"
-              >
-                <Mail aria-hidden="true" size={13} />
-                info@capwisebd.com
-              </a>
-
-              <a
-                href="tel:+8801624000381"
-                className="inline-flex items-center gap-2 transition hover:text-white"
-              >
-                <Phone aria-hidden="true" size={13} />
-                01624 000 381
-              </a>
-
-              <span className="inline-flex items-center gap-2">
-                <MapPin aria-hidden="true" size={13} />
-                Banani, Dhaka
-              </span>
-            </div>
-          </div>
-        </div>
-
-        <div className="relative mx-auto flex h-[4.75rem] max-w-7xl items-center gap-5 px-4 sm:px-6">
-          <BrandLogo className="mr-auto xl:mr-2" />
-
-          <nav
-            aria-label="Primary navigation"
-            className="hidden flex-1 items-center justify-center gap-0.5 xl:flex"
-          >
-            <Link
-              href="/about"
-              aria-current={isCurrent("/about") ? "page" : undefined}
-              className={clsx(
-                navLinkClasses,
-                isCurrent("/about")
-                  ? "text-accent-strong"
-                  : "text-foreground/80",
-              )}
+          <nav aria-label="Primary navigation" className="hidden items-center gap-0 xl:flex">
+            <DesktopDropdown
+              id="about"
+              label="About"
+              open={openMenu === "about"}
+              onOpen={() => openDropdown("about")}
+              onScheduleClose={scheduleClose}
+              onCancelClose={cancelClose}
+              active={isCurrent("/about") || isCurrent("/team")}
+              widthClass="w-[21rem]"
             >
-              About
-            </Link>
-
-            <Popover className="static">
-              {({ open, close }) => (
-                <>
-                  <PopoverButton
-                    className={clsx(
-                      navLinkClasses,
-                      servicesAreCurrent || open
-                        ? "text-accent-strong"
-                        : "text-foreground/80",
-                    )}
+              <div className="p-3">
+                <p className="px-3 pb-2 pt-1 text-[0.6rem] font-extrabold uppercase tracking-[0.18em] text-brand-blue">About Capwise</p>
+                {aboutNavigation.map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    role="menuitem"
+                    className="group block rounded-xl px-3 py-3.5 transition hover:bg-brand-navy/[0.045] focus-visible:bg-brand-navy/[0.045] focus-visible:outline-none"
                   >
-                    Services
-                    <ChevronDown
-                      aria-hidden="true"
-                      size={15}
-                      className={clsx(
-                        "ml-1.5 transition-transform",
-                        open && "rotate-180",
-                      )}
-                    />
-                  </PopoverButton>
+                    <span className="flex items-center justify-between gap-4 text-sm font-bold text-foreground group-hover:text-brand-blue">
+                      {item.label}<ArrowUpRight size={14} className="text-brand-gold transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                    </span>
+                    <span className="mt-1 block text-xs leading-5 text-muted">{item.description}</span>
+                  </Link>
+                ))}
+              </div>
+            </DesktopDropdown>
 
-                  <PopoverPanel
-                    data-services-menu="desktop"
-                    className="absolute left-1/2 top-[calc(100%+0.75rem)] w-[calc(100%_-_2rem)] max-w-[58rem] -translate-x-1/2 overflow-hidden rounded-2xl border border-border bg-surface shadow-[0_30px_80px_rgba(11,31,51,0.18)]"
-                  >
-                    <div className="grid grid-cols-[1.55fr_0.75fr]">
-                      <div className="p-6">
-                        <div className="mb-4 flex items-end justify-between gap-6 border-b border-border pb-4">
-                          <div>
-                            <p className="text-[0.65rem] font-bold uppercase tracking-[0.18em] text-accent-strong">
-                              Advisory services
-                            </p>
-                            <p className="mt-1 font-display text-lg font-bold text-foreground">
-                              Compliance, coordinated.
-                            </p>
-                          </div>
+            <DesktopDropdown
+              id="services"
+              label="Services"
+              open={openMenu === "services"}
+              onOpen={() => openDropdown("services")}
+              onScheduleClose={scheduleClose}
+              onCancelClose={cancelClose}
+              active={isCurrent("/services")}
+              widthClass="w-[44rem] 2xl:w-[49rem]"
+            >
+              <div className="grid grid-cols-[1fr_13rem]">
+                <div className="p-4 2xl:p-5">
+                  <div className="mb-2 flex items-center justify-between gap-5 px-2">
+                    <p className="text-[0.6rem] font-extrabold uppercase tracking-[0.18em] text-brand-blue">Services</p>
+                    <Link href="/services" className="inline-flex items-center gap-1 text-[0.68rem] font-bold text-muted transition hover:text-brand-blue">
+                      View all <ArrowRight size={13} />
+                    </Link>
+                  </div>
+                  <div className="grid grid-cols-2 gap-1">
+                    {services.map((service, index) => (
+                      <Link
+                        key={service.href}
+                        href={service.href}
+                        role="menuitem"
+                        className="group flex gap-3 rounded-xl px-2.5 py-3 transition hover:bg-brand-navy/[0.045] focus-visible:bg-brand-navy/[0.045] focus-visible:outline-none"
+                      >
+                        <span className="mt-0.5 text-[0.62rem] font-extrabold text-brand-gold">{String(index + 1).padStart(2, "0")}</span>
+                        <span>
+                          <span className="block text-[0.77rem] font-bold leading-5 text-foreground transition group-hover:text-brand-blue">{service.label}</span>
+                          <span className="mt-0.5 block text-[0.67rem] leading-4 text-muted">{service.description}</span>
+                        </span>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+                <div className="flex flex-col justify-between bg-brand-navy p-5 text-white">
+                  <div>
+                    <p className="text-[0.58rem] font-bold uppercase tracking-[0.18em] text-brand-gold">Need direction?</p>
+                    <p className="mt-4 font-display text-xl font-semibold leading-tight">Tell us what you need to solve.</p>
+                    <p className="mt-3 text-xs leading-5 text-white/62">We will help identify the practical starting point.</p>
+                  </div>
+                  <Link href="/contact" className="mt-7 inline-flex items-center justify-between rounded-xl bg-brand-gold px-4 py-3 text-xs font-extrabold text-brand-navy transition hover:-translate-y-0.5 hover:bg-brand-gold-soft">
+                    Free consultation <ArrowUpRight size={15} />
+                  </Link>
+                </div>
+              </div>
+            </DesktopDropdown>
 
-                          <Link
-                            href="/services"
-                            onClick={close}
-                            className="inline-flex shrink-0 items-center gap-1.5 text-xs font-bold text-accent-strong hover:underline"
-                          >
-                            View all
-                            <ArrowRight aria-hidden="true" size={14} />
-                          </Link>
-                        </div>
+            <Link href="/insights/sme-sector-bangladesh" className={clsx(navLinkClasses, isCurrent("/insights/sme-sector-bangladesh") && "text-brand-blue")}>SME<Underline active={isCurrent("/insights/sme-sector-bangladesh")} /></Link>
+            <Link href="/insights/startups-in-bangladesh" className={clsx(navLinkClasses, isCurrent("/insights/startups-in-bangladesh") && "text-brand-blue")}>Startup<Underline active={isCurrent("/insights/startups-in-bangladesh")} /></Link>
 
-                        <div className="grid grid-cols-2 gap-1.5">
-                          {services.map((service, index) => (
-                            <Link
-                              key={service.href}
-                              href={service.href}
-                              onClick={close}
-                              className="group rounded-xl px-3 py-3 transition hover:bg-surface-muted"
-                            >
-                              <span className="flex items-start gap-3">
-                                <span className="mt-0.5 font-display text-[0.66rem] font-bold text-accent-strong/80">
-                                  {String(index + 1).padStart(2, "0")}
-                                </span>
-                                <span>
-                                  <span className="block text-[0.79rem] font-bold leading-5 text-foreground transition group-hover:text-accent-strong">
-                                    {service.label}
-                                  </span>
-                                  <span className="mt-1 block text-[0.68rem] leading-4 text-muted">
-                                    {service.description}
-                                  </span>
-                                </span>
-                              </span>
-                            </Link>
-                          ))}
-                        </div>
-                      </div>
+            <DesktopDropdown
+              id="industries"
+              label="Industries"
+              open={openMenu === "industries"}
+              onOpen={() => openDropdown("industries")}
+              onScheduleClose={scheduleClose}
+              onCancelClose={cancelClose}
+              active={industryNavigation.some((item) => pathname === item.href)}
+              widthClass="w-[25rem]"
+            >
+              <div className="p-3">
+                <p className="px-3 pb-2 pt-1 text-[0.6rem] font-extrabold uppercase tracking-[0.18em] text-brand-blue">Industry insights</p>
+                {industryNavigation.map((item, index) => (
+                  <Link key={item.href} href={item.href} role="menuitem" className="group flex items-center gap-3 rounded-xl px-3 py-3 transition hover:bg-brand-navy/[0.045] focus-visible:bg-brand-navy/[0.045] focus-visible:outline-none">
+                    <span className="text-[0.62rem] font-extrabold text-brand-gold">0{index + 1}</span>
+                    <span className="flex flex-1 items-center justify-between gap-3 text-[0.78rem] font-bold text-foreground group-hover:text-brand-blue">
+                      {item.label}<ArrowUpRight size={14} className="text-muted transition group-hover:text-brand-gold" />
+                    </span>
+                  </Link>
+                ))}
+              </div>
+            </DesktopDropdown>
 
-                      <div className="flex flex-col justify-between bg-brand p-6 text-white">
-                        <div>
-                          <span className="inline-flex rounded-full border border-white/15 px-3 py-1 text-[0.62rem] font-bold uppercase tracking-[0.15em] text-accent">
-                            Start with clarity
-                          </span>
-                          <p className="mt-5 font-display text-2xl font-semibold leading-tight">
-                            Not sure which service fits?
-                          </p>
-                          <p className="mt-3 text-sm leading-6 text-white/65">
-                            Tell us what you are trying to solve. We will help
-                            map the practical next step.
-                          </p>
-                        </div>
-
-                        <Link
-                          href="/contact"
-                          onClick={close}
-                          className="mt-8 inline-flex items-center justify-between rounded-xl bg-accent px-4 py-3 text-sm font-bold text-[#042f2e] transition hover:bg-[#5eead4]"
-                        >
-                          Free consultation
-                          <ArrowUpRight aria-hidden="true" size={17} />
-                        </Link>
-                      </div>
-                    </div>
-                  </PopoverPanel>
-                </>
-              )}
-            </Popover>
-
-            {primaryNavigation.slice(1).map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                aria-current={isCurrent(item.href) ? "page" : undefined}
-                className={clsx(
-                  navLinkClasses,
-                  item.label === "Industries" && "hidden xl:inline-flex",
-                  isCurrent(item.href)
-                    ? "text-accent-strong"
-                    : "text-foreground/80",
-                )}
-              >
-                {item.label}
+            {primaryNavigation.slice(2).map((item) => (
+              <Link key={item.href} href={item.href} className={clsx(navLinkClasses, isCurrent(item.href) && "text-brand-blue")}>
+                {item.label}<Underline active={isCurrent(item.href)} />
               </Link>
             ))}
           </nav>
 
-          <div className="flex shrink-0 items-center gap-2.5">
+          <div className="flex shrink-0 items-center gap-2">
             <ThemeToggle />
 
             <Link
               href="/contact"
-              className="hidden h-11 items-center gap-2 whitespace-nowrap rounded-full bg-action px-5 text-sm font-bold text-action-foreground shadow-sm transition hover:-translate-y-0.5 hover:bg-action-hover sm:inline-flex"
+              className="hidden h-11 items-center gap-2 whitespace-nowrap rounded-full bg-action px-5 text-[0.8rem] font-extrabold tracking-[-0.01em] text-action-foreground shadow-[0_10px_28px_rgba(27,20,100,.18)] transition duration-200 hover:-translate-y-0.5 hover:bg-action-hover hover:shadow-[0_14px_36px_rgba(212,175,55,.25),0_10px_28px_rgba(27,20,100,.18)] active:translate-y-0 active:shadow-[0_6px_18px_rgba(27,20,100,.2)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-strong focus-visible:ring-offset-2 focus-visible:ring-offset-surface 2xl:px-5 2xl:text-sm sm:inline-flex"
             >
-              Book a Consultation
-              <ArrowUpRight aria-hidden="true" size={16} />
+              Book a Free Consultation
+              <ArrowUpRight aria-hidden="true" size={15} />
             </Link>
 
             <button
               type="button"
               onClick={() => setMobileMenuOpen(true)}
-              className="inline-flex size-11 items-center justify-center rounded-full border border-border bg-surface text-foreground transition hover:border-accent hover:text-accent-strong xl:hidden"
+              className="inline-flex size-11 items-center justify-center rounded-full border border-border bg-surface text-foreground transition hover:border-brand-blue hover:text-brand-blue active:scale-95 xl:hidden"
               aria-label="Open navigation menu"
               aria-expanded={mobileMenuOpen}
             >
@@ -247,131 +329,74 @@ export default function SiteHeader() {
         </div>
       </header>
 
-      <Dialog
-        open={mobileMenuOpen}
-        onClose={setMobileMenuOpen}
-        className="relative z-[70] xl:hidden"
-      >
-        <DialogBackdrop className="fixed inset-0 bg-brand/55 backdrop-blur-sm" />
-
-        <div className="fixed inset-0 overflow-hidden">
-          <div className="flex min-h-full justify-end">
-            <DialogPanel
-              data-lenis-prevent
-              className="flex min-h-full w-full max-w-md flex-col border-l border-border bg-surface shadow-2xl"
-            >
-              <div className="flex h-[4.75rem] items-center justify-between border-b border-border px-5 sm:px-6">
-                <DialogTitle as="div">
-                  <BrandLogo />
-                </DialogTitle>
-
-                <button
-                  type="button"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="inline-flex size-11 items-center justify-center rounded-full border border-border text-foreground transition hover:border-accent hover:text-accent-strong"
-                  aria-label="Close navigation menu"
-                >
-                  <X aria-hidden="true" size={20} />
-                </button>
-              </div>
-
-              <nav
-                aria-label="Mobile navigation"
-                className="flex-1 overflow-y-auto px-5 py-6 sm:px-6"
-              >
-                <Link
-                  href="/about"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="flex min-h-12 items-center justify-between border-b border-border py-3 font-display text-lg font-semibold text-foreground"
-                >
-                  About
-                  <ArrowUpRight aria-hidden="true" size={17} />
-                </Link>
-
-                <Disclosure>
-                  <DisclosureButton className="group flex min-h-12 w-full items-center justify-between border-b border-border py-3 text-left font-display text-lg font-semibold text-foreground">
-                    Services
-                    <ChevronDown
-                      aria-hidden="true"
-                      size={18}
-                      className="transition-transform group-data-open:rotate-180"
-                    />
-                  </DisclosureButton>
-
-                  <DisclosurePanel className="border-b border-border bg-surface-muted/70 px-3 py-3">
-                    <Link
-                      href="/services"
-                      onClick={() => setMobileMenuOpen(false)}
-                      className="block rounded-lg px-3 py-2.5 text-sm font-bold text-accent-strong"
-                    >
-                      View all services
-                    </Link>
-
-                    {services.map((service) => (
-                      <Link
-                        key={service.href}
-                        href={service.href}
-                        onClick={() => setMobileMenuOpen(false)}
-                        className="block rounded-lg px-3 py-2.5 text-sm font-semibold leading-5 text-foreground/80 transition hover:bg-surface hover:text-accent-strong"
-                      >
-                        {service.label}
-                      </Link>
-                    ))}
-                  </DisclosurePanel>
-                </Disclosure>
-
-                {primaryNavigation.slice(1).map((item) => (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="flex min-h-12 items-center justify-between border-b border-border py-3 font-display text-lg font-semibold text-foreground"
-                  >
-                    {item.label}
-                    <ArrowUpRight aria-hidden="true" size={17} />
-                  </Link>
-                ))}
-
-                <Link
-                  href="/contact"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="flex min-h-12 items-center justify-between border-b border-border py-3 font-display text-lg font-semibold text-foreground"
-                >
-                  Contact
-                  <ArrowUpRight aria-hidden="true" size={17} />
-                </Link>
-              </nav>
-
-              <div className="border-t border-border bg-surface-muted p-5 sm:p-6">
-                <div className="mb-4 grid gap-2 text-xs font-medium text-muted sm:grid-cols-2">
-                  <a
-                    href="mailto:info@capwisebd.com"
-                    className="inline-flex items-center gap-2"
-                  >
-                    <Mail aria-hidden="true" size={14} />
-                    info@capwisebd.com
-                  </a>
-                  <a
-                    href="tel:+8801624000381"
-                    className="inline-flex items-center gap-2"
-                  >
-                    <Phone aria-hidden="true" size={14} />
-                    01624 000 381
-                  </a>
-                </div>
-
-                <Link
-                  href="/contact"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-full bg-action px-5 text-sm font-bold text-action-foreground transition hover:bg-action-hover"
-                >
-                  Book a Free Consultation
-                  <ArrowUpRight aria-hidden="true" size={17} />
-                </Link>
-              </div>
-            </DialogPanel>
+      <Dialog open={mobileMenuOpen} onClose={setMobileMenuOpen} className="relative z-[90] xl:hidden">
+        <DialogBackdrop
+          className="fixed inset-0 bg-brand-navy/45 backdrop-blur-md duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] data-[closed]:opacity-0"
+          transition
+        />
+        <DialogPanel
+          className="capwise-mobile-drawer fixed inset-y-0 right-0 flex w-full max-w-md flex-col overflow-y-auto rounded-l-[1.5rem] border-l p-5 duration-[380ms] ease-[cubic-bezier(0.22,1,0.36,1)] data-[closed]:translate-x-full"
+          transition
+        >
+          <div className="flex items-start justify-between gap-4 border-b border-border/70 pb-4">
+            <DialogTitle className="sr-only">Navigation</DialogTitle>
+            <BrandLogo compact tagline light={logoIsLight} />
+            <div className="flex shrink-0 items-center gap-2">
+              <ThemeToggle />
+              <button type="button" onClick={() => setMobileMenuOpen(false)} className="inline-flex size-11 items-center justify-center rounded-full border border-border transition hover:border-brand-blue hover:text-brand-blue active:scale-95" aria-label="Close navigation menu"><X size={20} /></button>
+            </div>
           </div>
-        </div>
+
+          <nav className="mt-5 grid gap-1" aria-label="Mobile navigation">
+            <Disclosure>
+              {({ open }) => <>
+                <DisclosureButton className="capwise-mobile-nav-link flex min-h-12 items-center justify-between rounded-xl px-3 text-left text-sm font-extrabold text-foreground hover:bg-brand-navy/[0.045]" data-active={isCurrent("/about") || isCurrent("/team")}>About <ChevronDown size={16} className={clsx("transition", open && "rotate-180")} /></DisclosureButton>
+                <DisclosurePanel className="grid gap-1 pb-2 pl-3">
+                  {aboutNavigation.map((item) => <Link key={item.href} href={item.href} className="capwise-mobile-nav-link rounded-lg px-3 py-2.5 text-sm font-semibold text-muted hover:bg-brand-navy/[0.045] hover:text-brand-blue" data-active={isCurrent(item.href)}>{item.label}</Link>)}
+                </DisclosurePanel>
+              </>}
+            </Disclosure>
+
+            <Disclosure>
+              {({ open }) => <>
+                <DisclosureButton className="capwise-mobile-nav-link flex min-h-12 items-center justify-between rounded-xl px-3 text-left text-sm font-extrabold text-foreground hover:bg-brand-navy/[0.045]" data-active={isCurrent("/services")}>Services <ChevronDown size={16} className={clsx("transition", open && "rotate-180")} /></DisclosureButton>
+                <DisclosurePanel className="grid gap-1 pb-2 pl-3">
+                  {services.map((item, index) => <Link key={item.href} href={item.href} className="capwise-mobile-nav-link flex gap-3 rounded-lg px-3 py-2.5 text-sm font-semibold text-muted hover:bg-brand-navy/[0.045] hover:text-brand-blue" data-active={isCurrent(item.href)}><span className="text-brand-gold">{String(index + 1).padStart(2,"0")}</span>{item.label}</Link>)}
+                </DisclosurePanel>
+              </>}
+            </Disclosure>
+
+            <Link href="/insights/sme-sector-bangladesh" className="capwise-mobile-nav-link flex min-h-12 items-center rounded-xl px-3 text-sm font-extrabold hover:bg-brand-navy/[0.045] hover:text-brand-blue" data-active={isCurrent("/insights/sme-sector-bangladesh")}>SME</Link>
+            <Link href="/insights/startups-in-bangladesh" className="capwise-mobile-nav-link flex min-h-12 items-center rounded-xl px-3 text-sm font-extrabold hover:bg-brand-navy/[0.045] hover:text-brand-blue" data-active={isCurrent("/insights/startups-in-bangladesh")}>Startup</Link>
+
+            <Disclosure>
+              {({ open }) => <>
+                <DisclosureButton className="capwise-mobile-nav-link flex min-h-12 items-center justify-between rounded-xl px-3 text-left text-sm font-extrabold text-foreground hover:bg-brand-navy/[0.045]" data-active={industryNavigation.some((item) => pathname === item.href)}>Industries <ChevronDown size={16} className={clsx("transition", open && "rotate-180")} /></DisclosureButton>
+                <DisclosurePanel className="grid gap-1 pb-2 pl-3">
+                  {industryNavigation.map((item) => <Link key={item.href} href={item.href} className="capwise-mobile-nav-link rounded-lg px-3 py-2.5 text-sm font-semibold text-muted hover:bg-brand-navy/[0.045] hover:text-brand-blue" data-active={isCurrent(item.href)}>{item.label}</Link>)}
+                </DisclosurePanel>
+              </>}
+            </Disclosure>
+
+            {primaryNavigation.slice(2).map((item) => <Link key={item.href} href={item.href} className="capwise-mobile-nav-link flex min-h-12 items-center rounded-xl px-3 text-sm font-extrabold hover:bg-brand-navy/[0.045] hover:text-brand-blue" data-active={isCurrent(item.href)}>{item.label}</Link>)}
+          </nav>
+
+          <div className="mt-6 border-t border-border/70 pt-5">
+            <Link href="/contact" className="flex h-12 items-center justify-between rounded-full bg-action px-5 text-sm font-extrabold text-action-foreground shadow-[0_10px_28px_rgba(27,20,100,.18)] transition duration-200 hover:-translate-y-0.5 hover:bg-action-hover active:translate-y-0 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-strong focus-visible:ring-offset-2 focus-visible:ring-offset-surface">Book a Free Consultation <ArrowUpRight size={17} /></Link>
+
+            <div className="mt-3 grid grid-cols-2 gap-2.5">
+              <a href={`tel:${primaryContact.tel}`} className="flex h-12 items-center justify-center gap-2 rounded-full border border-border text-sm font-bold text-foreground transition hover:border-brand-blue hover:text-brand-blue active:scale-[0.98]"><Phone size={15} aria-hidden="true" /> Call</a>
+              <a
+                href={whatsappHref(primaryContact.whatsapp, "Hello Capwise, I would like to discuss business support.")}
+                target="_blank"
+                rel="noreferrer"
+                className="flex h-12 items-center justify-center gap-2 rounded-full border border-border text-sm font-bold text-foreground transition hover:border-brand-blue hover:text-brand-blue active:scale-[0.98]"
+              >
+                <MessageCircle size={15} aria-hidden="true" /> WhatsApp
+              </a>
+            </div>
+          </div>
+        </DialogPanel>
       </Dialog>
     </>
   );

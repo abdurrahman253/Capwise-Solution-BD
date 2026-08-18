@@ -1,77 +1,27 @@
-const TRUST_STRIP_VERSION = "real-trust-strip-v10-20260722";
+import { BookOpen, LayoutGrid, Link2, MapPin } from "lucide-react";
 
 const trustFacts = [
-  {
-    label: "Founded",
-    value: "2022",
-    detail: "Established in Dhaka",
-  },
-  {
-    label: "Clients served",
-    value: "30+",
-    detail: "Businesses supported",
-  },
-  {
-    label: "Combined leadership",
-    value: "15+ years",
-    detail: "Tax, audit & regulatory advisory",
-  },
-  {
-    label: "Local support",
-    value: "Dhaka",
-    detail: "Bangladesh-focused guidance",
-  },
+  { label: "Focus", value: "Bangladesh", detail: "Local operating and compliance context", icon: MapPin },
+  { label: "Coverage", value: "7 services", detail: "From setup to recurring compliance", icon: LayoutGrid },
+  { label: "Approach", value: "Connected", detail: "Finance, tax, legal and HR considered together", icon: Link2 },
+  { label: "Knowledge", value: "Practical", detail: "Concise insights built around real business questions", icon: BookOpen },
 ];
 
 export default function TrustStrip() {
   return (
-    <section
-      data-trust-strip-version={TRUST_STRIP_VERSION}
-      aria-labelledby="capwise-trust-strip-title"
-      className="capwise-proof-strip relative isolate overflow-hidden border-b"
-    >
-      <h2 id="capwise-trust-strip-title" className="sr-only">
-        Capwise at a glance
-      </h2>
-
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-px bg-gradient-to-r from-transparent via-accent/35 to-transparent"
-      />
-
-      <dl className="mx-auto grid max-w-[90rem] grid-cols-2 px-4 sm:px-6 lg:grid-cols-4 lg:px-10">
-        {trustFacts.map(({ label, value, detail }, index) => (
+    <section className="capwise-trust-strip border-b border-border bg-surface py-8 sm:py-12" aria-label="Capwise at a glance">
+      <dl className="mx-auto grid max-w-[94rem] grid-cols-2 gap-3 px-4 sm:gap-4 sm:px-6 lg:grid-cols-4 lg:px-8 2xl:px-10">
+        {trustFacts.map(({ label, value, detail, icon: Icon }) => (
           <div
             key={label}
-            className={`capwise-proof-border relative flex min-h-[8.25rem] flex-col justify-center px-4 py-5 sm:min-h-[9rem] sm:px-6 sm:py-6 lg:min-h-[10.25rem] lg:px-8 ${
-              index % 2 === 1 ? "border-l" : ""
-            } ${index > 1 ? "border-t" : ""} ${
-              index > 0 ? "lg:border-l" : "lg:border-l-0"
-            } lg:border-t-0`}
+            className="capwise-trust-card group relative overflow-hidden rounded-2xl border p-4 transition duration-300 hover:-translate-y-1 sm:p-5"
           >
-            <dt className="flex items-center justify-between gap-3 text-[0.58rem] font-bold uppercase tracking-[0.19em] text-accent-strong sm:text-[0.64rem]">
-              <span>{label}</span>
-              <span
-                aria-hidden="true"
-                className="capwise-proof-muted font-display text-[0.6rem] font-semibold tabular-nums"
-              >
-                {String(index + 1).padStart(2, "0")}
-              </span>
-            </dt>
-
-            <dd className="mt-2.5">
-              <span className="block font-display text-[clamp(1.65rem,3.2vw,2.55rem)] font-semibold leading-none tracking-[-0.055em]">
-                {value}
-              </span>
-              <span className="capwise-proof-muted mt-2 block max-w-[17rem] text-[0.67rem] leading-5 sm:text-xs">
-                {detail}
-              </span>
-            </dd>
-
-            <span
-              aria-hidden="true"
-              className="absolute bottom-0 left-4 h-px w-8 bg-[color:var(--hero-gold)] sm:left-6 lg:left-8"
-            />
+            <span className="inline-flex size-8 items-center justify-center rounded-full bg-brand-blue/10 text-brand-blue sm:size-9">
+              <Icon aria-hidden="true" size={16} strokeWidth={1.8} />
+            </span>
+            <dt className="mt-3 text-[0.58rem] font-extrabold uppercase tracking-[0.18em] text-brand-blue sm:mt-4">{label}</dt>
+            <dd className="mt-1.5 font-display text-lg font-semibold tracking-[-0.03em] text-foreground sm:text-2xl">{value}</dd>
+            <p className="mt-1 text-[0.66rem] leading-4 text-muted sm:text-xs sm:leading-5">{detail}</p>
           </div>
         ))}
       </dl>

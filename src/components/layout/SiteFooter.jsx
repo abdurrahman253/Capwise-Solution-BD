@@ -1,92 +1,39 @@
-import { ArrowUpRight, Mail, MapPin, Phone } from "lucide-react";
+import { ArrowUpRight, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import Link from "next/link";
+import BrandLogo from "@/components/ui/BrandLogo";
+import { contacts, whatsappHref } from "@/config/contacts";
+import { services } from "@/config/navigation";
+import { pickYourIndustryOptions } from "@/data/pickYourIndustry";
 
 const columns = [
-  {
-    title: "Company",
-    links: [
-      ["About", "/about"],
-      ["Advisory Team", "/team"],
-      ["Case Studies", "/case-studies"],
-      ["Client Evidence", "/testimonials"],
-      ["Contact", "/contact"],
-    ],
-  },
-  {
-    title: "Explore",
-    links: [
-      ["Services", "/services"],
-      ["Doing Business", "/business-in-bangladesh"],
-      ["Industries", "/industries"],
-      ["Resources", "/resources"],
-      ["Insights", "/blog"],
-      ["FAQ", "/faq"],
-    ],
-  },
+  { title:"Firm", links:[["Our Firm","/about"],["Our Team","/team"],["Careers","/careers"],["Contact","/contact"]] },
+  { title:"Insights", links:[["SME","/insights/sme-sector-bangladesh"],["Startup","/insights/startups-in-bangladesh"],["All Insights","/insights"],["Company Registration","/insights/company-registration-bangladesh"]] },
+  { title:"Industries", links: pickYourIndustryOptions.map((item) => [item.label, item.href]) },
 ];
 
 export default function SiteFooter() {
-  return (
-    <footer className="border-t border-white/10 bg-[#04101d] text-white">
-      <div className="mx-auto max-w-[90rem] px-4 py-14 sm:px-6 sm:py-20 lg:px-10 lg:py-20">
-        <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
-          <div className="lg:col-span-5">
-            <Link href="/" className="inline-flex items-center gap-3" aria-label="Capwise Solution BD home">
-              <span className="inline-flex size-10 items-center justify-center rounded-full border border-white/15">
-                <svg aria-hidden="true" viewBox="0 0 96 100" className="size-7" fill="none">
-                  <path d="M70 18A34 34 0 1 0 70 82" stroke="white" strokeWidth="10" strokeLinecap="round" />
-                  <path d="M29 51L42 64L73 32" className="stroke-accent" strokeWidth="9" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </span>
-              <span>
-                <span className="block font-display text-lg font-bold tracking-[-0.04em]">CAPWISE</span>
-                <span className="block text-[0.55rem] font-bold uppercase tracking-[0.26em] text-accent">Solution BD</span>
-              </span>
-            </Link>
-            <h2 className="mt-8 max-w-[15ch] font-display text-3xl font-semibold leading-tight tracking-[-0.05em] text-white sm:text-4xl">
-              Wise choice for your finance.
-            </h2>
-            <p className="mt-5 max-w-xl text-sm leading-7 text-white/55">
-              Coordinated business compliance, tax and financial advisory for organisations operating in Bangladesh.
-            </p>
-          </div>
-
-          {columns.map((column) => (
-            <div key={column.title} className="lg:col-span-2">
-              <p className="text-[0.62rem] font-bold uppercase tracking-[0.2em] text-white/35">{column.title}</p>
-              <div className="mt-5 grid gap-3">
-                {column.links.map(([label, href]) => (
-                  <Link key={href} href={href} className="group inline-flex items-center gap-2 text-sm font-semibold text-white/68 transition hover:text-accent">
-                    {label}
-                    <ArrowUpRight aria-hidden="true" size={13} className="opacity-0 transition group-hover:opacity-100" />
-                  </Link>
-                ))}
-              </div>
-            </div>
-          ))}
-
-          <div className="lg:col-span-3">
-            <p className="text-[0.62rem] font-bold uppercase tracking-[0.2em] text-white/35">Contact</p>
-            <div className="mt-5 grid gap-4 text-sm text-white/68">
-              <a href="mailto:info@capwisebd.com" className="flex items-start gap-3 transition hover:text-accent"><Mail aria-hidden="true" size={16} className="mt-0.5 shrink-0" /> info@capwisebd.com</a>
-              <a href="tel:+8801624000381" className="flex items-start gap-3 transition hover:text-accent"><Phone aria-hidden="true" size={16} className="mt-0.5 shrink-0" /> 01624 000 381</a>
-              <p className="flex items-start gap-3"><MapPin aria-hidden="true" size={16} className="mt-0.5 shrink-0" /> Level-03, House 76/A, Road 11, Banani, Dhaka-1213</p>
+  return <footer className="border-t border-white/10 bg-[#090d23] text-white"><div className="mx-auto max-w-[94rem] px-5 py-14 sm:px-6 sm:py-18 lg:px-8 lg:py-20 2xl:px-10">
+    <div className="grid grid-cols-2 gap-x-6 gap-y-10 lg:grid-cols-12 lg:gap-10">
+      <div className="col-span-2 lg:col-span-4"><BrandLogo compact tagline light /><h2 className="mt-7 max-w-[14ch] font-display text-3xl font-semibold leading-tight tracking-[-.05em] sm:text-4xl">Accounting, tax, legal and compliance—connected.</h2><p className="mt-4 max-w-md text-sm leading-7 text-white/55">Professional advisory support for businesses operating in Bangladesh.</p></div>
+      <div className="lg:col-span-2"><p className="text-[.6rem] font-extrabold uppercase tracking-[.18em] text-white/35">Services</p><div className="mt-5 grid gap-2.5">{services.map(item=><Link key={item.href} href={item.href} className="text-xs font-semibold leading-5 text-white/65 transition hover:text-brand-gold">{item.label}</Link>)}</div></div>
+      {columns.map(col=><div key={col.title} className="lg:col-span-2"><p className="text-[.6rem] font-extrabold uppercase tracking-[.18em] text-white/35">{col.title}</p><div className="mt-5 grid gap-2.5">{col.links.map(([label,href])=><Link key={href} href={href} className="group inline-flex items-center gap-2 text-xs font-semibold leading-5 text-white/65 transition hover:text-brand-gold">{label}<ArrowUpRight size={12} className="opacity-0 transition group-hover:opacity-100"/></Link>)}</div></div>)}
+    </div>
+    <div className="mt-12 grid gap-6 border-t border-white/10 pt-7 sm:grid-cols-2 lg:grid-cols-4">
+      <a href="mailto:info@capwisebd.com" className="flex items-center gap-3 text-xs text-white/62 hover:text-brand-gold"><Mail size={15} className="shrink-0"/>info@capwisebd.com</a>
+      {[contacts.fahim, contacts.minhajul].map((person) => (
+        <div key={person.name} className="flex items-start gap-3 text-xs text-white/62">
+          <Phone size={15} className="mt-0.5 shrink-0"/>
+          <div>
+            <p className="font-semibold text-white/78">{person.name}</p>
+            <div className="mt-0.5 flex items-center gap-2.5">
+              <a href={`tel:${person.tel}`} className="hover:text-brand-gold">{person.phone}</a>
+              <a href={whatsappHref(person.whatsapp)} target="_blank" rel="noreferrer" aria-label={`WhatsApp ${person.name}`} className="text-white/45 transition hover:text-brand-gold"><MessageCircle size={13}/></a>
             </div>
           </div>
         </div>
-
-        <div className="mt-12 border-t border-white/10 pt-6 text-[0.7rem] font-medium text-white/38">
-          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-            <p>© {new Date().getFullYear()} Capwise Solution BD. All rights reserved.</p>
-            <div className="flex flex-wrap gap-x-5 gap-y-2">
-              <Link href="/privacy-policy" className="transition hover:text-accent">Privacy</Link>
-              <Link href="/terms-of-use" className="transition hover:text-accent">Terms</Link>
-              <Link href="/professional-disclaimer" className="transition hover:text-accent">Professional disclaimer</Link>
-            </div>
-          </div>
-          <p className="mt-4">Legal drafts, team details, case evidence and social profiles require final client and legal approval before launch.</p>
-        </div>
-      </div>
-    </footer>
-  );
+      ))}
+      <p className="flex items-start gap-3 text-xs leading-5 text-white/62"><MapPin size={15} className="mt-0.5 shrink-0"/>Level-03, House 76/A, Road 11, Banani, Dhaka-1213</p>
+    </div>
+    <div className="mt-7 flex flex-col gap-4 border-t border-white/10 pt-6 text-[.68rem] font-medium text-white/38 sm:flex-row sm:items-center sm:justify-between"><p>© {new Date().getFullYear()} Capwise Solution BD. All rights reserved.</p><div className="flex flex-wrap gap-x-5 gap-y-2"><Link href="/privacy-policy" className="hover:text-brand-gold">Privacy</Link><Link href="/terms-of-use" className="hover:text-brand-gold">Terms</Link><Link href="/professional-disclaimer" className="hover:text-brand-gold">Professional disclaimer</Link></div></div>
+  </div></footer>;
 }

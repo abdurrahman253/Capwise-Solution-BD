@@ -45,9 +45,9 @@ const workflow = ["Understand", "Prioritise", "Coordinate", "Follow through"];
 
 const workflowBorders = [
   "",
-  "border-t border-border sm:border-l sm:border-t-0",
+  "border-l border-border",
   "border-t border-border lg:border-l lg:border-t-0",
-  "border-t border-border sm:border-l lg:border-t-0",
+  "border-t border-l border-border lg:border-t-0",
 ];
 
 export default function WhyCapwise() {
@@ -161,16 +161,16 @@ export default function WhyCapwise() {
           viewport={{ once: true, amount: 0.5 }}
           className="mt-16 overflow-hidden rounded-[1.75rem] border border-border bg-background sm:mt-20"
         >
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid grid-cols-2 lg:grid-cols-4">
             {workflow.map((label, index) => (
               <div
                 key={label}
-                className={`relative min-h-28 px-6 py-6 sm:min-h-32 sm:px-7 ${workflowBorders[index]}`}
+                className={`relative min-h-24 px-4 py-4 sm:min-h-28 sm:px-6 sm:py-6 lg:min-h-32 lg:px-7 ${workflowBorders[index]}`}
               >
-                <span className="text-[0.6rem] font-bold uppercase tracking-[0.2em] text-accent-strong">
+                <span className="text-[0.58rem] font-bold uppercase tracking-[0.16em] text-accent-strong sm:text-[0.6rem] sm:tracking-[0.2em]">
                   0{index + 1}
                 </span>
-                <p className="mt-5 font-display text-lg font-bold tracking-[-0.035em] text-foreground">
+                <p className="mt-3 font-display text-sm font-bold tracking-[-0.025em] text-foreground sm:mt-5 sm:text-lg sm:tracking-[-0.035em]">
                   {label}
                 </p>
               </div>

@@ -57,7 +57,7 @@ export default function CaseStudiesPage() {
                   <p className="mt-7 text-[0.6rem] font-bold uppercase tracking-[0.18em] text-accent">Evidence intake required</p>
                   <h2 className="mt-4 max-w-[14ch] font-display text-[clamp(2.3rem,4vw,4.4rem)] font-semibold leading-[0.98] tracking-[-0.06em] text-white">The page is ready. The proof must come from real work.</h2>
                   <p className="mt-5 max-w-2xl text-sm leading-7 text-white/64">Use the case-study intake process to capture the situation, approved scope, measurable outcome, timeline and publication permissions.</p>
-                  <Link href="/contact" className="mt-8 inline-flex h-12 items-center justify-center gap-3 rounded-full bg-accent px-6 text-sm font-bold text-[#042f2e]">Discuss evidence approval <ArrowRight aria-hidden="true" size={17} /></Link>
+                  <Link href="/contact" className="mt-8 inline-flex h-12 items-center justify-center gap-3 rounded-full bg-accent px-6 text-sm font-bold text-[#1b1464]">Discuss evidence approval <ArrowRight aria-hidden="true" size={17} /></Link>
                 </div>
                 <aside className="rounded-[1.6rem] border border-border bg-background p-7 sm:p-9 lg:col-span-5">
                   <p className="flex items-center gap-2 text-[0.6rem] font-bold uppercase tracking-[0.18em] text-gold"><ShieldCheck aria-hidden="true" size={14} /> Publication gate</p>

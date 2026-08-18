@@ -1,280 +1,177 @@
 "use client";
 
-import { ArrowRight, ArrowUpRight, Check, MapPin } from "lucide-react";
-import { m, useReducedMotion } from "@/components/ui/Motionless";
+import { ArrowRight, ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRef, useState } from "react";
+import { A11y, Autoplay, EffectFade, Keyboard } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/effect-fade";
 
-const HERO_VERSION = "legal-finance-editorial-v5-20260722";
-
-const serviceHighlights = [
-  "Tax & VAT",
-  "Corporate legal",
-  "Accounting & finance",
-  "Regulatory compliance",
+const heroSlides = [
+  {
+    number: "01",
+    label: "Company Formation",
+    title: "Start with the right business structure.",
+    description: "Company registration, TIN, VAT and operational setup—coordinated from one place.",
+    href: "/services/company-formation-registration",
+    image: "https://images.pexels.com/photos/3760067/pexels-photo-3760067.jpeg?auto=compress&cs=tinysrgb&w=1920",
+    alt: "Business professionals reviewing and signing company documents",
+  },
+  {
+    number: "02",
+    label: "Accounting & Bookkeeping",
+    title: "Know your numbers before they become a problem.",
+    description: "Clean books, regular reporting and financial visibility that support better decisions.",
+    href: "/services/accounting-bookkeeping",
+    image: "https://images.pexels.com/photos/8297220/pexels-photo-8297220.jpeg?auto=compress&cs=tinysrgb&w=1920",
+    alt: "Accountant using a calculator while reviewing financial documents",
+  },
+  {
+    number: "03",
+    label: "Tax Advisory & Compliance",
+    title: "Keep tax and VAT obligations under control.",
+    description: "Practical filing, documentation and tax support designed around your actual business.",
+    href: "/services/tax-advisory-compliance",
+    image: "https://images.pexels.com/photos/6927565/pexels-photo-6927565.jpeg?auto=compress&cs=tinysrgb&w=1920",
+    alt: "Professional reviewing tax and financial documents at an office desk",
+  },
+  {
+    number: "04",
+    label: "Payroll & HR Compliance",
+    title: "Build a payroll and people process that scales.",
+    description: "Accurate payroll, clear employment records and practical HR compliance for growing teams.",
+    href: "/services/payroll-hr-compliance",
+    image: "https://images.pexels.com/photos/5990046/pexels-photo-5990046.jpeg?auto=compress&cs=tinysrgb&w=1920",
+    alt: "Professional team discussing HR and workplace matters in a meeting",
+  },
+  {
+    number: "05",
+    label: "Corporate Secretarial",
+    title: "Keep governance current—not reconstructed later.",
+    description: "AGMs, statutory records, annual filings and corporate changes managed on a clear calendar.",
+    href: "/services/corporate-secretarial",
+    image: "https://images.pexels.com/photos/1181355/pexels-photo-1181355.jpeg?auto=compress&cs=tinysrgb&w=1920",
+    alt: "Corporate board meeting with professionals discussing documents",
+  },
+  {
+    number: "06",
+    label: "Regulatory & Legal Advisory",
+    title: "See regulatory risk before it blocks the business.",
+    description: "Connected legal and regulatory support for contracts, licences and operating obligations.",
+    href: "/services/regulatory-legal-advisory",
+    image: "https://images.pexels.com/photos/7841458/pexels-photo-7841458.jpeg?auto=compress&cs=tinysrgb&w=1920",
+    alt: "Close-up of a professional reviewing important contract terms",
+  },
+  {
+    number: "07",
+    label: "Business Advisory",
+    title: "Turn a complex decision into a practical next step.",
+    description: "Structured advice for growth, financing, restructuring and decisions that cross several functions.",
+    href: "/services/business-advisory",
+    image: "https://images.pexels.com/photos/5686105/pexels-photo-5686105.jpeg?auto=compress&cs=tinysrgb&w=1920",
+    alt: "Business leaders discussing strategy around a meeting table",
+  },
 ];
 
-const entrance = {
-  hidden: {},
-  visible: {
-    transition: {
-      delayChildren: 0.08,
-      staggerChildren: 0.09,
-    },
-  },
-};
-
-const entranceItem = {
-  hidden: { y: 22 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.72, ease: [0.22, 1, 0.36, 1] },
-  },
-};
+const AUTOPLAY_DELAY = 6200;
 
 export default function HomeHero() {
-  const shouldReduceMotion = useReducedMotion();
+  const swiperRef = useRef(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
 
   return (
     <section
-        data-hero-version={HERO_VERSION}
-        aria-labelledby="home-hero-title"
-        className="capwise-hero relative isolate overflow-hidden"
+      aria-label="Capwise advisory services"
+      className="relative -mt-[5.125rem] overflow-hidden bg-brand-navy text-white sm:-mt-[5.5rem] lg:-mt-[5.625rem]"
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+    >
+      <Swiper
+        modules={[A11y, Autoplay, EffectFade, Keyboard]}
+        effect="fade"
+        fadeEffect={{ crossFade: true }}
+        speed={850}
+        keyboard={{ enabled: true }}
+        a11y={{ enabled: true, prevSlideMessage: "Previous service", nextSlideMessage: "Next service", slideLabelMessage: "{{index}} of {{slidesLength}}" }}
+        autoplay={{ delay: AUTOPLAY_DELAY, disableOnInteraction: false, pauseOnMouseEnter: true, waitForTransition: false }}
+        rewind
+        onSwiper={(swiper) => { swiperRef.current = swiper; }}
+        onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
+        className="capwise-hero-swiper"
       >
-        <div
-          aria-hidden="true"
-          className="capwise-hero-grid pointer-events-none absolute inset-0 -z-20"
-        />
-        <div
-          aria-hidden="true"
-          className="capwise-hero-glow capwise-hero-glow-primary pointer-events-none absolute -right-40 -top-48 -z-10 size-[42rem] rounded-full blur-[120px]"
-        />
-        <div
-          aria-hidden="true"
-          className="capwise-hero-glow capwise-hero-glow-secondary pointer-events-none absolute -bottom-64 -left-48 -z-10 size-[36rem] rounded-full blur-[125px]"
-        />
-
-        <div className="mx-auto max-w-[90rem] px-5 sm:px-6 lg:px-10">
-          <div className="grid min-h-[42rem] items-center gap-14 py-16 sm:py-20 lg:grid-cols-[0.98fr_1.02fr] lg:gap-16 lg:py-16 xl:min-h-[46rem] xl:gap-24">
-            <m.div
-              variants={entrance}
-              initial="hidden"
-              animate="visible"
-              className="relative z-10 max-w-[49rem]"
-            >
-              <m.div variants={entranceItem} className="mb-7 flex items-center gap-3">
-                <span
-                  aria-hidden="true"
-                  className="h-px w-10 bg-[color:var(--hero-gold)]"
-                />
-                <p className="capwise-hero-kicker text-[0.65rem] font-bold uppercase tracking-[0.22em] sm:text-[0.7rem]">
-                  Corporate advisory in Bangladesh
-                </p>
-              </m.div>
-
-              <h1
-                id="home-hero-title"
-                className="max-w-[13ch] font-display text-[clamp(3.15rem,5.65vw,6rem)] font-semibold leading-[0.93] tracking-[-0.066em]"
-              >
-                <m.span variants={entranceItem} className="capwise-hero-text-secondary block">
-                  Legal, tax &amp; finance.
-                </m.span>
-                <m.span variants={entranceItem} className="capwise-hero-accent mt-1 block">
-                  One clear path forward.
-                </m.span>
-              </h1>
-
-              <m.p
-                variants={entranceItem}
-                className="capwise-hero-text-muted mt-7 max-w-[42rem] text-base leading-8 sm:mt-8 sm:text-lg sm:leading-9"
-              >
-                Capwise supports companies with corporate legal, VAT and tax,
-                accounting, finance and regulatory compliance—coordinated
-                through one practical advisory team.
-              </m.p>
-
-              <m.div
-                variants={entranceItem}
-                className="mt-8 flex flex-wrap gap-x-5 gap-y-3"
-                aria-label="Core advisory services"
-              >
-                {serviceHighlights.map((service) => (
-                  <span
-                    key={service}
-                    className="capwise-hero-service inline-flex items-center gap-2 text-xs font-semibold sm:text-sm"
-                  >
-                    <span className="inline-flex size-5 items-center justify-center rounded-full bg-accent/12 text-accent-strong">
-                      <Check aria-hidden="true" size={12} strokeWidth={2.4} />
-                    </span>
-                    {service}
-                  </span>
-                ))}
-              </m.div>
-
-              <m.div
-                variants={entranceItem}
-                className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center"
-              >
-                <Link
-                  href="/contact"
-                  className="group inline-flex min-h-13 items-center justify-between gap-7 rounded-[0.9rem] bg-action px-6 text-sm font-bold text-action-foreground shadow-[0_16px_42px_rgba(15,118,110,0.18)] transition duration-300 hover:-translate-y-1 hover:bg-action-hover sm:justify-center"
-                >
-                  Book a Free Consultation
-                  <ArrowUpRight
-                    aria-hidden="true"
-                    size={17}
-                    className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                  />
-                </Link>
-
-                <Link
-                  href="/services"
-                  className="capwise-hero-secondary-button group inline-flex min-h-13 items-center justify-between gap-7 rounded-[0.9rem] border px-6 text-sm font-bold transition duration-300 hover:-translate-y-1 sm:justify-center"
-                >
-                  Explore Our Services
-                  <ArrowRight
-                    aria-hidden="true"
-                    size={17}
-                    className="transition-transform duration-300 group-hover:translate-x-1"
-                  />
-                </Link>
-              </m.div>
-
-              <m.div
-                variants={entranceItem}
-                className="capwise-hero-border mt-9 flex max-w-[42rem] items-start gap-3 border-t pt-5"
-              >
-                <span className="mt-0.5 inline-flex size-8 shrink-0 items-center justify-center rounded-full bg-accent/10 text-accent-strong">
-                  <MapPin aria-hidden="true" size={15} strokeWidth={1.9} />
-                </span>
-                <p className="capwise-hero-text-muted text-sm leading-6">
-                  <span className="capwise-hero-text-secondary font-semibold">
-                    Based in Banani, Dhaka.
-                  </span>{" "}
-                  Supporting local and foreign-owned businesses across
-                  Bangladesh.
-                </p>
-              </m.div>
-            </m.div>
-
-            <div className="relative mx-auto w-full max-w-[41rem] lg:mr-0">
-              <div
-                aria-hidden="true"
-                className="capwise-hero-visual-halo absolute inset-x-[10%] inset-y-[8%] -z-10 rounded-full blur-[75px]"
+        {heroSlides.map((slide, index) => (
+          <SwiperSlide key={slide.number}>
+            <div className="relative min-h-[36rem] sm:min-h-[44rem] lg:min-h-[46rem] xl:min-h-[48rem]">
+              <Image
+                src={slide.image}
+                alt={slide.alt}
+                fill
+                priority={index === 0}
+                quality={88}
+                sizes="100vw"
+                className="capwise-hero-slide-image object-cover"
               />
+              <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(8,13,43,.9)_0%,rgba(15,21,61,.76)_42%,rgba(12,17,45,.3)_72%,rgba(8,13,35,.38)_100%)]" />
+              <div className="absolute inset-0 bg-[linear-gradient(0deg,rgba(8,13,43,.38)_0%,transparent_30%)]" />
+              <div className="pointer-events-none absolute inset-0 opacity-[0.14] [background-image:linear-gradient(rgba(255,255,255,.12)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.12)_1px,transparent_1px)] [background-size:72px_72px]" />
 
-              <div className="relative min-h-[30rem] sm:min-h-[35rem] lg:min-h-[37rem]">
-                <m.figure
-                  initial={{ scale: 0.97, y: 26 }}
-                  animate={{ opacity: 1, scale: 1, y: 0 }}
-                  transition={{
-                    delay: 0.28,
-                    duration: 0.9,
-                    ease: [0.22, 1, 0.36, 1],
-                  }}
-                  className="capwise-hero-finance-card absolute inset-y-0 right-0 w-[82%] overflow-hidden rounded-[2rem] border p-2 shadow-[var(--hero-shadow)] sm:w-[79%] sm:rounded-[2.4rem] sm:p-2.5"
-                >
-                  <div className="relative h-full min-h-[30rem] overflow-hidden rounded-[1.55rem] sm:min-h-[35rem] sm:rounded-[1.9rem] lg:min-h-[37rem]">
-                    <Image
-                      src="https://images.pexels.com/photos/20500268/pexels-photo-20500268.jpeg?auto=compress&cs=tinysrgb&w=1800"
-                      alt="Calculator placed on financial reports and business charts"
-                      fill
-                      priority
-                      quality={88}
-                      sizes="(min-width: 1024px) 34rem, 82vw"
-                      className="capwise-hero-photo object-cover"
-                      style={{ objectPosition: "center 51%" }}
-                    />
-                    <div
-                      aria-hidden="true"
-                      className="capwise-hero-photo-scrim absolute inset-0"
-                    />
-                    <figcaption className="absolute inset-x-0 bottom-0 p-6 text-white sm:p-7">
-                      <p className="text-[0.62rem] font-bold uppercase tracking-[0.2em] text-white/64">
-                        Finance &amp; compliance
-                      </p>
-                      <p className="mt-2 max-w-[17rem] font-display text-xl font-semibold leading-snug sm:text-2xl">
-                        Decision-ready numbers. Filing-ready records.
-                      </p>
-                    </figcaption>
+              <div className="relative mx-auto flex min-h-[36rem] max-w-[94rem] items-end px-5 pb-12 pt-10 sm:min-h-[44rem] sm:px-6 sm:pb-24 sm:pt-16 lg:min-h-[46rem] lg:items-center lg:px-8 lg:pb-20 lg:pt-28 xl:min-h-[48rem] 2xl:px-10">
+                <div className="capwise-hero-slide-copy max-w-[49rem]">
+                  <div className="flex items-center gap-3 text-[0.64rem] font-extrabold uppercase tracking-[0.2em] text-white/68 sm:text-[0.7rem]">
+                    <span className="text-brand-gold">{slide.number}</span>
+                    <span className="h-px w-9 bg-brand-gold/70" />
+                    <span>{slide.label}</span>
                   </div>
-                </m.figure>
 
-                <m.div
-                  initial={{ x: -24, y: 12 }}
-                  animate={{ opacity: 1, x: 0, y: 0 }}
-                  transition={{
-                    delay: 0.62,
-                    duration: 0.78,
-                    ease: [0.22, 1, 0.36, 1],
-                  }}
-                  className="capwise-hero-focus-card absolute left-0 top-8 z-10 max-w-[12.5rem] rounded-2xl border px-4 py-4 shadow-[var(--hero-node-shadow)] backdrop-blur-xl sm:top-12 sm:max-w-[14rem] sm:px-5 sm:py-5"
-                >
-                  <p className="text-[0.58rem] font-bold uppercase tracking-[0.2em] text-[color:var(--hero-gold)]">
-                    Integrated support
-                  </p>
-                  <p className="capwise-hero-text-secondary mt-2 font-display text-sm font-semibold leading-5 sm:text-base sm:leading-6">
-                    Legal insight with financial discipline.
-                  </p>
-                </m.div>
+                  {index === 0 ? (
+                    <h1 className="mt-6 max-w-[12ch] font-display text-[clamp(2.35rem,6.8vw,7rem)] font-semibold leading-[0.96] tracking-[-0.05em] text-white sm:leading-[0.91] sm:tracking-[-0.07em]">{slide.title}</h1>
+                  ) : (
+                    <h2 className="mt-6 max-w-[12ch] font-display text-[clamp(2.35rem,6.8vw,7rem)] font-semibold leading-[0.96] tracking-[-0.05em] text-white sm:leading-[0.91] sm:tracking-[-0.07em]">{slide.title}</h2>
+                  )}
 
-                <m.figure
-                  initial={{ x: -28, y: 18 }}
-                  animate={{ opacity: 1, x: 0, y: 0 }}
-                  transition={{
-                    delay: 0.48,
-                    duration: 0.85,
-                    ease: [0.22, 1, 0.36, 1],
-                  }}
-                  className="capwise-hero-legal-card absolute bottom-7 left-0 z-20 w-[55%] overflow-hidden rounded-[1.6rem] border p-1.5 shadow-[var(--hero-node-shadow)] sm:bottom-10 sm:w-[51%] sm:rounded-[1.9rem] sm:p-2"
-                >
-                  <div className="relative aspect-[4/3] overflow-hidden rounded-[1.25rem] sm:rounded-[1.45rem]">
-                    <Image
-                      src="https://images.pexels.com/photos/6077797/pexels-photo-6077797.jpeg?auto=compress&cs=tinysrgb&w=1400"
-                      alt="Balance scale beside a laptop representing corporate legal advice"
-                      fill
-                      quality={88}
-                      sizes="(min-width: 1024px) 20rem, 55vw"
-                      className="capwise-hero-photo object-cover"
-                      style={{ objectPosition: "62% center" }}
-                    />
-                    <div
-                      aria-hidden="true"
-                      className="absolute inset-0 bg-gradient-to-t from-[#061827]/70 via-transparent to-transparent"
-                    />
-                    <figcaption className="absolute inset-x-0 bottom-0 px-4 pb-4 text-xs font-bold text-white sm:px-5 sm:pb-5 sm:text-sm">
-                      Corporate legal &amp; regulatory
-                    </figcaption>
+                  <p className="mt-6 max-w-[42rem] text-base leading-8 text-white/72 sm:text-lg sm:leading-9">{slide.description}</p>
+
+                  <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                    <Link href={slide.href} className="group inline-flex min-h-12 items-center justify-between gap-6 rounded-full bg-brand-gold px-6 text-sm font-extrabold text-brand-navy transition hover:-translate-y-0.5 hover:bg-brand-gold-soft sm:justify-center">
+                      Explore Service
+                      <ArrowRight size={16} className="transition group-hover:translate-x-1" />
+                    </Link>
+                    <Link href="/contact" className="group inline-flex min-h-12 items-center justify-between gap-6 rounded-full border border-white/24 bg-white/[0.07] px-6 text-sm font-bold text-white backdrop-blur transition hover:-translate-y-0.5 hover:border-white/45 hover:bg-white/[0.12] sm:justify-center">
+                      Book a Free Consultation
+                      <ArrowUpRight size={16} className="text-brand-gold transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                    </Link>
                   </div>
-                </m.figure>
-
-                {!shouldReduceMotion ? (
-                  <m.span
-                    aria-hidden="true"
-                    animate={{ y: [0, -8, 0] }}
-                    transition={{ duration: 4.5, ease: "easeInOut", repeat: Infinity }}
-                    className="capwise-hero-seal absolute bottom-[11%] right-[-0.5rem] z-20 flex size-16 items-center justify-center rounded-full border text-center text-[0.5rem] font-bold uppercase leading-3 tracking-[0.13em] shadow-[var(--hero-node-shadow)] sm:right-[-0.75rem] sm:size-20 sm:text-[0.56rem]"
-                  >
-                    Clear
-                    <br />
-                    advice
-                  </m.span>
-                ) : (
-                  <span
-                    aria-hidden="true"
-                    className="capwise-hero-seal absolute bottom-[11%] right-[-0.5rem] z-20 flex size-16 items-center justify-center rounded-full border text-center text-[0.5rem] font-bold uppercase leading-3 tracking-[0.13em] shadow-[var(--hero-node-shadow)] sm:right-[-0.75rem] sm:size-20 sm:text-[0.56rem]"
-                  >
-                    Clear
-                    <br />
-                    advice
-                  </span>
-                )}
+                </div>
               </div>
-
             </div>
+          </SwiperSlide>
+        ))}
+      </Swiper>
+
+      <div className="pointer-events-none absolute inset-x-0 bottom-6 z-20 sm:bottom-8">
+        <div className="mx-auto flex max-w-[94rem] items-center justify-end gap-4 px-5 sm:px-6 lg:px-8 2xl:px-10">
+          <div className="mr-auto hidden items-center gap-3 text-[0.65rem] font-bold uppercase tracking-[0.18em] text-white/58 sm:flex">
+            <span className="text-white">{String(activeIndex + 1).padStart(2, "0")}</span>
+            <span className="h-px w-14 overflow-hidden bg-white/25">
+              <span
+                key={activeIndex}
+                className="block h-px w-full origin-left bg-brand-gold motion-reduce:hidden"
+                style={{
+                  animation: `capwise-hero-progress ${AUTOPLAY_DELAY}ms linear forwards`,
+                  animationPlayState: isPaused ? "paused" : "running",
+                }}
+              />
+            </span>
+            <span>{String(heroSlides.length).padStart(2, "0")}</span>
           </div>
+
+          <button onClick={() => swiperRef.current?.slidePrev()} type="button" className="pointer-events-auto inline-flex size-11 items-center justify-center rounded-full border border-white/20 bg-black/15 text-white backdrop-blur transition hover:border-brand-gold hover:bg-brand-gold hover:text-brand-navy" aria-label="Previous service slide"><ChevronLeft size={18} /></button>
+          <button onClick={() => swiperRef.current?.slideNext()} type="button" className="pointer-events-auto inline-flex size-11 items-center justify-center rounded-full border border-white/20 bg-black/15 text-white backdrop-blur transition hover:border-brand-gold hover:bg-brand-gold hover:text-brand-navy" aria-label="Next service slide"><ChevronRight size={18} /></button>
         </div>
+      </div>
     </section>
   );
 }

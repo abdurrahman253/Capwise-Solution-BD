@@ -10,7 +10,7 @@ export const guideResources = [
       "A practical preparation guide covering the decisions, documents and post-incorporation registrations businesses should organize before starting the process.",
     topics: ["Entity choice", "Core documents", "TIN, BIN & trade license"],
     status: "Editorial draft",
-    accent: "teal",
+    accent: "blue",
     featured: true,
   },
   {

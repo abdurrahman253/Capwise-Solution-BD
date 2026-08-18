@@ -2,17 +2,22 @@ import { ArrowUpRight, Mail, MapPin, MessageCircle, Phone, ShieldCheck } from "l
 
 import ConsultationForm from "@/components/forms/ConsultationForm";
 import SiteHeader from "@/components/layout/SiteHeader";
+import { contacts, whatsappHref } from "@/config/contacts";
 
 export const metadata = {
-  title: "Book a Consultation",
+  title: "Book a Free Consultation",
   description:
     "Contact Capwise Solution BD in Banani, Dhaka for business compliance, tax, VAT, accounting, legal and regulatory advisory support.",
   alternates: { canonical: "/contact" },
 };
 
+const consultationText = "Hello Capwise, I would like to book a consultation.";
+
 const channels = [
-  { icon: Phone, label: "Call", value: "01624 000 381", href: "tel:+8801624000381" },
-  { icon: MessageCircle, label: "WhatsApp", value: "01624 000 381", href: "https://wa.me/8801624000381?text=Hello%20Capwise%2C%20I%20would%20like%20to%20book%20a%20consultation." },
+  { icon: Phone, label: contacts.fahim.name, value: contacts.fahim.phone, href: `tel:${contacts.fahim.tel}` },
+  { icon: MessageCircle, label: `WhatsApp — ${contacts.fahim.name}`, value: contacts.fahim.phone, href: whatsappHref(contacts.fahim.whatsapp, consultationText) },
+  { icon: Phone, label: contacts.minhajul.name, value: contacts.minhajul.phone, href: `tel:${contacts.minhajul.tel}` },
+  { icon: MessageCircle, label: `WhatsApp — ${contacts.minhajul.name}`, value: contacts.minhajul.phone, href: whatsappHref(contacts.minhajul.whatsapp, consultationText) },
   { icon: Mail, label: "Email", value: "info@capwisebd.com", href: "mailto:info@capwisebd.com" },
 ];
 
@@ -26,7 +31,7 @@ export default function ContactPage() {
           <div className="pointer-events-none absolute -right-48 -top-44 -z-10 size-[36rem] rounded-full bg-accent/12 blur-[115px]" />
           <div className="mx-auto grid max-w-[90rem] gap-10 px-4 sm:px-6 lg:grid-cols-12 lg:items-end lg:gap-14 lg:px-10">
             <div className="lg:col-span-8">
-              <div className="flex items-center gap-3"><span className="h-px w-10 bg-accent-strong" /><p className="text-[0.62rem] font-bold uppercase tracking-[0.22em] text-accent-strong">Book a consultation</p></div>
+              <div className="flex items-center gap-3"><span className="h-px w-10 bg-accent-strong" /><p className="text-[0.62rem] font-bold uppercase tracking-[0.22em] text-accent-strong">Book a Free Consultation</p></div>
               <h1 className="mt-6 max-w-[12ch] font-display text-[clamp(3rem,7vw,7.2rem)] font-semibold leading-[0.91] tracking-[-0.075em] text-foreground">Start with the business issue, not a generic service package.</h1>
             </div>
             <div className="lg:col-span-4">
@@ -45,7 +50,7 @@ export default function ContactPage() {
               <ConsultationForm />
             </div>
 
-            <aside className="rounded-[1.8rem] bg-brand p-6 text-white shadow-[0_35px_100px_rgba(11,31,51,0.24)] sm:p-9 lg:col-span-5 lg:p-12">
+            <aside className="rounded-[1.8rem] bg-brand p-6 text-white shadow-[0_35px_100px_rgba(27,20,100,0.24)] sm:p-9 lg:col-span-5 lg:p-12">
               <p className="text-[0.62rem] font-bold uppercase tracking-[0.2em] text-accent">Direct contact</p>
               <h2 className="mt-4 max-w-[11ch] font-display text-4xl font-semibold leading-[0.98] tracking-[-0.055em] text-white">Reach the Dhaka advisory team.</h2>
               <div className="mt-9 divide-y divide-white/12 border-y border-white/12">

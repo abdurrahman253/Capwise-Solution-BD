@@ -101,7 +101,7 @@ export default function ResourcesPreview() {
         <div className="mt-12 grid gap-5 lg:mt-16 lg:grid-cols-12">
           <m.article
             {...reveal(2)}
-            className="group relative overflow-hidden rounded-[1.6rem] bg-brand text-white shadow-[0_30px_90px_rgba(11,31,51,0.2)] lg:col-span-7 lg:min-h-[38rem]"
+            className="group relative overflow-hidden rounded-[1.6rem] bg-brand text-white shadow-[0_30px_90px_rgba(27,20,100,0.2)] lg:col-span-7 lg:min-h-[38rem]"
           >
             <div
               aria-hidden="true"
@@ -137,27 +137,27 @@ export default function ResourcesPreview() {
                     aria-hidden="true"
                     className="absolute inset-0 -translate-x-4 rotate-[-5deg] rounded-[1.25rem] border border-white/10 bg-white/[0.055] transition duration-700 group-hover:-translate-x-6 group-hover:rotate-[-8deg]"
                   />
-                  <div className="absolute inset-0 flex flex-col overflow-hidden rounded-[1.25rem] border border-white/15 bg-[#f5f1e8] p-5 text-[#0b1f33] shadow-2xl sm:p-6">
+                  <div className="absolute inset-0 flex flex-col overflow-hidden rounded-[1.25rem] border border-white/15 bg-[#f5f1e8] p-5 text-[#1B1464] shadow-2xl sm:p-6">
                     <div className="flex items-start justify-between gap-4">
-                      <span className="font-display text-[0.62rem] font-extrabold uppercase tracking-[0.18em] text-[#0f766e]">
+                      <span className="font-display text-[0.62rem] font-extrabold uppercase tracking-[0.18em] text-[#1b64aa]">
                         Capwise field guide
                       </span>
-                      <span className="font-display text-[0.62rem] font-bold text-[#0b1f33]/45">
+                      <span className="font-display text-[0.62rem] font-bold text-[#1B1464]/45">
                         {featuredGuide.number}
                       </span>
                     </div>
-                    <div className="mt-8 h-px bg-[#0b1f33]/15" />
+                    <div className="mt-8 h-px bg-[#1B1464]/15" />
                     <p className="mt-8 font-display text-[1.6rem] font-semibold leading-[1.02] tracking-[-0.055em] sm:text-[1.85rem]">
                       Company Registration Checklist
                     </p>
-                    <p className="mt-3 text-xs font-semibold uppercase tracking-[0.13em] text-[#0b1f33]/50">
+                    <p className="mt-3 text-xs font-semibold uppercase tracking-[0.13em] text-[#1B1464]/50">
                       Bangladesh
                     </p>
                     <div className="mt-auto grid gap-2">
                       {["Prepare", "Register", "Operationalize"].map((item, index) => (
                         <div
                           key={item}
-                          className="flex items-center justify-between border-t border-[#0b1f33]/12 pt-2.5 text-[0.6rem] font-bold uppercase tracking-[0.12em] text-[#0b1f33]/62"
+                          className="flex items-center justify-between border-t border-[#1B1464]/12 pt-2.5 text-[0.6rem] font-bold uppercase tracking-[0.12em] text-[#1B1464]/62"
                         >
                           {item}
                           <span>{String(index + 1).padStart(2, "0")}</span>

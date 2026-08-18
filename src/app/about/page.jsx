@@ -38,7 +38,7 @@ export default function AboutPage() {
 
         <section className="bg-surface py-16 sm:py-24 lg:py-28">
           <div className="mx-auto grid max-w-[90rem] gap-5 px-4 sm:px-6 lg:grid-cols-2 lg:px-10">
-            <article className="rounded-[1.7rem] bg-brand p-7 text-white shadow-[0_32px_95px_rgba(11,31,51,0.22)] sm:p-10 lg:p-12">
+            <article className="rounded-[1.7rem] bg-brand p-7 text-white shadow-[0_32px_95px_rgba(27,20,100,0.22)] sm:p-10 lg:p-12">
               <p className="text-[0.62rem] font-bold uppercase tracking-[0.2em] text-accent">Mission</p>
               <h2 className="mt-6 font-display text-[clamp(2.4rem,4.5vw,4.6rem)] font-semibold leading-[0.97] tracking-[-0.06em] text-white">Be the reliable partner behind confident, compliant growth.</h2>
               <p className="mt-6 text-sm leading-7 text-white/64 sm:text-base sm:leading-8">Deliver accurate, timely and practical financial, tax, legal and regulatory support so clients can focus on operating and growing their business.</p>
@@ -75,7 +75,7 @@ export default function AboutPage() {
         <section className="bg-brand py-14 text-white sm:py-20 lg:py-24">
           <div className="mx-auto flex max-w-[90rem] flex-col gap-8 px-4 sm:px-6 lg:flex-row lg:items-end lg:justify-between lg:px-10">
             <div><p className="text-[0.62rem] font-bold uppercase tracking-[0.2em] text-accent">Meet the advisors</p><h2 className="mt-4 max-w-[16ch] font-display text-[clamp(2.4rem,5vw,4.8rem)] font-semibold leading-[0.96] tracking-[-0.06em] text-white">Specialist depth, shared responsibility.</h2></div>
-            <div className="flex flex-wrap gap-3"><Link href="/team" className="inline-flex h-12 items-center gap-3 rounded-full border border-white/15 px-6 text-sm font-bold text-white transition hover:border-accent hover:text-accent">View the team <ArrowUpRight aria-hidden="true" size={17} /></Link><Link href="/contact" className="inline-flex h-12 items-center gap-3 rounded-full bg-accent px-6 text-sm font-bold text-[#042f2e] transition hover:-translate-y-0.5 hover:bg-[#5eead4]">Book a consultation <ArrowUpRight aria-hidden="true" size={17} /></Link></div>
+            <div className="flex flex-wrap gap-3"><Link href="/team" className="inline-flex h-12 items-center gap-3 rounded-full border border-white/15 px-6 text-sm font-bold text-white transition hover:border-accent hover:text-accent">View the team <ArrowUpRight aria-hidden="true" size={17} /></Link><Link href="/contact" className="inline-flex h-12 items-center gap-3 rounded-full bg-brand-gold px-6 text-sm font-extrabold text-brand-navy shadow-[0_10px_28px_rgba(212,175,55,.2)] transition duration-200 hover:-translate-y-0.5 hover:bg-brand-gold-soft active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-brand-navy">Book a Free Consultation <ArrowUpRight aria-hidden="true" size={17} /></Link></div>
           </div>
         </section>
       </main>

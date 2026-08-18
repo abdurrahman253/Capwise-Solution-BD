@@ -91,7 +91,7 @@ export default function FaqPage() {
               <p className="inline-flex items-center gap-2 text-[0.62rem] font-bold uppercase tracking-[0.18em] text-accent"><Info aria-hidden="true" size={15} /> Need a fact-specific answer?</p>
               <h2 className="mt-4 max-w-[15ch] font-display text-[clamp(2.4rem,5vw,4.8rem)] font-semibold leading-[0.96] tracking-[-0.06em] text-white">Bring the context to a focused consultation.</h2>
             </div>
-            <Link href="/contact" className="inline-flex h-12 shrink-0 items-center justify-center gap-3 rounded-full bg-accent px-6 text-sm font-bold text-[#042f2e] transition hover:-translate-y-0.5 hover:bg-[#5eead4]">Book a consultation <ArrowUpRight aria-hidden="true" size={17} /></Link>
+            <Link href="/contact" className="inline-flex h-12 shrink-0 items-center justify-center gap-3 rounded-full bg-brand-gold px-6 text-sm font-extrabold text-brand-navy shadow-[0_10px_28px_rgba(212,175,55,.2)] transition duration-200 hover:-translate-y-0.5 hover:bg-brand-gold-soft active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-brand-navy">Book a Free Consultation <ArrowUpRight aria-hidden="true" size={17} /></Link>
           </div>
         </section>
       </main>

@@ -22,6 +22,8 @@ import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { toast } from "react-toastify";
 
+import { primaryContact, whatsappHref } from "@/config/contacts";
+
 gsap.registerPlugin(useGSAP);
 
 const quickActions = [
@@ -184,17 +186,17 @@ export default function SupportAssistant() {
       <div className="fixed bottom-4 right-4 z-[88] flex items-end gap-2.5 sm:bottom-6 sm:right-6">
         <div className="hidden flex-col gap-2 sm:flex">
           <a
-            href="https://wa.me/8801624000381?text=Hello%20Capwise%2C%20I%20would%20like%20to%20discuss%20business%20support."
+            href={whatsappHref(primaryContact.whatsapp, "Hello Capwise, I would like to discuss business support.")}
             target="_blank"
             rel="noreferrer"
-            className="inline-flex size-11 items-center justify-center rounded-full border border-border bg-surface text-accent-strong shadow-[0_14px_40px_rgba(11,31,51,0.14)] transition hover:-translate-y-1 hover:border-accent"
+            className="inline-flex size-11 items-center justify-center rounded-full border border-border bg-surface text-accent-strong shadow-[0_14px_40px_rgba(27,20,100,0.14)] transition hover:-translate-y-1 hover:border-accent"
             aria-label="Chat with Capwise on WhatsApp"
           >
             <MessageCircle aria-hidden="true" size={18} />
           </a>
           <a
-            href="tel:+8801624000381"
-            className="inline-flex size-11 items-center justify-center rounded-full border border-border bg-surface text-foreground shadow-[0_14px_40px_rgba(11,31,51,0.14)] transition hover:-translate-y-1 hover:border-accent hover:text-accent-strong"
+            href={`tel:${primaryContact.tel}`}
+            className="inline-flex size-11 items-center justify-center rounded-full border border-border bg-surface text-foreground shadow-[0_14px_40px_rgba(27,20,100,0.14)] transition hover:-translate-y-1 hover:border-accent hover:text-accent-strong"
             aria-label="Call Capwise"
           >
             <PhoneCall aria-hidden="true" size={17} />
@@ -204,45 +206,54 @@ export default function SupportAssistant() {
         <button
           type="button"
           onClick={() => setIsOpen(true)}
-          className="capwise-support-launcher group relative isolate flex min-h-15 items-center gap-3 overflow-hidden rounded-full border px-3 py-2.5 pr-5 text-left transition duration-300 hover:-translate-y-1"
+          className="capwise-support-launcher group relative isolate flex min-h-14 items-center gap-3 overflow-hidden rounded-full border px-2.5 py-2 pr-4 text-left backdrop-blur-xl transition duration-300 hover:-translate-y-1"
           aria-haspopup="dialog"
           aria-expanded={isOpen}
         >
-          <span className="absolute inset-y-0 left-0 -z-10 w-24 bg-gradient-to-r from-accent/14 to-transparent" />
-          <span className="relative inline-flex size-10 shrink-0 items-center justify-center rounded-full bg-accent text-[#042f2e] shadow-[0_9px_24px_rgba(20,184,166,.28)]">
-            <Sparkles aria-hidden="true" size={17} />
-            <span className="absolute -right-0.5 -top-0.5 size-3 rounded-full border-2 border-[var(--assistant-launcher)] bg-[#34d399]" />
+          <span aria-hidden="true" className="pointer-events-none absolute -inset-4 -z-20 rounded-full bg-accent/14 opacity-0 blur-2xl transition-opacity duration-300 group-hover:opacity-100" />
+          <span
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 -z-10 rounded-full bg-gradient-to-br from-white/[0.08] via-transparent to-transparent"
+          />
+          <span className="relative inline-flex size-9 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-accent to-accent-strong text-[#1b1464] shadow-[0_6px_16px_rgba(212,175,55,.35)]">
+            <Sparkles aria-hidden="true" size={15} />
+            <span className="absolute -right-px -top-px flex size-2.5 items-center justify-center rounded-full bg-[var(--assistant-launcher)]">
+              <span className="size-1.5 rounded-full bg-[#34d399]" />
+            </span>
           </span>
-          <span>
-            <span className="block text-[0.58rem] font-bold uppercase tracking-[0.17em] text-accent-strong">
+          <span className="min-w-0">
+            <span className="block text-[0.56rem] font-bold uppercase tracking-[0.16em] text-accent-strong">
               Guided support
             </span>
-            <span className="mt-0.5 block text-xs font-extrabold text-[var(--assistant-foreground)]">
+            <span className="mt-0.5 block text-[0.8rem] font-extrabold leading-none text-[var(--assistant-foreground)]">
               Ask Capwise
             </span>
           </span>
           <ArrowRight
             aria-hidden="true"
-            size={15}
-            className="ml-1 text-[var(--assistant-faint)] transition group-hover:translate-x-1 group-hover:text-accent-strong"
+            size={14}
+            className="ml-0.5 shrink-0 text-[var(--assistant-faint)] transition group-hover:translate-x-1 group-hover:text-accent-strong"
           />
         </button>
       </div>
 
       <Dialog open={isOpen} onClose={setIsOpen} className="relative z-[100]">
-        <DialogBackdrop className="fixed inset-0 bg-[#020c17]/46 backdrop-blur-[3px] data-closed:opacity-0" />
+        <DialogBackdrop
+          className="fixed inset-0 bg-[#020c17]/46 backdrop-blur-[3px] duration-300 data-[closed]:opacity-0"
+          transition
+        />
         <div className="fixed inset-0 flex items-end justify-center p-2 sm:items-end sm:justify-end sm:p-6">
           <DialogPanel
             ref={panelRef}
-            className="capwise-support-panel flex h-[min(48rem,calc(100svh-1rem))] w-full max-w-[27rem] flex-col overflow-hidden rounded-[1.75rem] border sm:h-[min(44rem,calc(100svh-3rem))]"
+            className="capwise-support-panel flex h-[min(48rem,calc(100svh-1rem))] w-full max-w-[27rem] flex-col overflow-hidden rounded-[1.5rem] border duration-300 data-[closed]:translate-y-3 data-[closed]:opacity-0 sm:h-[min(44rem,calc(100svh-3rem))]"
+            transition
           >
-            <header className="capwise-support-header relative overflow-hidden border-b px-5 pb-5 pt-5 sm:px-6">
-              <div className="capwise-support-grid pointer-events-none absolute inset-0 opacity-60" />
-              <div className="pointer-events-none absolute -right-12 -top-16 size-44 rounded-full bg-accent/16 blur-3xl" />
+            <header className="capwise-support-header relative overflow-hidden border-b px-5 pb-0 pt-5 sm:px-6">
+              <div className="pointer-events-none absolute -right-14 -top-16 size-48 rounded-full bg-accent/12 blur-[70px]" />
 
               <div className="relative flex items-start justify-between gap-4" data-support-reveal>
                 <div className="flex items-center gap-3.5">
-                  <span className="relative inline-flex size-12 items-center justify-center rounded-2xl border border-accent/25 bg-accent/10 text-accent-strong">
+                  <span className="relative inline-flex size-12 items-center justify-center rounded-2xl border border-accent/25 bg-gradient-to-br from-accent/16 to-accent-strong/10 text-accent-strong">
                     <Sparkles aria-hidden="true" size={20} />
                     <span className="absolute -right-0.5 -top-0.5 size-3 rounded-full border-2 border-[var(--assistant-background)] bg-[#34d399]" />
                   </span>
@@ -260,23 +271,23 @@ export default function SupportAssistant() {
                 <button
                   type="button"
                   onClick={() => setIsOpen(false)}
-                  className="inline-flex size-10 items-center justify-center rounded-full border border-[var(--assistant-border)] text-[var(--assistant-muted)] transition hover:border-accent/35 hover:bg-accent/8 hover:text-[var(--assistant-foreground)]"
+                  className="inline-flex size-10 shrink-0 items-center justify-center rounded-full border border-[var(--assistant-border)] text-[var(--assistant-muted)] transition hover:border-accent/35 hover:bg-accent/8 hover:text-[var(--assistant-foreground)]"
                   aria-label="Close guided support"
                 >
                   <X aria-hidden="true" size={18} />
                 </button>
               </div>
 
-              <div className="relative mt-5 grid grid-cols-2 gap-2" data-support-reveal>
+              <div className="capwise-support-actions relative mt-5 -mx-5 grid grid-cols-2 gap-px border-t px-5 pt-px sm:-mx-6 sm:px-6" data-support-reveal>
                 {quickActions.map(({ label, prompt, icon: Icon }) => (
                   <button
                     key={label}
                     type="button"
                     onClick={() => sendMessage(prompt)}
                     disabled={isSending}
-                    className="capwise-support-action group flex min-h-16 items-center gap-3 rounded-xl border p-3 text-left transition disabled:cursor-wait disabled:opacity-55"
+                    className="capwise-support-action group flex min-h-[4.5rem] items-center gap-3 p-3.5 text-left transition disabled:cursor-wait disabled:opacity-55 sm:p-4"
                   >
-                    <span className="inline-flex size-9 shrink-0 items-center justify-center rounded-lg bg-accent/10 text-accent-strong">
+                    <span className="inline-flex size-9 shrink-0 items-center justify-center rounded-xl bg-accent/10 text-accent-strong transition duration-200 group-hover:bg-accent/16 group-hover:-translate-y-0.5">
                       <Icon aria-hidden="true" size={16} />
                     </span>
                     <span className="text-[0.67rem] font-bold leading-4 text-[var(--assistant-foreground)]">
@@ -301,7 +312,7 @@ export default function SupportAssistant() {
                   <div
                     className={`max-w-[88%] whitespace-pre-wrap rounded-2xl px-4 py-3 text-[0.78rem] leading-6 ${
                       message.role === "user"
-                        ? "rounded-br-md bg-accent font-semibold text-[#042f2e]"
+                        ? "rounded-br-md bg-accent font-semibold text-[#1b1464]"
                         : "capwise-support-bubble rounded-bl-md border"
                     }`}
                   >
@@ -326,13 +337,13 @@ export default function SupportAssistant() {
                   <Link
                     href="/contact"
                     onClick={() => setIsOpen(false)}
-                    className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-accent px-3 text-[0.68rem] font-extrabold text-[#042f2e] transition hover:bg-[#5eead4]"
+                    className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-action px-3 text-[0.68rem] font-extrabold text-action-foreground transition hover:bg-action-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-strong focus-visible:ring-offset-1"
                   >
-                    Book consultation
+                    Book a Free Consultation
                     <ArrowRight aria-hidden="true" size={14} />
                   </Link>
                   <a
-                    href="https://wa.me/8801624000381?text=Hello%20Capwise%2C%20I%20need%20help%20with%20a%20business%20compliance%20matter."
+                    href={whatsappHref(primaryContact.whatsapp, "Hello Capwise, I need help with a business compliance matter.")}
                     target="_blank"
                     rel="noreferrer"
                     className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-[var(--assistant-border)] px-3 text-[0.68rem] font-extrabold text-[var(--assistant-foreground)] transition hover:border-accent/40 hover:bg-accent/8"
@@ -368,7 +379,7 @@ export default function SupportAssistant() {
                 <button
                   type="submit"
                   disabled={!input.trim() || isSending}
-                  className="absolute bottom-1.5 right-1.5 inline-flex size-10 items-center justify-center rounded-xl bg-accent text-[#042f2e] transition hover:bg-[#5eead4] disabled:cursor-not-allowed disabled:opacity-35"
+                  className="absolute bottom-1.5 right-1.5 inline-flex size-10 items-center justify-center rounded-xl bg-accent text-[#1b1464] transition hover:bg-[#e5c95f] disabled:cursor-not-allowed disabled:opacity-35"
                   aria-label="Send question"
                 >
                   <Send aria-hidden="true" size={16} />

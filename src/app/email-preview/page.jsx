@@ -20,6 +20,7 @@ const sampleData = {
   email: "test@capwisebd.com",
   phone: "+880 1624 000 381",
   company: "Capwise Solution BD",
+  pickYourIndustry: "RMG & Manufacturing",
   service: "Business Advisory",
   message:
     "This is a preview of the branded consultation email. It shows the enquiry reference, client details, service interest, briefing and Reply-To guidance exactly as the team email will display.",
@@ -61,7 +62,7 @@ export default function EmailPreviewPage() {
 
         <section className="py-14 sm:py-20">
           <div className="mx-auto grid max-w-[96rem] gap-8 px-4 sm:px-6 xl:grid-cols-2">
-            <article className="overflow-hidden rounded-[1.6rem] border border-border bg-surface shadow-[0_24px_80px_rgba(11,31,51,.09)]">
+            <article className="overflow-hidden rounded-[1.6rem] border border-border bg-surface shadow-[0_24px_80px_rgba(27,20,100,.09)]">
               <div className="flex items-center gap-3 border-b border-border px-5 py-4 sm:px-7">
                 <MailCheck aria-hidden="true" size={18} className="text-accent-strong" />
                 <div>
@@ -77,7 +78,7 @@ export default function EmailPreviewPage() {
               />
             </article>
 
-            <article className="overflow-hidden rounded-[1.6rem] border border-border bg-surface shadow-[0_24px_80px_rgba(11,31,51,.09)]">
+            <article className="overflow-hidden rounded-[1.6rem] border border-border bg-surface shadow-[0_24px_80px_rgba(27,20,100,.09)]">
               <div className="flex items-center gap-3 border-b border-border px-5 py-4 sm:px-7">
                 <MailCheck aria-hidden="true" size={18} className="text-accent-strong" />
                 <div>

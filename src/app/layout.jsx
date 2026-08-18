@@ -6,6 +6,7 @@ import "./globals.css";
 import AppProviders from "@/components/providers/AppProviders";
 import SiteFooter from "@/components/layout/SiteFooter";
 import JsonLd from "@/components/seo/JsonLd";
+import { primaryContact } from "@/config/contacts";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -77,11 +78,11 @@ const organizationJsonLd = {
   slogan: "Wise Choice for Your Finance.",
   foundingDate: "2022",
   email: "info@capwisebd.com",
-  telephone: "+8801624000381",
+  telephone: primaryContact.tel,
   contactPoint: {
     "@type": "ContactPoint",
     contactType: "customer support",
-    telephone: "+8801624000381",
+    telephone: primaryContact.tel,
     email: "info@capwisebd.com",
     areaServed: "BD",
     availableLanguage: ["English", "Bengali"],

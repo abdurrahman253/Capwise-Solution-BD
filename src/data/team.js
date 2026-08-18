@@ -1,18 +1,6 @@
-export const TEAM_CONTENT_VERSION = "team-v1-20260722";
+export const TEAM_CONTENT_VERSION = "team-v2-20260816";
 
 export const teamMembers = [
-  {
-    slug: "shib-shanker-dey",
-    initials: "SSD",
-    name: "Shib Shanker Dey, FCA",
-    role: "Senior Advisor",
-    specialty: "Financial Reporting & Audit Compliance",
-    experience: "15+ years",
-    credential: "Fellow Chartered Accountant",
-    summary:
-      "Advises on statutory audit readiness, internal controls, IFRS-based reporting and compliance diagnostics.",
-    featured: true,
-  },
   {
     slug: "fahim-khan-chowdhury",
     initials: "FKC",
@@ -21,8 +9,8 @@ export const teamMembers = [
     specialty: "Audit, VAT, Tax & Regulatory Affairs",
     experience: "8+ years",
     credential: "BBA, MBA, LLB",
-    summary:
-      "Supports corporate compliance, direct and indirect taxation, RJSC matters and business establishment.",
+    summary: "Supports corporate compliance, direct and indirect taxation, RJSC matters and business establishment.",
+    featured: true,
   },
   {
     slug: "md-minhajul-islam",
@@ -32,34 +20,51 @@ export const teamMembers = [
     specialty: "Financial Operations & Business Support",
     experience: "12+ years",
     credential: "BBA, MBA",
-    summary:
-      "Works across financial advisory, business formation, banking documentation, import-export operations and tender support.",
+    summary: "Works across financial advisory, business formation, banking documentation, import-export operations and tender support.",
+    featured: true,
+  },
+  {
+    slug: "shib-shanker-dey",
+    initials: "SSD",
+    name: "Shib Shanker Dey, FCA",
+    role: "Senior Advisor",
+    specialty: "Financial Reporting & Audit Compliance",
+    experience: "15+ years",
+    credential: "Fellow Chartered Accountant",
+    summary: "Advises on statutory audit readiness, internal controls, IFRS-based reporting and compliance diagnostics.",
   },
   {
     slug: "advocate-tanmoy-mitra",
     initials: "ATM",
     name: "Advocate Tanmoy Mitra",
     role: "Legal Advisor",
-    specialty: "Supreme Court of Bangladesh",
+    specialty: "Corporate & Regulatory Law",
     experience: "Practicing lawyer",
-    credential: "Corporate & regulatory law",
-    summary:
-      "Advises on company law, tax litigation, writ matters and regulatory compliance.",
+    credential: "Supreme Court of Bangladesh",
+    summary: "Advises on company law, tax litigation, writ matters and regulatory compliance.",
   },
   {
     slug: "alamin-hossain",
     initials: "AH",
     name: "Alamin Hossain",
     role: "Legal Associate",
-    specialty: "Dhaka Judge Court",
+    specialty: "Corporate Documentation & Filing Support",
     experience: "Legal practice",
-    credential: "Corporate documentation",
-    summary:
-      "Supports company incorporation, agreement drafting, dispute resolution and RJSC filings.",
+    credential: "Dhaka Judge Court",
+    summary: "Supports company incorporation, agreement drafting, dispute resolution and RJSC filings.",
+  },
+  {
+    slug: "borhan-sarkar",
+    initials: "BS",
+    name: "Borhan Sarkar",
+    role: "Team Member",
+    specialty: "Professional profile pending client confirmation",
+    experience: "Details to be confirmed",
+    credential: "Credentials to be confirmed",
+    summary: "Included in the Capwise team roster. Professional title, specialty and credentials should be updated once verified by the client.",
   },
 ];
 
-export const featuredTeamMember = teamMembers.find((member) => member.featured);
-export const supportingTeamMembers = teamMembers.filter(
-  (member) => !member.featured,
-);
+export const featuredTeamMembers = teamMembers.filter((member) => member.featured);
+export const featuredTeamMember = featuredTeamMembers[0];
+export const supportingTeamMembers = teamMembers.filter((member) => !member.featured);

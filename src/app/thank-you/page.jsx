@@ -20,7 +20,7 @@ export default async function ThankYouPage({ searchParams }) {
         <div className="capwise-coordinate-grid pointer-events-none absolute inset-0 -z-20 opacity-40" />
         <div className="mx-auto max-w-3xl px-4 sm:px-6">
           <section className="rounded-[2rem] border border-border bg-surface p-7 text-center shadow-[var(--card-shadow)] sm:p-12">
-            <span className="mx-auto inline-flex size-16 items-center justify-center rounded-full bg-accent text-[#042f2e] shadow-[0_18px_50px_rgba(20,184,166,.24)]">
+            <span className="mx-auto inline-flex size-16 items-center justify-center rounded-full bg-accent text-[#1b1464] shadow-[0_18px_50px_rgba(27,100,170,.24)]">
               <CheckCircle2 aria-hidden="true" size={28} />
             </span>
             <p className="mt-7 text-[0.62rem] font-bold uppercase tracking-[0.2em] text-accent-strong">Enquiry received</p>

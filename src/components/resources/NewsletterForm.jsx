@@ -121,7 +121,7 @@ export default function NewsletterForm() {
         <div className="mt-3 grid gap-2 sm:grid-cols-2">
           {topics.map((topic) => (
             <label key={topic} className="flex min-h-11 items-center gap-3 rounded-xl border border-white/10 bg-white/[0.04] px-3 text-xs font-semibold text-white/72">
-              <input {...register("topics")} type="checkbox" value={topic} className="size-4 accent-[#2dd4bf]" />
+              <input {...register("topics")} type="checkbox" value={topic} className="size-4 accent-[#1b64aa]" />
               {topic}
             </label>
           ))}
@@ -130,7 +130,7 @@ export default function NewsletterForm() {
       </fieldset>
 
       <label className="flex items-start gap-3 rounded-xl border border-white/10 bg-white/[0.04] p-4 text-xs leading-5 text-white/55">
-        <input {...register("consent")} type="checkbox" className="mt-0.5 size-4 accent-[#2dd4bf]" />
+        <input {...register("consent")} type="checkbox" className="mt-0.5 size-4 accent-[#1b64aa]" />
         <span>
           I consent to Capwise recording these preferences and sending relevant reviewed updates. I understand this is general information, not personal advice.
           {errors.consent && <span className="mt-1 block text-[#fca5a5]">{errors.consent.message}</span>}
@@ -140,7 +140,7 @@ export default function NewsletterForm() {
       <button
         type="submit"
         disabled={isSubmitting}
-        className="inline-flex h-12 items-center justify-center gap-3 rounded-full bg-accent px-6 text-sm font-bold text-[#042f2e] transition hover:bg-[#5eead4] disabled:cursor-wait disabled:opacity-60"
+        className="inline-flex h-12 items-center justify-center gap-3 rounded-full bg-accent px-6 text-sm font-bold text-[#1b1464] transition hover:bg-[#e5c95f] disabled:cursor-wait disabled:opacity-60"
       >
         {isSubmitting ? (
           <><LoaderCircle aria-hidden="true" size={17} className="animate-spin" /> Recording…</>

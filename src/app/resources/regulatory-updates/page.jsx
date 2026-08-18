@@ -228,7 +228,7 @@ export default function RegulatoryUpdatesPage() {
 
             <Link
               href="/contact"
-              className="inline-flex h-12 items-center justify-center gap-3 rounded-full bg-accent px-6 text-sm font-bold text-[#042f2e] transition hover:-translate-y-0.5 hover:bg-[#5eead4]"
+              className="inline-flex h-12 items-center justify-center gap-3 rounded-full bg-accent px-6 text-sm font-bold text-[#1b1464] transition hover:-translate-y-0.5 hover:bg-[#e5c95f]"
             >
               Request a review
               <ArrowRight aria-hidden="true" size={17} />

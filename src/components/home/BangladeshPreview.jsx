@@ -122,7 +122,7 @@ export default function BangladeshPreview() {
 
             <Link
               href="/business-in-bangladesh"
-              className="group mt-9 inline-flex min-h-13 items-center justify-center gap-5 rounded-full bg-action px-6 text-sm font-bold text-action-foreground shadow-[0_16px_45px_rgba(15,118,110,0.2)] transition duration-300 hover:-translate-y-1 hover:bg-action-hover"
+              className="group mt-9 inline-flex min-h-13 items-center justify-center gap-5 rounded-full bg-action px-6 text-sm font-bold text-action-foreground shadow-[0_16px_45px_rgba(27,20,100,0.2)] transition duration-300 hover:-translate-y-1 hover:bg-action-hover"
             >
               Explore the Bangladesh guide
               <ArrowUpRight
@@ -180,7 +180,7 @@ export default function BangladeshPreview() {
                 transition={{ delay: index * 0.06 }}
                 className="capwise-gateway-border group relative border-b py-10 sm:pl-20 sm:py-13 lg:py-16"
               >
-                <span className="absolute left-0 top-12 hidden size-12 items-center justify-center rounded-full border border-accent/25 bg-[var(--gateway-background)] font-display text-[0.64rem] font-bold text-accent-strong transition duration-300 group-hover:scale-110 group-hover:bg-accent group-hover:text-[#042f2e] sm:inline-flex lg:top-[4.1rem]">
+                <span className="absolute left-0 top-12 hidden size-12 items-center justify-center rounded-full border border-accent/25 bg-[var(--gateway-background)] font-display text-[0.64rem] font-bold text-accent-strong transition duration-300 group-hover:scale-110 group-hover:bg-accent group-hover:text-[#1b1464] sm:inline-flex lg:top-[4.1rem]">
                   {number}
                 </span>
 

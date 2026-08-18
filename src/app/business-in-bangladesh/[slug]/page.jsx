@@ -70,7 +70,7 @@ export default async function BusinessTopicPage({ params }) {
                   </div>
                 ))}
               </div>
-              <Link href="/contact" className="mt-8 inline-flex h-12 items-center justify-center gap-3 rounded-full bg-accent px-6 text-sm font-bold text-[#042f2e] transition hover:bg-[#5eead4]">
+              <Link href="/contact" className="mt-8 inline-flex h-12 items-center justify-center gap-3 rounded-full bg-accent px-6 text-sm font-bold text-[#1b1464] transition hover:bg-[#e5c95f]">
                 Request a focused review
                 <ArrowRight aria-hidden="true" size={17} />
               </Link>

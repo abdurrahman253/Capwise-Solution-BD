@@ -129,7 +129,7 @@ export default function GuideRequestButton({ guide, featured = false }) {
             <div className="p-6 sm:p-8">
               {complete ? (
                 <div role="status">
-                  <span className="inline-flex size-12 items-center justify-center rounded-full bg-accent text-[#042f2e]">
+                  <span className="inline-flex size-12 items-center justify-center rounded-full bg-accent text-[#1b1464]">
                     <CheckCircle2 aria-hidden="true" size={21} />
                   </span>
                   <h3 className="mt-5 font-display text-2xl font-bold tracking-[-0.04em] text-foreground">
