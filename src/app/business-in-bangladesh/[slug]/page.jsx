@@ -61,7 +61,7 @@ export default async function BusinessTopicPage({ params }) {
             </div>
             <aside className="rounded-[1.5rem] bg-brand p-7 text-white lg:col-span-4 lg:p-9">
               <p className="text-[0.6rem] font-bold uppercase tracking-[0.18em] text-accent">Preparation checklist</p>
-              <h2 className="mt-4 font-display text-3xl font-semibold tracking-[-0.05em] text-white">Bring the right facts into the first review.</h2>
+              <h2 className="mt-4 font-display text-[clamp(1.8rem,3vw,2.6rem)] font-semibold leading-[1.05] tracking-[-0.05em] text-white">Bring the right facts into the first review.</h2>
               <div className="mt-7 grid gap-3">
                 {topic.checklist.map((item) => (
                   <div key={item} className="flex items-start gap-3 border-t border-white/12 pt-3 text-xs font-semibold leading-6 text-white/68">

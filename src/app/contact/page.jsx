@@ -52,7 +52,7 @@ export default function ContactPage() {
 
             <aside className="rounded-[1.8rem] bg-brand p-6 text-white shadow-[0_35px_100px_rgba(27,20,100,0.24)] sm:p-9 lg:col-span-5 lg:p-12">
               <p className="text-[0.62rem] font-bold uppercase tracking-[0.2em] text-accent">Direct contact</p>
-              <h2 className="mt-4 max-w-[11ch] font-display text-4xl font-semibold leading-[0.98] tracking-[-0.055em] text-white">Reach the Dhaka advisory team.</h2>
+              <h2 className="mt-4 max-w-[11ch] font-display text-[clamp(1.8rem,3vw,2.6rem)] font-semibold leading-[1.05] tracking-[-0.055em] text-white">Reach the Dhaka advisory team.</h2>
               <div className="mt-9 divide-y divide-white/12 border-y border-white/12">
                 {channels.map(({ icon: Icon, label, value, href }) => (
                   <a key={label} href={href} target={href.startsWith("http") ? "_blank" : undefined} rel={href.startsWith("http") ? "noreferrer" : undefined} className="group flex items-center justify-between gap-4 py-5">

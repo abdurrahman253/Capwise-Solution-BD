@@ -44,7 +44,7 @@ export default function CaseStudiesPage() {
                 {caseStudies.map((study) => (
                   <article key={study.slug} className="rounded-[1.5rem] border border-border bg-background p-7 sm:p-9">
                     <p className="text-[0.6rem] font-bold uppercase tracking-[0.18em] text-accent-strong">{study.industry}</p>
-                    <h2 className="mt-4 font-display text-3xl font-semibold tracking-[-0.05em] text-foreground">{study.title}</h2>
+                    <h2 className="mt-4 font-display text-[clamp(1.8rem,3vw,2.6rem)] font-semibold leading-[1.05] tracking-[-0.05em] text-foreground">{study.title}</h2>
                     <p className="mt-4 text-sm leading-7 text-muted">{study.summary}</p>
                     <Link href={`/case-studies/${study.slug}`} className="mt-7 inline-flex items-center gap-2 text-xs font-bold text-foreground">Read approved case <ArrowRight aria-hidden="true" size={16} /></Link>
                   </article>

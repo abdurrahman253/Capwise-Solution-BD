@@ -58,7 +58,7 @@ export default function FaqPage() {
             <div className="grid gap-10 lg:grid-cols-12 lg:gap-16">
               <aside className="lg:col-span-4 lg:sticky lg:top-36 lg:self-start">
                 <span className="inline-flex size-12 items-center justify-center rounded-full border border-accent/25 bg-accent/10 text-accent-strong"><MessageCircleQuestion aria-hidden="true" size={20} /></span>
-                <h2 className="mt-7 font-display text-3xl font-semibold tracking-[-0.05em] text-foreground">Browse by decision stage.</h2>
+                <h2 className="mt-7 font-display text-[clamp(1.8rem,3vw,2.6rem)] font-semibold leading-[1.05] tracking-[-0.05em] text-foreground">Browse by decision stage.</h2>
                 <div className="mt-7 grid gap-3">
                   {faqCategories.map((category, index) => (
                     <a key={category.id} href={`#${category.id}`} className="group rounded-xl border border-border bg-background p-4 transition hover:border-accent-strong hover:bg-surface-muted">
