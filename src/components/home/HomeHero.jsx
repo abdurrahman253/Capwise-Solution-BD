@@ -85,7 +85,7 @@ export default function HomeHero() {
   return (
     <section
       aria-label="Capwise advisory services"
-      className="relative overflow-hidden bg-brand-navy text-white"
+      className="relative -mt-[5.125rem] overflow-hidden bg-brand-navy text-white sm:-mt-[5.5rem] lg:-mt-[5.625rem]"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
@@ -114,11 +114,11 @@ export default function HomeHero() {
                 sizes="100vw"
                 className="capwise-hero-slide-image object-cover"
               />
-              <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(8,13,43,.94)_0%,rgba(15,21,61,.82)_42%,rgba(12,17,45,.36)_72%,rgba(8,13,35,.45)_100%)]" />
-              <div className="absolute inset-0 bg-[linear-gradient(0deg,rgba(8,13,43,.62)_0%,transparent_45%)]" />
+              <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(8,13,43,.9)_0%,rgba(15,21,61,.76)_42%,rgba(12,17,45,.3)_72%,rgba(8,13,35,.38)_100%)]" />
+              <div className="absolute inset-0 bg-[linear-gradient(0deg,rgba(8,13,43,.38)_0%,transparent_30%)]" />
               <div className="pointer-events-none absolute inset-0 opacity-[0.14] [background-image:linear-gradient(rgba(255,255,255,.12)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.12)_1px,transparent_1px)] [background-size:72px_72px]" />
 
-              <div className="relative mx-auto flex min-h-[36rem] max-w-[94rem] items-end px-5 pb-12 pt-10 sm:min-h-[44rem] sm:px-6 sm:pb-24 sm:pt-16 lg:min-h-[46rem] lg:items-center lg:px-8 lg:pb-20 xl:min-h-[48rem] 2xl:px-10">
+              <div className="relative mx-auto flex min-h-[36rem] max-w-[94rem] items-end px-5 pb-12 pt-10 sm:min-h-[44rem] sm:px-6 sm:pb-24 sm:pt-16 lg:min-h-[46rem] lg:items-center lg:px-8 lg:pb-20 lg:pt-28 xl:min-h-[48rem] 2xl:px-10">
                 <div className="capwise-hero-slide-copy max-w-[49rem]">
                   <div className="flex items-center gap-3 text-[0.64rem] font-extrabold uppercase tracking-[0.2em] text-white/68 sm:text-[0.7rem]">
                     <span className="text-brand-gold">{slide.number}</span>

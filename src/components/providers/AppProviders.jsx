@@ -1,5 +1,6 @@
 "use client";
 
+import FloatingContact from "@/components/layout/FloatingContact";
 import RouteTransitionLoader from "@/components/navigation/RouteTransitionLoader";
 import SupportAssistant from "@/components/support/SupportAssistant";
 import CustomCursor from "@/components/ui/CustomCursor";
@@ -15,6 +16,7 @@ export default function AppProviders({ children }) {
       <RouteTransitionLoader />
       <CustomCursor />
       <MotionProvider><SmoothScrollProvider>{children}</SmoothScrollProvider></MotionProvider>
+      <FloatingContact />
       <SupportAssistant />
       <ToastProvider />
     </ThemeProvider>

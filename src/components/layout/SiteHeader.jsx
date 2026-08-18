@@ -15,8 +15,8 @@ import {
   ArrowRight,
   ArrowUpRight,
   ChevronDown,
-  Mail,
   Menu,
+  MessageCircle,
   Phone,
   X,
 } from "lucide-react";
@@ -28,6 +28,7 @@ import { useEffect, useRef, useState } from "react";
 import BrandLogo from "@/components/ui/BrandLogo";
 import ThemeToggle from "@/components/ui/ThemeToggle";
 import useMounted from "@/hooks/useMounted";
+import { primaryContact, whatsappHref } from "@/config/contacts";
 import {
   aboutNavigation,
   industryNavigation,
@@ -190,31 +191,8 @@ export default function SiteHeader() {
 
   return (
     <>
-      <div className="hidden border-b border-white/10 bg-gradient-to-r from-brand-navy via-[#171163] to-brand-navy lg:block">
-        <div className="mx-auto flex h-10 max-w-[94rem] items-center justify-end gap-3 px-4 sm:px-6 lg:px-8 2xl:px-10">
-          <a
-            href="mailto:info@capwisebd.com"
-            className="inline-flex items-center gap-1.5 text-[0.68rem] font-semibold text-white/55 transition hover:text-white/85"
-          >
-            <Mail aria-hidden="true" size={12} />
-            info@capwisebd.com
-          </a>
-          <span aria-hidden="true" className="h-3 w-px bg-white/15" />
-          <a
-            href="tel:+8801624000381"
-            className="group inline-flex h-7 items-center gap-2 rounded-full border border-white/15 bg-white/[0.06] pl-2.5 pr-3 backdrop-blur transition duration-200 hover:-translate-y-px hover:border-brand-gold/45 hover:bg-white/[0.1]"
-          >
-            <span className="inline-flex size-4 items-center justify-center rounded-full bg-brand-gold text-brand-navy">
-              <Phone aria-hidden="true" size={10} />
-            </span>
-            <span className="text-[0.7rem] font-extrabold tracking-[-0.01em] text-white">+880 1624-000381</span>
-          </a>
-        </div>
-      </div>
-
-      <header className="sticky top-0 z-50 border-b border-border/80 bg-surface/94 shadow-[0_10px_34px_rgba(11,27,61,0.055)] backdrop-blur-xl">
-        <span aria-hidden="true" className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-        <div className="mx-auto flex h-[4.75rem] max-w-[94rem] items-center gap-3 px-4 sm:px-6 lg:px-8 2xl:px-10">
+      <header className="sticky top-3 z-50 px-3 sm:top-4 sm:px-4 lg:px-6 2xl:px-8">
+        <div className="capwise-floating-nav mx-auto flex min-h-[4.5rem] max-w-[94rem] items-center gap-3 rounded-full px-4 py-1.5 sm:px-5 lg:px-7 2xl:px-9">
           <BrandLogo compact tagline light={logoIsLight} className="mr-auto" />
 
           <nav aria-label="Primary navigation" className="hidden items-center gap-0 xl:flex">
@@ -341,7 +319,7 @@ export default function SiteHeader() {
             <button
               type="button"
               onClick={() => setMobileMenuOpen(true)}
-              className="inline-flex size-11 items-center justify-center rounded-full border border-border bg-surface text-foreground transition hover:border-brand-blue hover:text-brand-blue xl:hidden"
+              className="inline-flex size-11 items-center justify-center rounded-full border border-border bg-surface text-foreground transition hover:border-brand-blue hover:text-brand-blue active:scale-95 xl:hidden"
               aria-label="Open navigation menu"
               aria-expanded={mobileMenuOpen}
             >
@@ -352,54 +330,72 @@ export default function SiteHeader() {
       </header>
 
       <Dialog open={mobileMenuOpen} onClose={setMobileMenuOpen} className="relative z-[90] xl:hidden">
-        <DialogBackdrop className="fixed inset-0 bg-brand-navy/55 backdrop-blur-sm data-[closed]:opacity-0" transition />
-        <DialogPanel className="fixed inset-y-0 right-0 w-full max-w-md overflow-y-auto bg-surface p-5 shadow-2xl duration-300 data-[closed]:translate-x-full" transition>
-          <div className="flex items-start justify-between gap-4 border-b border-border pb-4">
+        <DialogBackdrop
+          className="fixed inset-0 bg-brand-navy/45 backdrop-blur-md duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] data-[closed]:opacity-0"
+          transition
+        />
+        <DialogPanel
+          className="capwise-mobile-drawer fixed inset-y-0 right-0 flex w-full max-w-md flex-col overflow-y-auto rounded-l-[1.5rem] border-l p-5 duration-[380ms] ease-[cubic-bezier(0.22,1,0.36,1)] data-[closed]:translate-x-full"
+          transition
+        >
+          <div className="flex items-start justify-between gap-4 border-b border-border/70 pb-4">
             <DialogTitle className="sr-only">Navigation</DialogTitle>
-            <BrandLogo compact tagline="stacked" light={logoIsLight} />
+            <BrandLogo compact tagline light={logoIsLight} />
             <div className="flex shrink-0 items-center gap-2">
               <ThemeToggle />
-              <button type="button" onClick={() => setMobileMenuOpen(false)} className="inline-flex size-11 items-center justify-center rounded-full border border-border" aria-label="Close navigation menu"><X size={20} /></button>
+              <button type="button" onClick={() => setMobileMenuOpen(false)} className="inline-flex size-11 items-center justify-center rounded-full border border-border transition hover:border-brand-blue hover:text-brand-blue active:scale-95" aria-label="Close navigation menu"><X size={20} /></button>
             </div>
           </div>
 
           <nav className="mt-5 grid gap-1" aria-label="Mobile navigation">
             <Disclosure>
               {({ open }) => <>
-                <DisclosureButton className="flex min-h-12 items-center justify-between rounded-xl px-3 text-left text-sm font-extrabold text-foreground hover:bg-brand-navy/[0.045]">About <ChevronDown size={16} className={clsx("transition", open && "rotate-180")} /></DisclosureButton>
+                <DisclosureButton className="capwise-mobile-nav-link flex min-h-12 items-center justify-between rounded-xl px-3 text-left text-sm font-extrabold text-foreground hover:bg-brand-navy/[0.045]" data-active={isCurrent("/about") || isCurrent("/team")}>About <ChevronDown size={16} className={clsx("transition", open && "rotate-180")} /></DisclosureButton>
                 <DisclosurePanel className="grid gap-1 pb-2 pl-3">
-                  {aboutNavigation.map((item) => <Link key={item.href} href={item.href} className="rounded-lg px-3 py-2.5 text-sm font-semibold text-muted hover:bg-brand-navy/[0.045] hover:text-brand-blue">{item.label}</Link>)}
+                  {aboutNavigation.map((item) => <Link key={item.href} href={item.href} className="capwise-mobile-nav-link rounded-lg px-3 py-2.5 text-sm font-semibold text-muted hover:bg-brand-navy/[0.045] hover:text-brand-blue" data-active={isCurrent(item.href)}>{item.label}</Link>)}
                 </DisclosurePanel>
               </>}
             </Disclosure>
 
             <Disclosure>
               {({ open }) => <>
-                <DisclosureButton className="flex min-h-12 items-center justify-between rounded-xl px-3 text-left text-sm font-extrabold text-foreground hover:bg-brand-navy/[0.045]">Services <ChevronDown size={16} className={clsx("transition", open && "rotate-180")} /></DisclosureButton>
+                <DisclosureButton className="capwise-mobile-nav-link flex min-h-12 items-center justify-between rounded-xl px-3 text-left text-sm font-extrabold text-foreground hover:bg-brand-navy/[0.045]" data-active={isCurrent("/services")}>Services <ChevronDown size={16} className={clsx("transition", open && "rotate-180")} /></DisclosureButton>
                 <DisclosurePanel className="grid gap-1 pb-2 pl-3">
-                  {services.map((item, index) => <Link key={item.href} href={item.href} className="flex gap-3 rounded-lg px-3 py-2.5 text-sm font-semibold text-muted hover:bg-brand-navy/[0.045] hover:text-brand-blue"><span className="text-brand-gold">{String(index + 1).padStart(2,"0")}</span>{item.label}</Link>)}
+                  {services.map((item, index) => <Link key={item.href} href={item.href} className="capwise-mobile-nav-link flex gap-3 rounded-lg px-3 py-2.5 text-sm font-semibold text-muted hover:bg-brand-navy/[0.045] hover:text-brand-blue" data-active={isCurrent(item.href)}><span className="text-brand-gold">{String(index + 1).padStart(2,"0")}</span>{item.label}</Link>)}
                 </DisclosurePanel>
               </>}
             </Disclosure>
 
-            <Link href="/insights/sme-sector-bangladesh" className="flex min-h-12 items-center rounded-xl px-3 text-sm font-extrabold hover:bg-brand-navy/[0.045] hover:text-brand-blue">SME</Link>
-            <Link href="/insights/startups-in-bangladesh" className="flex min-h-12 items-center rounded-xl px-3 text-sm font-extrabold hover:bg-brand-navy/[0.045] hover:text-brand-blue">Startup</Link>
+            <Link href="/insights/sme-sector-bangladesh" className="capwise-mobile-nav-link flex min-h-12 items-center rounded-xl px-3 text-sm font-extrabold hover:bg-brand-navy/[0.045] hover:text-brand-blue" data-active={isCurrent("/insights/sme-sector-bangladesh")}>SME</Link>
+            <Link href="/insights/startups-in-bangladesh" className="capwise-mobile-nav-link flex min-h-12 items-center rounded-xl px-3 text-sm font-extrabold hover:bg-brand-navy/[0.045] hover:text-brand-blue" data-active={isCurrent("/insights/startups-in-bangladesh")}>Startup</Link>
 
             <Disclosure>
               {({ open }) => <>
-                <DisclosureButton className="flex min-h-12 items-center justify-between rounded-xl px-3 text-left text-sm font-extrabold text-foreground hover:bg-brand-navy/[0.045]">Industries <ChevronDown size={16} className={clsx("transition", open && "rotate-180")} /></DisclosureButton>
+                <DisclosureButton className="capwise-mobile-nav-link flex min-h-12 items-center justify-between rounded-xl px-3 text-left text-sm font-extrabold text-foreground hover:bg-brand-navy/[0.045]" data-active={industryNavigation.some((item) => pathname === item.href)}>Industries <ChevronDown size={16} className={clsx("transition", open && "rotate-180")} /></DisclosureButton>
                 <DisclosurePanel className="grid gap-1 pb-2 pl-3">
-                  {industryNavigation.map((item) => <Link key={item.href} href={item.href} className="rounded-lg px-3 py-2.5 text-sm font-semibold text-muted hover:bg-brand-navy/[0.045] hover:text-brand-blue">{item.label}</Link>)}
+                  {industryNavigation.map((item) => <Link key={item.href} href={item.href} className="capwise-mobile-nav-link rounded-lg px-3 py-2.5 text-sm font-semibold text-muted hover:bg-brand-navy/[0.045] hover:text-brand-blue" data-active={isCurrent(item.href)}>{item.label}</Link>)}
                 </DisclosurePanel>
               </>}
             </Disclosure>
 
-            {primaryNavigation.slice(2).map((item) => <Link key={item.href} href={item.href} className="flex min-h-12 items-center rounded-xl px-3 text-sm font-extrabold hover:bg-brand-navy/[0.045] hover:text-brand-blue">{item.label}</Link>)}
+            {primaryNavigation.slice(2).map((item) => <Link key={item.href} href={item.href} className="capwise-mobile-nav-link flex min-h-12 items-center rounded-xl px-3 text-sm font-extrabold hover:bg-brand-navy/[0.045] hover:text-brand-blue" data-active={isCurrent(item.href)}>{item.label}</Link>)}
           </nav>
 
-          <Link href="/contact" className="mt-6 flex h-12 items-center justify-between rounded-full bg-action px-5 text-sm font-extrabold text-action-foreground shadow-[0_10px_28px_rgba(27,20,100,.18)] transition duration-200 hover:-translate-y-0.5 hover:bg-action-hover active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-strong focus-visible:ring-offset-2 focus-visible:ring-offset-surface">Book a Free Consultation <ArrowUpRight size={17} /></Link>
+          <div className="mt-6 border-t border-border/70 pt-5">
+            <Link href="/contact" className="flex h-12 items-center justify-between rounded-full bg-action px-5 text-sm font-extrabold text-action-foreground shadow-[0_10px_28px_rgba(27,20,100,.18)] transition duration-200 hover:-translate-y-0.5 hover:bg-action-hover active:translate-y-0 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-strong focus-visible:ring-offset-2 focus-visible:ring-offset-surface">Book a Free Consultation <ArrowUpRight size={17} /></Link>
 
-          <a href="tel:+8801624000381" className="mt-3 flex h-12 items-center justify-center gap-2 rounded-full border border-border text-sm font-bold text-foreground transition hover:border-brand-blue hover:text-brand-blue"><Phone size={15} aria-hidden="true" /> +880 1624-000381</a>
+            <div className="mt-3 grid grid-cols-2 gap-2.5">
+              <a href={`tel:${primaryContact.tel}`} className="flex h-12 items-center justify-center gap-2 rounded-full border border-border text-sm font-bold text-foreground transition hover:border-brand-blue hover:text-brand-blue active:scale-[0.98]"><Phone size={15} aria-hidden="true" /> Call</a>
+              <a
+                href={whatsappHref(primaryContact.whatsapp, "Hello Capwise, I would like to discuss business support.")}
+                target="_blank"
+                rel="noreferrer"
+                className="flex h-12 items-center justify-center gap-2 rounded-full border border-border text-sm font-bold text-foreground transition hover:border-brand-blue hover:text-brand-blue active:scale-[0.98]"
+              >
+                <MessageCircle size={15} aria-hidden="true" /> WhatsApp
+              </a>
+            </div>
+          </div>
         </DialogPanel>
       </Dialog>
     </>

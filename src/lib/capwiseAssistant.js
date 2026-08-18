@@ -1,5 +1,7 @@
 import "server-only";
 
+import { primaryContact } from "@/config/contacts";
+
 const serviceReplies = [
   {
     test: /(?:company|registration|incorporat|rjsc|trade licen[cs]e|tin|bin|irc|erc|proprietorship|partnership|কোম্পানি|রেজিস্ট্রেশন|আরজেএসসি|ট্রেড লাইসেন্স|টিন|বিন|কোম্পানি খুল|company khul|company korte|registration korte)/i,
@@ -57,8 +59,8 @@ export function getGuidedAssistantReply(rawMessage) {
 
   if (/(?:talk to|expert|human|consult|call me|contact|adviser|advisor|মানুষ|এক্সপার্ট|পরামর্শক|কথা বলতে|যোগাযোগ)/i.test(message)) {
     return inBangla
-      ? "একজন Capwise adviser-এর সঙ্গে কথা বলাই সঠিক next step। Consultation form-এ business issue, entity, deadline ও desired outcome লিখুন, অথবা +880 1624 000 381 নম্বরে call/WhatsApp করুন।"
-      : "A Capwise adviser is the right next step. Use the consultation form with the business issue, entity, deadline and desired outcome, or call/WhatsApp +880 1624 000 381.";
+      ? `একজন Capwise adviser-এর সঙ্গে কথা বলাই সঠিক next step। Consultation form-এ business issue, entity, deadline ও desired outcome লিখুন, অথবা ${primaryContact.phone} নম্বরে call/WhatsApp করুন।`
+      : `A Capwise adviser is the right next step. Use the consultation form with the business issue, entity, deadline and desired outcome, or call/WhatsApp ${primaryContact.phone}.`;
   }
 
   if (/(?:price|pricing|fee|cost|charge|timeline|how long|কত টাকা|ফি|খরচ|কতদিন|কত দিন|সময়|সময়)/i.test(message)) {

@@ -7,11 +7,11 @@ import { m, useReducedMotion } from "motion/react";
 export function BrandMark({ className = "h-12 w-auto" }) {
   return (
     <Image
-      src="/brand/capwise-official.png"
+      src="/brand/CAPWISE_logo_clean_notagline.png"
       alt=""
       aria-hidden="true"
-      width={820}
-      height={371}
+      width={1012}
+      height={358}
       priority
       className={className}
     />
@@ -22,12 +22,11 @@ const taglineSegments = ["Accounting & Finance", "Tax & Compliance", "HR & Payro
 
 export default function BrandLogo({ className = "", compact = false, light = false, tagline = false }) {
   const reduceMotion = useReducedMotion();
-  const stacked = tagline === "stacked";
 
   return (
     <Link
       href="/"
-      className={`group inline-flex shrink-0 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 ${stacked ? "flex-col items-start gap-2" : "items-center gap-3"} ${className}`}
+      className={`group inline-flex min-w-0 flex-col items-start gap-1 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 ${className}`}
       aria-label="Capwise Solution BD — Home"
     >
       <m.span
@@ -38,12 +37,12 @@ export default function BrandLogo({ className = "", compact = false, light = fal
         className="relative block shrink-0 overflow-hidden"
       >
         <Image
-          src="/brand/capwise-official.png"
+          src="/brand/CAPWISE_logo_clean_notagline.png"
           alt="Capwise Solution BD — Accounting & Finance, Tax & Compliance, HR & Payroll"
-          width={820}
-          height={371}
+          width={1012}
+          height={358}
           priority
-          className={`${compact ? "h-[3.1rem] sm:h-[3.35rem]" : "h-[3.6rem] sm:h-[3.9rem]"} w-auto object-contain ${light ? "brightness-0 invert sepia-[25%] saturate-[1.8] hue-rotate-[3deg]" : ""}`}
+          className={`${compact ? "h-[3.3rem] sm:h-[3.55rem]" : "h-[3.8rem] sm:h-[4.1rem]"} w-auto object-contain ${light ? "brightness-0 invert sepia-[25%] saturate-[1.8] hue-rotate-[3deg]" : ""}`}
         />
         {!reduceMotion && (
           <m.span
@@ -57,25 +56,28 @@ export default function BrandLogo({ className = "", compact = false, light = fal
       </m.span>
 
       {tagline && (
-        <span
-          className={
-            stacked
-              ? "flex flex-wrap items-center gap-x-2 gap-y-1"
-              : `hidden shrink-0 items-center gap-2 border-l pl-3 md:inline-flex ${light ? "border-white/20" : "border-border"}`
-          }
-        >
-          {taglineSegments.map((segment, index) => (
-            <span key={segment} className="flex items-center gap-2">
-              {index > 0 && (
-                <span aria-hidden="true" className={`h-2.5 w-px shrink-0 ${light ? "bg-white/20" : "bg-border"}`} />
-              )}
-              <span
-                className={`text-[0.56rem] font-bold uppercase leading-[1.15] tracking-[0.05em] ${light ? "text-white/68" : "text-muted"}`}
-              >
-                {segment}
+        <span className="flex w-full min-w-0 flex-col gap-[3px] sm:gap-1">
+          <span
+            aria-hidden="true"
+            className={`h-px w-full bg-gradient-to-r ${light ? "from-brand-gold/70 via-brand-gold/25 to-transparent" : "from-brand-gold via-brand-gold/30 to-transparent"}`}
+          />
+          <span className="flex items-center gap-[3px] whitespace-nowrap sm:gap-[5px] lg:gap-[7px]">
+            {taglineSegments.map((segment, index) => (
+              <span key={segment} className="flex items-center gap-[3px] sm:gap-[5px] lg:gap-[7px]">
+                {index > 0 && (
+                  <span
+                    aria-hidden="true"
+                    className={`size-[2px] shrink-0 rounded-full sm:size-[3px] ${light ? "bg-brand-gold-soft/70" : "bg-brand-gold"}`}
+                  />
+                )}
+                <span
+                  className={`text-[0.34rem] font-extrabold uppercase leading-none tracking-[0.01em] sm:text-[0.46rem] sm:tracking-[0.04em] lg:text-[0.6rem] lg:tracking-[0.09em] ${light ? "text-brand-gold-soft" : "text-brand-blue"}`}
+                >
+                  {segment}
+                </span>
               </span>
-            </span>
-          ))}
+            ))}
+          </span>
         </span>
       )}
     </Link>

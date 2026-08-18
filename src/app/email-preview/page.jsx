@@ -20,7 +20,6 @@ const sampleData = {
   email: "test@capwisebd.com",
   phone: "+880 1624 000 381",
   company: "Capwise Solution BD",
-  businessType: "SME",
   pickYourIndustry: "RMG & Manufacturing",
   service: "Business Advisory",
   message:

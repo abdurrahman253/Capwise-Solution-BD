@@ -12,6 +12,7 @@ import {
 import Link from "next/link";
 
 import ServiceIcon from "@/components/services/ServiceIcon";
+import { primaryContact, whatsappHref as buildWhatsappHref } from "@/config/contacts";
 import { getRelatedServices, SERVICE_CONTENT_VERSION } from "@/data/services";
 import { getInsight } from "@/data/insights";
 
@@ -47,9 +48,10 @@ function Eyebrow({ children, light = false }) {
 export default function ServiceDetailPage({ service }) {
   const relatedServices = getRelatedServices(service);
   const relatedInsights = (serviceInsightMap[service.slug] || []).map(getInsight).filter(Boolean);
-  const whatsappHref = `https://wa.me/8801624000381?text=${encodeURIComponent(
+  const whatsappHref = buildWhatsappHref(
+    primaryContact.whatsapp,
     `Hello Capwise, I would like to discuss ${service.shortLabel}.`,
-  )}`;
+  );
 
   const structuredData = {
     "@context": "https://schema.org",
@@ -67,7 +69,7 @@ export default function ServiceDetailPage({ service }) {
           "@type": "ProfessionalService",
           name: "Capwise Solution BD",
           url: "https://capwisebd.com",
-          telephone: "+8801624000381",
+          telephone: primaryContact.tel,
           email: "info@capwisebd.com",
           address: {
             "@type": "PostalAddress",
@@ -184,11 +186,11 @@ export default function ServiceDetailPage({ service }) {
                     />
                   </Link>
                   <a
-                    href="tel:+8801624000381"
+                    href={`tel:${primaryContact.tel}`}
                     className="inline-flex min-h-11 items-center justify-center gap-2.5 rounded-full border border-border bg-surface px-5 text-xs font-bold text-foreground transition hover:border-accent hover:text-accent-strong sm:min-h-13 sm:px-6 sm:text-sm"
                   >
                     <Phone aria-hidden="true" size={15} />
-                    01624 000 381
+                    {primaryContact.phone}
                   </a>
                 </div>
               </div>

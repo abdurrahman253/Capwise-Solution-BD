@@ -2,6 +2,7 @@ import { ArrowUpRight, Mail, MapPin, MessageCircle, Phone, ShieldCheck } from "l
 
 import ConsultationForm from "@/components/forms/ConsultationForm";
 import SiteHeader from "@/components/layout/SiteHeader";
+import { contacts, whatsappHref } from "@/config/contacts";
 
 export const metadata = {
   title: "Book a Free Consultation",
@@ -10,9 +11,13 @@ export const metadata = {
   alternates: { canonical: "/contact" },
 };
 
+const consultationText = "Hello Capwise, I would like to book a consultation.";
+
 const channels = [
-  { icon: Phone, label: "Call", value: "01624 000 381", href: "tel:+8801624000381" },
-  { icon: MessageCircle, label: "WhatsApp", value: "01624 000 381", href: "https://wa.me/8801624000381?text=Hello%20Capwise%2C%20I%20would%20like%20to%20book%20a%20consultation." },
+  { icon: Phone, label: contacts.fahim.name, value: contacts.fahim.phone, href: `tel:${contacts.fahim.tel}` },
+  { icon: MessageCircle, label: `WhatsApp — ${contacts.fahim.name}`, value: contacts.fahim.phone, href: whatsappHref(contacts.fahim.whatsapp, consultationText) },
+  { icon: Phone, label: contacts.minhajul.name, value: contacts.minhajul.phone, href: `tel:${contacts.minhajul.tel}` },
+  { icon: MessageCircle, label: `WhatsApp — ${contacts.minhajul.name}`, value: contacts.minhajul.phone, href: whatsappHref(contacts.minhajul.whatsapp, consultationText) },
   { icon: Mail, label: "Email", value: "info@capwisebd.com", href: "mailto:info@capwisebd.com" },
 ];
 

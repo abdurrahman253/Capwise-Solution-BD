@@ -1,10 +1,11 @@
 import { Clock3, Mail, MapPin, Phone } from "lucide-react";
 
 import ConsultationForm from "@/components/forms/ConsultationForm";
+import { primaryContact } from "@/config/contacts";
 
 const contactDetails = [
   { icon: MapPin, label: "Banani, Dhaka", detail: "Level-03, House 76/A, Road 11" },
-  { icon: Phone, label: "01624 000 381", detail: "Call or WhatsApp during business hours" },
+  { icon: Phone, label: primaryContact.phone, detail: `${primaryContact.name} · Call or WhatsApp during business hours` },
   { icon: Mail, label: "info@capwisebd.com", detail: "For consultation and service enquiries" },
   { icon: Clock3, label: "Focused first conversation", detail: "Scope, urgency and the right workstream" },
 ];

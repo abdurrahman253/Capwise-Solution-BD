@@ -43,7 +43,6 @@ export default function ConsultationForm({ compact = false }) {
     reset,
     setError,
     setValue,
-    watch,
     formState: { errors, isSubmitting },
   } = useForm({
     resolver: zodResolver(consultationSchema),
@@ -53,7 +52,6 @@ export default function ConsultationForm({ compact = false }) {
       email: "",
       phone: "",
       company: "",
-      businessType: "",
       pickYourIndustry: "",
       service: "",
       message: "",
@@ -63,8 +61,6 @@ export default function ConsultationForm({ compact = false }) {
       sourcePath: "",
     },
   });
-
-  const businessType = watch("businessType");
 
   useEffect(() => {
     setValue("startedAt", getCurrentTimestamp(), {
@@ -76,13 +72,12 @@ export default function ConsultationForm({ compact = false }) {
 
   async function goToDetails() {
     const fields = compact
-      ? ["name", "email", "businessType", "pickYourIndustry", "service"]
+      ? ["name", "email", "pickYourIndustry", "service"]
       : [
           "name",
           "email",
           "phone",
           "company",
-          "businessType",
           "pickYourIndustry",
           "service",
         ];
@@ -135,7 +130,6 @@ export default function ConsultationForm({ compact = false }) {
         email: "",
         phone: "",
         company: "",
-        businessType: "",
         pickYourIndustry: "",
         service: "",
         message: "",
@@ -288,19 +282,6 @@ export default function ConsultationForm({ compact = false }) {
               </label>
             </div>
           )}
-
-          <fieldset className="grid gap-2">
-            <legend className="text-xs font-bold text-foreground">Business type</legend>
-            <div className="grid grid-cols-2 gap-2" role="radiogroup" aria-describedby={errors.businessType ? "consultation-business-type-error" : undefined}>
-              {["SME", "Non-SME"].map((option) => (
-                <label key={option} className={`flex h-12 cursor-pointer items-center justify-center rounded-xl border text-sm font-extrabold transition ${businessType === option ? "border-brand-blue bg-brand-blue text-white shadow-sm" : "border-border bg-surface text-foreground hover:border-brand-blue/40"}`}>
-                  <input {...register("businessType")} type="radio" value={option} className="sr-only" />
-                  {option}
-                </label>
-              ))}
-            </div>
-            <FieldError id="consultation-business-type-error" message={errors.businessType?.message} />
-          </fieldset>
 
           <label className="grid gap-2 text-xs font-bold text-foreground">
             Pick Your Industry

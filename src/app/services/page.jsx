@@ -8,6 +8,7 @@ import {
 import Link from "next/link";
 
 import SiteHeader from "@/components/layout/SiteHeader";
+import { primaryContact, whatsappHref } from "@/config/contacts";
 import ServiceIcon from "@/components/services/ServiceIcon";
 import {
   SERVICE_CONTENT_VERSION,
@@ -266,7 +267,7 @@ export default function ServicesPage() {
                 <ArrowUpRight aria-hidden="true" size={16} />
               </Link>
               <a
-                href="https://wa.me/8801624000381?text=Hello%20Capwise%2C%20I%20would%20like%20to%20discuss%20business%20support."
+                href={whatsappHref(primaryContact.whatsapp, "Hello Capwise, I would like to discuss business support.")}
                 target="_blank"
                 rel="noreferrer"
                 className="inline-flex min-h-11 items-center justify-center gap-2.5 rounded-full border border-white/18 bg-white/6 px-5 text-xs font-bold text-white transition hover:border-accent/50 hover:bg-white/10 sm:min-h-13 sm:text-sm"

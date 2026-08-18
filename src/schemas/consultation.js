@@ -2,8 +2,6 @@ import { z } from "zod";
 
 import { pickYourIndustryOptions } from "@/data/pickYourIndustry";
 
-export const consultationBusinessTypes = ["SME", "Non-SME"];
-
 export const consultationIndustries = pickYourIndustryOptions.map(
   (item) => item.label,
 );
@@ -40,9 +38,6 @@ export const consultationSchema = z.object({
     .max(160, "Please keep your email under 160 characters."),
   phone: optionalShortText,
   company: optionalShortText,
-  businessType: z.enum(consultationBusinessTypes, {
-    error: "Please select SME or Non-SME.",
-  }),
   pickYourIndustry: z.enum(consultationIndustries, {
     error: "Please select the industry that best fits your business.",
   }),

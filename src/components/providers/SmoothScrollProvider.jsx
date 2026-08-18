@@ -21,11 +21,12 @@ export default function SmoothScrollProvider({ children }) {
         anchors: { offset: -112 },
         autoRaf: true,
         autoToggle: true,
-        duration: reduceMotion ? 0 : 1.05,
+        duration: reduceMotion ? 0 : 1.15,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
         smoothWheel: !reduceMotion,
         syncTouch: false,
         touchMultiplier: 1,
-        wheelMultiplier: 0.9,
+        wheelMultiplier: 0.85,
       }}
     >
       {children}

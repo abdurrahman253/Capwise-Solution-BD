@@ -1,5 +1,7 @@
 import "server-only";
 
+import { primaryContact } from "@/config/contacts";
+
 const brand = {
   navy: "#1B1464",
   navy2: "#1B64AA",
@@ -62,7 +64,7 @@ function shell({ preheader, eyebrow, title, subtitle, content, reference }) {
         <tr>
           <td style="padding:24px 34px;background:${brand.pale};border-top:1px solid ${brand.border};">
             <p style="margin:0;font-size:12px;line-height:20px;color:${brand.muted};">Capwise Solution BD · Level-03, House 76/A, Road 11, Banani, Dhaka-1213, Bangladesh</p>
-            <p style="margin:5px 0 0;font-size:12px;line-height:20px;color:${brand.muted};">01624 000 381 · info@capwisebd.com</p>
+            <p style="margin:5px 0 0;font-size:12px;line-height:20px;color:${brand.muted};">${primaryContact.phone} · info@capwisebd.com</p>
           </td>
         </tr>
       </table>
@@ -83,7 +85,6 @@ export function consultationOwnerEmail({ reference, data, submittedAt }) {
       ${row("Work email", data.email)}
       ${row("Phone", data.phone)}
       ${row("Company", data.company)}
-      ${row("Business type", data.businessType)}
       ${row("Pick your industry", data.pickYourIndustry)}
       ${row("Service interest", data.service)}
       ${row("Submitted", submittedAt)}
@@ -111,7 +112,6 @@ export function consultationOwnerEmail({ reference, data, submittedAt }) {
     `Email: ${data.email}`,
     `Phone: ${data.phone || "Not provided"}`,
     `Company: ${data.company || "Not provided"}`,
-    `Business type: ${data.businessType}`,
     `Pick your industry: ${data.pickYourIndustry}`,
     `Service: ${data.service}`,
     `Source: ${data.sourcePath || "/contact"}`,
@@ -138,8 +138,7 @@ export function consultationAcknowledgementEmail({ reference, data }) {
   const content = `
     <div style="padding:22px;border:1px solid ${brand.border};border-radius:14px;background:#F8FAFC;">
       <div style="font-size:10px;line-height:16px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:${brand.blue};">What we received</div>
-      <p style="margin:10px 0 0;font-size:14px;line-height:23px;color:${brand.text};"><strong>Business type:</strong> ${escapeHtml(data.businessType)}</p>
-      <p style="margin:5px 0 0;font-size:14px;line-height:23px;color:${brand.text};"><strong>Pick your industry:</strong> ${escapeHtml(data.pickYourIndustry)}</p>
+      <p style="margin:10px 0 0;font-size:14px;line-height:23px;color:${brand.text};"><strong>Pick your industry:</strong> ${escapeHtml(data.pickYourIndustry)}</p>
       <p style="margin:5px 0 0;font-size:14px;line-height:23px;color:${brand.text};"><strong>Service:</strong> ${escapeHtml(data.service)}</p>
       <p style="margin:5px 0 0;font-size:14px;line-height:23px;color:${brand.text};"><strong>Company:</strong> ${escapeHtml(data.company || "Not provided")}</p>
     </div>
@@ -156,7 +155,7 @@ export function consultationAcknowledgementEmail({ reference, data }) {
       content,
       reference,
     }),
-    text: `Thank you, ${data.name}. We received your Capwise consultation request. Reference: ${reference}. Business type: ${data.businessType}. Pick your industry: ${data.pickYourIndustry}. Service: ${data.service}. A team member will review it and respond using the contact details you supplied. Please do not send sensitive documents until a secure channel is confirmed.`,
+    text: `Thank you, ${data.name}. We received your Capwise consultation request. Reference: ${reference}. Pick your industry: ${data.pickYourIndustry}. Service: ${data.service}. A team member will review it and respond using the contact details you supplied. Please do not send sensitive documents until a secure channel is confirmed.`,
   };
 }
 
