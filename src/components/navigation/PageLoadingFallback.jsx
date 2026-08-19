@@ -6,7 +6,7 @@ export default function PageLoadingFallback() {
       <div className="capwise-route-loader__backdrop" aria-hidden="true" />
       <div className="capwise-route-loader__card">
         <div className="capwise-route-loader__mark" aria-hidden="true">
-          <Image src="/brand/capwise-icon.png" alt="" width={26} height={26} priority />
+          <Image src="/brand/capwise-icon.png" alt="" width={26} height={26} />
           <span className="capwise-route-loader__spinner" />
         </div>
         <div className="capwise-route-loader__copy">

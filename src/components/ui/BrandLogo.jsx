@@ -26,7 +26,7 @@ export default function BrandLogo({ className = "", compact = false, light = fal
   return (
     <Link
       href="/"
-      className={`group inline-flex min-w-0 flex-col items-start gap-1 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 ${className}`}
+      className={`group inline-flex min-w-0 flex-col items-start gap-0.5 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 ${className}`}
       aria-label="Capwise Solution BD — Home"
     >
       <m.span
@@ -42,7 +42,7 @@ export default function BrandLogo({ className = "", compact = false, light = fal
           width={1012}
           height={358}
           priority
-          className={`${compact ? "h-[2.7rem] sm:h-[2.95rem]" : "h-[3.2rem] sm:h-[3.5rem]"} w-auto object-contain ${light ? "brightness-0 invert sepia-[25%] saturate-[1.8] hue-rotate-[3deg]" : ""}`}
+          className={`${compact ? "h-9 sm:h-10 lg:h-11" : "h-11 sm:h-12 lg:h-[3.25rem]"} w-auto object-contain ${light ? "brightness-0 invert sepia-[25%] saturate-[1.8] hue-rotate-[3deg]" : ""}`}
         />
         {!reduceMotion && (
           <m.span
@@ -71,7 +71,7 @@ export default function BrandLogo({ className = "", compact = false, light = fal
                   />
                 )}
                 <span
-                  className={`text-[0.34rem] font-extrabold uppercase leading-none tracking-[0.01em] sm:text-[0.46rem] sm:tracking-[0.04em] lg:text-[0.6rem] lg:tracking-[0.09em] ${light ? "text-brand-gold-soft" : "text-brand-blue"}`}
+                  className={`text-[0.32rem] font-extrabold uppercase leading-none tracking-[0.01em] sm:text-[0.42rem] sm:tracking-[0.035em] lg:text-[0.56rem] lg:tracking-[0.08em] ${light ? "text-brand-gold-soft" : "text-brand-blue"}`}
                 >
                   {segment}
                 </span>
