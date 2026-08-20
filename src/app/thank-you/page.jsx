@@ -24,7 +24,7 @@ export default async function ThankYouPage({ searchParams }) {
               <CheckCircle2 aria-hidden="true" size={28} />
             </span>
             <p className="mt-7 text-[0.62rem] font-bold uppercase tracking-[0.2em] text-accent-strong">Enquiry received</p>
-            <h1 className="mt-4 font-display text-[clamp(2rem,3.5vw,3.2rem)] font-semibold leading-[1.1] tracking-[-0.02em] text-foreground">
+            <h1 className="mt-4 font-display text-h1 font-semibold text-foreground">
               Thank you for contacting Capwise.
             </h1>
             <p className="mx-auto mt-5 max-w-xl text-sm leading-7 text-muted sm:text-base sm:leading-8">

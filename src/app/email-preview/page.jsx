@@ -50,7 +50,7 @@ export default function EmailPreviewPage() {
               <Eye aria-hidden="true" size={18} />
               <p className="text-[0.65rem] font-bold uppercase tracking-[0.2em]">Local delivery preview</p>
             </div>
-            <h1 className="mt-5 max-w-[14ch] font-display text-[clamp(2rem,3.5vw,3.2rem)] font-semibold leading-[1.1] tracking-[-0.02em] text-foreground">
+            <h1 className="mt-5 max-w-[14ch] font-display text-h1 font-semibold text-foreground">
               Review the exact email experience before sending.
             </h1>
             <div className="mt-7 flex max-w-3xl items-start gap-3 rounded-2xl border border-gold/25 bg-gold/8 p-4 text-sm leading-7 text-muted">

@@ -22,7 +22,7 @@ export default function ServiceOverview() {
     <section className="border-y border-border bg-surface-muted/55 py-18 sm:py-24 lg:py-28" aria-labelledby="service-overview-title">
       <div className="mx-auto max-w-[94rem] px-5 sm:px-6 lg:px-8 2xl:px-10">
         <div className="grid gap-8 lg:grid-cols-12 lg:items-end">
-          <div className="lg:col-span-8"><p className="text-[0.62rem] font-extrabold uppercase tracking-[0.2em] text-brand-blue">Services</p><h2 id="service-overview-title" className="mt-5 max-w-[13ch] font-display text-[clamp(1.75rem,2.6vw,2.5rem)] font-semibold leading-[1.1] tracking-[-0.02em] text-foreground">The essentials, connected.</h2></div>
+          <div className="lg:col-span-8"><p className="text-[0.62rem] font-extrabold uppercase tracking-[0.2em] text-brand-blue">Services</p><h2 id="service-overview-title" className="mt-5 max-w-[13ch] font-display text-h2 font-semibold text-foreground">The essentials, connected.</h2></div>
           <div className="lg:col-span-4"><p className="text-sm leading-7 text-muted sm:text-base sm:leading-8">Choose a service or start with your business problem. The work is coordinated so one compliance step does not create a gap somewhere else.</p><Link href="/services" className="mt-5 inline-flex items-center gap-2 text-sm font-extrabold text-brand-blue">View all services <ArrowUpRight size={15} className="text-brand-gold" /></Link></div>
         </div>
 

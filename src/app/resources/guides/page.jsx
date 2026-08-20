@@ -46,7 +46,7 @@ export default function GuidesPage() {
                     Practical guides
                   </p>
                 </div>
-                <h1 className="mt-6 max-w-[13ch] font-display text-[clamp(2rem,3.5vw,3.2rem)] font-semibold leading-[1.1] tracking-[-0.02em] text-foreground">
+                <h1 className="mt-6 max-w-[13ch] font-display text-h1 font-semibold text-foreground">
                   Prepare the work.
                   <span className="mt-1 block text-accent-strong">
                     Reduce avoidable friction.
@@ -128,7 +128,7 @@ export default function GuidesPage() {
                           {guide.status}
                         </span>
                       </div>
-                      <h2 className="mt-4 max-w-[18ch] font-display text-[clamp(1.35rem,1.8vw,1.8rem)] font-semibold leading-[1.1] tracking-[-0.02em]">
+                      <h2 className="mt-4 max-w-[18ch] font-display text-h3 font-semibold">
                         {guide.title}
                       </h2>
                       <p
@@ -187,7 +187,7 @@ export default function GuidesPage() {
                     <p className="text-[0.6rem] font-bold uppercase tracking-[0.18em] text-gold">
                       Release status
                     </p>
-                    <h2 className="mt-3 font-display text-[clamp(1.2rem,1.5vw,1.55rem)] font-semibold leading-[1.1] tracking-[-0.02em] text-foreground">
+                    <h2 className="mt-3 font-display text-card font-semibold text-foreground">
                       No placeholder download buttons.
                     </h2>
                     <p className="mt-4 max-w-3xl text-sm leading-7 text-muted">

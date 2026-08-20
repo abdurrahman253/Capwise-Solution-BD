@@ -79,7 +79,7 @@ export default function WhyCapwise() {
 
             <h2
               id="why-capwise-title"
-              className="mt-6 max-w-2xl font-display text-[clamp(1.75rem,2.6vw,2.5rem)] font-semibold leading-[1.1] tracking-[-0.02em] text-foreground"
+              className="mt-6 max-w-2xl font-display text-h2 font-semibold text-foreground"
             >
               Complexity needs
               <span className="mt-2 block text-accent-strong">
@@ -142,7 +142,7 @@ export default function WhyCapwise() {
                   </span>
 
                   <div>
-                    <h3 className="max-w-2xl font-display text-[clamp(1.2rem,1.5vw,1.55rem)] font-semibold leading-[1.1] tracking-[-0.02em] text-foreground">
+                    <h3 className="max-w-2xl font-display text-card font-semibold text-foreground">
                       {title}
                     </h3>
                     <p className="mt-4 max-w-2xl text-sm leading-7 text-muted sm:text-[0.95rem] sm:leading-8">

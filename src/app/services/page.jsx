@@ -91,7 +91,7 @@ export default function ServicesPage() {
                     Advisory services
                   </p>
                 </div>
-                <h1 className="mt-5 max-w-[13ch] font-display text-[clamp(2rem,3.5vw,3.2rem)] font-semibold leading-[1.1] tracking-[-0.02em] text-foreground sm:mt-7">
+                <h1 className="mt-5 max-w-[13ch] font-display text-h1 font-semibold text-foreground sm:mt-7">
                   Seven disciplines.
                   <span className="mt-1 block text-accent-strong">
                     One coordinated path.
@@ -188,7 +188,7 @@ export default function ServicesPage() {
                   Connected by business stage
                 </p>
               </div>
-              <h2 className="mt-4 font-display text-[clamp(1.75rem,2.6vw,2.5rem)] font-semibold leading-[1.1] tracking-[-0.02em] text-foreground sm:mt-6">
+              <h2 className="mt-4 font-display text-h2 font-semibold text-foreground sm:mt-6">
                 Start, operate and grow with clearer ownership.
               </h2>
             </div>
@@ -207,7 +207,7 @@ export default function ServicesPage() {
                       {group.eyebrow}
                     </span>
                   </div>
-                  <h3 className="mt-6 font-display text-[clamp(1.35rem,1.8vw,1.8rem)] font-semibold leading-[1.1] tracking-[-0.02em] text-foreground">
+                  <h3 className="mt-6 font-display text-h3 font-semibold text-foreground">
                     {group.title}
                   </h3>
                   <p className="mt-3 text-xs leading-6 text-muted sm:text-sm sm:leading-7">
@@ -248,7 +248,7 @@ export default function ServicesPage() {
               <p className="text-[0.59rem] font-bold uppercase tracking-[0.2em] text-accent">
                 Not sure where to begin?
               </p>
-              <h2 className="mt-4 max-w-3xl font-display text-[clamp(1.75rem,2.6vw,2.5rem)] font-semibold leading-[1.1] tracking-[-0.02em]">
+              <h2 className="mt-4 max-w-3xl font-display text-h2 font-semibold">
                 Start with the issue. We&apos;ll help map the service.
               </h2>
               <p className="mt-4 max-w-2xl text-xs leading-6 text-white/62 sm:text-sm sm:leading-7">

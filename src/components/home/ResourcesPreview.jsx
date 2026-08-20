@@ -68,7 +68,7 @@ export default function ResourcesPreview() {
 
             <h2
               id="resources-preview-title"
-              className="mt-5 max-w-[15ch] font-display text-[clamp(1.75rem,2.6vw,2.5rem)] font-semibold leading-[1.1] tracking-[-0.02em] text-foreground sm:mt-6"
+              className="mt-5 max-w-[15ch] font-display text-h2 font-semibold text-foreground sm:mt-6"
             >
               Practical knowledge.
               <span className="mt-1 block text-accent-strong">
@@ -174,7 +174,7 @@ export default function ResourcesPreview() {
                 </p>
                 <div className="mt-3 flex items-end justify-between gap-5">
                   <div>
-                    <h3 className="max-w-[19ch] font-display text-[clamp(1.2rem,1.5vw,1.55rem)] font-semibold leading-[1.1] tracking-[-0.02em]">
+                    <h3 className="max-w-[19ch] font-display text-card font-semibold">
                       {featuredGuide.title}
                     </h3>
                     <p className="mt-3 max-w-xl text-sm leading-7 text-white/62">

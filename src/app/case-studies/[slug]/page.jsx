@@ -27,7 +27,7 @@ export default async function CaseStudyPage({ params }) {
       <main id="main-content" className="bg-background py-24">
         <article className="mx-auto max-w-4xl px-4 sm:px-6">
           <p className="text-xs font-bold uppercase tracking-[0.18em] text-accent-strong">Approved case study</p>
-          <h1 className="mt-5 font-display text-[clamp(2rem,3.5vw,3.2rem)] font-semibold leading-[1.1] tracking-[-0.02em] text-foreground">{study.title}</h1>
+          <h1 className="mt-5 font-display text-h1 font-semibold text-foreground">{study.title}</h1>
           <p className="mt-6 text-lg leading-8 text-muted">{study.summary}</p>
         </article>
       </main>

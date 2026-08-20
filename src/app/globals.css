@@ -281,6 +281,32 @@
 
   --font-sans: var(--font-inter);
   --font-display: var(--font-manrope);
+
+  /* ----------------------------------------
+     Heading type scale — fluid, one definition,
+     reused everywhere via text-hero/h1/h2/h3/card.
+     Do not hand-tune a heading's size in a component;
+     change the tier here instead. See CLAUDE.md.
+  ----------------------------------------- */
+  --text-hero: clamp(2.2rem, 4vw, 3.6rem);
+  --text-hero--line-height: 1.1;
+  --text-hero--letter-spacing: -0.02em;
+
+  --text-h1: clamp(2rem, 3.5vw, 3.2rem);
+  --text-h1--line-height: 1.1;
+  --text-h1--letter-spacing: -0.02em;
+
+  --text-h2: clamp(1.75rem, 2.6vw, 2.5rem);
+  --text-h2--line-height: 1.1;
+  --text-h2--letter-spacing: -0.02em;
+
+  --text-h3: clamp(1.35rem, 1.8vw, 1.8rem);
+  --text-h3--line-height: 1.1;
+  --text-h3--letter-spacing: -0.02em;
+
+  --text-card: clamp(1.2rem, 1.5vw, 1.55rem);
+  --text-card--line-height: 1.1;
+  --text-card--letter-spacing: -0.02em;
 }
 
 /* ----------------------------------------

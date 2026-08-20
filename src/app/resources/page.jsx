@@ -51,7 +51,7 @@ export default function ResourcesPage() {
                   </p>
                 </div>
 
-                <h1 className="mt-6 max-w-[13ch] font-display text-[clamp(2rem,3.5vw,3.2rem)] font-semibold leading-[1.1] tracking-[-0.02em] text-foreground">
+                <h1 className="mt-6 max-w-[13ch] font-display text-h1 font-semibold text-foreground">
                   Less complexity.
                   <span className="mt-1 block text-accent-strong">
                     Better prepared decisions.
@@ -110,7 +110,7 @@ export default function ResourcesPage() {
                     <p className="text-[0.6rem] font-bold uppercase tracking-[0.17em] text-accent">
                       Practical guides
                     </p>
-                    <h2 className="mt-4 font-display text-[clamp(1.75rem,2.6vw,2.5rem)] font-semibold leading-[1.1] tracking-[-0.02em]">
+                    <h2 className="mt-4 font-display text-h2 font-semibold">
                       Prepare before the process begins.
                     </h2>
                     <p className="mt-5 max-w-lg text-sm leading-7 text-white/64 sm:text-base sm:leading-8">
@@ -154,7 +154,7 @@ export default function ResourcesPage() {
                     <p className="text-[0.6rem] font-bold uppercase tracking-[0.17em] text-gold">
                       Regulatory intelligence
                     </p>
-                    <h2 className="mt-4 font-display text-[clamp(1.75rem,2.6vw,2.5rem)] font-semibold leading-[1.1] tracking-[-0.02em] text-foreground">
+                    <h2 className="mt-4 font-display text-h2 font-semibold text-foreground">
                       Verified changes. Clear implications.
                     </h2>
                     <p className="mt-5 max-w-lg text-sm leading-7 text-muted sm:text-base sm:leading-8">
@@ -190,7 +190,7 @@ export default function ResourcesPage() {
                 <p className="mt-7 text-[0.6rem] font-bold uppercase tracking-[0.18em] text-accent-strong">
                   Publication standard
                 </p>
-                <h2 className="mt-4 max-w-[14ch] font-display text-[clamp(1.75rem,2.6vw,2.5rem)] font-semibold leading-[1.1] tracking-[-0.02em] text-foreground">
+                <h2 className="mt-4 max-w-[14ch] font-display text-h2 font-semibold text-foreground">
                   Accuracy is part of the design.
                 </h2>
                 <p className="mt-5 max-w-xl text-sm leading-7 text-muted sm:text-base sm:leading-8">
@@ -234,7 +234,7 @@ export default function ResourcesPage() {
                 <FileCheck2 aria-hidden="true" size={14} />
                 Information has limits
               </p>
-              <h2 className="mt-4 max-w-3xl font-display text-[clamp(1.75rem,2.6vw,2.5rem)] font-semibold leading-[1.1] tracking-[-0.02em]">
+              <h2 className="mt-4 max-w-3xl font-display text-h2 font-semibold">
                 Use the guide. Then review your situation.
               </h2>
               <p className="mt-4 max-w-2xl text-sm leading-7 text-white/62">

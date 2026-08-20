@@ -11,7 +11,7 @@ export default function FirmIntro() {
       <div className="mx-auto grid max-w-[94rem] gap-10 px-5 sm:px-6 lg:grid-cols-12 lg:gap-14 lg:px-8 2xl:px-10">
         <m.div initial={reduceMotion ? false : { opacity: 0, y: 22 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .3 }} className="lg:col-span-5">
           <p className="text-[0.62rem] font-extrabold uppercase tracking-[0.2em] text-brand-blue">Our Firm</p>
-          <h2 id="firm-intro-title" className="mt-5 max-w-[12ch] font-display text-[clamp(1.75rem,2.6vw,2.5rem)] font-semibold leading-[1.1] tracking-[-0.02em] text-foreground">One advisory team. Fewer disconnected answers.</h2>
+          <h2 id="firm-intro-title" className="mt-5 max-w-[12ch] font-display text-h2 font-semibold text-foreground">One advisory team. Fewer disconnected answers.</h2>
         </m.div>
         <m.div initial={reduceMotion ? false : { opacity: 0, y: 22 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .3 }} transition={{ delay: .08 }} className="lg:col-span-6 lg:col-start-7">
           <p className="max-w-2xl text-base leading-8 text-muted sm:text-lg sm:leading-9">Capwise brings accounting, tax, legal, finance and compliance support together for businesses operating in Bangladesh. We work with founders, SMEs, established companies and foreign market entrants to turn requirements into practical next steps.</p>

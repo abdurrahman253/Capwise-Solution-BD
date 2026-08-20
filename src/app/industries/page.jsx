@@ -112,7 +112,7 @@ export default function IndustriesPage() {
                     Industries we serve
                   </p>
                 </div>
-                <h1 className="mt-5 max-w-[13ch] font-display text-[clamp(2rem,3.5vw,3.2rem)] font-semibold leading-[1.1] tracking-[-0.02em] text-foreground sm:mt-7">
+                <h1 className="mt-5 max-w-[13ch] font-display text-h1 font-semibold text-foreground sm:mt-7">
                   Sector context changes
                   <span className="mt-1 block text-accent-strong">
                     the compliance path.
@@ -168,7 +168,7 @@ export default function IndustriesPage() {
                   Our operating lens
                 </p>
               </div>
-              <h2 className="mt-4 font-display text-[clamp(1.75rem,2.6vw,2.5rem)] font-semibold leading-[1.1] tracking-[-0.02em] text-foreground sm:mt-6">
+              <h2 className="mt-4 font-display text-h2 font-semibold text-foreground sm:mt-6">
                 Begin with how the organisation really works.
               </h2>
             </div>
@@ -179,7 +179,7 @@ export default function IndustriesPage() {
                   <span className="font-display text-xs font-bold text-accent-strong">
                     {item.number}
                   </span>
-                  <h3 className="mt-6 font-display text-[clamp(1.35rem,1.8vw,1.8rem)] font-semibold leading-[1.1] tracking-[-0.02em] text-foreground">
+                  <h3 className="mt-6 font-display text-h3 font-semibold text-foreground">
                     {item.title}
                   </h3>
                   <p className="mt-3 text-xs leading-6 text-muted sm:text-sm sm:leading-7">
@@ -221,7 +221,7 @@ export default function IndustriesPage() {
                       <p className="mt-6 text-[0.58rem] font-bold uppercase tracking-[0.19em] text-accent-strong sm:text-[0.63rem]">
                         {industry.eyebrow}
                       </p>
-                      <h2 className="mt-3 max-w-[18ch] font-display text-[clamp(1.75rem,2.6vw,2.5rem)] font-semibold leading-[1.1] tracking-[-0.02em] text-foreground">
+                      <h2 className="mt-3 max-w-[18ch] font-display text-h2 font-semibold text-foreground">
                         {industry.label}
                       </h2>
                       <p className="mt-4 max-w-xl text-sm leading-7 text-muted sm:text-[0.95rem] sm:leading-8">
@@ -290,7 +290,7 @@ export default function IndustriesPage() {
               <p className="text-[0.59rem] font-bold uppercase tracking-[0.2em] text-accent">
                 Start with your operating reality
               </p>
-              <h2 className="mt-4 max-w-3xl font-display text-[clamp(1.75rem,2.6vw,2.5rem)] font-semibold leading-[1.1] tracking-[-0.02em]">
+              <h2 className="mt-4 max-w-3xl font-display text-h2 font-semibold">
                 Let&apos;s map the sector-specific next step.
               </h2>
               <p className="mt-4 max-w-2xl text-xs leading-6 text-white/62 sm:text-sm sm:leading-7">

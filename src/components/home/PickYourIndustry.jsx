@@ -17,7 +17,7 @@ export default function PickYourIndustry() {
         <div className="grid gap-8 lg:grid-cols-12 lg:items-end">
           <div className="lg:col-span-8">
             <p className="text-[0.62rem] font-extrabold uppercase tracking-[.2em] text-brand-gold">Pick Your Industry</p>
-            <h2 id="pick-industry-title" className="mt-5 max-w-[15ch] font-display text-[clamp(1.75rem,2.6vw,2.5rem)] font-semibold leading-[1.1] tracking-[-0.02em]">
+            <h2 id="pick-industry-title" className="mt-5 max-w-[15ch] font-display text-h2 font-semibold">
               Find the guide built for your business.
             </h2>
           </div>

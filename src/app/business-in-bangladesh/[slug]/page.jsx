@@ -36,7 +36,7 @@ export default async function BusinessTopicPage({ params }) {
           <div className="mx-auto grid max-w-[90rem] gap-10 px-4 sm:px-6 lg:grid-cols-12 lg:items-end lg:gap-14 lg:px-10">
             <div className="lg:col-span-8">
               <p className="text-[0.62rem] font-bold uppercase tracking-[0.2em] text-accent-strong">{topic.eyebrow}</p>
-              <h1 className="mt-6 max-w-[13ch] font-display text-[clamp(2rem,3.5vw,3.2rem)] font-semibold leading-[1.1] tracking-[-0.02em] text-foreground">{topic.title}</h1>
+              <h1 className="mt-6 max-w-[13ch] font-display text-h1 font-semibold text-foreground">{topic.title}</h1>
             </div>
             <div className="lg:col-span-4">
               <p className="text-sm leading-7 text-muted sm:text-base sm:leading-8">{topic.intro}</p>
@@ -61,7 +61,7 @@ export default async function BusinessTopicPage({ params }) {
             </div>
             <aside className="rounded-[1.5rem] bg-brand p-7 text-white lg:col-span-4 lg:p-9">
               <p className="text-[0.6rem] font-bold uppercase tracking-[0.18em] text-accent">Preparation checklist</p>
-              <h2 className="mt-4 font-display text-[clamp(1.35rem,1.8vw,1.8rem)] font-semibold leading-[1.1] tracking-[-0.02em] text-white">Bring the right facts into the first review.</h2>
+              <h2 className="mt-4 font-display text-h3 font-semibold text-white">Bring the right facts into the first review.</h2>
               <div className="mt-7 grid gap-3">
                 {topic.checklist.map((item) => (
                   <div key={item} className="flex items-start gap-3 border-t border-white/12 pt-3 text-xs font-semibold leading-6 text-white/68">

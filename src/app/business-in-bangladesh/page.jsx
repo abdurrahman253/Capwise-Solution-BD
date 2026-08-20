@@ -29,7 +29,7 @@ export default function BusinessInBangladeshPage() {
           <div className="mx-auto grid max-w-[90rem] gap-10 px-4 sm:px-6 lg:grid-cols-12 lg:items-end lg:gap-14 lg:px-10">
             <div className="lg:col-span-8">
               <div className="flex items-center gap-3"><span className="h-px w-10 bg-accent-strong" /><p className="text-[0.62rem] font-bold uppercase tracking-[0.22em] text-accent-strong">Doing business in Bangladesh</p></div>
-              <h1 className="mt-6 max-w-[12ch] font-display text-[clamp(2rem,3.5vw,3.2rem)] font-semibold leading-[1.1] tracking-[-0.02em] text-foreground">A clearer route from market-entry decision to compliant operation.</h1>
+              <h1 className="mt-6 max-w-[12ch] font-display text-h1 font-semibold text-foreground">A clearer route from market-entry decision to compliant operation.</h1>
             </div>
             <div className="lg:col-span-4">
               <p className="text-sm leading-7 text-muted sm:text-base sm:leading-8">Use this overview to identify the main workstreams. It is general information and should not replace a current review of the law, regulator guidance and the facts.</p>
@@ -45,7 +45,7 @@ export default function BusinessInBangladeshPage() {
                 <article key={title} className={`group rounded-[1.6rem] border border-border bg-background p-6 transition hover:-translate-y-1 hover:border-accent/40 sm:p-8 ${index < 2 ? "lg:col-span-6" : "lg:col-span-4"}`}>
                   <div className="flex items-start justify-between gap-5"><span className="inline-flex size-12 items-center justify-center rounded-full border border-accent/25 bg-accent/10 text-accent-strong"><Icon aria-hidden="true" size={19} /></span><span className="font-display text-xs font-bold text-foreground/24">{String(index + 1).padStart(2, "0")}</span></div>
                   <p className="mt-8 text-[0.6rem] font-bold uppercase tracking-[0.18em] text-accent-strong">{eyebrow}</p>
-                  <h2 className="mt-3 font-display text-[clamp(1.2rem,1.5vw,1.55rem)] font-semibold leading-[1.1] tracking-[-0.02em] text-foreground">{title}</h2>
+                  <h2 className="mt-3 font-display text-card font-semibold text-foreground">{title}</h2>
                   <p className="mt-4 text-sm leading-7 text-muted">{description}</p>
                   <Link href={`/business-in-bangladesh/${slug}`} className="mt-7 inline-flex items-center gap-2 text-xs font-bold text-foreground transition group-hover:text-accent-strong">Read the practical guide <ArrowUpRight aria-hidden="true" size={15} /></Link>
                 </article>
@@ -56,7 +56,7 @@ export default function BusinessInBangladeshPage() {
 
         <section className="bg-brand py-14 text-white sm:py-20 lg:py-24">
           <div className="mx-auto flex max-w-[90rem] flex-col gap-8 px-4 sm:px-6 lg:flex-row lg:items-end lg:justify-between lg:px-10">
-            <div><p className="text-[0.62rem] font-bold uppercase tracking-[0.2em] text-accent">From overview to action</p><h2 className="mt-4 max-w-[17ch] font-display text-[clamp(1.75rem,2.6vw,2.5rem)] font-semibold leading-[1.1] tracking-[-0.02em] text-white">Map the registrations, owners, deadlines and operating obligations.</h2></div>
+            <div><p className="text-[0.62rem] font-bold uppercase tracking-[0.2em] text-accent">From overview to action</p><h2 className="mt-4 max-w-[17ch] font-display text-h2 font-semibold text-white">Map the registrations, owners, deadlines and operating obligations.</h2></div>
             <div className="flex flex-wrap gap-3"><Link href="/services/company-formation-registration" className="inline-flex h-12 items-center gap-3 rounded-full border border-white/15 px-6 text-sm font-bold text-white transition hover:border-accent hover:text-accent">Formation services <ArrowUpRight aria-hidden="true" size={17} /></Link><Link href="/contact" className="inline-flex h-12 items-center gap-3 rounded-full bg-brand-gold px-6 text-sm font-extrabold text-brand-navy shadow-[0_10px_28px_rgba(212,175,55,.2)] transition duration-200 hover:-translate-y-0.5 hover:bg-brand-gold-soft active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-brand-navy">Book a Free Consultation <ArrowUpRight aria-hidden="true" size={17} /></Link></div>
           </div>
         </section>
