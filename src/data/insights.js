@@ -96,8 +96,8 @@ export const insights = [
     description: "A concise overview of Bangladesh's startup landscape, structuring decisions and early compliance priorities.",
     excerpt: "Get entity structure, tax, VAT and financial records right before diligence makes them urgent.",
     category: "Startup",
-    image: "https://images.pexels.com/photos/7918035/pexels-photo-7918035.jpeg?auto=compress&cs=tinysrgb&w=1600",
-    imageAlt: "Young professionals collaborating in a modern startup workspace",
+    image: "https://images.unsplash.com/photo-1733826544839-2282050204e6?auto=format&fit=crop&w=1600&q=80",
+    imageAlt: "Bangladeshi startup team reviewing work together on a laptop",
   },
   {
     slug: "foreign-investors-market-entrants-bangladesh",
@@ -114,8 +114,8 @@ export const insights = [
     description: "A concise guide to registering and running a compliant NGO or non-profit in Bangladesh, including NGOAB requirements for foreign funding.",
     excerpt: "Foreign-funded organisations often need both a base legal registration and NGOAB compliance.",
     category: "Industries",
-    image: "https://images.pexels.com/photos/10705020/pexels-photo-10705020.jpeg?auto=compress&cs=tinysrgb&w=1600",
-    imageAlt: "Bangladeshi community health programme officer in Dhaka",
+    image: "https://images.pexels.com/photos/36384099/pexels-photo-36384099.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    imageAlt: "NGO field officer recording data at a community development meeting in rural Bangladesh",
   },
   {
     slug: "manufacturing-rmg-bangladesh",
@@ -132,8 +132,8 @@ export const insights = [
     description: "A concise guide to IRC and ERC licensing for import-export businesses in Bangladesh, including process and renewal requirements.",
     excerpt: "Incorporation does not replace the IRC or ERC needed for international trading activity.",
     category: "Industries",
-    image: "https://images.pexels.com/photos/38569011/pexels-photo-38569011.jpeg?auto=compress&cs=tinysrgb&w=1600",
-    imageAlt: "Container port terminal with cranes loading cargo ships",
+    image: "https://images.pexels.com/photos/5371145/pexels-photo-5371145.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    imageAlt: "Cargo ships docked at Chattogram Port in Bangladesh",
   },
 ];
 
