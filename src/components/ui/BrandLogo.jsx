@@ -17,7 +17,13 @@ export function BrandMark({ className = "h-12 w-auto" }) {
   );
 }
 
-const taglineSegments = ["Accounting & Finance", "Tax & Compliance", "HR & Payroll"];
+// Three groups, each two lines, matching docs/reference/logo-lockup-target.png.
+const taglineGroups = [
+  ["Accounting", "& Finance"],
+  ["Tax &", "Compliance"],
+  ["HR &", "Payroll"],
+];
+const taglineSrText = "Accounting & Finance, Tax & Compliance, HR & Payroll";
 
 export default function BrandLogo({ className = "", compact = false, surface = "light", tagline = false }) {
   // Variant is chosen by the surface the logo renders on, not by site theme —
@@ -26,11 +32,17 @@ export default function BrandLogo({ className = "", compact = false, surface = "
   // callers pass surface="dark" there only when resolvedTheme is "dark".
   const onDark = surface === "dark";
   const variant = onDark ? brandLogo.dark : brandLogo.light;
+  // These are the literal --muted token values, applied directly rather than
+  // via the text-muted utility. text-muted follows the THEME; this needs to
+  // follow the SURFACE, and the footer is a dark surface in light theme too —
+  // using the theme-driven token there would put light-theme's dark-gray
+  // text on the footer's permanently-dark background and fail contrast.
+  const taglineColor = onDark ? "text-[#9fb1bf]" : "text-[#667085]";
 
   return (
     <Link
       href="/"
-      className={`group inline-flex min-h-11 min-w-0 flex-col items-start gap-0.5 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 ${className}`}
+      className={`group inline-flex min-h-11 min-w-0 flex-col items-start gap-1 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 ${className}`}
       aria-label="Capwise Solution BD — Home"
     >
       <span className="relative block shrink-0">
@@ -49,29 +61,26 @@ export default function BrandLogo({ className = "", compact = false, surface = "
       </span>
 
       {tagline && (
-        <span
-          className={`w-full min-w-0 flex-col gap-[3px] pl-[28%] lg:gap-1 sr-only min-[481px]:not-sr-only min-[481px]:flex`}
-        >
-          <span
-            aria-hidden="true"
-            className={`h-px w-full bg-gradient-to-r ${onDark ? "from-brand-gold/70 via-brand-gold/25 to-transparent" : "from-brand-gold via-brand-gold/30 to-transparent"}`}
-          />
-          <span className="flex flex-wrap items-center gap-x-[7px] gap-y-1 text-micro">
-            {taglineSegments.map((segment, index) => (
-              <span key={segment} className="flex items-center gap-[7px]">
-                {index > 0 && (
-                  <span
-                    aria-hidden="true"
-                    className={`size-[3px] shrink-0 rounded-full ${onDark ? "bg-brand-gold-soft/70" : "bg-brand-gold"}`}
-                  />
-                )}
-                <span className={`font-extrabold uppercase leading-none ${onDark ? "text-brand-gold-soft" : "text-brand-blue"}`}>
-                  {segment}
-                </span>
+        <>
+          {/* Visible from 1024px up only — see COPY_CHANGE_LOG.md for why: at
+              this component's actual header/footer scale the wordmark itself
+              renders far narrower than the reference image implies, so three
+              two-line groups need more room than tablet widths reliably give
+              without dropping under the text-micro floor. */}
+          <span className="hidden pl-[26%] lg:flex lg:items-end lg:gap-x-2.5">
+            {taglineGroups.map(([line1, line2]) => (
+              <span key={line1} className={`text-[0.75rem] font-normal leading-tight ${taglineColor}`}>
+                <span className="block whitespace-nowrap">{line1}</span>
+                <span className="block whitespace-nowrap">{line2}</span>
               </span>
             ))}
+            <span
+              aria-hidden="true"
+              className={`mb-[3px] h-px w-8 shrink-0 ${onDark ? "bg-[#9fb1bf]" : "bg-[#667085]"}`}
+            />
           </span>
-        </span>
+          <span className="sr-only lg:hidden">{taglineSrText}</span>
+        </>
       )}
     </Link>
   );
