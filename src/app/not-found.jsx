@@ -14,9 +14,8 @@ export default function NotFound() {
       <SiteHeader />
       <main id="main-content" className="capwise-not-found relative isolate overflow-hidden">
         <div className="capwise-coordinate-grid pointer-events-none absolute inset-0 -z-20 opacity-50" />
-        <div className="pointer-events-none absolute -right-40 top-10 -z-10 size-[30rem] rounded-full bg-accent/12 blur-[110px]" />
 
-        <section className="mx-auto grid min-h-[72vh] max-w-[90rem] items-center gap-12 px-4 py-16 sm:px-6 sm:py-24 lg:grid-cols-12 lg:px-10 lg:py-28">
+        <section className="mx-auto grid min-h-[72vh] max-w-[90rem] items-center gap-12 px-gutter py-section-lg lg:grid-cols-12">
           <div className="lg:col-span-7">
             <div className="flex items-center gap-3">
               <span className="h-px w-10 bg-accent-strong" />

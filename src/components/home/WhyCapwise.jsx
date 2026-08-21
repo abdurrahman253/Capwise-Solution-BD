@@ -57,11 +57,6 @@ export default function WhyCapwise() {
       aria-labelledby="why-capwise-title"
       className="relative overflow-hidden border-y border-border bg-surface py-section-lg"
     >
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute right-[-13rem] top-[-9rem] size-[32rem] rounded-full border border-accent/10 bg-accent/8 blur-[90px]"
-      />
-
       <div className="relative mx-auto max-w-[90rem] px-gutter">
         <div className="grid gap-16 lg:grid-cols-[0.78fr_1.22fr] lg:gap-20 xl:gap-32">
           <m.div

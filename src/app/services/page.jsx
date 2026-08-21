@@ -64,12 +64,8 @@ export default function ServicesPage() {
             aria-hidden="true"
             className="capwise-coordinate-grid pointer-events-none absolute inset-0 -z-20 opacity-60"
           />
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute -right-48 -top-44 -z-10 size-[34rem] rounded-full bg-accent/13 blur-[110px]"
-          />
 
-          <div className="mx-auto max-w-[90rem] px-4 pb-14 pt-6 sm:px-6 sm:pb-20 sm:pt-8 lg:px-10 lg:pb-28 lg:pt-10">
+          <div className="mx-auto max-w-[90rem] px-gutter pb-14 pt-6 sm:pb-20 sm:pt-8 lg:pb-28 lg:pt-10">
             <nav
               aria-label="Breadcrumb"
               className="flex items-center gap-1.5 text-[0.68rem] font-semibold text-muted sm:text-xs"
@@ -121,8 +117,8 @@ export default function ServicesPage() {
           </div>
         </section>
 
-        <section className="bg-background py-14 sm:py-20 lg:py-28">
-          <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-10">
+        <section className="bg-background py-section-md">
+          <div className="mx-auto max-w-[90rem] px-gutter">
             <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-12">
               {serviceDetails.map((service, index) => (
                 <Link
@@ -179,8 +175,8 @@ export default function ServicesPage() {
           </div>
         </section>
 
-        <section className="border-y border-border bg-surface py-14 sm:py-20 lg:py-28">
-          <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-10">
+        <section className="border-y border-border bg-surface py-section-md">
+          <div className="mx-auto max-w-[90rem] px-gutter">
             <div className="max-w-3xl">
               <div className="flex items-center gap-2.5">
                 <span className="h-px w-7 bg-accent-strong" />
@@ -242,8 +238,8 @@ export default function ServicesPage() {
           </div>
         </section>
 
-        <section className="bg-brand py-12 text-white sm:py-16 lg:py-20">
-          <div className="mx-auto grid max-w-[90rem] gap-7 px-4 sm:px-6 lg:grid-cols-[1fr_auto] lg:items-center lg:gap-12 lg:px-10">
+        <section className="bg-brand py-section-md text-white">
+          <div className="mx-auto grid max-w-[90rem] gap-7 px-gutter lg:grid-cols-[1fr_auto] lg:items-center lg:gap-12">
             <div>
               <p className="text-[0.59rem] font-bold uppercase tracking-[0.2em] text-accent">
                 Not sure where to begin?

@@ -47,14 +47,6 @@ export default function ResourcesPreview() {
         aria-hidden="true"
         className="capwise-coordinate-grid pointer-events-none absolute inset-0 -z-20 opacity-35"
       />
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute -left-44 top-20 -z-10 size-[31rem] rounded-full bg-accent/10 blur-[120px]"
-      />
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute -right-44 bottom-0 -z-10 size-[28rem] rounded-full bg-gold/8 blur-[120px]"
-      />
 
       <div className="mx-auto max-w-[90rem] px-gutter">
         <div className="grid gap-9 lg:grid-cols-12 lg:items-end lg:gap-12">
@@ -106,10 +98,6 @@ export default function ResourcesPreview() {
             <div
               aria-hidden="true"
               className="capwise-soft-noise pointer-events-none absolute inset-0 opacity-[0.055] mix-blend-soft-light"
-            />
-            <div
-              aria-hidden="true"
-              className="pointer-events-none absolute -right-28 -top-28 size-80 rounded-full bg-accent/18 blur-[90px]"
             />
 
             <Link

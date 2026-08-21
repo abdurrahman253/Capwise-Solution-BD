@@ -402,6 +402,15 @@ a {
   -webkit-tap-highlight-color: transparent;
 }
 
+/* Every page's <main id="main-content"> is the skip-link's target and has no
+   scroll-mt-* class of its own (unlike in-page anchor targets, which set
+   their own). Without this, jumping here would land right under the sticky
+   header now that Lenis's anchor handling no longer applies a global offset
+   (see SmoothScrollProvider.jsx). */
+#main-content {
+  scroll-margin-top: 7rem;
+}
+
 img,
 picture,
 svg,
@@ -903,9 +912,16 @@ canvas {
 ----------------------------------------- */
 
 .capwise-floating-nav {
+  /* Occlusion fix: backdrop-filter blurs what's behind it but preserves
+     luminance contrast, so a translucent background lets large/high-contrast
+     content ghost through as legible shapes. Raised from 92%/90% opaque to
+     97% on both themes — that's the actual fix (a near-opaque layer working
+     with the blur), not a bigger blur radius, which is left untouched at
+     48px per instruction. */
   border: 1px solid color-mix(in srgb, var(--border) 94%, transparent);
-  background: color-mix(in srgb, var(--surface) 92%, transparent);
+  background: color-mix(in srgb, var(--surface) 97%, transparent);
   box-shadow:
+    0 1px 0 0 color-mix(in srgb, var(--border) 60%, transparent),
     0 20px 55px rgba(11, 27, 61, 0.18),
     0 2px 14px rgba(11, 27, 61, 0.09),
     inset 0 1px 0 0 rgba(255, 255, 255, 0.55);
@@ -917,11 +933,22 @@ canvas {
 }
 
 [data-theme="dark"] .capwise-floating-nav {
-  background: color-mix(in srgb, var(--surface) 90%, transparent);
+  background: color-mix(in srgb, var(--surface) 97%, transparent);
   box-shadow:
+    0 1px 0 0 color-mix(in srgb, var(--border) 80%, transparent),
     0 20px 55px rgba(2, 12, 23, 0.5),
     0 2px 14px rgba(2, 12, 23, 0.26),
     inset 0 1px 0 0 rgba(255, 255, 255, 0.12);
+}
+
+/* Fallback for browsers with no backdrop-filter support: a transparent glass
+   navbar with illegible content behind it is worse than losing the glass
+   effect entirely, so fall back to a fully opaque surface. */
+@supports not (backdrop-filter: blur(1px)) {
+  .capwise-floating-nav,
+  [data-theme="dark"] .capwise-floating-nav {
+    background: var(--surface);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1454,6 +1481,30 @@ canvas {
 @keyframes capwise-hero-progress {
   from { transform: scaleX(0); }
   to { transform: scaleX(1); }
+}
+
+/* ----------------------------------------
+   Header logo — one-time entrance only.
+   No loop, no pulse, no shimmer, no light sweep — see hover/active states in
+   BrandLogo.jsx (group-hover/group-active utility classes) for the rest of
+   the restrained motion. Opacity + transform only, so this can never cause
+   layout shift — width/height are already reserved by the <Image> element.
+----------------------------------------- */
+.capwise-logo-mark {
+  animation: capwise-logo-in 500ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes capwise-logo-in {
+  from { opacity: 0; transform: translateY(4px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .capwise-logo-mark {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
 }
 
 } /* end @layer components */

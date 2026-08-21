@@ -29,7 +29,6 @@ export default function ContactPage() {
       <main id="main-content">
         <section className="capwise-consultation relative isolate overflow-hidden border-b border-border py-section-lg">
           <div className="capwise-coordinate-grid pointer-events-none absolute inset-0 -z-20 opacity-45" />
-          <div className="pointer-events-none absolute -right-48 -top-44 -z-10 size-[36rem] rounded-full bg-accent/12 blur-[115px]" />
           <div className="mx-auto grid max-w-[90rem] gap-10 px-gutter lg:grid-cols-12 lg:items-end lg:gap-14">
             <div className="lg:col-span-8">
               <div className="flex items-center gap-3"><span className="h-px w-10 bg-accent-strong" /><p className="text-[0.62rem] font-bold uppercase tracking-[0.22em] text-accent-strong">Book a Free Consultation</p></div>

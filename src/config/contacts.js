@@ -13,7 +13,12 @@ export const contacts = {
   },
 };
 
-export const primaryContact = contacts.fahim;
+export const primaryContact = {
+  name: "Capwise Solution BD",
+  phone: "+880 1624-000381",
+  tel: "+8801624000381",
+  whatsapp: "8801624000381",
+};
 
 export function whatsappHref(waNumber, text) {
   const base = `https://wa.me/${waNumber}`;

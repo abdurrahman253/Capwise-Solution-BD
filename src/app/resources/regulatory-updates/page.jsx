@@ -38,17 +38,13 @@ export default function RegulatoryUpdatesPage() {
       <SiteHeader />
 
       <main id="main-content" data-resource-version={RESOURCE_CONTENT_VERSION}>
-        <section className="capwise-resources relative isolate overflow-hidden border-b border-border py-16 sm:py-24 lg:py-28">
+        <section className="capwise-resources relative isolate overflow-hidden border-b border-border py-section-lg">
           <div
             aria-hidden="true"
             className="capwise-coordinate-grid pointer-events-none absolute inset-0 -z-20 opacity-45"
           />
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute -right-44 -top-44 -z-10 size-[34rem] rounded-full bg-gold/10 blur-[120px]"
-          />
 
-          <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-10">
+          <div className="mx-auto max-w-[90rem] px-gutter">
             <div className="grid gap-10 lg:grid-cols-12 lg:items-end lg:gap-14">
               <div className="lg:col-span-8">
                 <div className="flex items-center gap-3">
@@ -76,8 +72,8 @@ export default function RegulatoryUpdatesPage() {
           </div>
         </section>
 
-        <section className="bg-surface py-16 sm:py-24 lg:py-32">
-          <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-10">
+        <section className="bg-surface py-section-lg">
+          <div className="mx-auto max-w-[90rem] px-gutter">
             <div className="grid gap-5 md:grid-cols-2">
               {regulatoryWatchTopics.map((topic, index) => (
                 <article
@@ -118,8 +114,8 @@ export default function RegulatoryUpdatesPage() {
           </div>
         </section>
 
-        <section className="capwise-resources border-y border-border py-16 sm:py-24 lg:py-28">
-          <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-10">
+        <section className="capwise-resources border-y border-border py-section-lg">
+          <div className="mx-auto max-w-[90rem] px-gutter">
             <div className="grid gap-12 lg:grid-cols-12 lg:gap-14">
               <div className="lg:col-span-5">
                 <span className="inline-flex size-14 items-center justify-center rounded-full border border-gold/30 bg-gold/10 text-gold">
@@ -190,8 +186,8 @@ export default function RegulatoryUpdatesPage() {
           </div>
         </section>
 
-        <section className="bg-brand border-y border-white/8 py-16 text-white sm:py-24 lg:py-28">
-          <div className="mx-auto grid max-w-[90rem] gap-12 px-4 sm:px-6 lg:grid-cols-12 lg:gap-16 lg:px-10">
+        <section className="bg-brand border-y border-white/8 py-section-lg text-white">
+          <div className="mx-auto grid max-w-[90rem] gap-12 px-gutter lg:grid-cols-12 lg:gap-16">
             <div className="lg:col-span-5">
               <p className="inline-flex items-center gap-2 text-[0.6rem] font-bold uppercase tracking-[0.18em] text-accent">
                 <Radar aria-hidden="true" size={14} />
@@ -210,8 +206,8 @@ export default function RegulatoryUpdatesPage() {
           </div>
         </section>
 
-        <section className="bg-brand py-14 text-white sm:py-20 lg:py-24">
-          <div className="mx-auto grid max-w-[90rem] gap-8 px-4 sm:px-6 lg:grid-cols-[1fr_auto] lg:items-center lg:gap-14 lg:px-10">
+        <section className="bg-brand py-section-md text-white">
+          <div className="mx-auto grid max-w-[90rem] gap-8 px-gutter lg:grid-cols-[1fr_auto] lg:items-center lg:gap-14">
             <div>
               <p className="inline-flex items-center gap-2 text-[0.6rem] font-bold uppercase tracking-[0.18em] text-accent">
                 <Radar aria-hidden="true" size={14} />

@@ -29,10 +29,9 @@ export default function FaqPage() {
       <main id="main-content" data-faq-version={FAQ_CONTENT_VERSION}>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
 
-        <section className="capwise-faq relative isolate overflow-hidden border-b border-border py-16 sm:py-24 lg:py-32">
+        <section className="capwise-faq relative isolate overflow-hidden border-b border-border py-section-lg">
           <div className="capwise-coordinate-grid pointer-events-none absolute inset-0 -z-20 opacity-45" />
-          <div className="pointer-events-none absolute -right-44 -top-44 -z-10 size-[34rem] rounded-full bg-accent/12 blur-[110px]" />
-          <div className="mx-auto grid max-w-[90rem] gap-10 px-4 sm:px-6 lg:grid-cols-12 lg:items-end lg:gap-14 lg:px-10">
+          <div className="mx-auto grid max-w-[90rem] gap-10 px-gutter lg:grid-cols-12 lg:items-end lg:gap-14">
             <div className="lg:col-span-8">
               <div className="flex items-center gap-3">
                 <span className="h-px w-10 bg-accent-strong" />
@@ -53,8 +52,8 @@ export default function FaqPage() {
           </div>
         </section>
 
-        <section className="bg-surface py-16 sm:py-24 lg:py-28">
-          <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-10">
+        <section className="bg-surface py-section-lg">
+          <div className="mx-auto max-w-[90rem] px-gutter">
             <div className="grid gap-10 lg:grid-cols-12 lg:gap-16">
               <aside className="lg:col-span-4 lg:sticky lg:top-36 lg:self-start">
                 <span className="inline-flex size-12 items-center justify-center rounded-full border border-accent/25 bg-accent/10 text-accent-strong"><MessageCircleQuestion aria-hidden="true" size={20} /></span>
@@ -85,8 +84,8 @@ export default function FaqPage() {
           </div>
         </section>
 
-        <section className="bg-brand py-14 text-white sm:py-20 lg:py-24">
-          <div className="mx-auto flex max-w-[90rem] flex-col gap-8 px-4 sm:px-6 lg:flex-row lg:items-end lg:justify-between lg:px-10">
+        <section className="bg-brand py-section-md text-white">
+          <div className="mx-auto flex max-w-[90rem] flex-col gap-8 px-gutter lg:flex-row lg:items-end lg:justify-between">
             <div>
               <p className="inline-flex items-center gap-2 text-[0.62rem] font-bold uppercase tracking-[0.18em] text-accent"><Info aria-hidden="true" size={15} /> Need a fact-specific answer?</p>
               <h2 className="mt-4 max-w-[15ch] font-display text-h2 font-semibold text-white">Bring the context to a focused consultation.</h2>

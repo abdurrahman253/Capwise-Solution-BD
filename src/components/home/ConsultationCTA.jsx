@@ -1,4 +1,7 @@
+"use client";
+
 import { Clock3, Mail, MapPin, Phone } from "lucide-react";
+import { m, useReducedMotion } from "motion/react";
 
 import ConsultationForm from "@/components/forms/ConsultationForm";
 import { primaryContact } from "@/config/contacts";
@@ -11,10 +14,16 @@ const contactDetails = [
 ];
 
 export default function ConsultationCTA() {
+  const reduceMotion = useReducedMotion();
   return (
     <section className="capwise-consultation py-section-lg" aria-labelledby="consultation-title">
       <div className="mx-auto grid max-w-[90rem] gap-8 px-gutter lg:grid-cols-12 lg:gap-12">
-        <div className="rounded-[1.8rem] bg-brand p-6 text-white shadow-[0_35px_100px_rgba(27,20,100,0.24)] sm:p-9 lg:col-span-5 lg:p-12">
+        <m.div
+          initial={reduceMotion ? false : { opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          className="rounded-[1.8rem] bg-brand p-6 text-white shadow-[0_35px_100px_rgba(27,20,100,0.24)] sm:p-9 lg:col-span-5 lg:p-12"
+        >
           <p className="text-[0.62rem] font-bold uppercase tracking-[0.22em] text-accent">Consultation</p>
           <h2 id="consultation-title" className="mt-5 max-w-[10ch] font-display text-h2 font-semibold text-white">
             Bring the issue. Leave with a clearer next step.
@@ -34,14 +43,20 @@ export default function ConsultationCTA() {
               </div>
             ))}
           </div>
-        </div>
+        </m.div>
 
-        <div className="rounded-[1.8rem] border border-border bg-surface p-6 shadow-[0_24px_80px_rgba(27,20,100,0.09)] sm:p-9 lg:col-span-7 lg:p-12">
+        <m.div
+          initial={reduceMotion ? false : { opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ delay: 0.08 }}
+          className="rounded-[1.8rem] border border-border bg-surface p-6 shadow-[0_24px_80px_rgba(27,20,100,0.09)] sm:p-9 lg:col-span-7 lg:p-12"
+        >
           <p className="text-[0.62rem] font-bold uppercase tracking-[0.2em] text-accent-strong">Start with context</p>
           <h3 className="mt-4 font-display text-h2 font-semibold text-foreground">Request a focused conversation.</h3>
           <p className="mb-8 mt-4 max-w-2xl text-sm leading-7 text-muted">No obligation, no guaranteed outcome claims and no need to send sensitive documents before scope and security are agreed.</p>
           <ConsultationForm />
-        </div>
+        </m.div>
       </div>
     </section>
   );

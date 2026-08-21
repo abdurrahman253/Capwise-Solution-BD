@@ -12,7 +12,6 @@ export default function PickYourIndustry() {
 
   return (
     <section className="relative overflow-hidden bg-brand-navy py-section-lg text-white" aria-labelledby="pick-industry-title">
-      <div aria-hidden="true" className="pointer-events-none absolute -right-40 -top-40 -z-10 size-[32rem] rounded-full bg-brand-gold/10 blur-[120px]" />
       <div className="mx-auto max-w-[94rem] px-gutter">
         <div className="grid gap-8 lg:grid-cols-12 lg:items-end">
           <div className="lg:col-span-8">

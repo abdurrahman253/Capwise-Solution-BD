@@ -1,8 +1,5 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
-import { m, useReducedMotion } from "motion/react";
 
 export function BrandMark({ className = "h-12 w-auto" }) {
   return (
@@ -20,48 +17,31 @@ export function BrandMark({ className = "h-12 w-auto" }) {
 
 const taglineSegments = ["Accounting & Finance", "Tax & Compliance", "HR & Payroll"];
 
-export default function BrandLogo({ className = "", compact = false, light = false, tagline = false }) {
-  const reduceMotion = useReducedMotion();
-
+export default function BrandLogo({ className = "", compact = false, light = false, tagline = false, alwaysShowTagline = false }) {
   return (
     <Link
       href="/"
       className={`group inline-flex min-w-0 flex-col items-start gap-0.5 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 ${className}`}
       aria-label="Capwise Solution BD — Home"
     >
-      <m.span
-        initial={reduceMotion ? false : { opacity: 0, y: -8, scale: 0.97 }}
-        animate={{ opacity: 1, y: 0, scale: 1 }}
-        transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
-        whileHover={reduceMotion ? undefined : { y: -1, scale: 1.015, filter: "drop-shadow(0 0 10px rgba(212,175,55,0.4))" }}
-        className="relative block shrink-0 overflow-hidden"
-      >
+      <span className="relative block shrink-0">
         <Image
           src="/brand/CAPWISE_logo_clean_notagline.png"
           alt="Capwise Solution BD — Accounting & Finance, Tax & Compliance, HR & Payroll"
           width={1012}
           height={358}
           priority
-          className={`${compact ? "h-9 sm:h-10 lg:h-11" : "h-11 sm:h-12 lg:h-[3.25rem]"} w-auto object-contain ${light ? "brightness-0 invert sepia-[25%] saturate-[1.8] hue-rotate-[3deg]" : ""}`}
+          className={`capwise-logo-mark ${compact ? "h-9 sm:h-10 lg:h-11" : "h-11 sm:h-12 lg:h-[3.25rem]"} w-auto object-contain transition-transform duration-150 ease-out group-hover:-translate-y-px group-hover:scale-[1.015] group-focus-visible:-translate-y-px group-focus-visible:scale-[1.015] group-active:translate-y-0 group-active:scale-[0.97] group-active:duration-75 ${light ? "brightness-0 invert sepia-[25%] saturate-[1.8] hue-rotate-[3deg]" : ""}`}
         />
-        {!reduceMotion && (
-          <m.span
-            aria-hidden="true"
-            initial={{ x: "-130%" }}
-            animate={{ x: "160%" }}
-            transition={{ delay: 0.55, duration: 0.75, ease: "easeOut" }}
-            className="pointer-events-none absolute inset-y-0 w-8 skew-x-[-18deg] bg-white/20 blur-sm"
-          />
-        )}
-      </m.span>
+      </span>
 
       {tagline && (
-        <span className="hidden w-full min-w-0 flex-col gap-[3px] lg:flex lg:gap-1">
+        <span className={`w-full min-w-0 flex-col gap-[3px] lg:gap-1 ${alwaysShowTagline ? "flex" : "hidden lg:flex"}`}>
           <span
             aria-hidden="true"
             className={`h-px w-full bg-gradient-to-r ${light ? "from-brand-gold/70 via-brand-gold/25 to-transparent" : "from-brand-gold via-brand-gold/30 to-transparent"}`}
           />
-          <span className="flex items-center gap-[7px] whitespace-nowrap">
+          <span className={`flex flex-wrap items-center gap-x-[7px] gap-y-1 ${alwaysShowTagline ? "" : "whitespace-nowrap"}`}>
             {taglineSegments.map((segment, index) => (
               <span key={segment} className="flex items-center gap-[7px]">
                 {index > 0 && (
@@ -71,7 +51,7 @@ export default function BrandLogo({ className = "", compact = false, light = fal
                   />
                 )}
                 <span
-                  className={`text-[0.72rem] font-extrabold uppercase leading-none tracking-[0.1em] ${light ? "text-brand-gold-soft" : "text-brand-blue"}`}
+                  className={`font-extrabold uppercase leading-none tracking-[0.1em] ${alwaysShowTagline ? "text-[0.5rem] sm:text-[0.56rem]" : "text-[0.72rem]"} ${light ? "text-brand-gold-soft" : "text-brand-blue"}`}
                 >
                   {segment}
                 </span>

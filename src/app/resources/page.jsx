@@ -31,17 +31,13 @@ export default function ResourcesPage() {
       <SiteHeader />
 
       <main id="main-content" data-resource-version={RESOURCE_CONTENT_VERSION}>
-        <section className="capwise-resources relative isolate overflow-hidden border-b border-border py-16 sm:py-24 lg:py-32">
+        <section className="capwise-resources relative isolate overflow-hidden border-b border-border py-section-lg">
           <div
             aria-hidden="true"
             className="capwise-coordinate-grid pointer-events-none absolute inset-0 -z-20 opacity-45"
           />
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute -right-52 -top-48 -z-10 size-[38rem] rounded-full bg-accent/12 blur-[120px]"
-          />
 
-          <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-10">
+          <div className="mx-auto max-w-[90rem] px-gutter">
             <div className="grid gap-10 lg:grid-cols-12 lg:items-end lg:gap-14">
               <div className="lg:col-span-8">
                 <div className="flex items-center gap-3">
@@ -82,8 +78,8 @@ export default function ResourcesPage() {
           </div>
         </section>
 
-        <section className="bg-surface py-16 sm:py-24 lg:py-32">
-          <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-10">
+        <section className="bg-surface py-section-lg">
+          <div className="mx-auto max-w-[90rem] px-gutter">
             <div className="grid gap-5 lg:grid-cols-2">
               <Link
                 href="/resources/guides"
@@ -137,10 +133,6 @@ export default function ResourcesPage() {
                 href="/resources/regulatory-updates"
                 className="capwise-resource-card group relative min-h-[29rem] overflow-hidden rounded-[1.6rem] border p-6 focus-visible:outline-offset-[-5px] sm:p-8 lg:p-10"
               >
-                <div
-                  aria-hidden="true"
-                  className="pointer-events-none absolute -bottom-36 -right-28 size-80 rounded-full bg-gold/10 blur-[90px]"
-                />
 
                 <div className="relative flex h-full flex-col">
                   <div className="flex items-start justify-between gap-5">
@@ -180,8 +172,8 @@ export default function ResourcesPage() {
           </div>
         </section>
 
-        <section className="capwise-resources border-y border-border py-16 sm:py-24 lg:py-28">
-          <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-10">
+        <section className="capwise-resources border-y border-border py-section-lg">
+          <div className="mx-auto max-w-[90rem] px-gutter">
             <div className="grid gap-10 lg:grid-cols-12 lg:gap-14">
               <div className="lg:col-span-4">
                 <span className="inline-flex size-14 items-center justify-center rounded-full border border-accent/25 bg-accent/10 text-accent-strong">
@@ -227,8 +219,8 @@ export default function ResourcesPage() {
           </div>
         </section>
 
-        <section className="bg-brand py-14 text-white sm:py-20 lg:py-24">
-          <div className="mx-auto grid max-w-[90rem] gap-8 px-4 sm:px-6 lg:grid-cols-[1fr_auto] lg:items-center lg:gap-14 lg:px-10">
+        <section className="bg-brand py-section-md text-white">
+          <div className="mx-auto grid max-w-[90rem] gap-8 px-gutter lg:grid-cols-[1fr_auto] lg:items-center lg:gap-14">
             <div>
               <p className="inline-flex items-center gap-2 text-[0.6rem] font-bold uppercase tracking-[0.18em] text-accent">
                 <FileCheck2 aria-hidden="true" size={14} />

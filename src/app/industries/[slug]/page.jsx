@@ -34,9 +34,9 @@ export default async function IndustryPage({ params }) {
     <>
       <SiteHeader />
       <main id="main-content">
-        <section className="capwise-industries relative isolate overflow-hidden border-b border-[var(--industries-border)] py-16 sm:py-24 lg:py-30">
+        <section className="capwise-industries relative isolate overflow-hidden border-b border-[var(--industries-border)] py-section-lg">
           <div className="capwise-coordinate-grid pointer-events-none absolute inset-0 -z-20 opacity-40" />
-          <div className="mx-auto grid max-w-[90rem] gap-10 px-4 sm:px-6 lg:grid-cols-12 lg:items-end lg:gap-14 lg:px-10">
+          <div className="mx-auto grid max-w-[90rem] gap-10 px-gutter lg:grid-cols-12 lg:items-end lg:gap-14">
             <div className="lg:col-span-8">
               <div className="inline-flex size-16 items-center justify-center rounded-full border border-[var(--industries-border)] bg-[var(--industries-panel)] text-[var(--industries-accent)]">
                 <IndustryIcon name={industry.icon} size={25} />
@@ -50,8 +50,8 @@ export default async function IndustryPage({ params }) {
           </div>
         </section>
 
-        <section className="bg-surface py-16 sm:py-24 lg:py-30">
-          <div className="mx-auto grid max-w-[90rem] gap-12 px-4 sm:px-6 lg:grid-cols-12 lg:gap-16 lg:px-10">
+        <section className="bg-surface py-section-lg">
+          <div className="mx-auto grid max-w-[90rem] gap-12 px-gutter lg:grid-cols-12 lg:gap-16">
             <div className="lg:col-span-7">
               <p className="text-[0.6rem] font-bold uppercase tracking-[0.18em] text-accent-strong">Priority workstreams</p>
               <h2 className="mt-4 max-w-[15ch] font-display text-h2 font-semibold text-foreground">Coordinate the obligations that affect day-to-day operations.</h2>

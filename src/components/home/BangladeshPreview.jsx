@@ -84,10 +84,6 @@ export default function BangladeshPreview() {
         aria-hidden="true"
         className="pointer-events-none absolute -left-64 -top-56 -z-10 size-[42rem] rounded-full bg-accent/12 blur-[130px]"
       />
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute -bottom-80 right-[-10rem] -z-10 size-[44rem] rounded-full border border-accent/10 bg-accent/8 blur-[120px]"
-      />
 
       <div className="relative mx-auto max-w-[90rem] px-gutter">
         <div className="grid gap-16 lg:grid-cols-[0.78fr_1.22fr] lg:gap-20 xl:gap-28">

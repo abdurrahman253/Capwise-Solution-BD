@@ -135,11 +135,11 @@ export default function HomeHero() {
                   <p className="mt-6 max-w-[42rem] text-base leading-8 text-white/72 sm:text-lg sm:leading-9">{slide.description}</p>
 
                   <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                    <Link href={slide.href} className="group inline-flex min-h-12 items-center justify-between gap-6 rounded-full bg-brand-gold px-6 text-sm font-extrabold text-brand-navy transition hover:-translate-y-0.5 hover:bg-brand-gold-soft sm:justify-center">
+                    <Link href={slide.href} className="group inline-flex min-h-12 items-center justify-between gap-6 rounded-full bg-brand-gold px-6 text-sm font-extrabold text-brand-navy transition hover:-translate-y-0.5 hover:bg-brand-gold-soft active:translate-y-0 active:bg-brand-gold-soft sm:justify-center">
                       Explore Service
                       <ArrowRight size={16} className="transition group-hover:translate-x-1" />
                     </Link>
-                    <Link href="/contact" className="group inline-flex min-h-12 items-center justify-between gap-6 rounded-full border border-white/24 bg-white/[0.07] px-6 text-sm font-bold text-white backdrop-blur transition hover:-translate-y-0.5 hover:border-white/45 hover:bg-white/[0.12] sm:justify-center">
+                    <Link href="/contact" className="group inline-flex min-h-12 items-center justify-between gap-6 rounded-full border border-white/24 bg-white/[0.07] px-6 text-sm font-bold text-white backdrop-blur transition hover:-translate-y-0.5 hover:border-white/45 hover:bg-white/[0.12] active:translate-y-0 active:bg-white/[0.14] sm:justify-center">
                       Book a Free Consultation
                       <ArrowUpRight size={16} className="text-brand-gold transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
                     </Link>
@@ -168,8 +168,8 @@ export default function HomeHero() {
             <span>{String(heroSlides.length).padStart(2, "0")}</span>
           </div>
 
-          <button onClick={() => swiperRef.current?.slidePrev()} type="button" className="pointer-events-auto inline-flex size-11 items-center justify-center rounded-full border border-white/20 bg-black/15 text-white backdrop-blur transition hover:border-brand-gold hover:bg-brand-gold hover:text-brand-navy" aria-label="Previous service slide"><ChevronLeft size={18} /></button>
-          <button onClick={() => swiperRef.current?.slideNext()} type="button" className="pointer-events-auto inline-flex size-11 items-center justify-center rounded-full border border-white/20 bg-black/15 text-white backdrop-blur transition hover:border-brand-gold hover:bg-brand-gold hover:text-brand-navy" aria-label="Next service slide"><ChevronRight size={18} /></button>
+          <button onClick={() => swiperRef.current?.slidePrev()} type="button" className="pointer-events-auto inline-flex size-11 items-center justify-center rounded-full border border-white/20 bg-black/15 text-white backdrop-blur transition hover:border-brand-gold hover:bg-brand-gold hover:text-brand-navy active:scale-90" aria-label="Previous service slide"><ChevronLeft size={18} /></button>
+          <button onClick={() => swiperRef.current?.slideNext()} type="button" className="pointer-events-auto inline-flex size-11 items-center justify-center rounded-full border border-white/20 bg-black/15 text-white backdrop-blur transition hover:border-brand-gold hover:bg-brand-gold hover:text-brand-navy active:scale-90" aria-label="Next service slide"><ChevronRight size={18} /></button>
         </div>
       </div>
     </section>

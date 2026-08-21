@@ -1,5 +1,8 @@
+"use client";
+
 import { ArrowRight, BadgeCheck, FileSearch, ShieldCheck } from "lucide-react";
 import Link from "next/link";
+import { m, useReducedMotion } from "motion/react";
 
 const proofTypes = [
   { icon: BadgeCheck, label: "Approved client attribution" },
@@ -8,10 +11,16 @@ const proofTypes = [
 ];
 
 export default function ClientEvidencePreview() {
+  const reduceMotion = useReducedMotion();
   return (
     <section className="bg-brand py-section-lg text-white" aria-labelledby="evidence-preview-title">
       <div className="mx-auto grid max-w-[90rem] gap-12 px-gutter lg:grid-cols-12 lg:items-end">
-        <div className="lg:col-span-7">
+        <m.div
+          initial={reduceMotion ? false : { opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          className="lg:col-span-7"
+        >
           <p className="text-[0.62rem] font-bold uppercase tracking-[0.22em] text-accent">
             Client evidence
           </p>
@@ -22,9 +31,15 @@ export default function ClientEvidencePreview() {
             Capwise will publish testimonials and case evidence only after the client,
             wording, permissions and confidentiality boundaries are verified.
           </p>
-        </div>
+        </m.div>
 
-        <div className="lg:col-span-5">
+        <m.div
+          initial={reduceMotion ? false : { opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ delay: 0.08 }}
+          className="lg:col-span-5"
+        >
           <div className="grid gap-3">
             {proofTypes.map(({ icon: Icon, label }, index) => (
               <div key={label} className="flex items-center gap-4 border-t border-white/12 py-4 text-sm font-semibold text-white/76">
@@ -34,11 +49,11 @@ export default function ClientEvidencePreview() {
               </div>
             ))}
           </div>
-          <Link href="/testimonials" className="group mt-5 inline-flex items-center gap-3 text-sm font-bold text-white transition hover:text-accent">
+          <Link href="/testimonials" className="group mt-5 inline-flex items-center gap-3 text-sm font-bold text-white transition hover:text-accent active:scale-[0.98]">
             View the evidence standard
             <ArrowRight aria-hidden="true" size={16} className="transition group-hover:translate-x-1" />
           </Link>
-        </div>
+        </m.div>
       </div>
     </section>
   );

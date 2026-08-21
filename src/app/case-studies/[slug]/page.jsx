@@ -24,8 +24,8 @@ export default async function CaseStudyPage({ params }) {
   return (
     <>
       <SiteHeader />
-      <main id="main-content" className="bg-background py-24">
-        <article className="mx-auto max-w-4xl px-4 sm:px-6">
+      <main id="main-content" className="bg-background py-section-lg">
+        <article className="mx-auto max-w-4xl px-gutter">
           <p className="text-xs font-bold uppercase tracking-[0.18em] text-accent-strong">Approved case study</p>
           <h1 className="mt-5 font-display text-h1 font-semibold text-foreground">{study.title}</h1>
           <p className="mt-6 text-lg leading-8 text-muted">{study.summary}</p>

@@ -24,9 +24,9 @@ export default function CaseStudiesPage() {
     <>
       <SiteHeader />
       <main id="main-content">
-        <section className="capwise-evidence relative isolate overflow-hidden border-b border-border py-16 sm:py-24 lg:py-30">
+        <section className="capwise-evidence relative isolate overflow-hidden border-b border-border py-section-lg">
           <div className="capwise-coordinate-grid pointer-events-none absolute inset-0 -z-20 opacity-45" />
-          <div className="mx-auto grid max-w-[90rem] gap-10 px-4 sm:px-6 lg:grid-cols-12 lg:items-end lg:gap-14 lg:px-10">
+          <div className="mx-auto grid max-w-[90rem] gap-10 px-gutter lg:grid-cols-12 lg:items-end lg:gap-14">
             <div className="lg:col-span-8">
               <p className="text-[0.62rem] font-bold uppercase tracking-[0.2em] text-accent-strong">Case studies & evidence</p>
               <h1 className="mt-6 max-w-[12ch] font-display text-h1 font-semibold text-foreground">Proof should be verified before it becomes marketing.</h1>
@@ -37,8 +37,8 @@ export default function CaseStudiesPage() {
           </div>
         </section>
 
-        <section className="bg-surface py-16 sm:py-24 lg:py-30">
-          <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-10">
+        <section className="bg-surface py-section-lg">
+          <div className="mx-auto max-w-[90rem] px-gutter">
             {caseStudies.length ? (
               <div className="grid gap-5 lg:grid-cols-2">
                 {caseStudies.map((study) => (

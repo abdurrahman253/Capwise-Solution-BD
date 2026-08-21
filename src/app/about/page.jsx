@@ -21,10 +21,9 @@ export default function AboutPage() {
     <>
       <SiteHeader />
       <main id="main-content">
-        <section className="capwise-gateway relative isolate overflow-hidden border-b border-border py-16 sm:py-24 lg:py-32">
+        <section className="capwise-gateway relative isolate overflow-hidden border-b border-border py-section-lg">
           <div className="capwise-coordinate-grid pointer-events-none absolute inset-0 -z-20 opacity-45" />
-          <div className="pointer-events-none absolute -right-48 -top-44 -z-10 size-[36rem] rounded-full bg-accent/12 blur-[115px]" />
-          <div className="mx-auto grid max-w-[90rem] gap-10 px-4 sm:px-6 lg:grid-cols-12 lg:items-end lg:gap-14 lg:px-10">
+          <div className="mx-auto grid max-w-[90rem] gap-10 px-gutter lg:grid-cols-12 lg:items-end lg:gap-14">
             <div className="lg:col-span-8">
               <div className="flex items-center gap-3"><span className="h-px w-10 bg-accent-strong" /><p className="text-[0.62rem] font-bold uppercase tracking-[0.22em] text-accent-strong">About Capwise</p></div>
               <h1 className="mt-6 max-w-[12ch] font-display text-h1 font-semibold text-foreground">One coordinated advisory partner for complex business obligations.</h1>
@@ -36,28 +35,28 @@ export default function AboutPage() {
           </div>
         </section>
 
-        <section className="bg-surface py-16 sm:py-24 lg:py-28">
-          <div className="mx-auto grid max-w-[90rem] gap-5 px-4 sm:px-6 lg:grid-cols-2 lg:px-10">
+        <section className="bg-surface py-section-lg">
+          <div className="mx-auto grid max-w-[90rem] gap-5 px-gutter lg:grid-cols-2">
             <article className="rounded-[1.7rem] bg-brand p-7 text-white shadow-[0_32px_95px_rgba(27,20,100,0.22)] sm:p-10 lg:p-12">
               <p className="text-[0.62rem] font-bold uppercase tracking-[0.2em] text-accent">Mission</p>
               <h2 className="mt-6 font-display text-h2 font-semibold text-white">Be the reliable partner behind confident, compliant growth.</h2>
-              <p className="mt-6 text-sm leading-7 text-white/64 sm:text-base sm:leading-8">Deliver accurate, timely and practical financial, tax, legal and regulatory support so clients can focus on operating and growing their business.</p>
+              <p className="mt-6 text-sm leading-7 text-white/64 sm:text-base sm:leading-8">Deliver support that is accurate and on time, so clients can spend their attention on running the business.</p>
             </article>
             <article className="rounded-[1.7rem] border border-border bg-background p-7 sm:p-10 lg:p-12">
               <p className="text-[0.62rem] font-bold uppercase tracking-[0.2em] text-gold">Vision</p>
               <h2 className="mt-6 font-display text-h2 font-semibold text-foreground">A trusted one-stop advisory firm built on integrity and long-term relationships.</h2>
-              <p className="mt-6 text-sm leading-7 text-muted sm:text-base sm:leading-8">Capwise aims to be recognised for coordinated expertise, efficiency, clear communication and responsible professional standards.</p>
+              <p className="mt-6 text-sm leading-7 text-muted sm:text-base sm:leading-8">Recognised for efficiency, clear communication and consistently high professional standards.</p>
             </article>
           </div>
         </section>
 
-        <section className="capwise-industries py-16 sm:py-24 lg:py-28">
-          <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-10">
+        <section className="capwise-industries py-section-lg">
+          <div className="mx-auto max-w-[90rem] px-gutter">
             <div className="grid gap-10 lg:grid-cols-12 lg:gap-16">
               <div className="lg:col-span-5">
                 <p className="text-[0.62rem] font-bold uppercase tracking-[0.2em] text-accent-strong">Our approach</p>
                 <h2 className="mt-5 max-w-[11ch] font-display text-h2 font-semibold text-foreground">Strong advice is useful only when it can be acted on.</h2>
-                <p className="mt-6 max-w-lg text-sm leading-7 text-muted sm:text-base sm:leading-8">The multidisciplinary team combines professional training with practical understanding of Bangladesh&apos;s business environment and builds ongoing relationships rather than one-off transactions.</p>
+                <p className="mt-6 max-w-lg text-sm leading-7 text-muted sm:text-base sm:leading-8">The team combines professional training with practical knowledge of how business works in Bangladesh.</p>
               </div>
               <div className="grid gap-4 lg:col-span-7">
                 {principles.map(({ icon: Icon, title, text }, index) => (
@@ -72,8 +71,8 @@ export default function AboutPage() {
           </div>
         </section>
 
-        <section className="bg-brand py-14 text-white sm:py-20 lg:py-24">
-          <div className="mx-auto flex max-w-[90rem] flex-col gap-8 px-4 sm:px-6 lg:flex-row lg:items-end lg:justify-between lg:px-10">
+        <section className="bg-brand py-section-md text-white">
+          <div className="mx-auto flex max-w-[90rem] flex-col gap-8 px-gutter lg:flex-row lg:items-end lg:justify-between">
             <div><p className="text-[0.62rem] font-bold uppercase tracking-[0.2em] text-accent">Meet the advisors</p><h2 className="mt-4 max-w-[16ch] font-display text-h2 font-semibold text-white">Specialist depth, shared responsibility.</h2></div>
             <div className="flex flex-wrap gap-3"><Link href="/team" className="inline-flex h-12 items-center gap-3 rounded-full border border-white/15 px-6 text-sm font-bold text-white transition hover:border-accent hover:text-accent">View the team <ArrowUpRight aria-hidden="true" size={17} /></Link><Link href="/contact" className="inline-flex h-12 items-center gap-3 rounded-full bg-brand-gold px-6 text-sm font-extrabold text-brand-navy shadow-[0_10px_28px_rgba(212,175,55,.2)] transition duration-200 hover:-translate-y-0.5 hover:bg-brand-gold-soft active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-brand-navy">Book a Free Consultation <ArrowUpRight aria-hidden="true" size={17} /></Link></div>
           </div>

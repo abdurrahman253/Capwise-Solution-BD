@@ -124,12 +124,8 @@ export default function ServiceDetailPage({ service }) {
             aria-hidden="true"
             className="capwise-coordinate-grid pointer-events-none absolute inset-0 -z-20 opacity-70"
           />
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute -right-40 -top-40 -z-10 size-[28rem] rounded-full bg-accent/12 blur-[100px] sm:size-[38rem]"
-          />
 
-          <div className="mx-auto max-w-[90rem] px-4 pb-14 pt-6 sm:px-6 sm:pb-20 sm:pt-8 lg:px-10 lg:pb-28 lg:pt-10">
+          <div className="mx-auto max-w-[90rem] px-gutter pb-14 pt-6 sm:pb-20 sm:pt-8 lg:pb-28 lg:pt-10">
             <nav
               aria-label="Breadcrumb"
               className="flex flex-wrap items-center gap-1.5 text-[0.68rem] font-semibold text-muted sm:text-xs"
@@ -243,8 +239,8 @@ export default function ServiceDetailPage({ service }) {
           </div>
         </section>
 
-        <section className="bg-brand py-14 text-white sm:py-20 lg:py-28">
-          <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-10">
+        <section className="bg-brand py-section-md text-white">
+          <div className="mx-auto max-w-[90rem] px-gutter">
             <div className="grid gap-8 lg:grid-cols-[0.72fr_1.28fr] lg:gap-16">
               <div>
                 <Eyebrow light>Where clients get stuck</Eyebrow>
@@ -275,8 +271,8 @@ export default function ServiceDetailPage({ service }) {
           </div>
         </section>
 
-        <section className="border-b border-border bg-background py-14 sm:py-20 lg:py-28">
-          <div className="mx-auto grid max-w-[90rem] gap-10 px-4 sm:px-6 lg:grid-cols-[1.15fr_0.65fr] lg:gap-16 lg:px-10">
+        <section className="border-b border-border bg-background py-section-md">
+          <div className="mx-auto grid max-w-[90rem] gap-10 px-gutter lg:grid-cols-[1.15fr_0.65fr] lg:gap-16">
             <div>
               <Eyebrow>Service scope</Eyebrow>
               <h2 className="mt-4 max-w-[14ch] font-display text-h2 font-semibold text-foreground sm:mt-6">
@@ -330,8 +326,8 @@ export default function ServiceDetailPage({ service }) {
           </div>
         </section>
 
-        <section className="border-b border-border bg-surface py-14 sm:py-20 lg:py-28">
-          <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-10">
+        <section className="border-b border-border bg-surface py-section-md">
+          <div className="mx-auto max-w-[90rem] px-gutter">
             <div className="grid gap-5 sm:flex sm:items-end sm:justify-between sm:gap-10">
               <div>
                 <Eyebrow>How the work moves</Eyebrow>
@@ -370,8 +366,8 @@ export default function ServiceDetailPage({ service }) {
           </div>
         </section>
 
-        <section className="border-b border-border bg-background py-14 sm:py-20 lg:py-28">
-          <div className="mx-auto grid max-w-[90rem] gap-5 px-4 sm:px-6 lg:grid-cols-2 lg:gap-8 lg:px-10">
+        <section className="border-b border-border bg-background py-section-md">
+          <div className="mx-auto grid max-w-[90rem] gap-5 px-gutter lg:grid-cols-2 lg:gap-8">
             <article className="rounded-[1.35rem] border border-border bg-surface p-5 sm:rounded-[1.75rem] sm:p-8 lg:p-10">
               <Eyebrow>Who this is for</Eyebrow>
               <h2 className="mt-4 font-display text-h2 font-semibold text-foreground sm:mt-6">
@@ -418,8 +414,8 @@ export default function ServiceDetailPage({ service }) {
           </div>
         </section>
 
-        <section className="border-b border-border bg-surface py-14 sm:py-20 lg:py-28">
-          <div className="mx-auto grid max-w-[90rem] gap-10 px-4 sm:px-6 lg:grid-cols-[0.72fr_1.28fr] lg:gap-16 lg:px-10">
+        <section className="border-b border-border bg-surface py-section-md">
+          <div className="mx-auto grid max-w-[90rem] gap-10 px-gutter lg:grid-cols-[0.72fr_1.28fr] lg:gap-16">
             <div>
               <Eyebrow>Related questions</Eyebrow>
               <h2 className="mt-4 max-w-[12ch] font-display text-h2 font-semibold text-foreground sm:mt-6">
@@ -454,8 +450,8 @@ export default function ServiceDetailPage({ service }) {
           </div>
         </section>
 
-        <section className="bg-background py-14 sm:py-20 lg:py-24">
-          <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-10">
+        <section className="bg-background py-section-md">
+          <div className="mx-auto max-w-[90rem] px-gutter">
             <div className="flex items-end justify-between gap-6">
               <div>
                 <Eyebrow>Connected services</Eyebrow>
@@ -516,8 +512,8 @@ export default function ServiceDetailPage({ service }) {
         </section>
 
         {relatedInsights.length > 0 && (
-          <section className="border-t border-border bg-surface-muted/50 py-14 sm:py-20 lg:py-24">
-            <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-10">
+          <section className="border-t border-border bg-surface-muted/50 py-section-md">
+            <div className="mx-auto max-w-[90rem] px-gutter">
               <div className="grid gap-7 lg:grid-cols-12 lg:items-end">
                 <div className="lg:col-span-7">
                   <Eyebrow>From the knowledge desk</Eyebrow>
@@ -538,8 +534,8 @@ export default function ServiceDetailPage({ service }) {
           </section>
         )}
 
-        <section className="bg-brand py-12 text-white sm:py-16 lg:py-20">
-          <div className="mx-auto grid max-w-[90rem] gap-7 px-4 sm:px-6 lg:grid-cols-[1fr_auto] lg:items-center lg:gap-12 lg:px-10">
+        <section className="bg-brand py-section-md text-white">
+          <div className="mx-auto grid max-w-[90rem] gap-7 px-gutter lg:grid-cols-[1fr_auto] lg:items-center lg:gap-12">
             <div>
               <Eyebrow light>Start with the business issue</Eyebrow>
               <h2 className="mt-4 max-w-3xl font-display text-h2 font-semibold sm:mt-6">

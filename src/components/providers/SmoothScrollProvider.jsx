@@ -18,7 +18,13 @@ export default function SmoothScrollProvider({ children }) {
     <ReactLenis
       root
       options={{
-        anchors: { offset: -112 },
+        // No offset object here on purpose: Lenis already reads each target's
+        // CSS scroll-margin-top (see scroll-mt-* classes on anchor targets
+        // sitewide) when resolving an anchor click. Adding a second global
+        // offset here stacked on top of that scroll-margin, landing anchor
+        // jumps 100-150px past where they should — verified against
+        // node_modules/lenis/dist/lenis.mjs's scrollTo() implementation.
+        anchors: true,
         autoRaf: true,
         autoToggle: true,
         duration: reduceMotion ? 0 : 1.15,

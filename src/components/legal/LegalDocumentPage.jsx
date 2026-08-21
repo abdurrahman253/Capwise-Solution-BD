@@ -7,9 +7,9 @@ export default function LegalDocumentPage({ eyebrow, title, intro, reviewNote, s
     <>
       <SiteHeader />
       <main id="main-content">
-        <section className="capwise-resources relative isolate overflow-hidden border-b border-border py-16 sm:py-24 lg:py-28">
+        <section className="capwise-resources relative isolate overflow-hidden border-b border-border py-section-lg">
           <div className="capwise-coordinate-grid pointer-events-none absolute inset-0 -z-20 opacity-40" />
-          <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-10">
+          <div className="mx-auto max-w-[90rem] px-gutter">
             <p className="text-[0.62rem] font-bold uppercase tracking-[0.2em] text-accent-strong">{eyebrow}</p>
             <h1 className="mt-6 max-w-[14ch] font-display text-h1 font-semibold text-foreground">{title}</h1>
             <p className="mt-7 max-w-3xl text-sm leading-7 text-muted sm:text-base sm:leading-8">{intro}</p>
@@ -20,8 +20,8 @@ export default function LegalDocumentPage({ eyebrow, title, intro, reviewNote, s
           </div>
         </section>
 
-        <section className="bg-surface py-16 sm:py-24 lg:py-28">
-          <div className="mx-auto grid max-w-[90rem] gap-5 px-4 sm:px-6 lg:grid-cols-2 lg:px-10">
+        <section className="bg-surface py-section-lg">
+          <div className="mx-auto grid max-w-[90rem] gap-5 px-gutter lg:grid-cols-2">
             {sections.map((section, index) => (
               <article key={section.title} className="rounded-[1.45rem] border border-border bg-background p-6 sm:p-8">
                 <span className="font-display text-xs font-bold text-foreground/25">{String(index + 1).padStart(2, "0")}</span>

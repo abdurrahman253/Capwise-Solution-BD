@@ -23,10 +23,9 @@ export default function BusinessInBangladeshPage() {
     <>
       <SiteHeader />
       <main id="main-content">
-        <section className="capwise-gateway relative isolate overflow-hidden border-b border-border py-16 sm:py-24 lg:py-32">
+        <section className="capwise-gateway relative isolate overflow-hidden border-b border-border py-section-lg">
           <div className="capwise-coordinate-grid pointer-events-none absolute inset-0 -z-20 opacity-45" />
-          <div className="pointer-events-none absolute -right-44 -top-48 -z-10 size-[38rem] rounded-full bg-accent/12 blur-[120px]" />
-          <div className="mx-auto grid max-w-[90rem] gap-10 px-4 sm:px-6 lg:grid-cols-12 lg:items-end lg:gap-14 lg:px-10">
+          <div className="mx-auto grid max-w-[90rem] gap-10 px-gutter lg:grid-cols-12 lg:items-end lg:gap-14">
             <div className="lg:col-span-8">
               <div className="flex items-center gap-3"><span className="h-px w-10 bg-accent-strong" /><p className="text-[0.62rem] font-bold uppercase tracking-[0.22em] text-accent-strong">Doing business in Bangladesh</p></div>
               <h1 className="mt-6 max-w-[12ch] font-display text-h1 font-semibold text-foreground">A clearer route from market-entry decision to compliant operation.</h1>
@@ -38,8 +37,8 @@ export default function BusinessInBangladeshPage() {
           </div>
         </section>
 
-        <section className="bg-surface py-16 sm:py-24 lg:py-28">
-          <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-10">
+        <section className="bg-surface py-section-lg">
+          <div className="mx-auto max-w-[90rem] px-gutter">
             <div className="grid gap-5 lg:grid-cols-12">
               {topics.map(({ icon: Icon, eyebrow, title, description, slug }, index) => (
                 <article key={title} className={`group rounded-[1.6rem] border border-border bg-background p-6 transition hover:-translate-y-1 hover:border-accent/40 sm:p-8 ${index < 2 ? "lg:col-span-6" : "lg:col-span-4"}`}>
@@ -54,8 +53,8 @@ export default function BusinessInBangladeshPage() {
           </div>
         </section>
 
-        <section className="bg-brand py-14 text-white sm:py-20 lg:py-24">
-          <div className="mx-auto flex max-w-[90rem] flex-col gap-8 px-4 sm:px-6 lg:flex-row lg:items-end lg:justify-between lg:px-10">
+        <section className="bg-brand py-section-md text-white">
+          <div className="mx-auto flex max-w-[90rem] flex-col gap-8 px-gutter lg:flex-row lg:items-end lg:justify-between">
             <div><p className="text-[0.62rem] font-bold uppercase tracking-[0.2em] text-accent">From overview to action</p><h2 className="mt-4 max-w-[17ch] font-display text-h2 font-semibold text-white">Map the registrations, owners, deadlines and operating obligations.</h2></div>
             <div className="flex flex-wrap gap-3"><Link href="/services/company-formation-registration" className="inline-flex h-12 items-center gap-3 rounded-full border border-white/15 px-6 text-sm font-bold text-white transition hover:border-accent hover:text-accent">Formation services <ArrowUpRight aria-hidden="true" size={17} /></Link><Link href="/contact" className="inline-flex h-12 items-center gap-3 rounded-full bg-brand-gold px-6 text-sm font-extrabold text-brand-navy shadow-[0_10px_28px_rgba(212,175,55,.2)] transition duration-200 hover:-translate-y-0.5 hover:bg-brand-gold-soft active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-brand-navy">Book a Free Consultation <ArrowUpRight aria-hidden="true" size={17} /></Link></div>
           </div>

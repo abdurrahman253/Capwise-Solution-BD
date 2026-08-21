@@ -27,17 +27,13 @@ export default function GuidesPage() {
       <SiteHeader />
 
       <main id="main-content" data-resource-version={RESOURCE_CONTENT_VERSION}>
-        <section className="capwise-resources relative isolate overflow-hidden border-b border-border py-16 sm:py-24 lg:py-28">
+        <section className="capwise-resources relative isolate overflow-hidden border-b border-border py-section-lg">
           <div
             aria-hidden="true"
             className="capwise-coordinate-grid pointer-events-none absolute inset-0 -z-20 opacity-45"
           />
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute -right-44 -top-44 -z-10 size-[34rem] rounded-full bg-accent/12 blur-[120px]"
-          />
 
-          <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-10">
+          <div className="mx-auto max-w-[90rem] px-gutter">
             <div className="grid gap-10 lg:grid-cols-12 lg:items-end lg:gap-14">
               <div className="lg:col-span-8">
                 <div className="flex items-center gap-3">
@@ -65,8 +61,8 @@ export default function GuidesPage() {
           </div>
         </section>
 
-        <section className="bg-surface py-16 sm:py-24 lg:py-32">
-          <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-10">
+        <section className="bg-surface py-section-lg">
+          <div className="mx-auto max-w-[90rem] px-gutter">
             <div className="grid gap-5 xl:grid-cols-3">
               {guideResources.map((guide, index) => (
                 <article
