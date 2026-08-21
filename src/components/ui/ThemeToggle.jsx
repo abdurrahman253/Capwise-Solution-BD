@@ -11,7 +11,7 @@ export default function ThemeToggle() {
   const reduceMotion = useReducedMotion();
 
   const baseClasses =
-    "group relative inline-flex size-10 shrink-0 items-center justify-center overflow-hidden rounded-full border border-border bg-gradient-to-b from-surface to-surface-muted text-foreground shadow-[inset_0_1px_0_0_rgba(255,255,255,.4),0_2px_6px_rgba(11,27,61,.06)] backdrop-blur-md transition duration-200 hover:-translate-y-0.5 hover:border-accent/60 hover:text-accent-strong hover:shadow-[inset_0_1px_0_0_rgba(255,255,255,.4),0_8px_18px_rgba(212,175,55,.18)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-strong focus-visible:ring-offset-2 focus-visible:ring-offset-surface sm:size-11";
+    "group relative inline-flex size-11 shrink-0 items-center justify-center overflow-hidden rounded-full border border-border bg-gradient-to-b from-surface to-surface-muted text-foreground shadow-[inset_0_1px_0_0_rgba(255,255,255,.4),0_2px_6px_rgba(11,27,61,.06)] backdrop-blur-md transition duration-200 hover:-translate-y-0.5 hover:border-accent/60 hover:text-accent-strong hover:shadow-[inset_0_1px_0_0_rgba(255,255,255,.4),0_8px_18px_rgba(212,175,55,.18)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-strong focus-visible:ring-offset-2 focus-visible:ring-offset-surface";
 
   if (!mounted) {
     return <span aria-hidden="true" className={baseClasses} />;

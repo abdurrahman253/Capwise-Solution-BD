@@ -271,7 +271,7 @@ export default function SupportAssistant() {
                 <button
                   type="button"
                   onClick={() => setIsOpen(false)}
-                  className="inline-flex size-10 shrink-0 items-center justify-center rounded-full border border-[var(--assistant-border)] text-[var(--assistant-muted)] transition hover:border-accent/35 hover:bg-accent/8 hover:text-[var(--assistant-foreground)]"
+                  className="inline-flex size-11 shrink-0 items-center justify-center rounded-full border border-[var(--assistant-border)] text-[var(--assistant-muted)] transition hover:border-accent/35 hover:bg-accent/8 hover:text-[var(--assistant-foreground)]"
                   aria-label="Close guided support"
                 >
                   <X aria-hidden="true" size={18} />
@@ -379,7 +379,7 @@ export default function SupportAssistant() {
                 <button
                   type="submit"
                   disabled={!input.trim() || isSending}
-                  className="absolute bottom-1.5 right-1.5 inline-flex size-10 items-center justify-center rounded-xl bg-accent text-[#1b1464] transition hover:bg-[#e5c95f] disabled:cursor-not-allowed disabled:opacity-35"
+                  className="absolute bottom-1.5 right-1.5 inline-flex size-11 items-center justify-center rounded-xl bg-accent text-[#1b1464] transition hover:bg-[#e5c95f] disabled:cursor-not-allowed disabled:opacity-35"
                   aria-label="Send question"
                 >
                   <Send aria-hidden="true" size={16} />

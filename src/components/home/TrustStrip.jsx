@@ -9,8 +9,8 @@ const trustFacts = [
 
 export default function TrustStrip() {
   return (
-    <section className="capwise-trust-strip border-b border-border bg-surface py-8 sm:py-12" aria-label="Capwise at a glance">
-      <dl className="mx-auto grid max-w-[94rem] grid-cols-2 gap-3 px-4 sm:gap-4 sm:px-6 lg:grid-cols-4 lg:px-8 2xl:px-10">
+    <section className="capwise-trust-strip border-b border-border bg-surface py-section-sm" aria-label="Capwise at a glance">
+      <dl className="mx-auto grid max-w-[94rem] grid-cols-2 items-stretch gap-3 px-gutter sm:gap-4 lg:grid-cols-4">
         {trustFacts.map(({ label, value, detail, icon: Icon }) => (
           <div
             key={label}

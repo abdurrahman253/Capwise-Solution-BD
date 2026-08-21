@@ -8,8 +8,8 @@ const DIRECTIONS_HREF = "https://maps.app.goo.gl/BzS5LSut7HRGAq7j9";
 
 export default function LocationSection() {
   return (
-    <section className="bg-background py-16 sm:py-24 lg:py-28">
-      <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-10">
+    <section className="bg-background py-section-lg">
+      <div className="mx-auto max-w-[90rem] px-gutter">
         <div className="flex items-center gap-3">
           <span aria-hidden="true" className="h-px w-10 bg-accent-strong" />
           <p className="text-[0.62rem] font-bold uppercase tracking-[0.22em] text-accent-strong">Find us</p>

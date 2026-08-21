@@ -9,8 +9,8 @@ const proofTypes = [
 
 export default function ClientEvidencePreview() {
   return (
-    <section className="bg-brand py-16 text-white sm:py-24 lg:py-28" aria-labelledby="evidence-preview-title">
-      <div className="mx-auto grid max-w-[90rem] gap-12 px-gutter lg:grid-cols-12 lg:items-end lg:px-10">
+    <section className="bg-brand py-section-lg text-white" aria-labelledby="evidence-preview-title">
+      <div className="mx-auto grid max-w-[90rem] gap-12 px-gutter lg:grid-cols-12 lg:items-end">
         <div className="lg:col-span-7">
           <p className="text-[0.62rem] font-bold uppercase tracking-[0.22em] text-accent">
             Client evidence

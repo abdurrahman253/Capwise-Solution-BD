@@ -56,22 +56,22 @@ export default function BrandLogo({ className = "", compact = false, light = fal
       </m.span>
 
       {tagline && (
-        <span className="flex w-full min-w-0 flex-col gap-[3px] sm:gap-1">
+        <span className="hidden w-full min-w-0 flex-col gap-[3px] lg:flex lg:gap-1">
           <span
             aria-hidden="true"
             className={`h-px w-full bg-gradient-to-r ${light ? "from-brand-gold/70 via-brand-gold/25 to-transparent" : "from-brand-gold via-brand-gold/30 to-transparent"}`}
           />
-          <span className="flex items-center gap-[3px] whitespace-nowrap sm:gap-[5px] lg:gap-[7px]">
+          <span className="flex items-center gap-[7px] whitespace-nowrap">
             {taglineSegments.map((segment, index) => (
-              <span key={segment} className="flex items-center gap-[3px] sm:gap-[5px] lg:gap-[7px]">
+              <span key={segment} className="flex items-center gap-[7px]">
                 {index > 0 && (
                   <span
                     aria-hidden="true"
-                    className={`size-[2px] shrink-0 rounded-full sm:size-[3px] ${light ? "bg-brand-gold-soft/70" : "bg-brand-gold"}`}
+                    className={`size-[3px] shrink-0 rounded-full ${light ? "bg-brand-gold-soft/70" : "bg-brand-gold"}`}
                   />
                 )}
                 <span
-                  className={`text-[0.32rem] font-extrabold uppercase leading-none tracking-[0.01em] sm:text-[0.42rem] sm:tracking-[0.035em] lg:text-[0.56rem] lg:tracking-[0.08em] ${light ? "text-brand-gold-soft" : "text-brand-blue"}`}
+                  className={`text-[0.72rem] font-extrabold uppercase leading-none tracking-[0.1em] ${light ? "text-brand-gold-soft" : "text-brand-blue"}`}
                 >
                   {segment}
                 </span>

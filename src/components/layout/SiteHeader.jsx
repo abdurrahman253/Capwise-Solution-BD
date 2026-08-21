@@ -191,7 +191,7 @@ export default function SiteHeader() {
 
   return (
     <>
-      <header className="sticky top-3 z-50 px-3 sm:top-4 sm:px-4 lg:px-6 2xl:px-8">
+      <header className="sticky top-3 z-50 px-gutter sm:top-4">
         <div className="capwise-floating-nav mx-auto flex min-h-[4.5rem] max-w-[94rem] items-center gap-3 rounded-full px-4 py-1.5 sm:px-5 lg:px-7 2xl:px-9">
           <BrandLogo compact tagline light={logoIsLight} className="mr-auto" />
 

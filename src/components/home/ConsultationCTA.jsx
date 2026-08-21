@@ -13,7 +13,7 @@ const contactDetails = [
 export default function ConsultationCTA() {
   return (
     <section className="capwise-consultation py-section-lg" aria-labelledby="consultation-title">
-      <div className="mx-auto grid max-w-[90rem] gap-8 px-gutter lg:grid-cols-12 lg:gap-12 lg:px-10">
+      <div className="mx-auto grid max-w-[90rem] gap-8 px-gutter lg:grid-cols-12 lg:gap-12">
         <div className="rounded-[1.8rem] bg-brand p-6 text-white shadow-[0_35px_100px_rgba(27,20,100,0.24)] sm:p-9 lg:col-span-5 lg:p-12">
           <p className="text-[0.62rem] font-bold uppercase tracking-[0.22em] text-accent">Consultation</p>
           <h2 id="consultation-title" className="mt-5 max-w-[10ch] font-display text-h2 font-semibold text-white">

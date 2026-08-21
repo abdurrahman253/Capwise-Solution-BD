@@ -23,7 +23,7 @@ export default function TestimonialsPage() {
       <SiteHeader />
       <main id="main-content">
         <section className="bg-brand text-white">
-          <div className="mx-auto grid min-h-[70vh] max-w-[90rem] gap-12 px-4 py-16 sm:px-6 sm:py-24 lg:grid-cols-12 lg:items-end lg:px-10 lg:py-28">
+          <div className="mx-auto grid min-h-[70vh] max-w-[90rem] gap-12 px-gutter py-section-lg lg:grid-cols-12 lg:items-end">
             <div className="lg:col-span-8">
               <div className="flex items-center gap-3"><span className="h-px w-10 bg-accent" /><p className="text-[0.62rem] font-bold uppercase tracking-[0.22em] text-accent">Client evidence</p></div>
               <h1 className="mt-7 max-w-[12ch] font-display text-h1 font-semibold text-white">Credibility is stronger when every word can be verified.</h1>
@@ -35,8 +35,8 @@ export default function TestimonialsPage() {
           </div>
         </section>
 
-        <section className="bg-surface py-16 sm:py-24 lg:py-28">
-          <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-10">
+        <section className="bg-surface py-section-lg">
+          <div className="mx-auto max-w-[90rem] px-gutter">
             <div className="grid gap-5 lg:grid-cols-3">
               {standards.map(({ icon: Icon, title, text }, index) => (
                 <article key={title} className="rounded-[1.5rem] border border-border bg-background p-6 sm:p-8">
@@ -49,8 +49,8 @@ export default function TestimonialsPage() {
           </div>
         </section>
 
-        <section className="capwise-evidence py-16 sm:py-24 lg:py-28">
-          <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-10">
+        <section className="capwise-evidence py-section-lg">
+          <div className="mx-auto max-w-[90rem] px-gutter">
             <div className="rounded-[1.8rem] border border-border bg-surface p-7 text-center shadow-[0_28px_90px_rgba(27,20,100,0.09)] sm:p-12 lg:p-16">
               <span className="mx-auto inline-flex size-14 items-center justify-center rounded-full border border-accent/25 bg-accent/10 text-accent-strong"><MessageSquareQuote aria-hidden="true" size={22} /></span>
               <p className="mt-7 text-[0.62rem] font-bold uppercase tracking-[0.2em] text-accent-strong">Publication status</p>

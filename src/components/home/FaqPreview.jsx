@@ -20,7 +20,7 @@ export default function FaqPreview() {
       className="capwise-faq border-y border-border py-section-lg"
       aria-labelledby="faq-preview-title"
     >
-      <div className="mx-auto grid max-w-[90rem] gap-12 px-gutter lg:grid-cols-12 lg:gap-16 lg:px-10">
+      <div className="mx-auto grid max-w-[90rem] gap-12 px-gutter lg:grid-cols-12 lg:gap-16">
         <m.div {...reveal} className="lg:col-span-5 lg:sticky lg:top-36 lg:self-start">
           <span className="inline-flex size-12 items-center justify-center rounded-full border border-accent/25 bg-accent/10 text-accent-strong">
             <MessageCircleQuestion aria-hidden="true" size={20} />

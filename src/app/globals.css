@@ -357,6 +357,10 @@ html {
 body {
   min-height: 100vh;
   margin: 0;
+  /* Safety net, not the fix — the real overflow source found in this pass
+     (unconstrained markdown table in insights/[slug]/page.jsx) was fixed at
+     its source with min-w-0 on the grid item that hosts it. Keep this rule
+     as a backstop for content authors, not a substitute for fixing layout. */
   overflow-x: hidden;
   background: var(--background);
   color: var(--foreground);
@@ -850,6 +854,24 @@ canvas {
 /* ----------------------------------------
    Premium floating contact + scroll ring
 ----------------------------------------- */
+
+/* Documented z-index stacking order (Phase 2 mobile audit). FloatingContact
+   (top-right call widget) and SupportAssistant (bottom-right guided-support
+   widget) occupy opposite vertical corners and do not overlap at any audited
+   width, but both are `position: fixed` and share the right edge, so the
+   order below is the single source of truth if either one's offsets change:
+     z-20   hero slide controls / progress dots (HomeHero)
+     z-40   .capwise-float-contact — top-right call widget
+     z-50   sticky site header
+     z-70   desktop nav dropdown panels (SiteHeader, xl: only)
+     z-88   SupportAssistant launcher — bottom-right guided-support widget
+     z-90   mobile nav drawer (Dialog)
+     z-100  SupportAssistant chat dialog
+     z-180  toast notifications
+     z-220  skip-to-content link (focus-only)
+     z-300  route transition loader
+   Any new fixed/sticky element must be placed intentionally in this list,
+   not given an arbitrary z-index. */
 
 .capwise-float-contact {
   border-color: var(--assistant-border);

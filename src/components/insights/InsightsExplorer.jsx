@@ -22,7 +22,7 @@ export default function InsightsExplorer({ insights, categories }) {
       <div className="flex flex-col gap-5 border-y border-border py-6 lg:flex-row lg:items-center lg:justify-between">
         <div className="flex flex-wrap gap-2">
           {categories.map((item) => (
-            <button key={item} type="button" onClick={() => setCategory(item)} className={`rounded-full border px-3.5 py-2 text-[0.68rem] font-extrabold transition ${category === item ? "border-brand-navy bg-brand-navy text-white" : "border-border bg-surface text-muted hover:border-brand-blue/35 hover:text-brand-blue"}`}>{item}</button>
+            <button key={item} type="button" onClick={() => setCategory(item)} className={`inline-flex min-h-11 items-center rounded-full border px-3.5 text-[0.68rem] font-extrabold transition ${category === item ? "border-brand-navy bg-brand-navy text-white" : "border-border bg-surface text-muted hover:border-brand-blue/35 hover:text-brand-blue"}`}>{item}</button>
           ))}
         </div>
         <label className="relative block w-full lg:w-[19rem]">

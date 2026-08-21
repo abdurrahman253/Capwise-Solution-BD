@@ -27,10 +27,10 @@ export default function ContactPage() {
     <>
       <SiteHeader />
       <main id="main-content">
-        <section className="capwise-consultation relative isolate overflow-hidden border-b border-border py-16 sm:py-24 lg:py-32">
+        <section className="capwise-consultation relative isolate overflow-hidden border-b border-border py-section-lg">
           <div className="capwise-coordinate-grid pointer-events-none absolute inset-0 -z-20 opacity-45" />
           <div className="pointer-events-none absolute -right-48 -top-44 -z-10 size-[36rem] rounded-full bg-accent/12 blur-[115px]" />
-          <div className="mx-auto grid max-w-[90rem] gap-10 px-4 sm:px-6 lg:grid-cols-12 lg:items-end lg:gap-14 lg:px-10">
+          <div className="mx-auto grid max-w-[90rem] gap-10 px-gutter lg:grid-cols-12 lg:items-end lg:gap-14">
             <div className="lg:col-span-8">
               <div className="flex items-center gap-3"><span className="h-px w-10 bg-accent-strong" /><p className="text-[0.62rem] font-bold uppercase tracking-[0.22em] text-accent-strong">Book a Free Consultation</p></div>
               <h1 className="mt-6 max-w-[12ch] font-display text-h1 font-semibold text-foreground">Start with the business issue, not a generic service package.</h1>
@@ -42,8 +42,8 @@ export default function ContactPage() {
           </div>
         </section>
 
-        <section className="bg-surface py-16 sm:py-24 lg:py-28">
-          <div className="mx-auto grid max-w-[90rem] gap-8 px-4 sm:px-6 lg:grid-cols-12 lg:gap-12 lg:px-10">
+        <section className="bg-surface py-section-lg">
+          <div className="mx-auto grid max-w-[90rem] gap-8 px-gutter lg:grid-cols-12 lg:gap-12">
             <div className="rounded-[1.8rem] border border-border bg-background p-6 sm:p-9 lg:col-span-7 lg:p-12">
               <p className="text-[0.62rem] font-bold uppercase tracking-[0.2em] text-accent-strong">Enquiry details</p>
               <h2 className="mt-4 font-display text-h2 font-semibold text-foreground">Prepare a useful first briefing.</h2>
