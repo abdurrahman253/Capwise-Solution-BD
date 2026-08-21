@@ -54,7 +54,7 @@ export default async function BusinessTopicPage({ params }) {
               {topic.sections.map((section, index) => (
                 <article key={section.title} className="rounded-[1.45rem] border border-border bg-background p-6 sm:p-8">
                   <span className="font-display text-xs font-bold text-foreground/25">{String(index + 1).padStart(2, "0")}</span>
-                  <h2 className="mt-7 font-display text-2xl font-semibold tracking-[-0.045em] text-foreground">{section.title}</h2>
+                  <h2 className="mt-7 font-display text-h2 font-semibold text-foreground">{section.title}</h2>
                   <p className="mt-4 text-sm leading-7 text-muted">{section.body}</p>
                 </article>
               ))}

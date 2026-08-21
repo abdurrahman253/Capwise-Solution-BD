@@ -42,7 +42,7 @@ export default function NotFound() {
 
           <div className="rounded-[1.8rem] border border-border bg-surface/82 p-6 shadow-[0_28px_90px_rgba(27,20,100,0.12)] backdrop-blur-xl sm:p-9 lg:col-span-5">
             <span className="inline-flex size-12 items-center justify-center rounded-full border border-accent/25 bg-accent/10 text-accent-strong"><Compass aria-hidden="true" size={20} /></span>
-            <h2 className="mt-7 font-display text-2xl font-semibold tracking-[-0.04em] text-foreground">Useful destinations</h2>
+            <h2 className="mt-7 font-display text-h2 font-semibold text-foreground">Useful destinations</h2>
             <div className="mt-6 divide-y divide-border border-y border-border">
               {[
                 ["Resource centre", "/resources", Search],

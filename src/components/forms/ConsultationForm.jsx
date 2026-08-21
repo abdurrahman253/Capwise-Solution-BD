@@ -156,7 +156,7 @@ export default function ConsultationForm({ compact = false }) {
         <span className="inline-flex size-12 items-center justify-center rounded-full bg-accent text-[#1b1464]">
           <MailCheck aria-hidden="true" size={21} />
         </span>
-        <h3 className="mt-5 font-display text-2xl font-bold tracking-[-0.045em] text-foreground">
+        <h3 className="mt-5 font-display text-h3 font-bold text-foreground">
           {notificationSent ? "Enquiry sent successfully." : "Enquiry recorded successfully."}
         </h3>
         <p className="mt-3 text-sm leading-7 text-muted">

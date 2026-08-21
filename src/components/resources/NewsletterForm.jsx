@@ -87,7 +87,7 @@ export default function NewsletterForm() {
     return (
       <div className="rounded-[1.35rem] border border-accent/25 bg-accent/10 p-6 text-white" role="status">
         <CheckCircle2 aria-hidden="true" size={24} className="text-accent" />
-        <h3 className="mt-4 font-display text-2xl font-bold tracking-[-0.04em]">Preferences recorded.</h3>
+        <h3 className="mt-4 font-display text-h3 font-bold">Preferences recorded.</h3>
         <p className="mt-3 text-sm leading-7 text-white/65">
           Capwise will only send reviewed updates with a visible source and review date. Reference: {reference}
         </p>

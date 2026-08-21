@@ -41,7 +41,7 @@ export default function ResourcesPreview() {
       id="resources-preview"
       data-resource-version={RESOURCE_CONTENT_VERSION}
       aria-labelledby="resources-preview-title"
-      className="capwise-resources relative isolate overflow-hidden border-b border-border py-20 sm:py-28 lg:py-36"
+      className="capwise-resources relative isolate overflow-hidden border-b border-border py-section-lg"
     >
       <div
         aria-hidden="true"
@@ -56,7 +56,7 @@ export default function ResourcesPreview() {
         className="pointer-events-none absolute -right-44 bottom-0 -z-10 size-[28rem] rounded-full bg-gold/8 blur-[120px]"
       />
 
-      <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-10">
+      <div className="mx-auto max-w-[90rem] px-gutter">
         <div className="grid gap-9 lg:grid-cols-12 lg:items-end lg:gap-12">
           <m.div {...reveal()} className="lg:col-span-8">
             <div className="flex items-center gap-3">
@@ -219,7 +219,7 @@ export default function ResourcesPreview() {
                       <p className="text-[0.58rem] font-bold uppercase tracking-[0.17em] text-accent-strong">
                         {guide.category}
                       </p>
-                      <h3 className="mt-3 max-w-[19ch] font-display text-[1.45rem] font-semibold leading-[1.04] tracking-[-0.05em] text-foreground sm:text-[1.7rem]">
+                      <h3 className="mt-3 max-w-[19ch] font-display text-h3 font-semibold text-foreground">
                         {guide.title}
                       </h3>
                     </div>
@@ -250,7 +250,7 @@ export default function ResourcesPreview() {
                 </span>
               </div>
 
-              <h3 className="mt-7 max-w-[18ch] font-display text-[1.55rem] font-semibold leading-[1.04] tracking-[-0.05em] text-foreground sm:text-[1.85rem]">
+              <h3 className="mt-7 max-w-[18ch] font-display text-h3 font-semibold text-foreground">
                 Regulatory watch, without the noise.
               </h3>
 

@@ -66,7 +66,7 @@ export default function EmailPreviewPage() {
               <div className="flex items-center gap-3 border-b border-border px-5 py-4 sm:px-7">
                 <MailCheck aria-hidden="true" size={18} className="text-accent-strong" />
                 <div>
-                  <h2 className="font-display text-lg font-bold text-foreground">Team notification</h2>
+                  <h2 className="font-display text-h3 font-bold text-foreground">Team notification</h2>
                   <p className="text-xs text-muted">Delivered to CONSULTATION_TO_EMAIL</p>
                 </div>
               </div>
@@ -82,7 +82,7 @@ export default function EmailPreviewPage() {
               <div className="flex items-center gap-3 border-b border-border px-5 py-4 sm:px-7">
                 <MailCheck aria-hidden="true" size={18} className="text-accent-strong" />
                 <div>
-                  <h2 className="font-display text-lg font-bold text-foreground">Visitor acknowledgement</h2>
+                  <h2 className="font-display text-h3 font-bold text-foreground">Visitor acknowledgement</h2>
                   <p className="text-xs text-muted">Sent only when SEND_CLIENT_ACKNOWLEDGEMENT=true</p>
                 </div>
               </div>

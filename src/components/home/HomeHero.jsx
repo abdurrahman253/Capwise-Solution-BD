@@ -152,7 +152,7 @@ export default function HomeHero() {
       </Swiper>
 
       <div className="pointer-events-none absolute inset-x-0 bottom-6 z-20 sm:bottom-8">
-        <div className="mx-auto flex max-w-[94rem] items-center justify-end gap-4 px-5 sm:px-6 lg:px-8 2xl:px-10">
+        <div className="mx-auto flex max-w-[94rem] items-center justify-end gap-4 px-gutter">
           <div className="mr-auto hidden items-center gap-3 text-[0.65rem] font-bold uppercase tracking-[0.18em] text-white/58 sm:flex">
             <span className="text-white">{String(activeIndex + 1).padStart(2, "0")}</span>
             <span className="h-px w-14 overflow-hidden bg-white/25">

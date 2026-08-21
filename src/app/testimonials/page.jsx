@@ -41,7 +41,7 @@ export default function TestimonialsPage() {
               {standards.map(({ icon: Icon, title, text }, index) => (
                 <article key={title} className="rounded-[1.5rem] border border-border bg-background p-6 sm:p-8">
                   <div className="flex items-start justify-between"><span className="inline-flex size-12 items-center justify-center rounded-full border border-accent/25 bg-accent/10 text-accent-strong"><Icon aria-hidden="true" size={19} /></span><span className="font-display text-xs font-bold text-foreground/24">{String(index + 1).padStart(2, "0")}</span></div>
-                  <h2 className="mt-9 font-display text-2xl font-semibold tracking-[-0.045em] text-foreground">{title}</h2>
+                  <h2 className="mt-9 font-display text-h2 font-semibold text-foreground">{title}</h2>
                   <p className="mt-4 text-sm leading-7 text-muted">{text}</p>
                 </article>
               ))}

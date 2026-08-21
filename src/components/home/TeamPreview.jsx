@@ -12,8 +12,8 @@ function Avatar({ initials, featured = false }) {
 export default function TeamPreview() {
   const reduceMotion = useReducedMotion();
   return (
-    <section className="border-y border-border bg-background py-18 sm:py-24 lg:py-28" aria-labelledby="team-preview-title">
-      <div className="mx-auto max-w-[94rem] px-5 sm:px-6 lg:px-8 2xl:px-10">
+    <section className="border-y border-border bg-background py-section-lg" aria-labelledby="team-preview-title">
+      <div className="mx-auto max-w-[94rem] px-gutter">
         <div className="grid gap-8 lg:grid-cols-12 lg:items-end">
           <div className="lg:col-span-8"><p className="text-[0.62rem] font-extrabold uppercase tracking-[0.2em] text-brand-blue">Our Team</p><h2 id="team-preview-title" className="mt-5 max-w-[13ch] font-display text-h2 font-semibold text-foreground">Two lead profiles. One connected team.</h2></div>
           <div className="lg:col-span-4"><p className="text-sm leading-7 text-muted sm:text-base sm:leading-8">Capwise combines finance, tax, audit, legal and regulatory experience so clients can bring one business issue into one coordinated conversation.</p><Link href="/team" className="mt-5 inline-flex items-center gap-2 text-sm font-extrabold text-brand-blue">Meet the full team <ArrowUpRight size={15} className="text-brand-gold" /></Link></div>

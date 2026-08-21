@@ -7,8 +7,8 @@ import { m, useReducedMotion } from "motion/react";
 export default function FirmIntro() {
   const reduceMotion = useReducedMotion();
   return (
-    <section className="bg-background py-18 sm:py-24 lg:py-28" aria-labelledby="firm-intro-title">
-      <div className="mx-auto grid max-w-[94rem] gap-10 px-5 sm:px-6 lg:grid-cols-12 lg:gap-14 lg:px-8 2xl:px-10">
+    <section className="bg-background py-section-lg" aria-labelledby="firm-intro-title">
+      <div className="mx-auto grid max-w-[94rem] gap-10 px-gutter lg:grid-cols-12 lg:gap-14 lg:px-8 2xl:px-10">
         <m.div initial={reduceMotion ? false : { opacity: 0, y: 22 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .3 }} className="lg:col-span-5">
           <p className="text-[0.62rem] font-extrabold uppercase tracking-[0.2em] text-brand-blue">Our Firm</p>
           <h2 id="firm-intro-title" className="mt-5 max-w-[12ch] font-display text-h2 font-semibold text-foreground">One advisory team. Fewer disconnected answers.</h2>

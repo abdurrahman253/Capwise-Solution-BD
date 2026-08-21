@@ -157,7 +157,7 @@ export default function ServicesPage() {
                     <p className="text-[0.58rem] font-bold uppercase tracking-[0.19em] text-accent-strong sm:text-[0.62rem]">
                       {service.eyebrow}
                     </p>
-                    <h2 className="mt-3 max-w-[18ch] font-display text-[1.55rem] font-semibold leading-[1.04] tracking-[-0.05em] text-foreground sm:text-[2rem]">
+                    <h2 className="mt-3 max-w-[18ch] font-display text-h3 font-semibold text-foreground">
                       {service.label}
                     </h2>
                     <p className="mt-3 max-w-xl text-xs leading-6 text-muted sm:text-sm sm:leading-7">

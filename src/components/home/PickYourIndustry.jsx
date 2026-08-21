@@ -13,7 +13,7 @@ export default function PickYourIndustry() {
   return (
     <section className="relative overflow-hidden bg-brand-navy py-18 text-white sm:py-24 lg:py-28" aria-labelledby="pick-industry-title">
       <div aria-hidden="true" className="pointer-events-none absolute -right-40 -top-40 -z-10 size-[32rem] rounded-full bg-brand-gold/10 blur-[120px]" />
-      <div className="mx-auto max-w-[94rem] px-5 sm:px-6 lg:px-8 2xl:px-10">
+      <div className="mx-auto max-w-[94rem] px-gutter">
         <div className="grid gap-8 lg:grid-cols-12 lg:items-end">
           <div className="lg:col-span-8">
             <p className="text-[0.62rem] font-extrabold uppercase tracking-[.2em] text-brand-gold">Pick Your Industry</p>
@@ -48,7 +48,7 @@ export default function PickYourIndustry() {
                     </span>
                     <span className="text-[.65rem] font-extrabold text-white/35">{item.number}</span>
                   </div>
-                  <h3 className="mt-4 font-display text-base font-semibold leading-[1.15] tracking-[-.03em] sm:mt-7 sm:text-2xl sm:leading-[1.05] sm:tracking-[-.045em]">
+                  <h3 className="mt-4 font-display text-card font-semibold sm:mt-7">
                     {item.label}
                   </h3>
                   <p className="mt-2 text-xs leading-5 text-white/58 sm:mt-3 sm:text-sm sm:leading-7">{item.text}</p>

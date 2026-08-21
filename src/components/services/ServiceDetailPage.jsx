@@ -262,7 +262,7 @@ export default function ServiceDetailPage({ service }) {
                     <span className="font-display text-xs font-bold text-accent">
                       0{index + 1}
                     </span>
-                    <h3 className="mt-5 font-display text-lg font-semibold leading-tight tracking-[-0.04em] text-white sm:text-xl">
+                    <h3 className="mt-5 font-display text-h3 font-semibold text-white">
                       {problem.title}
                     </h3>
                     <p className="mt-3 text-xs leading-6 text-white/62 sm:text-sm sm:leading-7">
@@ -358,7 +358,7 @@ export default function ServiceDetailPage({ service }) {
                   <span className="font-display text-xs font-bold text-accent-strong">
                     0{index + 1}
                   </span>
-                  <h3 className="mt-5 font-display text-lg font-semibold tracking-[-0.04em] text-foreground sm:text-xl">
+                  <h3 className="mt-5 font-display text-h3 font-semibold text-foreground">
                     {step.title}
                   </h3>
                   <p className="mt-3 text-xs leading-6 text-muted sm:text-sm sm:leading-7">
@@ -529,7 +529,7 @@ export default function ServiceDetailPage({ service }) {
                 {relatedInsights.map((insight) => (
                   <Link key={insight.slug} href={`/insights/${insight.slug}`} className="group flex min-h-48 flex-col rounded-[1.25rem] border border-border bg-surface p-6 transition hover:-translate-y-1 hover:border-brand-blue/30 hover:shadow-[0_18px_45px_rgba(27,20,100,.08)]">
                     <p className="text-[0.58rem] font-extrabold uppercase tracking-[0.16em] text-brand-blue">{insight.category}</p>
-                    <h3 className="mt-3 font-display text-xl font-semibold leading-tight tracking-[-0.04em] text-foreground transition group-hover:text-brand-blue">{insight.title}</h3>
+                    <h3 className="mt-3 font-display text-h3 font-semibold text-foreground transition group-hover:text-brand-blue">{insight.title}</h3>
                     <span className="mt-auto inline-flex items-center gap-2 pt-6 text-xs font-extrabold text-foreground">Read insight <ArrowUpRight size={14} className="text-brand-gold" /></span>
                   </Link>
                 ))}

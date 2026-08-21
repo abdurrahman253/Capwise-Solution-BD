@@ -74,7 +74,7 @@ export default function BangladeshPreview() {
     <section
       id="business-in-bangladesh-preview"
       aria-labelledby="bangladesh-preview-title"
-      className="capwise-gateway relative isolate overflow-hidden py-20 sm:py-28 lg:py-36"
+      className="capwise-gateway relative isolate overflow-hidden py-section-lg"
     >
       <div
         aria-hidden="true"
@@ -89,7 +89,7 @@ export default function BangladeshPreview() {
         className="pointer-events-none absolute -bottom-80 right-[-10rem] -z-10 size-[44rem] rounded-full border border-accent/10 bg-accent/8 blur-[120px]"
       />
 
-      <div className="relative mx-auto max-w-[90rem] px-5 sm:px-6 lg:px-10">
+      <div className="relative mx-auto max-w-[90rem] px-gutter">
         <div className="grid gap-16 lg:grid-cols-[0.78fr_1.22fr] lg:gap-20 xl:gap-28">
           <m.div
             initial={{ y: 28 }}

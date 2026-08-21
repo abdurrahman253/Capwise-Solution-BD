@@ -42,7 +42,7 @@ export default function InsightsExplorer({ insights, categories }) {
               </div>
               <div className="flex flex-1 flex-col p-6 sm:p-7">
                 <p className="text-[0.6rem] font-extrabold uppercase tracking-[0.17em] text-brand-blue">{item.category}</p>
-                <h2 className="mt-3 font-display text-2xl font-semibold leading-tight tracking-[-.045em] text-foreground transition group-hover:text-brand-blue">{item.title}</h2>
+                <h2 className="mt-3 font-display text-h2 font-semibold text-foreground transition group-hover:text-brand-blue">{item.title}</h2>
                 <p className="mt-3 text-sm leading-7 text-muted">{item.excerpt}</p>
                 <span className="mt-auto flex items-center justify-between border-t border-border pt-5 text-xs font-extrabold text-foreground">Read insight <ArrowUpRight size={15} className="text-brand-gold transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5" /></span>
               </div>
