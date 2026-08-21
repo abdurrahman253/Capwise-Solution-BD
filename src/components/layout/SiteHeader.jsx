@@ -150,7 +150,7 @@ export default function SiteHeader() {
   const pathname = usePathname();
   const mounted = useMounted();
   const { resolvedTheme } = useTheme();
-  const logoIsLight = mounted && resolvedTheme === "dark";
+  const logoSurface = mounted && resolvedTheme === "dark" ? "dark" : "light";
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [openMenu, setOpenMenu] = useState(null);
   const [routePathname, setRoutePathname] = useState(pathname);
@@ -193,7 +193,7 @@ export default function SiteHeader() {
     <>
       <header className="sticky top-3 z-50 px-gutter sm:top-4">
         <div className="capwise-floating-nav mx-auto flex min-h-[4.5rem] max-w-[94rem] items-center gap-3 rounded-full px-4 py-1.5 sm:px-5 lg:px-7 2xl:px-9">
-          <BrandLogo compact tagline light={logoIsLight} className="mr-auto" />
+          <BrandLogo compact tagline surface={logoSurface} className="mr-auto" />
 
           <nav aria-label="Primary navigation" className="hidden items-center gap-0 xl:flex">
             <DesktopDropdown
@@ -340,7 +340,7 @@ export default function SiteHeader() {
         >
           <div className="flex items-start justify-between gap-4 border-b border-border/70 pb-4">
             <DialogTitle className="sr-only">Navigation</DialogTitle>
-            <BrandLogo compact tagline light={logoIsLight} />
+            <BrandLogo compact tagline surface={logoSurface} />
             <div className="flex shrink-0 items-center gap-2">
               <ThemeToggle />
               <button type="button" onClick={() => setMobileMenuOpen(false)} className="inline-flex size-11 items-center justify-center rounded-full border border-border transition hover:border-brand-blue hover:text-brand-blue active:scale-95" aria-label="Close navigation menu"><X size={20} /></button>

@@ -1066,11 +1066,8 @@ canvas {
   background: color-mix(in srgb, var(--accent) 7%, var(--assistant-background));
 }
 
-.capwise-support-action:nth-child(3) {
+.capwise-support-action:last-child {
   border-bottom-left-radius: 1.5rem;
-}
-
-.capwise-support-action:nth-child(4) {
   border-bottom-right-radius: 1.5rem;
 }
 
