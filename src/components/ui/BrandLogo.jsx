@@ -23,7 +23,6 @@ const taglineGroups = [
   ["HR &", "Payroll"],
 ];
 const taglineSrText = "Accounting & Finance, Tax & Compliance, HR & Payroll";
-const taglineInlineText = "Accounting & Finance · Tax & Compliance · HR & Payroll";
 
 /**
  * GEOMETRY — measured by rendering capwise-light.svg at its own viewBox
@@ -43,8 +42,8 @@ const taglineInlineText = "Accounting & Finance · Tax & Compliance · HR & Payr
  * the box (3.53cqw against the lockup container) — see FOOTER_LOGO_WIDTH
  * below. HEADER does NOT: a legible in-box tagline needs a ~256px+ box
  * (9px floor), which conflicted with keeping the header small, so the header
- * instead runs a small logo with a fixed-size tagline line BELOW the box
- * (see taglineInlineText below) rather than inside it.
+ * instead runs a small logo with the same 3-group tagline BELOW the box at a
+ * fixed size, sized on its own rather than off the box's width.
  */
 const WORDMARK_LEFT_PCT = 29.09;
 const WORDMARK_RIGHT_INSET_PCT = 100 - 98.43;
@@ -56,12 +55,11 @@ const ASPECT_RATIO = "1021.42 / 318.95";
 // one sized off the box's own width. Nothing here needs the box to be big.
 const HEADER_LOGO_WIDTH = "w-[clamp(8.5rem,7.5rem+1.6vw,10.5rem)]";
 const HEADER_LOGO_WIDTH_COMPACT = "w-[clamp(7.5rem,6.5rem+1.4vw,9rem)]";
-// Footer mobile tier: fixed (not clamped) at 240px - gives an 8.47px in-box
-// tagline, clears the universal 8px floor with margin. Full width is
-// available below md (footer is a single block column, no competing icons
-// like the header), so a fixed value is simplest and carries no overflow
-// risk down to 320px.
-const FOOTER_LOGO_WIDTH_MOBILE = "w-[15rem]";
+// Footer mobile tier: fixed (not clamped) at 232px - gives an 8.19px in-box
+// tagline. This is close to the practical floor for an in-box tagline: below
+// ~227px the tagline drops under the 8px hard floor entirely, so this is as
+// small as the footer logo can go while keeping its tagline in-box legible.
+const FOOTER_LOGO_WIDTH_MOBILE = "w-[14.5rem]";
 // Footer desktop tier: 296px ceiling -> 10.45px in-box tagline; 280px floor
 // -> 9.88px. Both comfortably clear the 9px desktop floor.
 const FOOTER_LOGO_WIDTH = "w-[clamp(17.5rem,15rem+4vw,18.5rem)]";
@@ -91,13 +89,11 @@ export default function BrandLogo({
   // keeps the mark and its in-box tagline side by side on one row.
   const headerStacked = tagline && !footer;
 
-  // Footer's in-box tagline is always drawn (its mobile tier above was sized
-  // specifically so it never needs to hide). Header's below-box line is
-  // hidden below sm (640px): at 7.5px the full string needs ~235px in the
-  // worst-case character-width estimate, and the header row only clears that
-  // once the theme toggle/menu button have enough space alongside it, which
-  // happens well before 640px with real margin - verified, not assumed.
-  const srFallbackClass = !tagline ? "sr-only" : footer ? "hidden" : "sr-only sm:hidden";
+  // Both the footer's in-box tagline and the header's below-box line are now
+  // always drawn at every width (see the responsive font size below for how
+  // the header line fits on narrow phones too), so the sr-only fallback is
+  // only ever needed for the mark-only case (tagline=false).
+  const srFallbackClass = !tagline ? "sr-only" : "hidden";
 
   return (
     <Link
@@ -145,8 +141,24 @@ export default function BrandLogo({
       </span>
 
       {headerStacked && (
-        <span className={`hidden whitespace-nowrap text-[7.5px] font-medium tracking-[0.01em] sm:block ${taglineColor}`}>
-          {taglineInlineText}
+        // Same 3-group, 2-line, trailing-rule format as the footer's in-box
+        // tagline - but NOT sized off the logo's width (that needs a ~256px+
+        // box to stay legible, which is what made the header logo big in the
+        // first place). Fixed at 8px and left at its own natural width instead
+        // of being forced to match the small logo box: the widest word per
+        // group ("Accounting"/"Compliance", "HR &"/"Payroll") only needs
+        // ~145px total at 8px in the worst-case character-width estimate,
+        // comfortably under the ~220px+ available in the header row even on
+        // the narrowest phones - so it never needs to compete for space the
+        // way matching the logo's own ~136px width would.
+        <span className="flex items-center text-[8px]" style={{ columnGap: "0.5em" }}>
+          {taglineGroups.map(([line1, line2]) => (
+            <span key={line1} className={`font-medium leading-[1.15] tracking-[0.01em] ${taglineColor}`}>
+              <span className="block whitespace-nowrap">{line1}</span>
+              <span className="block whitespace-nowrap">{line2}</span>
+            </span>
+          ))}
+          <span aria-hidden="true" className={`h-px w-3 shrink-0 self-center ${ruleColor}`} />
         </span>
       )}
 
