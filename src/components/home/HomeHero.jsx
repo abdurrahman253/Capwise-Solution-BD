@@ -85,7 +85,7 @@ export default function HomeHero() {
   return (
     <section
       aria-label="Capwise advisory services"
-      className="relative -mt-[5.3125rem] overflow-hidden bg-brand-navy text-white sm:-mt-[5.5625rem] md:-mt-[5.5625rem] lg:-mt-[5.6875rem]"
+      className="relative -mt-[4.75rem] overflow-hidden bg-brand-navy text-white sm:-mt-[5rem] md:-mt-[5rem] lg:-mt-[6.1875rem]"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >

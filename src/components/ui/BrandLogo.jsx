@@ -25,72 +25,55 @@ const taglineGroups = [
 const taglineSrText = "Accounting & Finance, Tax & Compliance, HR & Payroll";
 
 /**
- * GEOMETRY — measured by rendering capwise-light.svg at its own viewBox
- * (1021 x 319) and sampling ink coverage row by row. Both variants share this
- * viewBox, so these resolve identically for light and dark.
+ * GEOMETRY — measured against the shared viewBox (1021.42 x 318.95). The
+ * tagline sits BESIDE the brain and BENEATH the wordmark, inside the logo's
+ * own bounding box — it is not "inside the brain icon".
  *
- *   wordmark left  ("C" of CAP)  : 29.09%
- *   wordmark right ("E" of WISE) : 98.43%
- *   wordmark baseline            : 73.67%
+ *   brain      : x 11.6%-60.6%, narrowing to 27.6% below y 74%
+ *   wordmark   : x 29.09%-98.43%, baseline at y 73.67%
+ *   clear zone : x 29.09%-98.43% (69.3% wide), y 74%-100% (26.0% tall)
  *
- * The brain reaches x 60.6% only at the baseline itself; from y 74% down it
- * narrows to 27.6%, leaving a genuinely clear band:
+ * CONTAINMENT, not a fixed pixel size, is the actual requirement: the
+ * tagline must never extend past the bottom edge of the logo box, and must
+ * never overlap the brain or the wordmark. Two lines at line-height 1.15
+ * need ~2.3x the font size, and the clear zone is 26% of a box whose height
+ * is width/3.202, which works out to:
  *
- *   CLEAR ZONE = x 29.09%-98.43% (69.3% wide) x y 74%-100% (26.0% tall)
+ *   maximum font size = logo width x 0.0353   (3.53cqw)
  *
- * FOOTER uses this clear zone for an IN-BOX tagline sized proportionally to
- * the box (3.53cqw against the lockup container) — see FOOTER_LOGO_WIDTH
- * below. HEADER does NOT: a legible in-box tagline needs a ~256px+ box
- * (9px floor), which conflicted with keeping the header small, so the header
- * instead runs a small logo with the same 3-group tagline BELOW the box at a
- * fixed size, sized on its own rather than off the box's width.
+ * That is a CEILING, not a target - it scales with the box, so it is the
+ * ONLY sizing method that can guarantee containment at every width. A fixed
+ * px value cannot: at a 190px logo the ceiling is 6.7px, so an 8px fixed
+ * value overflows the box - which is exactly the defect a fixed-px mobile
+ * override previously caused here. There is no fixed-px font size for this
+ * element anywhere in this file.
+ *
+ * Below the width where the ceiling drops under 8px, the tagline is not
+ * drawn at all (mark only, sr-only text carries the description) rather
+ * than shown smaller and risking illegibility or overflow.
  */
 const WORDMARK_LEFT_PCT = 29.09;
 const WORDMARK_RIGHT_INSET_PCT = 100 - 98.43;
 const CLEAR_ZONE_TOP_PCT = 74;
 const ASPECT_RATIO = "1021.42 / 318.95";
 
-// Header logo: small, single tier — no longer split by breakpoint, because
-// the header tagline is a fixed-size line below the box now, not an in-box
-// one sized off the box's own width. Nothing here needs the box to be big.
-const HEADER_LOGO_WIDTH = "w-[clamp(8.5rem,7.5rem+1.6vw,10.5rem)]";
-const HEADER_LOGO_WIDTH_COMPACT = "w-[clamp(7.5rem,6.5rem+1.4vw,9rem)]";
+// Header: mark-only below lg (120px -> 4.24px ceiling, well under the 8px
+// floor - no width in a header-appropriate range clears it, confirmed by
+// the formula itself, not guesswork). From lg up, 232-248px -> 8.19-8.75px,
+// a real reduction from the previous 256-260px tier while staying clear of
+// the floor. Written as one literal string - Tailwind's scanner can't see a
+// class assembled from `prefix + variable` at runtime, only a complete
+// literal token.
+const HEADER_RESPONSIVE_WIDTH =
+  "w-[clamp(7.5rem,6.5rem+1.4vw,9rem)] lg:w-[clamp(14.5rem,13rem+2vw,15.5rem)]";
 
-// IMPORTANT — Tailwind's class scanner reads this file's raw text; it cannot
-// see a class assembled at runtime like `` `md:${SOME_CONSTANT}` ``, because
-// the literal substring "md:w-[...]" never actually appears anywhere in the
-// source. That pattern was used here before and silently generated NO CSS for
-// the md:/lg: tiers at all - confirmed by loading the page in a real browser
-// and finding the width stuck on the base tier at every viewport width,
-// including 1440px. The fix is to write the complete responsive class as one
-// literal string, so every space-separated token in it is something Tailwind
-// can actually find and generate a rule for.
-//
-// Footer logo, three tiers:
-//   <md (mobile)   12.5rem = 200px
-//   md-lg (tablet) 15.5rem = 248px
-//   lg+ (desktop)  clamp(17.5rem,15rem+4vw,18.5rem) = 280-296px
-// The tagline's font-size is decoupled from this width below lg (fixed 8px,
-// see the tagline span below) specifically so these can shrink without
-// dragging the tagline under the 8px floor - that coupling (via 3.53cqw) is
-// what forced the old, larger mobile/tablet values.
-//
-// The mobile width was verified in a real browser, not estimated: with the
-// font genuinely fixed at 8px, the three groups need ~127px of actual
-// rendered content width no matter the box size (measured directly via each
-// group's own unclamped width) - below a ~183px box that content no longer
-// fits its 69.34%-of-box clear zone and visibly clips. 200px keeps ~12px of
-// real margin above that measured floor.
-const FOOTER_LOGO_RESPONSIVE_WIDTH =
-  "w-[12.5rem] md:w-[15.5rem] lg:w-[clamp(17.5rem,15rem+4vw,18.5rem)]";
+// Footer: mark-only below md (170px -> 6.0px ceiling). Tablet (md-lg) 240px
+// -> 8.47px. Desktop (lg+) 260-280px -> 9.27-9.88px, reduced from the
+// previous 280-296px tier per "reduce both logo and tagline somewhat".
+const FOOTER_RESPONSIVE_WIDTH =
+  "w-[10.625rem] md:w-[15rem] lg:w-[clamp(16.25rem,14.5rem+3vw,17.5rem)]";
 
-export default function BrandLogo({
-  className = "",
-  compact = false,
-  surface = "light",
-  tagline = false,
-  footer = false,
-}) {
+export default function BrandLogo({ className = "", surface = "light", tagline = false, footer = false }) {
   const onDark = surface === "dark";
   const variant = onDark ? BRAND_LOGO.dark : BRAND_LOGO.light;
 
@@ -99,32 +82,25 @@ export default function BrandLogo({
   const taglineColor = onDark ? "text-[#c3cfdb]" : "text-[#3d4653]";
   const ruleColor = onDark ? "bg-[#c3cfdb]/50" : "bg-[#3d4653]/45";
 
-  const logoWidth = footer
-    ? FOOTER_LOGO_RESPONSIVE_WIDTH
-    : compact
-      ? HEADER_LOGO_WIDTH_COMPACT
-      : HEADER_LOGO_WIDTH;
+  const logoWidth = footer ? FOOTER_RESPONSIVE_WIDTH : HEADER_RESPONSIVE_WIDTH;
 
-  // Header stacks the small below-box tagline line under the mark; footer
-  // keeps the mark and its in-box tagline side by side on one row.
-  const headerStacked = tagline && !footer;
-
-  // Both the footer's in-box tagline and the header's below-box line are now
-  // always drawn at every width (see the responsive font size below for how
-  // the header line fits on narrow phones too), so the sr-only fallback is
-  // only ever needed for the mark-only case (tagline=false).
-  const srFallbackClass = !tagline ? "sr-only" : "hidden";
+  // Visibility must match the width tier where the ceiling actually clears
+  // 8px: header only from lg up, footer from md up (mobile stays mark-only
+  // in both). sr-only fallback fills in wherever the real tagline is hidden.
+  const taglineVisibleClass = footer ? "hidden md:flex" : "hidden lg:flex";
+  const srFallbackClass = !tagline ? "sr-only" : footer ? "sr-only md:hidden" : "sr-only lg:hidden";
 
   return (
     <Link
       href="/"
-      className={`group inline-flex min-h-11 min-w-0 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 ${headerStacked ? "flex-col items-start gap-1" : "items-center"} ${className}`}
+      className={`group inline-flex min-h-11 min-w-0 items-center rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 ${className}`}
       aria-label="Capwise Solution BD — Home"
     >
-      {/* Sized ONLY by width + aspect-ratio, and declared as a query container
-          so the footer's in-box tagline can size itself in cqw. The tagline
-          is absolutely positioned inside this fixed box, so it can never
-          stretch the container. */}
+      {/* Sized ONLY by width + aspect-ratio, and declared as a query
+          container so the tagline sizes itself in cqw against THIS box's
+          own width. The tagline is absolutely positioned inside it, so it
+          can never stretch the container, and — because cqw is always a
+          fraction of the box — can never extend past its edges either. */}
       <span
         className={`capwise-lockup relative block shrink-0 ${logoWidth}`}
         style={{ aspectRatio: ASPECT_RATIO, containerType: "inline-size" }}
@@ -138,15 +114,9 @@ export default function BrandLogo({
           className="absolute inset-0 size-full object-contain transition-transform duration-150 ease-out group-hover:-translate-y-px group-hover:scale-[1.015] group-focus-visible:-translate-y-px group-focus-visible:scale-[1.015] group-active:translate-y-0 group-active:scale-[0.97] group-active:duration-75"
         />
 
-        {tagline && footer && (
-          // 3.53cqw is the ceiling the clear zone allows, not a requirement -
-          // a smaller size always fits. Below lg it's fixed at 8px instead, so
-          // the logo can shrink on mobile/tablet without dragging the tagline
-          // under the 8px floor with it (that coupling was the actual bug).
-          // At lg+ the logo is wide enough (280px+) that 3.53cqw alone clears
-          // 9px, so the original ceiling behaviour is kept there unchanged.
+        {tagline && (
           <span
-            className="capwise-lockup-tagline pointer-events-none absolute flex items-center text-[8px] lg:text-[3.53cqw]"
+            className={`capwise-lockup-tagline pointer-events-none absolute items-center text-[3.53cqw] ${taglineVisibleClass}`}
             style={{
               left: `${WORDMARK_LEFT_PCT}%`,
               right: `${WORDMARK_RIGHT_INSET_PCT}%`,
@@ -165,29 +135,7 @@ export default function BrandLogo({
         )}
       </span>
 
-      {headerStacked && (
-        // Same 3-group, 2-line, trailing-rule format as the footer's in-box
-        // tagline - but NOT sized off the logo's width (that needs a ~256px+
-        // box to stay legible, which is what made the header logo big in the
-        // first place). Fixed at 8px and left at its own natural width instead
-        // of being forced to match the small logo box: the widest word per
-        // group ("Accounting"/"Compliance", "HR &"/"Payroll") only needs
-        // ~145px total at 8px in the worst-case character-width estimate,
-        // comfortably under the ~220px+ available in the header row even on
-        // the narrowest phones - so it never needs to compete for space the
-        // way matching the logo's own ~136px width would.
-        <span className="flex items-center text-[8px]" style={{ columnGap: "0.5em" }}>
-          {taglineGroups.map(([line1, line2]) => (
-            <span key={line1} className={`font-medium leading-[1.15] tracking-[0.01em] ${taglineColor}`}>
-              <span className="block whitespace-nowrap">{line1}</span>
-              <span className="block whitespace-nowrap">{line2}</span>
-            </span>
-          ))}
-          <span aria-hidden="true" className={`h-px w-3 shrink-0 self-center ${ruleColor}`} />
-        </span>
-      )}
-
-      {/* The descriptor is never lost, even where it is not drawn. */}
+      {/* The descriptor is never lost, even where the real tagline is not drawn. */}
       <span className={srFallbackClass}>{taglineSrText}</span>
     </Link>
   );
