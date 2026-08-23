@@ -17,7 +17,6 @@ export function BrandMark({ className = "h-12 w-auto" }) {
   );
 }
 
-// Three groups, each two lines, matching docs/reference/logo-lockup-target.png.
 const taglineGroups = [
   ["Accounting", "& Finance"],
   ["Tax &", "Compliance"],
@@ -25,49 +24,84 @@ const taglineGroups = [
 ];
 const taglineSrText = "Accounting & Finance, Tax & Compliance, HR & Payroll";
 
-// Measured directly against capwise-light.svg's own viewBox (1021.42 x
-// 318.95), not against any wrapper — .lockup below has no other sizing
-// influence, so these resolve correctly against the logo's own box.
-const WORDMARK_LEFT_PCT = 22.9;
-const WORDMARK_RIGHT_INSET_PCT = 100 - 98.5; // 1.5
-const WORDMARK_BASELINE_TOP_PCT = 76;
-
+/**
+ * GEOMETRY — measured by rendering capwise-light.svg at its own viewBox
+ * (1021 x 319) and sampling ink coverage row by row. Both variants now share
+ * this viewBox, so these resolve identically for light and dark.
+ *
+ *   wordmark left  ("C" of CAP)  : 29.09%
+ *   wordmark right ("E" of WISE) : 98.43%
+ *   wordmark baseline            : 73.67%
+ *
+ * The brain reaches x 60.6% only at the baseline itself; from y 74% down it
+ * narrows to 27.6%, leaving a genuinely clear band:
+ *
+ *   CLEAR ZONE = x 29.09%-98.43% (69.3% wide) x y 74%-100% (26.0% tall)
+ *
+ * SIZING — the constraint is proportional, so it is expressed proportionally.
+ * Two lines at line-height 1.15 need about 2.3x the font size, and the zone is
+ * 26% of a box whose height is width/3.202. That works out to:
+ *
+ *   font size = logo width x 0.0353
+ *
+ * which is 3.53cqw against the lockup container. Using container query units
+ * means the tagline auto-fits at ANY logo size — header and footer need no
+ * separate tuning, and it can never overflow the clear zone.
+ *
+ *   logo 200px -> tagline  7.1px      logo 300px -> tagline 10.6px
+ *   logo 260px -> tagline  9.2px      logo 340px -> tagline 12.0px
+ *
+ * TUNE THE HEADER by changing HEADER_LOGO_WIDTH below — the tagline follows.
+ */
+const WORDMARK_LEFT_PCT = 29.09;
+const WORDMARK_RIGHT_INSET_PCT = 100 - 98.43;
+const CLEAR_ZONE_TOP_PCT = 74;
 const ASPECT_RATIO = "1021.42 / 318.95";
 
-export default function BrandLogo({ className = "", compact = false, surface = "light", tagline = false }) {
-  // Variant is chosen by the surface the logo renders on, not by site theme —
-  // the footer is always a dark surface regardless of theme, so it always
-  // gets the dark variant. The header pill's surface does track the theme, so
-  // callers pass surface="dark" there only when resolvedTheme is "dark".
+// Header: 16.25rem = 260px at the top of the clamp -> ~9.2px tagline,
+// ~90px pill. Raise toward 21rem for a 12px tagline and a ~116px pill.
+const HEADER_LOGO_WIDTH = "w-[clamp(13rem,11rem+3vw,16.25rem)]";
+const HEADER_LOGO_WIDTH_COMPACT = "w-[clamp(11.5rem,10rem+2.6vw,14.5rem)]";
+const FOOTER_LOGO_WIDTH = "w-[clamp(17.5rem,15rem+4vw,20rem)]";
+
+export default function BrandLogo({
+  className = "",
+  compact = false,
+  surface = "light",
+  tagline = false,
+  footer = false,
+}) {
   const onDark = surface === "dark";
   const variant = onDark ? BRAND_LOGO.dark : BRAND_LOGO.light;
-  // Literal --muted token values, applied directly rather than via the
-  // text-muted utility. text-muted follows the THEME; this needs to follow
-  // the SURFACE, and the footer is a dark surface in light theme too — the
-  // theme-driven token would apply light theme's dark-gray value there and
-  // fail contrast in exactly the case this exists to fix.
-  const taglineColor = onDark ? "text-[#9fb1bf]" : "text-[#667085]";
-  const ruleColor = onDark ? "bg-[#9fb1bf]" : "bg-[#667085]";
+
+  // Chosen by SURFACE, not theme: the footer is a dark surface even in light
+  // theme, so a theme-driven utility would pick the wrong value there.
+  // Strengthened for legibility — see BrandLogo contrast measurements in the
+  // conversation/commit log for the actual measured ratios per surface.
+  const taglineColor = onDark ? "text-[#c3cfdb]" : "text-[#3d4653]";
+  const ruleColor = onDark ? "bg-[#c3cfdb]/50" : "bg-[#3d4653]/45";
+
+  // Below md the tagline is not drawn (hidden md:flex, below), so the header
+  // logo can run smaller there — HEADER_LOGO_WIDTH only takes over from md up.
+  const logoWidth = footer
+    ? FOOTER_LOGO_WIDTH
+    : compact
+      ? HEADER_LOGO_WIDTH_COMPACT
+      : `${HEADER_LOGO_WIDTH_COMPACT} md:${HEADER_LOGO_WIDTH}`;
 
   return (
     <Link
       href="/"
-      className={`group inline-flex min-h-11 min-w-0 items-start rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 ${className}`}
+      className={`group inline-flex min-h-11 min-w-0 items-center rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 ${className}`}
       aria-label="Capwise Solution BD — Home"
     >
-      {/* .lockup — sized ONLY by width + aspect-ratio. Nothing else may size
-          it: not the image, not the tagline, not padding. To scale the whole
-          lockup, change the width below; height follows from aspect-ratio.
-          The tagline is absolutely positioned INSIDE this fixed box, so its
-          percentages always resolve against the logo's own geometry, never
-          against a wrapper the tagline itself could stretch. */}
+      {/* Sized ONLY by width + aspect-ratio, and declared as a query container
+          so the tagline can size itself in cqw. The tagline is absolutely
+          positioned inside this fixed box, so it can never stretch the
+          container — which is what keeps the header pill height predictable. */}
       <span
-        className={`capwise-lockup relative block shrink-0 ${
-          compact
-            ? "w-[clamp(11.6rem,10.4rem+2.2vw,13.6rem)]"
-            : "w-[clamp(13.2rem,11.9rem+2.5vw,15.6rem)]"
-        }`}
-        style={{ aspectRatio: ASPECT_RATIO }}
+        className={`capwise-lockup relative block shrink-0 ${logoWidth}`}
+        style={{ aspectRatio: ASPECT_RATIO, containerType: "inline-size" }}
       >
         <Image
           src={variant.src}
@@ -75,22 +109,24 @@ export default function BrandLogo({ className = "", compact = false, surface = "
           width={variant.width}
           height={variant.height}
           priority
-          className="capwise-lockup-logo absolute inset-0 size-full object-contain transition-transform duration-150 ease-out group-hover:-translate-y-px group-hover:scale-[1.015] group-focus-visible:-translate-y-px group-focus-visible:scale-[1.015] group-active:translate-y-0 group-active:scale-[0.97] group-active:duration-75"
+          className="absolute inset-0 size-full object-contain transition-transform duration-150 ease-out group-hover:-translate-y-px group-hover:scale-[1.015] group-focus-visible:-translate-y-px group-focus-visible:scale-[1.015] group-active:translate-y-0 group-active:scale-[0.97] group-active:duration-75"
         />
 
         {tagline && (
           <span
-            className="capwise-lockup-tagline pointer-events-none absolute hidden lg:flex lg:items-center lg:gap-x-2.5"
+            className="capwise-lockup-tagline pointer-events-none absolute hidden md:flex md:items-center"
             style={{
               left: `${WORDMARK_LEFT_PCT}%`,
               right: `${WORDMARK_RIGHT_INSET_PCT}%`,
-              top: `${WORDMARK_BASELINE_TOP_PCT}%`,
+              top: `${CLEAR_ZONE_TOP_PCT}%`,
+              fontSize: "3.53cqw",
+              columnGap: "0.6em",
             }}
           >
             {taglineGroups.map(([line1, line2]) => (
-              <span key={line1} className={`text-[0.75rem] font-normal leading-none ${taglineColor}`}>
+              <span key={line1} className={`font-medium leading-[1.15] tracking-[0.01em] ${taglineColor}`}>
                 <span className="block whitespace-nowrap">{line1}</span>
-                <span className="mt-[3px] block whitespace-nowrap">{line2}</span>
+                <span className="block whitespace-nowrap">{line2}</span>
               </span>
             ))}
             <span aria-hidden="true" className={`h-px flex-1 ${ruleColor}`} />
@@ -98,7 +134,8 @@ export default function BrandLogo({ className = "", compact = false, surface = "
         )}
       </span>
 
-      {tagline && <span className="sr-only lg:hidden">{taglineSrText}</span>}
+      {/* The descriptor is never lost, even where it is not drawn. */}
+      <span className={tagline ? "sr-only md:hidden" : "sr-only"}>{taglineSrText}</span>
     </Link>
   );
 }
