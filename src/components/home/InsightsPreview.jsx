@@ -41,10 +41,14 @@ export default function InsightsPreview() {
             </m.article>
           )}
 
-          {/* Below lg: transparent to the grid (display:contents), so these three
-              render exactly as before - individual cards in the sm:grid-cols-3 row.
-              At lg: becomes one flex column occupying its own grid cell, with
-              hairline dividers between rows instead of card chrome. */}
+          {/* Row on mobile AND desktop, card only at tablet (sm-lg):
+              below 640px the single-column grid gives secondary items the same
+              full width as the featured card, so a compact thumbnail+text row
+              is used there too - only the sm: tier (640-1023px, where these
+              already sit narrower than featured in their own 3-col row) keeps
+              the original big-image card. At lg: transparent to the grid
+              (display:contents), becomes one flex column with hairline
+              dividers instead of card chrome. */}
           <div className="contents lg:col-span-5 lg:flex lg:flex-col lg:divide-y lg:divide-border">
             {rest.map((item, i) => (
               <m.article
@@ -53,20 +57,20 @@ export default function InsightsPreview() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ delay: Math.min((i + 1) * 0.06, 0.18) }}
-                className="group overflow-hidden rounded-[1.2rem] border border-border bg-surface transition hover:-translate-y-1 hover:border-brand-blue/30 hover:shadow-[0_20px_55px_rgba(27,20,100,.09)] sm:rounded-[1.35rem] lg:flex-1 lg:rounded-none lg:border-0 lg:bg-transparent lg:shadow-none lg:hover:translate-y-0 lg:hover:border-transparent lg:hover:shadow-none"
+                className="group overflow-hidden transition sm:rounded-[1.35rem] sm:border sm:border-border sm:bg-surface sm:hover:-translate-y-1 sm:hover:border-brand-blue/30 sm:hover:shadow-[0_20px_55px_rgba(27,20,100,.09)] lg:flex-1 lg:rounded-none lg:border-0 lg:bg-transparent lg:shadow-none lg:hover:translate-y-0 lg:hover:border-transparent lg:hover:shadow-none"
               >
                 <Link
                   href={`/insights/${item.slug}`}
-                  className="flex h-full flex-col min-h-[9rem] sm:min-h-[12rem] lg:min-h-0 lg:h-full lg:flex-row lg:items-center lg:gap-4 lg:rounded-[0.9rem] lg:p-4 lg:hover:bg-surface lg:focus-visible:outline-none lg:focus-visible:ring-2 lg:focus-visible:ring-brand-gold lg:focus-visible:ring-offset-2 lg:focus-visible:ring-offset-surface-muted"
+                  className="flex items-center gap-3 rounded-[0.8rem] p-2 hover:bg-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 focus-visible:ring-offset-surface-muted sm:h-full sm:min-h-[12rem] sm:flex-col sm:items-stretch sm:gap-0 sm:rounded-none sm:p-0 sm:hover:bg-transparent sm:focus-visible:ring-offset-surface lg:h-full lg:min-h-0 lg:flex-row lg:items-center lg:gap-4 lg:rounded-[0.9rem] lg:p-4 lg:hover:bg-surface lg:focus-visible:ring-offset-surface-muted"
                 >
-                  <div className="relative aspect-[16/10] overflow-hidden lg:aspect-[4/3] lg:w-28 lg:shrink-0 lg:rounded-[0.7rem]">
-                    <Image src={item.image} alt={item.imageAlt || ""} fill sizes="(min-width:1024px) 112px,(min-width:640px) 33vw,100vw" className="object-cover transition duration-700 group-hover:scale-[1.035]"/>
-                    <div className="absolute inset-0 bg-gradient-to-t from-brand-navy/45 to-transparent lg:hidden"/>
+                  <div className="relative aspect-[4/3] w-20 shrink-0 overflow-hidden rounded-[0.6rem] sm:aspect-[16/10] sm:w-full sm:rounded-none lg:aspect-[4/3] lg:w-28">
+                    <Image src={item.image} alt={item.imageAlt || ""} fill sizes="(min-width:1024px) 112px,(min-width:640px) 33vw,80px" className="object-cover transition duration-700 group-hover:scale-[1.035]"/>
+                    <div className="absolute inset-0 hidden bg-gradient-to-t from-brand-navy/45 to-transparent sm:block lg:hidden"/>
                   </div>
-                  <div className="flex flex-1 flex-col p-2 sm:p-4 md:p-5 lg:justify-center lg:p-0">
+                  <div className="flex flex-1 flex-col justify-center gap-0.5 p-0 sm:justify-start sm:gap-0 sm:p-4 md:p-5 lg:justify-center lg:gap-0 lg:p-0">
                     <p className="text-[.52rem] font-extrabold uppercase tracking-[.12em] text-brand-blue sm:text-[.58rem] sm:tracking-[.16em]">{item.category}</p>
-                    <h3 className="text-[0.72rem] sm:text-lg mt-1.5 font-display font-semibold leading-[1.1] tracking-[-0.02em] text-foreground group-hover:text-brand-blue sm:mt-3 lg:mt-1 lg:text-base lg:leading-[1.25] lg:tracking-[-0.01em] lg:line-clamp-2">{item.title}</h3>
-                    <p className="mt-1 hidden text-xs leading-5 text-muted lg:mt-1.5 lg:block lg:line-clamp-1">{item.excerpt}</p>
+                    <h3 className="text-sm font-display font-semibold leading-[1.25] tracking-[-0.01em] text-foreground group-hover:text-brand-blue line-clamp-2 sm:mt-3 sm:text-lg sm:leading-[1.1] sm:tracking-[-0.02em] sm:line-clamp-none lg:mt-1 lg:text-base lg:leading-[1.25] lg:tracking-[-0.01em] lg:line-clamp-2">{item.title}</h3>
+                    <p className="hidden text-xs leading-5 text-muted lg:mt-1.5 lg:block lg:line-clamp-1">{item.excerpt}</p>
                     <span className="mt-auto hidden items-center justify-between border-t border-border pt-4 text-xs font-extrabold sm:flex lg:hidden">Read <ArrowUpRight size={14} className="text-brand-gold"/></span>
                   </div>
                   <ArrowUpRight aria-hidden="true" size={16} className="hidden shrink-0 self-center text-brand-gold opacity-0 transition group-hover:opacity-100 lg:block" />
