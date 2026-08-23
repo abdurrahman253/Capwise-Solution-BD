@@ -29,8 +29,8 @@ export default function AboutPage() {
               <h1 className="mt-6 max-w-[12ch] font-display text-h1 font-semibold text-foreground">One coordinated advisory partner for complex business obligations.</h1>
             </div>
             <div className="lg:col-span-4">
-              <p className="text-sm leading-7 text-muted sm:text-base sm:leading-8">Capwise Solution BD is a Dhaka-based multidisciplinary consultancy helping organisations translate financial, tax, legal and regulatory requirements into practical business action.</p>
-              <div className="mt-6 inline-flex items-center gap-2 rounded-full border border-border bg-surface px-3 py-2 text-[0.66rem] font-bold text-muted"><ShieldCheck aria-hidden="true" size={14} className="text-accent-strong" /> Founded 2022 · Dhaka, Bangladesh</div>
+              <p className="text-sm leading-7 text-muted sm:text-base sm:leading-8">Capwise Solution BD is a Dhaka-based multidisciplinary consultancy helping organisations translate financial, tax, legal and regulatory requirements into practical business action. Founded in 2025, the firm brings together in-house expertise across accountancy, taxation and corporate law.</p>
+              <div className="mt-6 inline-flex items-center gap-2 rounded-full border border-border bg-surface px-3 py-2 text-[0.66rem] font-bold text-muted"><ShieldCheck aria-hidden="true" size={14} className="text-accent-strong" /> Founded 2025 · Dhaka, Bangladesh</div>
             </div>
           </div>
         </section>
@@ -66,6 +66,30 @@ export default function AboutPage() {
                     <p className="mt-3 text-sm leading-7 text-muted">{text}</p>
                   </article>
                 ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="bg-surface py-section-lg">
+          <div className="mx-auto max-w-[90rem] px-gutter">
+            <div className="grid gap-10 lg:grid-cols-12 lg:gap-16">
+              <div className="lg:col-span-5">
+                <p className="text-[0.62rem] font-bold uppercase tracking-[0.2em] text-accent-strong">Our team</p>
+                <h2 className="mt-5 max-w-[13ch] font-display text-h2 font-semibold text-foreground">25 professionals, disciplines coordinated in one place.</h2>
+                <p className="mt-6 max-w-lg text-sm leading-7 text-muted sm:text-base sm:leading-8">A client working with several separate firms usually coordinates audit, tax law, corporate law and government liaison independently. At Capwise, those disciplines sit inside one 25-person team.</p>
+              </div>
+              <div className="lg:col-span-7">
+                <ul className="grid gap-4 sm:grid-cols-2">
+                  <li className="rounded-[1.2rem] border border-border bg-background p-5"><p className="text-sm font-bold text-foreground">Chartered Accountant (FCA)</p><p className="mt-1.5 text-sm leading-6 text-muted">Statutory audit, internal audit, business finance and due diligence.</p></li>
+                  <li className="rounded-[1.2rem] border border-border bg-background p-5"><p className="text-sm font-bold text-foreground">Chartered Certified Accountant (FCCA)</p><p className="mt-1.5 text-sm leading-6 text-muted">Accounting, financial modelling, corporate finance and fundraising.</p></li>
+                  <li className="rounded-[1.2rem] border border-border bg-background p-5"><p className="text-sm font-bold text-foreground">Tax consultant &amp; income tax lawyer</p><p className="mt-1.5 text-sm leading-6 text-muted">NBR, BIDA and RJSC compliance, VAT, taxation, appeals and tribunal matters.</p></li>
+                  <li className="rounded-[1.2rem] border border-border bg-background p-5"><p className="text-sm font-bold text-foreground">Business operations lead</p><p className="mt-1.5 text-sm leading-6 text-muted">Business development, ministry liaison, government tender and documentation.</p></li>
+                  <li className="rounded-[1.2rem] border border-border bg-background p-5"><p className="text-sm font-bold text-foreground">Former NBR officer</p><p className="mt-1.5 text-sm leading-6 text-muted">Taxation, VAT, NBR liaison, appeals and tribunal matters.</p></li>
+                  <li className="rounded-[1.2rem] border border-border bg-background p-5"><p className="text-sm font-bold text-foreground">Advocate, Supreme Court of Bangladesh</p><p className="mt-1.5 text-sm leading-6 text-muted">Criminal, civil and writ petition matters.</p></li>
+                  <li className="rounded-[1.2rem] border border-border bg-background p-5"><p className="text-sm font-bold text-foreground">Advocate, Dhaka Judge Court</p><p className="mt-1.5 text-sm leading-6 text-muted">Deed writing, drafting, hearings and case filing.</p></li>
+                  <li className="rounded-[1.2rem] border border-border bg-background p-5"><p className="text-sm font-bold text-foreground">Wider team</p><p className="mt-1.5 text-sm leading-6 text-muted">15 CA article-completed (CACC) professionals from established Bangladeshi CA firms, with 4 advocates and 4 ITP licence holders across the team.</p></li>
+                </ul>
               </div>
             </div>
           </div>

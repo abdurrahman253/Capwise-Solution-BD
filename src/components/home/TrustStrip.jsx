@@ -1,20 +1,19 @@
 "use client";
 
-import { BookOpen, LayoutGrid, Link2, MapPin } from "lucide-react";
+import { Briefcase, LayoutGrid, Users } from "lucide-react";
 import { m, useReducedMotion } from "motion/react";
 
 const trustFacts = [
-  { label: "Focus", value: "Bangladesh", detail: "Local operating and compliance context", icon: MapPin },
-  { label: "Coverage", value: "7 services", detail: "From setup to recurring compliance", icon: LayoutGrid },
-  { label: "Approach", value: "Connected", detail: "Finance, tax, legal and HR considered together", icon: Link2 },
-  { label: "Knowledge", value: "Practical", detail: "Concise insights built around real business questions", icon: BookOpen },
+  { label: "Clients", value: "160+", detail: "Businesses served across Bangladesh", icon: Users },
+  { label: "Team", value: "25", detail: "Professionals across finance, tax, audit and law", icon: Briefcase },
+  { label: "Sectors", value: "9", detail: "Industries served, from SME to RMG", icon: LayoutGrid },
 ];
 
 export default function TrustStrip() {
   const reduceMotion = useReducedMotion();
   return (
     <section className="capwise-trust-strip border-b border-border bg-surface py-section-sm" aria-label="Capwise at a glance">
-      <dl className="mx-auto grid max-w-[94rem] grid-cols-2 items-stretch gap-3 px-gutter sm:gap-4 lg:grid-cols-4">
+      <dl className="mx-auto grid max-w-[94rem] grid-cols-1 items-stretch gap-3 px-gutter sm:grid-cols-3 sm:gap-4">
         {trustFacts.map(({ label, value, detail, icon: Icon }, index) => (
           <m.div
             key={label}
