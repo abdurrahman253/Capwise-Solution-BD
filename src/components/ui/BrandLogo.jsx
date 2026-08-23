@@ -55,14 +55,34 @@ const ASPECT_RATIO = "1021.42 / 318.95";
 // one sized off the box's own width. Nothing here needs the box to be big.
 const HEADER_LOGO_WIDTH = "w-[clamp(8.5rem,7.5rem+1.6vw,10.5rem)]";
 const HEADER_LOGO_WIDTH_COMPACT = "w-[clamp(7.5rem,6.5rem+1.4vw,9rem)]";
-// Footer mobile tier: fixed (not clamped) at 232px - gives an 8.19px in-box
-// tagline. This is close to the practical floor for an in-box tagline: below
-// ~227px the tagline drops under the 8px hard floor entirely, so this is as
-// small as the footer logo can go while keeping its tagline in-box legible.
-const FOOTER_LOGO_WIDTH_MOBILE = "w-[14.5rem]";
-// Footer desktop tier: 296px ceiling -> 10.45px in-box tagline; 280px floor
-// -> 9.88px. Both comfortably clear the 9px desktop floor.
-const FOOTER_LOGO_WIDTH = "w-[clamp(17.5rem,15rem+4vw,18.5rem)]";
+
+// IMPORTANT — Tailwind's class scanner reads this file's raw text; it cannot
+// see a class assembled at runtime like `` `md:${SOME_CONSTANT}` ``, because
+// the literal substring "md:w-[...]" never actually appears anywhere in the
+// source. That pattern was used here before and silently generated NO CSS for
+// the md:/lg: tiers at all - confirmed by loading the page in a real browser
+// and finding the width stuck on the base tier at every viewport width,
+// including 1440px. The fix is to write the complete responsive class as one
+// literal string, so every space-separated token in it is something Tailwind
+// can actually find and generate a rule for.
+//
+// Footer logo, three tiers:
+//   <md (mobile)   12.5rem = 200px
+//   md-lg (tablet) 15.5rem = 248px
+//   lg+ (desktop)  clamp(17.5rem,15rem+4vw,18.5rem) = 280-296px
+// The tagline's font-size is decoupled from this width below lg (fixed 8px,
+// see the tagline span below) specifically so these can shrink without
+// dragging the tagline under the 8px floor - that coupling (via 3.53cqw) is
+// what forced the old, larger mobile/tablet values.
+//
+// The mobile width was verified in a real browser, not estimated: with the
+// font genuinely fixed at 8px, the three groups need ~127px of actual
+// rendered content width no matter the box size (measured directly via each
+// group's own unclamped width) - below a ~183px box that content no longer
+// fits its 69.34%-of-box clear zone and visibly clips. 200px keeps ~12px of
+// real margin above that measured floor.
+const FOOTER_LOGO_RESPONSIVE_WIDTH =
+  "w-[12.5rem] md:w-[15.5rem] lg:w-[clamp(17.5rem,15rem+4vw,18.5rem)]";
 
 export default function BrandLogo({
   className = "",
@@ -80,7 +100,7 @@ export default function BrandLogo({
   const ruleColor = onDark ? "bg-[#c3cfdb]/50" : "bg-[#3d4653]/45";
 
   const logoWidth = footer
-    ? `${FOOTER_LOGO_WIDTH_MOBILE} md:${FOOTER_LOGO_WIDTH}`
+    ? FOOTER_LOGO_RESPONSIVE_WIDTH
     : compact
       ? HEADER_LOGO_WIDTH_COMPACT
       : HEADER_LOGO_WIDTH;
@@ -119,13 +139,18 @@ export default function BrandLogo({
         />
 
         {tagline && footer && (
+          // 3.53cqw is the ceiling the clear zone allows, not a requirement -
+          // a smaller size always fits. Below lg it's fixed at 8px instead, so
+          // the logo can shrink on mobile/tablet without dragging the tagline
+          // under the 8px floor with it (that coupling was the actual bug).
+          // At lg+ the logo is wide enough (280px+) that 3.53cqw alone clears
+          // 9px, so the original ceiling behaviour is kept there unchanged.
           <span
-            className="capwise-lockup-tagline pointer-events-none absolute flex items-center"
+            className="capwise-lockup-tagline pointer-events-none absolute flex items-center text-[8px] lg:text-[3.53cqw]"
             style={{
               left: `${WORDMARK_LEFT_PCT}%`,
               right: `${WORDMARK_RIGHT_INSET_PCT}%`,
               top: `${CLEAR_ZONE_TOP_PCT}%`,
-              fontSize: "3.53cqw",
               columnGap: "0.6em",
             }}
           >
