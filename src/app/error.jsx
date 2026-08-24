@@ -9,7 +9,7 @@ export default function GlobalError({ error, reset }) {
   }, [error]);
 
   return (
-    <main className="capwise-not-found grid min-h-screen place-items-center px-4 py-16">
+    <main className="capwise-not-found grid min-h-screen place-items-center px-gutter py-section-sm">
       <div className="w-full max-w-2xl rounded-[1.8rem] border border-border bg-surface p-7 text-center shadow-[0_30px_90px_rgba(27,20,100,0.14)] sm:p-12">
         <span className="mx-auto inline-flex size-14 items-center justify-center rounded-full border border-danger/25 bg-danger/10 text-danger"><AlertTriangle aria-hidden="true" size={22} /></span>
         <p className="mt-7 text-[0.62rem] font-bold uppercase tracking-[0.2em] text-danger">Unexpected interruption</p>

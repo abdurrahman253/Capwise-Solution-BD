@@ -90,7 +90,7 @@ export default function GuideRequestButton({ guide, featured = false }) {
           });
           setOpen(true);
         }}
-        className={`mt-auto flex w-full items-center justify-between gap-4 border-t pt-6 text-left text-xs font-bold transition sm:text-sm ${
+        className={`relative mt-auto flex w-full items-center justify-between gap-4 border-t pt-6 text-left text-xs font-bold transition after:absolute after:inset-x-0 after:top-1/2 after:h-11 after:-translate-y-1/2 after:content-[''] sm:text-sm ${
           featured
             ? "border-white/12 text-white/72 hover:text-accent"
             : "border-border text-foreground/72 hover:text-accent-strong"

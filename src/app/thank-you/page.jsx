@@ -16,9 +16,9 @@ export default async function ThankYouPage({ searchParams }) {
   return (
     <>
       <SiteHeader />
-      <main id="main-content" className="relative isolate overflow-hidden bg-background py-20 sm:py-28 lg:py-36">
+      <main id="main-content" className="relative isolate overflow-hidden bg-background py-section-lg">
         <div className="capwise-coordinate-grid pointer-events-none absolute inset-0 -z-20 opacity-40" />
-        <div className="mx-auto max-w-3xl px-4 sm:px-6">
+        <div className="mx-auto max-w-3xl px-gutter">
           <section className="rounded-[2rem] border border-border bg-surface p-7 text-center shadow-[var(--card-shadow)] sm:p-12">
             <span className="mx-auto inline-flex size-16 items-center justify-center rounded-full bg-accent text-[#1b1464] shadow-[0_18px_50px_rgba(27,100,170,.24)]">
               <CheckCircle2 aria-hidden="true" size={28} />

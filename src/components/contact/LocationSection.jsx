@@ -50,7 +50,7 @@ export default function LocationSection() {
             <div className="mt-8 flex items-center gap-3 border-t border-border pt-7 text-sm text-muted">
               <Navigation aria-hidden="true" size={16} className="shrink-0 text-accent-strong" />
               Prefer to call ahead?
-              <a href={`tel:${primaryContact.tel}`} className="inline-flex items-center gap-1.5 font-bold text-foreground hover:text-accent-strong">
+              <a href={`tel:${primaryContact.tel}`} className="relative inline-flex items-center gap-1.5 font-bold text-foreground after:absolute after:left-1/2 after:top-1/2 after:size-11 after:-translate-x-1/2 after:-translate-y-1/2 after:content-[''] hover:text-accent-strong">
                 <Phone aria-hidden="true" size={14} />
                 {primaryContact.phone}
               </a>
