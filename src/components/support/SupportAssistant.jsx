@@ -196,7 +196,7 @@ export default function SupportAssistant() {
               <span className="size-1.5 rounded-full bg-[#34d399]" />
             </span>
           </span>
-          <span className="mt-0.5 block text-[0.8rem] font-bold leading-none text-[var(--assistant-foreground)]">
+          <span className="block text-[0.8rem] font-bold leading-none text-[var(--assistant-foreground)]">
             Talk to an Adviser
           </span>
           <ArrowRight
@@ -248,53 +248,59 @@ export default function SupportAssistant() {
                 </button>
               </div>
 
-              <p className="relative mt-4 text-[0.8rem] leading-6 text-[var(--assistant-muted)]" data-support-reveal>
-                Select a topic below, or describe your situation. We&rsquo;ll direct you to the right adviser.
-              </p>
+              {!hasConversation && (
+                <>
+                  <p className="relative mt-4 text-[0.8rem] leading-6 text-[var(--assistant-muted)]" data-support-reveal>
+                    Select a topic below, or describe your situation. We&rsquo;ll direct you to the right adviser.
+                  </p>
 
-              <div className="capwise-support-actions relative mt-5 -mx-5 grid grid-cols-1 gap-px border-t px-5 pt-px sm:-mx-6 sm:px-6" data-support-reveal>
-                {quickActions.map(({ label, prompt, icon: Icon }) => (
-                  <button
-                    key={label}
-                    type="button"
-                    onClick={() => sendMessage(prompt)}
-                    disabled={isSending}
-                    className="capwise-support-action group flex min-h-[3.25rem] items-center gap-3 p-3.5 text-left transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-accent-strong disabled:cursor-wait disabled:opacity-55 sm:p-4"
-                  >
-                    <span className="inline-flex size-9 shrink-0 items-center justify-center rounded-xl bg-accent/10 text-accent-strong transition duration-200 group-hover:bg-accent/16 group-hover:-translate-y-0.5 group-focus-visible:bg-accent/16">
-                      <Icon aria-hidden="true" size={16} strokeWidth={1.75} />
-                    </span>
-                    <span className="text-[0.75rem] font-bold leading-4 text-[var(--assistant-foreground)]">
-                      {label}
-                    </span>
-                  </button>
-                ))}
-              </div>
+                  <div className="capwise-support-actions relative mt-5 -mx-5 grid grid-cols-1 gap-px border-t px-5 pt-px sm:-mx-6 sm:px-6" data-support-reveal>
+                    {quickActions.map(({ label, prompt, icon: Icon }) => (
+                      <button
+                        key={label}
+                        type="button"
+                        onClick={() => sendMessage(prompt)}
+                        disabled={isSending}
+                        className="capwise-support-action group flex min-h-[3.25rem] items-center gap-3 p-3.5 text-left transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-accent-strong disabled:cursor-wait disabled:opacity-55 sm:p-4"
+                      >
+                        <span className="inline-flex size-9 shrink-0 items-center justify-center rounded-xl bg-accent/10 text-accent-strong transition duration-200 group-hover:bg-accent/16 group-hover:-translate-y-0.5 group-focus-visible:bg-accent/16">
+                          <Icon aria-hidden="true" size={16} strokeWidth={1.75} />
+                        </span>
+                        <span className="text-[0.75rem] font-bold leading-4 text-[var(--assistant-foreground)]">
+                          {label}
+                        </span>
+                      </button>
+                    ))}
+                  </div>
 
-              <div className="relative mt-4 -mx-5 border-t border-[var(--assistant-border)] px-5 pb-5 pt-4 sm:-mx-6 sm:px-6" data-support-reveal>
-                <p className="flex items-center gap-1.5 text-micro font-bold uppercase text-[var(--assistant-muted)]">
-                  <UserRoundCheck aria-hidden="true" size={13} className="text-accent-strong" />
-                  Talk to a human directly
-                </p>
-                <div className="mt-2.5 grid grid-cols-2 gap-2.5">
-                  <a
-                    href={`tel:${primaryContact.tel}`}
-                    className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-[var(--assistant-border)] text-[0.75rem] font-bold text-[var(--assistant-foreground)] transition hover:border-accent/40 hover:bg-accent/8"
-                  >
-                    <PhoneCall aria-hidden="true" size={15} />
-                    Call now
-                  </a>
-                  <a
-                    href={whatsappHref(primaryContact.whatsapp, "Hello Capwise, I would like to discuss business support.")}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-[var(--assistant-border)] text-[0.75rem] font-bold text-[var(--assistant-foreground)] transition hover:border-accent/40 hover:bg-accent/8"
-                  >
-                    <MessageCircle aria-hidden="true" size={15} />
-                    WhatsApp
-                  </a>
-                </div>
-              </div>
+                  <div className="relative mt-4 -mx-5 border-t border-[var(--assistant-border)] px-5 pb-5 pt-4 sm:-mx-6 sm:px-6" data-support-reveal>
+                    <p className="flex items-center gap-1.5 text-micro font-bold uppercase text-[var(--assistant-muted)]">
+                      <UserRoundCheck aria-hidden="true" size={13} className="text-accent-strong" />
+                      Talk to a human directly
+                    </p>
+                    <div className="mt-2.5 grid grid-cols-2 gap-2.5">
+                      <a
+                        href={`tel:${primaryContact.tel}`}
+                        className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-[var(--assistant-border)] text-[0.75rem] font-bold text-[var(--assistant-foreground)] transition hover:border-accent/40 hover:bg-accent/8"
+                      >
+                        <PhoneCall aria-hidden="true" size={15} />
+                        Call now
+                      </a>
+                      <a
+                        href={whatsappHref(primaryContact.whatsapp, "Hello Capwise, I would like to discuss business support.")}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-[var(--assistant-border)] text-[0.75rem] font-bold text-[var(--assistant-foreground)] transition hover:border-accent/40 hover:bg-accent/8"
+                      >
+                        <MessageCircle aria-hidden="true" size={15} />
+                        WhatsApp
+                      </a>
+                    </div>
+                  </div>
+                </>
+              )}
+
+              {hasConversation && <div className="h-4" />}
             </header>
 
             <div
