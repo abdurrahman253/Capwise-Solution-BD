@@ -34,8 +34,7 @@ export default function LocationSection() {
 
             <div className="mt-5 flex items-start gap-3">
               <MapPin aria-hidden="true" size={19} className="mt-0.5 shrink-0 text-accent-strong" />
-              {/* TODO: CAPWISE address — confirm with client */}
-              <p className="text-sm italic leading-7 text-muted">Address to be confirmed.</p>
+              <p className="text-sm leading-7 text-muted">Level-03, House 76/A, Road 11, Banani, Dhaka-1213</p>
             </div>
 
             <a
