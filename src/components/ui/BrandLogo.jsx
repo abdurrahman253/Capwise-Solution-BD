@@ -58,23 +58,21 @@ const CLEAR_ZONE_TOP_PCT = 74;
 const ASPECT_RATIO = "1021.42 / 318.95";
 
 // Header: mark-only below lg (112px -> 3.95px ceiling, well under the 8px
-// floor). From lg up, 232-235px -> 8.19-8.29px: a small, precise trim off
-// the previous 232-248px tier. The floor (232px, at 1024px viewport) is
-// left untouched on purpose - it already sits right at the 8px containment
-// floor, so the reduction is taken entirely from the vw growth rate instead,
-// meaning it's essentially unnoticeable at typical laptop widths and only
-// becomes a real, visible reduction at wider desktop monitors (~4.7% at
-// 1920px) - proportional, subtle, and never risks the tagline overflowing.
+// floor) - UNCHANGED, this request was scoped to large devices only.
+// lg+ trimmed again to 230-233px -> 8.12-8.21px. 230px is close to the real
+// floor for this element: the absolute minimum for an 8.00px tagline is
+// 226.63px, so 230px leaves only 0.119px of margin - about as far as this
+// can go without either breaking containment or dropping the tagline, both
+// of which were explicitly ruled out for this change.
 const HEADER_RESPONSIVE_WIDTH =
-  "w-[clamp(7rem,6rem+1.3vw,8.375rem)] lg:w-[clamp(14.5rem,13rem+1.4vw,14.875rem)]";
+  "w-[clamp(7rem,6rem+1.3vw,8.375rem)] lg:w-[clamp(14.375rem,12.875rem+1.39vw,14.75rem)]";
 
-// Footer: mark-only below md (155px -> 5.47px ceiling). Tablet (md-lg) 230px
-// -> 8.12px. Desktop (lg+) 248-266px -> 8.94-9.39px: a small, uniform ~3.6-5%
-// trim off the previous tiers, with more headroom than the header had to
-// work with, so the reduction lands evenly across the whole desktop range
-// rather than being concentrated at one end.
+// Footer: mark-only below md (155px -> 5.47px ceiling) and tablet (md-lg,
+// 230px -> 8.12px) - UNCHANGED, this request was scoped to large devices
+// only. lg+ trimmed again to 240-250px -> 8.46-8.83px, a further ~4-6%
+// reduction - more room was available here than the header had.
 const FOOTER_RESPONSIVE_WIDTH =
-  "w-[9.6875rem] md:w-[14.375rem] lg:w-[clamp(15.5rem,14rem+2.85vw,16.625rem)]";
+  "w-[9.6875rem] md:w-[14.375rem] lg:w-[clamp(14.6875rem,13.25rem+2.7vw,15.625rem)]";
 
 export default function BrandLogo({ className = "", surface = "light", tagline = false, footer = false }) {
   const onDark = surface === "dark";
