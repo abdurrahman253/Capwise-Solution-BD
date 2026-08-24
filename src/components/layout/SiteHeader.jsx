@@ -191,7 +191,19 @@ export default function SiteHeader() {
 
   return (
     <>
-      <header className="sticky top-3 z-50 px-gutter sm:top-4">
+      {/* Reserves the header's own footprint in normal flow. The header
+          itself is `fixed` (not `sticky`) below - `next/template.jsx` wraps
+          each page's own content in its own animated box that does NOT
+          include SiteFooter, so a sticky header's containing block ends
+          before the footer does, and it stops sticking exactly there. Fixed
+          positioning has no containing-block dependency at all, so this
+          spacer is what keeps page content pushed down by the header's
+          height instead - matching min-h-[4rem] to what the pill already
+          used, plus a real measured value for the lg+ tier (~82px there,
+          confirmed by measuring capwise-floating-nav directly in a browser,
+          not estimated). */}
+      <div aria-hidden="true" className="min-h-[4rem] lg:min-h-[5.1875rem]" />
+      <header className="fixed inset-x-0 top-3 z-50 px-gutter sm:top-4">
         <div className="capwise-floating-nav mx-auto flex min-h-[4rem] max-w-[94rem] items-center gap-3 rounded-full px-4 py-1 sm:px-5 lg:px-7 2xl:px-9">
           <BrandLogo tagline surface={logoSurface} className="mr-auto" />
 
