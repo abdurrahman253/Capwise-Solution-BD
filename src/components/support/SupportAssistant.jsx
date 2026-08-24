@@ -56,21 +56,12 @@ export default function SupportAssistant() {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
   const [isSending, setIsSending] = useState(false);
-  const [nearFooter, setNearFooter] = useState(false);
 
   const hasConversation = messages.length > 0;
   const latestAssistantMessage = useMemo(
     () => [...messages].reverse().find((message) => message.role === "assistant"),
     [messages],
   );
-
-  useEffect(() => {
-    const footer = document.querySelector("footer");
-    if (!footer) return;
-    const observer = new IntersectionObserver(([entry]) => setNearFooter(entry.isIntersecting));
-    observer.observe(footer);
-    return () => observer.disconnect();
-  }, []);
 
   useGSAP(
     () => {
@@ -178,11 +169,7 @@ export default function SupportAssistant() {
 
   return (
     <>
-      <div
-        className={`fixed bottom-4 right-4 z-[88] transition-[opacity,transform] duration-300 ease-out sm:bottom-6 sm:right-6 ${
-          nearFooter ? "pointer-events-none translate-y-3 opacity-0" : "translate-y-0 opacity-100"
-        }`}
-      >
+      <div className="fixed bottom-4 right-4 z-[88] sm:bottom-6 sm:right-6">
         <button
           type="button"
           onClick={() => setIsOpen(true)}
