@@ -357,11 +357,6 @@ html {
 body {
   min-height: 100vh;
   margin: 0;
-  /* Safety net, not the fix — the real overflow source found in this pass
-     (unconstrained markdown table in insights/[slug]/page.jsx) was fixed at
-     its source with min-w-0 on the grid item that hosts it. Keep this rule
-     as a backstop for content authors, not a substitute for fixing layout. */
-  overflow-x: hidden;
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-inter), Arial, Helvetica, sans-serif;

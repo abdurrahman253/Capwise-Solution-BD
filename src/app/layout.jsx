@@ -108,10 +108,22 @@ export default function RootLayout({ children }) {
       <body className="min-h-screen antialiased">
         <a className="capwise-skip-link" href="#main-content">Skip to main content</a>
         <JsonLd data={organizationJsonLd} />
-        <AppProviders>
-          {children}
-          <SiteFooter />
-        </AppProviders>
+        {/* overflow-x-hidden lives here, not on <html>/<body> - setting
+            overflow-x alone on either of THOSE forces their computed
+            overflow-y to `auto` too (CSS spec pairing rule), which makes
+            that element the page's actual scrolling container instead of
+            the true viewport. On a ~12,000px page that silently broke
+            `position: fixed` (the header vanished once scrolled far enough
+            - confirmed via document.elementsFromPoint(), not just guessed).
+            A plain div doesn't have that special html/body behavior: it can
+            carry overflow-x-hidden as a horizontal-overflow backstop with
+            zero effect on how position:fixed children are positioned. */}
+        <div className="overflow-x-hidden">
+          <AppProviders>
+            {children}
+            <SiteFooter />
+          </AppProviders>
+        </div>
       </body>
     </html>
   );

@@ -19,10 +19,16 @@ export default function Template({ children }) {
     hasMountedOnce = true;
   }, []);
 
+  // Opacity only, deliberately - no clip-path/transform/filter here. Any of
+  // those create a NEW CONTAINING BLOCK for position:fixed descendants (the
+  // header lives inside {children}, so it's one), and Framer Motion keeps
+  // re-syncing the DOM to match `animate` on later re-renders, so a one-time
+  // manual clear of a stray inline style doesn't reliably stick. Opacity
+  // never creates a containing block, so there's nothing to clean up.
   return (
     <m.div
-      initial={reduceMotion || isFirstMount ? false : { opacity: 0, clipPath: "inset(10px 0 0 0)" }}
-      animate={{ opacity: 1, clipPath: "inset(0px 0 0 0)" }}
+      initial={reduceMotion || isFirstMount ? false : { opacity: 0 }}
+      animate={{ opacity: 1 }}
       transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
     >
       {children}
