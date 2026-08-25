@@ -37,8 +37,19 @@ export default function FirmIntro() {
     <section className="bg-background py-section-lg" aria-labelledby="firm-intro-title">
       <div className="mx-auto grid max-w-[94rem] gap-10 px-gutter lg:grid-cols-12 lg:gap-14">
         <m.div initial={reduceMotion ? false : { opacity: 0, y: 22 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .3 }} className="lg:col-span-5">
-          <p className="text-[0.62rem] font-extrabold uppercase tracking-[0.2em] text-brand-blue">Who we work with</p>
+          <div className="flex items-center gap-3">
+            <span aria-hidden="true" className="h-px w-10 bg-brand-blue" />
+            <p className="text-[0.62rem] font-extrabold uppercase tracking-[0.2em] text-brand-blue">Who we work with</p>
+          </div>
           <h2 id="firm-intro-title" className="mt-5 max-w-[13ch] font-display text-h2 font-semibold text-foreground">Start from where your business is today.</h2>
+          <p className="mt-7 max-w-xl text-base leading-8 text-muted">Every engagement starts from a different point—a new registration, a records backlog, a governance gap or a market-entry decision. Pick the one closest to where the business is right now.</p>
+          <Link
+            href="/contact"
+            className="group mt-8 inline-flex items-center gap-3 border-b border-foreground/20 pb-2 text-sm font-bold text-foreground transition hover:border-brand-blue hover:text-brand-blue"
+          >
+            Get in touch
+            <ArrowRight aria-hidden="true" size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
+          </Link>
         </m.div>
         <m.div initial={reduceMotion ? false : { opacity: 0, y: 22 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .3 }} transition={{ delay: .08 }} className="grid gap-4 sm:grid-cols-2 lg:col-span-6 lg:col-start-7">
           {segments.map((segment) => (
