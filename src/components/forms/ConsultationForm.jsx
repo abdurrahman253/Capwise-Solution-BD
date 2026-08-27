@@ -230,7 +230,8 @@ export default function ConsultationForm({ compact = false }) {
               Full name
               <input
                 {...register("name")}
-                className={fieldClass}
+                id="consultation-name"
+                className={`${fieldClass} scroll-mt-28`}
                 autoComplete="name"
                 placeholder="Your name"
                 aria-invalid={Boolean(errors.name)}

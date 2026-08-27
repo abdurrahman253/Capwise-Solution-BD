@@ -1,4 +1,4 @@
-import { ArrowUpRight, Compass, Scale, ShieldCheck, UsersRound } from "lucide-react";
+import { ArrowUpRight, Briefcase, Compass, LayoutGrid, Scale, ShieldCheck, Users, UsersRound } from "lucide-react";
 import Link from "next/link";
 
 import SiteHeader from "@/components/layout/SiteHeader";
@@ -23,14 +23,30 @@ export default function AboutPage() {
       <main id="main-content">
         <section className="capwise-gateway relative isolate overflow-hidden border-b border-border py-section-lg">
           <div className="capwise-coordinate-grid pointer-events-none absolute inset-0 -z-20 opacity-45" />
-          <div className="mx-auto grid max-w-[90rem] gap-10 px-gutter lg:grid-cols-12 lg:items-end lg:gap-14">
-            <div className="lg:col-span-8">
+          <div className="mx-auto grid max-w-[90rem] gap-10 px-gutter lg:grid-cols-12 lg:gap-14">
+            <div className="lg:col-span-7">
               <div className="flex items-center gap-3"><span className="h-px w-10 bg-accent-strong" /><p className="text-[0.62rem] font-bold uppercase tracking-[0.22em] text-accent-strong">About Capwise</p></div>
-              <h1 className="mt-6 max-w-[12ch] font-display text-h1 font-semibold text-foreground">One coordinated advisory partner for complex business obligations.</h1>
+              <h1 className="mt-6 max-w-[20ch] font-display text-h1 font-semibold text-foreground">One coordinated advisory partner for complex business obligations.</h1>
+              <p className="mt-6 max-w-xl text-sm leading-7 text-muted sm:text-base sm:leading-8">Capwise Solution BD is a Dhaka-based multidisciplinary consultancy helping organisations translate financial, tax, legal and regulatory requirements into practical business action. Founded in 2025, the firm brings together in-house expertise across accountancy, taxation and corporate law.</p>
+              <Link href="/contact" className="mt-8 inline-flex h-12 items-center gap-3 rounded-full bg-action px-6 text-sm font-bold text-action-foreground transition hover:-translate-y-0.5 hover:bg-action-hover">Book a Free Consultation <ArrowUpRight aria-hidden="true" size={17} /></Link>
             </div>
-            <div className="lg:col-span-4">
-              <p className="text-sm leading-7 text-muted sm:text-base sm:leading-8">Capwise Solution BD is a Dhaka-based multidisciplinary consultancy helping organisations translate financial, tax, legal and regulatory requirements into practical business action. Founded in 2025, the firm brings together in-house expertise across accountancy, taxation and corporate law.</p>
-              <div className="mt-6 inline-flex items-center gap-2 rounded-full border border-border bg-surface px-3 py-2 text-[0.66rem] font-bold text-muted"><ShieldCheck aria-hidden="true" size={14} className="text-accent-strong" /> Founded 2025 · Dhaka, Bangladesh</div>
+            <div className="lg:col-span-5">
+              <div className="rounded-[1.5rem] border border-border bg-surface p-7 shadow-[var(--card-shadow)] sm:p-8">
+                <div className="inline-flex items-center gap-2 text-[0.66rem] font-bold text-muted"><ShieldCheck aria-hidden="true" size={14} className="text-accent-strong" /> Founded 2025 · Dhaka, Bangladesh</div>
+                <dl className="mt-6 grid grid-cols-3 divide-x divide-border border-t border-border pt-6">
+                  {[
+                    { label: "Clients", value: "160+", icon: Users },
+                    { label: "Team", value: "25", icon: Briefcase },
+                    { label: "Sectors", value: "9", icon: LayoutGrid },
+                  ].map(({ label, value, icon: Icon }) => (
+                    <div key={label} className="px-3 first:pl-0 last:pr-0">
+                      <span className="inline-flex size-8 items-center justify-center rounded-full bg-brand-blue/10 text-brand-blue"><Icon aria-hidden="true" size={15} strokeWidth={1.8} /></span>
+                      <dt className="mt-3 text-[0.6rem] font-extrabold uppercase tracking-[0.16em] text-accent-strong">{label}</dt>
+                      <dd className="mt-1.5 font-display text-2xl font-semibold text-foreground">{value}</dd>
+                    </div>
+                  ))}
+                </dl>
+              </div>
             </div>
           </div>
         </section>
