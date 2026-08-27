@@ -6,10 +6,10 @@ export const teamMembers = [
     initials: "FKC",
     name: "Fahim Khan Chowdhury",
     role: "Consultant",
-    specialty: "Audit, VAT, Tax & Regulatory Affairs",
+    specialty: "Income Tax Law, Corporate Affairs & Company Formation",
     experience: "8+ years",
-    credential: "BBA, MBA, LLB",
-    summary: "Supports corporate compliance, direct and indirect taxation, RJSC matters and business establishment.",
+    credential: "BBA, MBA, LLB, ITP",
+    summary: "Advises on income tax returns, NBR/BIDA/RJSC corporate affairs, ITES exemption, RJSC company formation and DTAA certification. Member, Dhaka Taxes Bar Association and Bangladesh Company Law Practitioners Society.",
     featured: true,
   },
   {
@@ -55,13 +55,13 @@ export const teamMembers = [
   },
   {
     slug: "borhan-sarkar",
-    initials: "BS",
-    name: "Borhan Sarkar",
+    initials: "BU",
+    name: "Borhan Uddin",
     role: "Advisor",
-    specialty: "Professional profile pending client confirmation",
-    experience: "Details to be confirmed",
-    credential: "Credentials to be confirmed",
-    summary: "Included in the Capwise team roster. Professional title, specialty and credentials should be updated once verified by the client.",
+    specialty: "Co-Working Space Business & Industrial Operations",
+    experience: "9+ years",
+    credential: "B.I.M.T",
+    summary: "CEO of Codesk LTD, a co-working space based in Banani, Dhaka, and Industrial Engineer at Epyllion Group.",
   },
 ];
 
