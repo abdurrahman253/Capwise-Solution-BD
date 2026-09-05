@@ -57,22 +57,16 @@ const WORDMARK_RIGHT_INSET_PCT = 100 - 98.43;
 const CLEAR_ZONE_TOP_PCT = 74;
 const ASPECT_RATIO = "1021.42 / 318.95";
 
-// Header: mark-only below lg (112px -> 3.95px ceiling, well under the 8px
-// floor) - UNCHANGED, this request was scoped to large devices only.
-// lg+ trimmed again to 230-233px -> 8.12-8.21px. 230px is close to the real
-// floor for this element: the absolute minimum for an 8.00px tagline is
-// 226.63px, so 230px leaves only 0.119px of margin - about as far as this
-// can go without either breaking containment or dropping the tagline, both
-// of which were explicitly ruled out for this change.
+// Header: 96px mobile (6rem), 192-208px desktop (lg+). Tagline ceiling is
+// below 8px at all tiers (3.39px mobile, 6.78-7.34px desktop) so the
+// tagline is hidden everywhere — sr-only text carries the description.
 const HEADER_RESPONSIVE_WIDTH =
-  "w-[clamp(7rem,6rem+1.3vw,8.375rem)] lg:w-[clamp(14.375rem,12.875rem+1.39vw,14.75rem)]";
+  "w-[6rem] lg:w-[clamp(12rem,10.5rem+1.4vw,13rem)]";
 
-// Footer: mark-only below md (155px -> 5.47px ceiling) and tablet (md-lg,
-// 230px -> 8.12px) - UNCHANGED, this request was scoped to large devices
-// only. lg+ trimmed again to 240-250px -> 8.46-8.83px, a further ~4-6%
-// reduction - more room was available here than the header had.
+// Footer: 128px mobile, 192px tablet, 196-210px desktop. Tagline ceiling
+// is below 8px at all tiers so the tagline is hidden everywhere.
 const FOOTER_RESPONSIVE_WIDTH =
-  "w-[9.6875rem] md:w-[14.375rem] lg:w-[clamp(14.6875rem,13.25rem+2.7vw,15.625rem)]";
+  "w-[8rem] md:w-[12rem] lg:w-[clamp(12.25rem,11rem+2.25vw,13.125rem)]";
 
 export default function BrandLogo({ className = "", surface = "light", tagline = false, footer = false }) {
   const onDark = surface === "dark";
@@ -85,11 +79,12 @@ export default function BrandLogo({ className = "", surface = "light", tagline =
 
   const logoWidth = footer ? FOOTER_RESPONSIVE_WIDTH : HEADER_RESPONSIVE_WIDTH;
 
-  // Visibility must match the width tier where the ceiling actually clears
-  // 8px: header only from lg up, footer from md up (mobile stays mark-only
-  // in both). sr-only fallback fills in wherever the real tagline is hidden.
-  const taglineVisibleClass = footer ? "hidden md:flex" : "hidden lg:flex";
-  const srFallbackClass = !tagline ? "sr-only" : footer ? "sr-only md:hidden" : "sr-only lg:hidden";
+  // Tagline ceiling is below 8px at all current widths, so the visual
+  // tagline is hidden everywhere. sr-only text always carries the
+  // description. If logo widths are later increased past 227px at any
+  // breakpoint, restore the responsive visibility classes here.
+  const taglineVisibleClass = "hidden";
+  const srFallbackClass = "sr-only";
 
   return (
     <Link
