@@ -346,11 +346,11 @@ export default function SiteHeader() {
 
       <Dialog open={mobileMenuOpen} onClose={setMobileMenuOpen} className="relative z-[90] xl:hidden">
         <DialogBackdrop
-          className="fixed inset-0 bg-brand-navy/45 backdrop-blur-md duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] data-[closed]:opacity-0"
+          className="capwise-mobile-backdrop fixed inset-0 bg-brand-navy/45 backdrop-blur-md data-[enter]:duration-[250ms] data-[enter]:ease-out data-[leave]:duration-200 data-[leave]:ease-in data-[closed]:opacity-0"
           transition
         />
         <DialogPanel
-          className="capwise-mobile-drawer fixed inset-y-0 right-0 flex w-full max-w-md flex-col overflow-y-auto rounded-l-[1.5rem] border-l p-5 duration-[380ms] ease-[cubic-bezier(0.22,1,0.36,1)] data-[closed]:translate-x-full"
+          className="capwise-mobile-drawer fixed inset-y-0 right-0 flex w-full max-w-md flex-col overflow-y-auto rounded-l-[1.5rem] border-l p-5 data-[enter]:duration-[280ms] data-[enter]:ease-out data-[leave]:duration-200 data-[leave]:ease-in data-[closed]:translate-x-full"
           transition
         >
           <div className="flex items-start justify-between gap-4 border-b border-border/70 pb-4">
@@ -358,7 +358,7 @@ export default function SiteHeader() {
             <BrandLogo tagline surface={logoSurface} />
             <div className="flex shrink-0 items-center gap-2">
               <ThemeToggle />
-              <button type="button" onClick={() => setMobileMenuOpen(false)} className="inline-flex size-11 items-center justify-center rounded-full border border-border transition hover:border-brand-blue hover:text-brand-blue active:scale-95" aria-label="Close navigation menu"><X size={20} /></button>
+              <button type="button" onClick={() => setMobileMenuOpen(false)} className="inline-flex size-11 items-center justify-center rounded-full border border-border transition duration-200 hover:border-brand-blue hover:text-brand-blue hover:rotate-90 active:scale-95 motion-reduce:hover:rotate-0" aria-label="Close navigation menu"><X size={20} /></button>
             </div>
           </div>
 

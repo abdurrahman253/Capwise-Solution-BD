@@ -1000,6 +1000,7 @@ canvas {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .capwise-mobile-backdrop,
   .capwise-mobile-drawer {
     transition: none;
   }
