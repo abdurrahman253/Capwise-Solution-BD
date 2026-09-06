@@ -57,16 +57,15 @@ const WORDMARK_RIGHT_INSET_PCT = 100 - 98.43;
 const CLEAR_ZONE_TOP_PCT = 74;
 const ASPECT_RATIO = "1021.42 / 318.95";
 
-// Header: 96px mobile (6rem), 192-208px desktop (lg+). Tagline ceiling is
-// below 8px at all tiers (3.39px mobile, 6.78-7.34px desktop) so the
-// tagline is hidden everywhere — sr-only text carries the description.
+// Header: 96px mobile (6rem), 256-272px desktop (lg+). Tagline ceiling:
+// mobile 3.39px (hidden), lg+ 9.04-9.60px (shown).
 const HEADER_RESPONSIVE_WIDTH =
-  "w-[6rem] lg:w-[clamp(12rem,10.5rem+1.4vw,13rem)]";
+  "w-[6rem] lg:w-[clamp(16rem,14.5rem+1.5vw,17rem)]";
 
-// Footer: 128px mobile, 192px tablet, 196-210px desktop. Tagline ceiling
-// is below 8px at all tiers so the tagline is hidden everywhere.
+// Footer: 128px mobile, 232px tablet, 256-272px desktop. Tagline ceiling:
+// mobile 4.52px (hidden), md 8.19px (shown), lg+ 9.04-9.60px (shown).
 const FOOTER_RESPONSIVE_WIDTH =
-  "w-[8rem] md:w-[12rem] lg:w-[clamp(12.25rem,11rem+2.25vw,13.125rem)]";
+  "w-[8rem] md:w-[14.5rem] lg:w-[clamp(16rem,14.25rem+1.75vw,17rem)]";
 
 export default function BrandLogo({ className = "", surface = "light", tagline = false, footer = false }) {
   const onDark = surface === "dark";
@@ -79,12 +78,8 @@ export default function BrandLogo({ className = "", surface = "light", tagline =
 
   const logoWidth = footer ? FOOTER_RESPONSIVE_WIDTH : HEADER_RESPONSIVE_WIDTH;
 
-  // Tagline ceiling is below 8px at all current widths, so the visual
-  // tagline is hidden everywhere. sr-only text always carries the
-  // description. If logo widths are later increased past 227px at any
-  // breakpoint, restore the responsive visibility classes here.
-  const taglineVisibleClass = "hidden";
-  const srFallbackClass = "sr-only";
+  const taglineVisibleClass = footer ? "hidden md:flex" : "hidden lg:flex";
+  const srFallbackClass = !tagline ? "sr-only" : footer ? "sr-only md:hidden" : "sr-only lg:hidden";
 
   return (
     <Link

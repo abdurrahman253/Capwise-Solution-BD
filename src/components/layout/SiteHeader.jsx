@@ -202,12 +202,12 @@ export default function SiteHeader() {
           used, plus a real measured value for the lg+ tier (~82px there,
           confirmed by measuring capwise-floating-nav directly in a browser,
           not estimated). */}
-      <div aria-hidden="true" className="min-h-[4rem] lg:min-h-[5.1875rem]" />
+      <div aria-hidden="true" className="min-h-[4rem] lg:min-h-[5.25rem]" />
       <header
         className="fixed inset-x-0 top-3 z-50 px-gutter will-change-transform sm:top-4"
         style={{ transform: "translate3d(0,0,0)", backfaceVisibility: "hidden" }}
       >
-        <div className="capwise-floating-nav mx-auto flex min-h-[4rem] max-w-[94rem] items-center gap-3 rounded-full px-4 py-1 sm:px-5 lg:px-7 2xl:px-9">
+        <div className="capwise-floating-nav mx-auto flex min-h-[4rem] max-w-[94rem] items-center gap-3 rounded-full px-4 py-1 sm:px-5 lg:px-7 lg:py-0 2xl:px-9">
           <BrandLogo tagline surface={logoSurface} className="mr-auto" />
 
           <nav aria-label="Primary navigation" className="hidden items-center gap-0 xl:flex">
