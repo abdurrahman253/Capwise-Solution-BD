@@ -22,7 +22,7 @@ export default function FloatingContact() {
     <a
       href={`tel:${primaryContact.tel}`}
       aria-label={`Call Capwise, ${primaryContact.phone}. Page ${Math.round(progress * 100)} percent read.`}
-      className="capwise-float-contact group fixed right-3 top-[6.25rem] z-40 flex items-center gap-2.5 rounded-full border py-1.5 pl-1.5 pr-1.5 backdrop-blur-xl transition-all duration-300 ease-out hover:-translate-y-0.5 sm:right-4 lg:top-[7.25rem] lg:pr-4"
+      className="capwise-float-contact group fixed right-3 top-[6.25rem] z-40 flex items-center gap-2.5 rounded-full border py-1.5 pl-1.5 pr-1.5 backdrop-blur-xl transition-all duration-300 ease-out hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 sm:right-4 lg:top-[7.25rem] lg:pr-4"
     >
       <span className="relative inline-flex size-9 shrink-0 items-center justify-center">
         <svg viewBox="0 0 36 36" className="pointer-events-none absolute inset-0 -rotate-90" aria-hidden="true">

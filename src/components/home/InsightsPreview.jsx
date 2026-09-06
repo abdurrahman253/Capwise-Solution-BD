@@ -26,7 +26,7 @@ export default function InsightsPreview() {
               transition={{ delay: 0 }}
               className="group overflow-hidden rounded-[1.2rem] border border-border bg-surface transition hover:-translate-y-1 hover:border-brand-blue/30 hover:shadow-[0_20px_55px_rgba(27,20,100,.09)] sm:rounded-[1.35rem] sm:col-span-3 lg:col-span-7"
             >
-              <Link href={`/insights/${featured.slug}`} className="flex h-full flex-col min-h-[15rem] sm:min-h-[22rem] lg:min-h-[24rem]">
+              <Link href={`/insights/${featured.slug}`} className="flex h-full flex-col min-h-[15rem] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-brand-gold/60 sm:min-h-[22rem] lg:min-h-[24rem]">
                 <div className="relative aspect-[16/10] overflow-hidden">
                   <Image src={featured.image} alt={featured.imageAlt || ""} fill sizes="(min-width:1024px) 55vw,100vw" className="object-cover transition duration-700 group-hover:scale-[1.035]"/>
                   <div className="absolute inset-0 bg-gradient-to-t from-brand-navy/45 to-transparent"/>

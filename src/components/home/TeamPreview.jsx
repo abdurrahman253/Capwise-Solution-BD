@@ -22,7 +22,7 @@ export default function TeamPreview() {
         <div className="mt-8 grid gap-4 sm:mt-12 sm:gap-5 lg:grid-cols-2">
           {featuredTeamMembers.map((member, index) => (
             <m.article key={member.slug} initial={reduceMotion ? false : { opacity: 0, y: 22 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .2 }} transition={{ delay: index * .06 }} className="group overflow-hidden rounded-[1.3rem] bg-brand-navy p-5 text-white shadow-[0_26px_75px_rgba(27,20,100,.16)] sm:rounded-[1.55rem] sm:p-7 lg:p-9">
-              <Link href={`/team#${member.slug}`} className="flex min-h-[13rem] flex-col focus-visible:outline-none sm:min-h-[18rem] lg:min-h-[21rem]">
+              <Link href={`/team#${member.slug}`} className="flex min-h-[13rem] flex-col focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-brand-gold/60 sm:min-h-[18rem] lg:min-h-[17rem]">
                 <div className="flex items-start justify-between gap-5"><Avatar initials={member.initials} featured /><span className="text-xs font-extrabold text-brand-gold">0{index+1}</span></div>
                 <div className="mt-auto pt-6 sm:pt-10"><p className="text-[0.6rem] font-extrabold uppercase tracking-[0.14em] text-brand-gold sm:text-[0.62rem] sm:tracking-[0.16em]">{member.role}</p><h3 className="mt-2 font-display text-card font-semibold sm:mt-3">{member.name}</h3><p className="mt-2 max-w-xl text-xs leading-6 text-white/65 sm:mt-3 sm:text-sm sm:leading-7">{member.specialty}</p><div className="mt-4 flex items-center justify-between border-t border-white/12 pt-4 text-xs font-bold text-white/64 sm:mt-6 sm:pt-5"><span>{member.experience}</span><ArrowUpRight size={16} className="text-brand-gold transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5" /></div></div>
               </Link>
@@ -30,10 +30,10 @@ export default function TeamPreview() {
           ))}
         </div>
 
-        <div className="mt-3 grid grid-cols-2 gap-3 sm:mt-5 sm:gap-4 lg:grid-cols-4">
+        <div className="mt-3 grid grid-cols-2 gap-3 sm:mt-5 sm:gap-4 lg:grid-cols-3">
           {supportingTeamMembers.map((member, index) => (
             <m.article key={member.slug} initial={reduceMotion ? false : { opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .2 }} transition={{ delay: Math.min(index*.04,.16) }} className="rounded-[1.1rem] border border-border bg-surface p-3.5 transition hover:-translate-y-1 hover:border-brand-blue/30 hover:shadow-[0_18px_45px_rgba(27,20,100,.08)] sm:rounded-[1.25rem] sm:p-5">
-              <Link href={`/team#${member.slug}`} className="flex min-h-[8.5rem] flex-col sm:min-h-[13rem]"><div className="flex items-start justify-between"><Avatar initials={member.initials}/><ArrowUpRight size={14} className="text-brand-gold"/></div><h3 className="mt-3 font-display text-sm font-semibold tracking-[-.025em] text-foreground sm:mt-6 sm:text-lg sm:tracking-[-.035em]">{member.name}</h3><p className="mt-1 text-[0.68rem] leading-4 text-muted sm:mt-2 sm:text-xs sm:leading-5">{member.specialty}</p><span className="mt-auto pt-2.5 text-[0.56rem] font-extrabold uppercase tracking-[.1em] text-brand-blue sm:pt-4 sm:text-[0.62rem] sm:tracking-[.14em]">{member.role}</span></Link>
+              <Link href={`/team#${member.slug}`} className="flex min-h-[8.5rem] flex-col focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-brand-gold/60 sm:min-h-[13rem]"><div className="flex items-start justify-between"><Avatar initials={member.initials}/><ArrowUpRight size={14} className="text-brand-gold"/></div><h3 className="mt-3 font-display text-sm font-semibold tracking-[-.025em] text-foreground sm:mt-6 sm:text-lg sm:tracking-[-.035em]">{member.name}</h3><p className="mt-1 text-[0.68rem] leading-4 text-muted sm:mt-2 sm:text-xs sm:leading-5">{member.specialty}</p><span className="mt-auto pt-2.5 text-[0.56rem] font-extrabold uppercase tracking-[.1em] text-brand-blue sm:pt-4 sm:text-[0.62rem] sm:tracking-[.14em]">{member.role}</span></Link>
             </m.article>
           ))}
         </div>
