@@ -151,9 +151,10 @@ export default function SupportAssistant() {
         <button
           type="button"
           onClick={() => setIsOpen(true)}
-          className="capwise-support-launcher group flex min-h-14 items-center gap-3 rounded-full border px-3 py-2 pr-4 text-left shadow-[0_10px_28px_rgba(11,27,61,0.16)] transition duration-200 hover:-translate-y-1"
+          className="capwise-support-launcher group flex items-center rounded-full border p-2.5 shadow-[0_10px_28px_rgba(11,27,61,0.16)] transition duration-200 hover:-translate-y-1 sm:gap-3 sm:py-2 sm:pl-3 sm:pr-4"
           aria-haspopup="dialog"
           aria-expanded={isOpen}
+          aria-label="Talk to an Adviser"
         >
           <span className="relative inline-flex size-9 shrink-0 items-center justify-center rounded-full bg-accent/12 text-accent-strong">
             <Headset aria-hidden="true" size={17} strokeWidth={1.75} />
@@ -161,13 +162,13 @@ export default function SupportAssistant() {
               <span className="size-1.5 rounded-full bg-[#34d399]" />
             </span>
           </span>
-          <span className="block text-[0.8rem] font-bold leading-none text-[var(--assistant-foreground)]">
+          <span className="hidden text-[0.8rem] font-bold leading-none text-[var(--assistant-foreground)] sm:block">
             Talk to an Adviser
           </span>
           <ArrowRight
             aria-hidden="true"
             size={14}
-            className="ml-0.5 shrink-0 text-[var(--assistant-faint)] transition group-hover:translate-x-1 group-hover:text-accent-strong"
+            className="ml-0.5 hidden shrink-0 text-[var(--assistant-faint)] transition group-hover:translate-x-1 group-hover:text-accent-strong sm:block"
           />
         </button>
       </div>
