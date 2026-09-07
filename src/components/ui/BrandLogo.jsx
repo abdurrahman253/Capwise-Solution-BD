@@ -62,10 +62,10 @@ const ASPECT_RATIO = "1021.42 / 318.95";
 const HEADER_RESPONSIVE_WIDTH =
   "w-[6rem] lg:w-[clamp(16rem,14.5rem+1.5vw,17rem)]";
 
-// Footer: 128px mobile, 232px tablet, 256-272px desktop. Tagline ceiling:
-// mobile 4.52px (hidden), md 8.19px (shown), lg+ 9.04-9.60px (shown).
+// Footer: 230px mobile (14.4rem), 256-272px desktop (lg+). Tagline ceiling:
+// mobile 8.13px (shown), lg+ 9.04-9.60px (shown). Visible at all sizes.
 const FOOTER_RESPONSIVE_WIDTH =
-  "w-[8rem] md:w-[14.5rem] lg:w-[clamp(16rem,14.25rem+1.75vw,17rem)]";
+  "w-[14.4rem] lg:w-[clamp(16rem,14.25rem+1.75vw,17rem)]";
 
 export default function BrandLogo({ className = "", surface = "light", tagline = false, footer = false }) {
   const onDark = surface === "dark";
@@ -78,8 +78,8 @@ export default function BrandLogo({ className = "", surface = "light", tagline =
 
   const logoWidth = footer ? FOOTER_RESPONSIVE_WIDTH : HEADER_RESPONSIVE_WIDTH;
 
-  const taglineVisibleClass = footer ? "hidden md:flex" : "hidden lg:flex";
-  const srFallbackClass = !tagline ? "sr-only" : footer ? "sr-only md:hidden" : "sr-only lg:hidden";
+  const taglineVisibleClass = footer ? "flex" : "hidden lg:flex";
+  const srFallbackClass = !tagline ? "sr-only" : footer ? "hidden" : "sr-only lg:hidden";
 
   return (
     <Link
