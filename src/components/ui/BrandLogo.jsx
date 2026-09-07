@@ -57,10 +57,10 @@ const WORDMARK_RIGHT_INSET_PCT = 100 - 98.43;
 const CLEAR_ZONE_TOP_PCT = 74;
 const ASPECT_RATIO = "1021.42 / 318.95";
 
-// Header: 96px mobile (6rem), 256-272px desktop (lg+). Tagline ceiling:
-// mobile 3.39px (hidden), lg+ 9.04-9.60px (shown).
+// Header: 96px (<430px), 208px (430px+), 256-272px (lg+). Tagline ceiling:
+// <430px 3.39px (hidden), 430px+ 7.34px (shown), lg+ 9.04-9.60px (shown).
 const HEADER_RESPONSIVE_WIDTH =
-  "w-[6rem] lg:w-[clamp(16rem,14.5rem+1.5vw,17rem)]";
+  "w-[6rem] min-[430px]:w-[13rem] lg:w-[clamp(16rem,14.5rem+1.5vw,17rem)]";
 
 // Footer: 230px mobile (14.4rem), 256-272px desktop (lg+). Tagline ceiling:
 // mobile 8.13px (shown), lg+ 9.04-9.60px (shown). Visible at all sizes.
@@ -78,8 +78,8 @@ export default function BrandLogo({ className = "", surface = "light", tagline =
 
   const logoWidth = footer ? FOOTER_RESPONSIVE_WIDTH : HEADER_RESPONSIVE_WIDTH;
 
-  const taglineVisibleClass = footer ? "flex" : "hidden lg:flex";
-  const srFallbackClass = !tagline ? "sr-only" : footer ? "hidden" : "sr-only lg:hidden";
+  const taglineVisibleClass = footer ? "flex" : "hidden min-[430px]:flex";
+  const srFallbackClass = !tagline ? "sr-only" : footer ? "hidden" : "sr-only min-[430px]:hidden";
 
   return (
     <Link

@@ -1501,3 +1501,13 @@ canvas {
 }
 
 } /* end @layer components */
+
+/* Unlayered so it overrides the py-1 utility (which lives in @layer
+   utilities). At 430px+ the header logo grows to 13rem / 65px tall —
+   removing vertical padding keeps the navbar at the same height. */
+@media (min-width: 430px) {
+  .capwise-floating-nav {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+}
