@@ -13,7 +13,50 @@ function ProfileCard({ member, featured=false }) {
     <h2 className={`mt-3 font-display ${featured?"text-card":"text-lg"} font-semibold leading-[1.1] tracking-[-0.02em]`}>{member.name}</h2>
     <p className={`mt-4 text-sm leading-7 ${featured?"text-white/64":"text-muted"}`}>{member.specialty}</p>
     <p className={`mt-6 border-t pt-5 text-sm leading-7 ${featured?"border-white/12 text-white/62":"border-border text-muted"}`}>{member.summary}</p>
-    <div className="mt-6 grid gap-2 sm:grid-cols-2">{[member.experience,member.credential].map(item=><div key={item} className={`flex items-center gap-2 rounded-xl border px-3 py-2 text-[.68rem] font-bold ${featured?"border-white/10 bg-white/[.04] text-white/65":"border-border bg-background text-muted"}`}><Check size={13} className={featured?"text-brand-gold":"text-brand-blue"}/>{item}</div>)}</div>
+    {member.memberships ? (
+      <div className="mt-6 grid gap-5">
+        <dl className="grid gap-4 rounded-xl border border-white/12 bg-white/[.04] p-4 sm:p-5">
+          <div>
+            <dt className="text-[.6rem] font-extrabold uppercase tracking-[.14em] text-brand-gold">Experience</dt>
+            <dd className="mt-2 text-sm font-semibold text-white/85">{member.experience}</dd>
+          </div>
+          <div className="border-t border-white/10 pt-4">
+            <dt className="text-[.6rem] font-extrabold uppercase tracking-[.14em] text-brand-gold">Qualifications</dt>
+            <dd className="mt-2 text-sm font-semibold leading-7 text-white/85">{member.credential}</dd>
+          </div>
+        </dl>
+        <div>
+          <h3 className="text-[.6rem] font-extrabold uppercase tracking-[.14em] text-brand-gold">Professional memberships</h3>
+          <ul className="mt-3 grid gap-2.5">
+            {member.memberships.map((membership) => (
+              <li key={membership} className="flex items-start gap-2.5 text-sm leading-6 text-white/70">
+                <Check aria-hidden="true" size={15} className="mt-1 shrink-0 text-brand-gold" />
+                <span>Member, {membership}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    ) : (
+      <div className="mt-6 grid gap-2 sm:grid-cols-2">{[member.experience,member.credential].map(item=><div key={item} className={`flex items-center gap-2 rounded-xl border px-3 py-2 text-[.68rem] font-bold ${featured?"border-white/10 bg-white/[.04] text-white/65":"border-border bg-background text-muted"}`}><Check size={13} className={featured?"text-brand-gold":"text-brand-blue"}/>{item}</div>)}</div>
+    )}
+    {member.linkedinUrl && (
+      <a
+        href={member.linkedinUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={`View ${member.name}'s LinkedIn profile (opens in a new tab)`}
+        className="mt-6 inline-flex min-h-11 items-center gap-2.5 rounded-full border border-white/20 px-4 py-2 text-xs font-bold text-white/85 transition hover:border-brand-gold hover:bg-white/8 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 focus-visible:ring-offset-brand-navy"
+      >
+        <svg aria-hidden="true" width={16} height={16} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-linkedin">
+          <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z" />
+          <rect width="4" height="12" x="2" y="9" />
+          <circle cx="4" cy="4" r="2" />
+        </svg>
+        LinkedIn profile
+        <ArrowUpRight aria-hidden="true" size={14} className="text-brand-gold" />
+      </a>
+    )}
   </article>;
 }
 

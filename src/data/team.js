@@ -1,15 +1,20 @@
-export const TEAM_CONTENT_VERSION = "team-v2-20260816";
+export const TEAM_CONTENT_VERSION = "team-v3-20261018";
 
 export const teamMembers = [
   {
     slug: "fahim-khan-chowdhury",
     initials: "FKC",
     name: "Fahim Khan Chowdhury",
-    role: "Consultant",
+    role: "Chief Consultant",
     specialty: "Income Tax Law, Corporate Affairs & Company Formation",
-    experience: "8+ years",
-    credential: "BBA, MBA, LLB, ITP",
-    summary: "Advises on income tax returns, NBR/BIDA/RJSC corporate affairs, ITES exemption, RJSC company formation and DTAA certification. Member, Dhaka Taxes Bar Association and Bangladesh Company Law Practitioners Society.",
+    experience: "9.5+ years",
+    credential: "BBA, MBA, LL.B, ACCA (Partly Qualified), ITP (NBR)",
+    summary: "Advises on income tax returns, NBR/BIDA/RJSC corporate affairs, ITES exemption, RJSC company formation and DTAA certification.",
+    memberships: [
+      "Dhaka Taxes Bar Association",
+      "Bangladesh Company Law Practitioner's Society",
+    ],
+    linkedinUrl: "https://www.linkedin.com/in/fahim-khan-chowdhury-itp-3bb0b6123/",
     featured: true,
   },
   {
@@ -47,9 +52,9 @@ export const teamMembers = [
     slug: "shib-shanker-dey",
     initials: "SSD",
     name: "Shib Shanker Dey, FCA",
-    role: "Advisor",
+    role: "Senior Advisor",
     specialty: "Financial Reporting & Audit Compliance",
-    experience: "15+ years",
+    experience: "18+ years",
     credential: "Fellow Chartered Accountant",
     summary: "Advises on statutory audit readiness, internal controls, IFRS-based reporting and compliance diagnostics.",
   },
@@ -66,10 +71,10 @@ export const teamMembers = [
   {
     slug: "alamin-hossain",
     initials: "AH",
-    name: "Alamin Hossain",
+    name: "Advocate Alamin Hossain",
     role: "Advisor",
-    specialty: "Corporate Documentation & Filing Support",
-    experience: "Legal practice",
+    specialty: "Criminal Lawyer & Legal Matters Expert",
+    experience: "5+ years",
     credential: "Dhaka Judge Court",
     summary: "Supports company incorporation, agreement drafting, dispute resolution and RJSC filings.",
   },
